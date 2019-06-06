@@ -294,23 +294,30 @@ def plot_variable4histos(rb,lb,Tree,Variable,Option1,Leg1,Option2,Leg2,Option3,L
     nentriesstr2 = str(nentries2)
     nentries3 = Tree.Draw(Variable+">>h3",Option3)
     nentriesstr3 = str(nentries3)
+    nentries4 = Tree.Draw(Variable+">>h4",Option4)
+    nentriesstr4 = str(nentries4)
     Tree.Draw(Variable+">>h1",Option1)
     Tree.Draw(Variable+">>h2",Option2)
     Tree.Draw(Variable+">>h3",Option3)
+    Tree.Draw(Variable+">>h4",Option4)
 
     norm1 = h1.GetEntries()
     norm2 = h2.GetEntries()
     norm3 = h3.GetEntries()
+    norm4 = h4.GetEntries()
     if norm1 != 0:
         h1.Scale(1/norm1)
     if norm2 != 0:
         h2.Scale(1/norm2)
     if norm3 != 0:
         h3.Scale(1/norm3)
+    if norm4 != 0:
+        h4.Scale(1/norm4)
 
     Frame.addTH1(Histogram1)
     Frame.addTH1(Histogram2)
     Frame.addTH1(Histogram3)
+    Frame.addTH1(Histogram4)
 
     legendwidth = 0.15
     legendheight = 0.15
@@ -321,6 +328,7 @@ def plot_variable4histos(rb,lb,Tree,Variable,Option1,Leg1,Option2,Leg2,Option3,L
     leg.AddEntry(Frame.findObject("h1"),Leg1+" "+nentriesstr1,"l")
     leg.AddEntry(Frame.findObject("h2"),Leg2+" "+nentriesstr2,"l")
     leg.AddEntry(Frame.findObject("h3"),Leg3+" "+nentriesstr3,"l")
+    leg.AddEntry(Frame.findObject("h4"),Leg4+" "+nentriesstr4,"l")
     Frame.addObject(leg)
 
     #gStyle.SetOptStat("e");

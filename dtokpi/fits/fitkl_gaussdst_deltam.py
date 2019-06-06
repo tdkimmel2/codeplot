@@ -9,6 +9,7 @@ gInterpreter.ProcessLine('.L RooVoigtian.cxx++')
 
 
 f1 = "/home/tkimmel/Research/root/allmfdtokpi.root"
+#f1 = "/home/taylor/Research/root/allmfdtokpi.root"
 tree = "dsplrecontree"
 f = TFile(f1,"READ")
 t = f.Get(tree)
@@ -213,6 +214,7 @@ tex2.SetNDC()
 tex2.Draw()
 
 canvas.Print("/home/tkimmel/Research/plots/test.png")
+#canvas.Print("/home/taylor/Research/plots/test.png")
 #canvas.Print("/home/taylor/Research/plots/dtokpibmc/bmcmfkl54pinbcoskpizcosdpipcmpippcutsbcs.pdf")
 #canvas.Print("/home/taylor/Research/plots/dtokpibmc/bmcmfkl54pinbcoskpizcosdpipcmpippcutsbcs.eps")
 #canvas.Print("/home/taylor/Research/plots/dtokpibmc/bmcmfkl54pinbcoskpizcosdpipcmpippcutsbcs.png")
