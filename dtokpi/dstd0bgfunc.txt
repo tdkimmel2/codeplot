@@ -1,0 +1,1 @@
+ROOT.RooDstD0BG for D0-D* mass difference [ 1-exp{ (dm-dm0) / c} ] * (dm/dm0)**a + b*(dm/dm0 - 1)
