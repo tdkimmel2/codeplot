@@ -1,5 +1,6 @@
 from ROOT import *
 #from ROOT import gInterpreter, gSystem
+#from ROOT import RooFit
 import math, os
 
 #gInterpreter.ProcessLine('#include "RooCruijff.h"')
@@ -7,7 +8,8 @@ gInterpreter.ProcessLine('.L RooVoigtian.cxx++')
 #gSystem.Load('RooCruijff.cxx++')
 
 
-f1 = "/home/taylor/Research/root/bmcdtokpi.root"
+f1 = "/home/tkimmel/Research/root/allmfdtokpi.root"
+#f1 = "/home/taylor/Research/root/allmfdtokpi.root"
 tree = "dsprecontree"
 f = TFile(f1,"READ")
 t = f.Get(tree)
@@ -30,13 +32,19 @@ binWidthMEV = binWidth*1000
 
 vars = RooArgSet(deltam,nb,nbgm1,nbgm2,coskpiz,coskpizcm,cosdpipcm,pipp)
 
+
 #data = RooDataSet("data", "raw data", t, vars)
 #data = RooDataSet("data", "raw data", t, vars, "nb>0.68 && coskpiz>0.24 && cosdpipcm>0.985 && pipp<0.38")
-data = RooDataSet("data", "raw data", t, vars, "coskpiz>0.24 && cosdpipcm>0.985 && pipp<0.38")
+data = RooDataSet("data", "raw data", t, vars, "coskpiz>0.24 && cosdpipcm>0.985 && pipp<0.38") #pinbcut>0.54 cut applied during the reconstruction
 #data = RooDataSet("data", "raw data", t, vars, "nb>0.68 && coskpizcm>0.64")
 #data = RooDataSet("data", "raw data", t, vars, "nb>0.54 && nbgm1>-0.28 && nbgm2>-0.28 && coskpiz>0.12")
 
 #Function Variables
+
+#Chebyshev
+c0 = RooRealVar("c_{0}","c_{0}",-1,1)
+c1 = RooRealVar("c_{1}","c_{1}",-1,1)
+c2 = RooRealVar("c_{2}","c_{2}",-1,1)
 
 #Voigtian
 voigmean = RooRealVar("<>_{signal}", "<>_{signal}", 0.145, 0, 0.5)
@@ -45,24 +53,32 @@ voigsigma = RooRealVar("#sigma_{signal}", "#sigma_{signal}", 0.0005, 0, 0.1)
 
 #Breit Wigner
 bwmean = RooRealVar("#mu_{sig}", "#mu_{sig}", 0.145, 0, 0.2)
-bwwidth = RooRealVar("#Gamma_{sig}", "#Gamma_{sig}", 0.0005, 0, 0.1)
+bwwidth = RooRealVar("#Gamma_{sig}", "#Gamma_{sig}", 0.0009, 0, 0.1)
 
 #Gaussian
-gausmean = RooRealVar("#mu_{sig}","#mu_{sig}",0.145465,0,0.2)
+gausmean = RooRealVar("#mu_{sig}","#mu_{sig}",0.145465,0.144,0.146)
+#gausmean = RooRealVar("#mu_{sig}","#mu_{sig}",0.1455,0,0.2)
 #gausmean.setConstant()
 gaussigma = RooRealVar("#sigma_{sig}","#sigma_{sig}",0.0006,0,0.001)
 
 #DstD0BG
-dm0 = RooRealVar("dm0", "dm0", 0.137, 0.135, 0.140);
+dm0 = RooRealVar("dm0", "dm0", 0.137, 0.136, 0.140);
 d = RooRealVar("d", "d", 0.006, 0, 10);
+#d = RooRealVar("d", "d", -10, 10);
 #a = RooRealVar("a", "a", 0, 20);
-a = RooRealVar("a", "a", -20, -5);
+#a = RooRealVar("a", "a", -0.1, 0.1); #coskpizcm+pinb
+a = RooRealVar("a", "a", -20, -5); #coskpiz+cosdpipcm+pinb
 #b = RooRealVar("b", "b", 0, 20);
-b = RooRealVar("b", "b", -10, 10);
+#b = RooRealVar("b", "b", -0.1, 0.1); #coskpizcm+pinb
+b = RooRealVar("b", "b", -10, 10); #coskpiz+cosdpipcm+pinb
 
-nsig = RooRealVar("N_{Signal}","nsig",0,100000)
+nsig = RooRealVar("N_{Signal}","nsig",0,10000)
 nbkg = RooRealVar("N_{Bkg}","nbkg",0,100000)
 
+cheby = RooChebychev("Chebychev","Chebychev",deltam,RooArgList(c0,c1,c2))
+dstd0 = RooDstD0BG("DstD0BG","DstD0BG",deltam,dm0,d,a,b)
+frac = RooRealVar("frac","frac",0,1)
+#bkg = RooAddPdf("bkg","bkg",RooArgList(cheby,dstd0),RooArgList(frac))
 bkg = RooDstD0BG("bkg","DstD0BG Bkg Fcn",deltam,dm0,d,a,b)
 #sig = RooVoigtian("sig","Voigtian Signal Fcn",deltam,voigmean,voigwidth,voigsigma) #Use for Voigtian Signal
 #sig = RooBreitWigner("sig","Breit Wigner Signal Fcn", deltam,bwmean,bwwidth) #Use for Breit Wigner Signal
@@ -73,6 +89,7 @@ sig = RooGaussian("sig","Gaussian Signal Fcn", deltam,gausmean,gaussigma) #Use f
 SIG = RooArgSet(sig)
 BKG = RooArgSet(bkg)
 pdf = RooAddPdf("pdf","sig+bkg",RooArgList(sig,bkg),RooArgList(nsig,nbkg))
+#pdf = RooAddPdf("pdf","sig+bkg",RooArgList(sig,bkg),RooArgList(frac))
 
 #----------------------------------------------------------------------- 
 #----------------------------------------------------------------------- 
@@ -102,7 +119,7 @@ FoM = sigfom/math.sqrt(sigfom + bkgfom)
 canvas = TCanvas("canvas", "canvas", 800, 800)
 histPad = TPad("histPad", "Histogram Pad", 0.0, .35, 1.0, 1.0)
 residPad = TPad("residPad", "Residual Pad",0.0, 0.0, 1.0, .35)
-histPad.SetLeftMargin(0.15) 
+histPad.SetLeftMargin(0.15)
 histPad.SetTopMargin(0.1)
 histPad.SetBottomMargin(0.02)
 histPad.SetGrid()
@@ -112,14 +129,15 @@ residPad.SetBottomMargin(0.35)
 residPad.SetGrid()
 histPad.Draw()
 residPad.Draw()
-histPad.cd()  
+histPad.cd()
 
 fitRes.Print()
 # Sanity Check
 h1 = TH1F("h1","h1",nBins,lb,rb)
 
 #frame1 = deltam.frame(RooFit.Bins(nBins),RooFit.Title("D^{*+} -> D^{0}(-> #pi^{0} + K_{S}^{0}) + #pi^{+}: From MC")) 
-frame1 = deltam.frame(RooFit.Bins(nBins),RooFit.Title("D^{*+} -> D^{0}(-> #pi^{0} + K_{S}^{0}) + #pi^{+}: From Mixed MC")) 
+#frame1 = deltam.frame(RooFit.Bins(nBins),RooFit.Title("D^{*+} -> D^{0}(-> #pi^{0} + K_{S}^{0}) + #pi^{+}: From Mixed MC"))
+frame1 = deltam.frame(RooFit.Bins(nBins),RooFit.Title("D^{*+} -> D^{0}(-> #pi^{0} + K_{S}^{0}) + #pi^{+}: From All MC"))
 pullFrame = deltam.frame(RooFit.Bins(nBins),RooFit.Title(""))
 # Beautification Things
 frame1.SetStats(0)
@@ -165,7 +183,7 @@ pullFrame.GetXaxis().SetLabelSize(0.09)
 pullFrame.GetXaxis().SetTitle("#DeltaM_{D^{*+}D^{0}} (GeV/c^{2})")
 pullFrame.GetXaxis().SetTitleOffset(1.1)
 pullFrame.GetXaxis().SetTitleSize(0.12)
-  
+
 pullFrame.SetMaximum(5)
 pullFrame.SetMinimum(-5)
 pullFrame.GetYaxis().SetTitle("Pull")
@@ -180,7 +198,7 @@ chisq = frame1.chiSquare()
 chiSQ = "#chi^{2} = %.3f"%chisq
 tex1 = TLatex(0.8,0.1,chiSQ)
 tex1.SetTextSize(0.1)
-tex1.SetNDC() 
+tex1.SetNDC()
 tex1.Draw()
 #expectedYield = "N_{Expected} = %.0f"%nSignal
 #tex2 = TLatex(0.1,0.1,expectedYield)
@@ -194,23 +212,30 @@ tex2.SetTextSize(0.1)
 tex2.SetNDC()
 tex2.Draw()
 
-canvas.Print("/home/taylor/Research/plots/dtokpibmc/bmcmfks54pinbcoskpizcosdpipcmpippcutsbcs.pdf")
-canvas.Print("/home/taylor/Research/plots/dtokpibmc/bmcmfks54pinbcoskpizcosdpipcmpippcutsbcs.eps")
-canvas.Print("/home/taylor/Research/plots/dtokpibmc/bmcmfks54pinbcoskpizcosdpipcmpippcutsbcs.png")
+#canvas.Print("/home/tkimmel/Research/plots/test.png")
+#canvas.Print("/home/taylor/Research/plots/test.png")
+canvas.Print("/home/tkimmel/Research/plots/alldtokpi/allmfks54pinbcoskpizcosdpipcmpippcutsbcs.pdf")
+canvas.Print("/home/tkimmel/Research/plots/alldtokpi/allmfks54pinbcoskpizcosdpipcmpippcutsbcs.eps")
+canvas.Print("/home/tkimmel/Research/plots/alldtokpi/allmfks54pinbcoskpizcosdpipcmpippcutsbcs.png")
+#canvas.Print("/home/taylor/Research/plots/alldtokpi/allmfks54pinbcoskpizcosdpipcmpippcutsbcs.pdf")
+#canvas.Print("/home/taylor/Research/plots/alldtokpi/allmfks54pinbcoskpizcosdpipcmpippcutsbcs.eps")
+#canvas.Print("/home/taylor/Research/plots/alldtokpi/allmfks54pinbcoskpizcosdpipcmpippcutsbcs.png")
+#canvas.Print("/home/taylor/Research/plots/dtokpibmc/bmcmfks54pinbcoskpizcosdpipcmpippcutsbcs.pdf")
+#canvas.Print("/home/taylor/Research/plots/dtokpibmc/bmcmfks54pinbcoskpizcosdpipcmpippcutsbcs.eps")
+#canvas.Print("/home/taylor/Research/plots/dtokpibmc/bmcmfks54pinbcoskpizcosdpipcmpippcutsbcs.png")
 #canvas.Print("/home/taylor/Research/plots/genericdtokpi/genericmfks54pinbcutsbcs.pdf")
 #canvas.Print("/home/taylor/Research/plots/genericdtokpi/genericmfks54pinbcutsbcs.eps")
 #canvas.Print("/home/taylor/Research/plots/genericdtokpi/genericmfks54pinbcutsbcs.png")
 #canvas.Print("/home/taylor/Research/plots/dtokpipi0nb/mfks54cuts.pdf")
 #canvas.Print("/home/taylor/Research/plots/dtokpipi0nb/mfks54cuts.eps")
 #canvas.Print("/home/taylor/Research/plots/dtokpipi0nb/mfks54cuts.png")
-#canvas.Print("/home/taylor/Research/plots/test.png")
+#canvas.Print("/home/taylor/Research/plots/tests")
 
 ws = RooWorkspace("ws")
 getattr(ws,'import')(data)
 getattr(ws,'import')(pdf)
 
-fOutput = TFile("Workspace_pigmnbdeltamksfitcoskpizcosdpipcmpippcuts.root","RECREATE")
+fOutput = TFile("Workspace_allmfks54pinbcoskpizcosdpipcmpippcutsbcs","RECREATE")
 ws.Write()
 fOutput.Write()
 fOutput.Close()
-
