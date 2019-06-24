@@ -339,6 +339,107 @@ def plot_variable4histos(rb,lb,Tree,Variable,Option1,Leg1,Option2,Leg2,Option3,L
     c1.Print(OutputFilename+".png")
 
 
+def plot_variable5histos(rb,lb,Tree,Variable,Option1,Leg1,Option2,Leg2,Option3,Leg3,Option4,Leg4,Option5,Leg5,Title,XTitle,Histogram1,Histogram2,Histogram3,Histogram4,Histogram5,Frame,LegendLeftEdge,LegendBottomEdge,OutputFilename):
+    nBins = 100
+    c1 = TCanvas("c1","",1100,500)
+    gPad.SetRightMargin(0.2)
+    gPad.SetLeftMargin(0.15)
+    gPad.SetRightMargin(0.05)
+    gPad.SetBottomMargin(0.2)
+    gStyle.SetTitleW(0.99)
+
+    Histogram1.SetLineColor(kBlue)
+    #Histogram1.SetFillColor(kBlue)
+    Histogram1.SetLineWidth(2)
+    Histogram1.SetMinimum(1)
+
+    Histogram2.SetLineColor(kRed)
+    Histogram2.SetLineWidth(2)
+    Histogram2.SetMinimum(1)
+
+    Histogram3.SetLineColor(kBlack)
+    Histogram3.SetLineWidth(2)
+    Histogram3.SetMinimum(1)
+
+    Histogram4.SetLineColor(kGreen)
+    Histogram4.SetLineWidth(2)
+    Histogram4.SetMinimum(1)
+
+    Histogram4.SetLineColor(kCyan)
+    Histogram4.SetLineWidth(2)
+    Histogram4.SetMinimum(1)
+
+    Frame.SetTitle(Title)
+    Frame.GetXaxis().CenterTitle(True)
+    Frame.GetXaxis().SetLabelOffset(0.01)
+    Frame.GetXaxis().SetLabelSize(0.05)
+    Frame.GetXaxis().SetTitle(XTitle)
+    Frame.GetXaxis().SetTitleSize(0.05)
+    Frame.GetXaxis().SetTitleOffset(1.2)
+    Frame.GetYaxis().CenterTitle(True)
+    Frame.GetYaxis().SetLabelOffset(0.01)
+    Frame.GetYaxis().SetLabelSize(0.05)
+    Frame.GetYaxis().SetTitle("Events/[%.f Bins]"%nBins)
+    Frame.GetYaxis().SetTitleSize(0.05)
+    Frame.GetYaxis().SetTitleOffset(1.2)
+
+    nentries1 = Tree.Draw(Variable+">>h1",Option1)
+    nentriesstr1 = str(nentries1)
+    nentries2 = Tree.Draw(Variable+">>h2",Option2)
+    nentriesstr2 = str(nentries2)
+    nentries3 = Tree.Draw(Variable+">>h3",Option3)
+    nentriesstr3 = str(nentries3)
+    nentries4 = Tree.Draw(Variable+">>h4",Option4)
+    nentriesstr4 = str(nentries4)
+    nentries5 = Tree.Draw(Variable+">>h5",Option5)
+    nentriesstr5 = str(nentries5)
+    Tree.Draw(Variable+">>h1",Option1)
+    Tree.Draw(Variable+">>h2",Option2)
+    Tree.Draw(Variable+">>h3",Option3)
+    Tree.Draw(Variable+">>h4",Option4)
+    Tree.Draw(Variable+">>h5",Option5)
+
+    norm1 = h1.GetEntries()
+    norm2 = h2.GetEntries()
+    norm3 = h3.GetEntries()
+    norm4 = h4.GetEntries()
+    norm5 = h5.GetEntries()
+    if norm1 != 0:
+        h1.Scale(1/norm1)
+    if norm2 != 0:
+        h2.Scale(1/norm2)
+    if norm3 != 0:
+        h3.Scale(1/norm3)
+    if norm4 != 0:
+        h4.Scale(1/norm4)
+    if norm5 != 0:
+        h5.Scale(1/norm5)
+
+    Frame.addTH1(Histogram1)
+    Frame.addTH1(Histogram2)
+    Frame.addTH1(Histogram3)
+    Frame.addTH1(Histogram4)
+    Frame.addTH1(Histogram5)
+
+    legendwidth = 0.15
+    legendheight = 0.15
+    leg = TLegend(LegendLeftEdge,LegendBottomEdge,LegendLeftEdge+legendwidth,LegendBottomEdge+legendheight)
+    leg.SetFillColor(kWhite)
+    leg.SetLineColor(kWhite)
+    leg.SetTextSize(0.04)
+    leg.AddEntry(Frame.findObject("h1"),Leg1+" "+nentriesstr1,"l")
+    leg.AddEntry(Frame.findObject("h2"),Leg2+" "+nentriesstr2,"l")
+    leg.AddEntry(Frame.findObject("h3"),Leg3+" "+nentriesstr3,"l")
+    leg.AddEntry(Frame.findObject("h4"),Leg4+" "+nentriesstr4,"l")
+    leg.AddEntry(Frame.findObject("h5"),Leg5+" "+nentriesstr5,"l")
+    Frame.addObject(leg)
+
+    #gStyle.SetOptStat("e");
+    Frame.Draw()
+    c1.Update()
+    c1.Print(OutputFilename+".pdf")
+    c1.Print(OutputFilename+".eps")
+    c1.Print(OutputFilename+".png")
 
 
 def OptimizeCut_GreaterThan(rb,lb,Tree,Variable,TruthVariable,CutString,Title,XTitle,Histogram1,Histogram2,Frame,Frame2,LegendLeftEdge,OutputFilename,FoM):

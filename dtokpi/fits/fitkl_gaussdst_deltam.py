@@ -22,6 +22,7 @@ coskpiz = RooRealVar("coskpiz", "coskpiz", -1, 1)
 coskpizcm = RooRealVar("coskpizcm", "coskpizcm", -1, 1)
 cosdpipcm = RooRealVar("cosdpipcm", "cosdpipcm", -1, 1)
 pipp = RooRealVar("pipp", "pipp", 0, 1)
+dspPmag = RooRealVar("dspPmag", "dspPmag", 0, 5)
 
 lb = deltam.getMin()
 rb = deltam.getMax()
@@ -30,12 +31,13 @@ binWidth = (rb-lb)/nBins
 binWidthMEV = binWidth*1000
 
 
-vars = RooArgSet(deltam,nb,nbgm1,nbgm2,coskpiz,coskpizcm,cosdpipcm,pipp)
+vars = RooArgSet(deltam,nb,nbgm1,nbgm2,coskpiz,coskpizcm,cosdpipcm,pipp,dspPmag)
 
 
 #data = RooDataSet("data", "raw data", t, vars)
 #data = RooDataSet("data", "raw data", t, vars, "nb>0.68 && coskpiz>0.24 && cosdpipcm>0.985 && pipp<0.38")
-data = RooDataSet("data", "raw data", t, vars, "coskpiz>0.24 && cosdpipcm>0.985 && pipp<0.38") #pinbcut>0.54 cut applied during the reconstruction
+#data = RooDataSet("data", "raw data", t, vars, "coskpiz>0.24 && cosdpipcm>0.985 && pipp<0.38") #pinbcut>0.54 cut applied during the reconstruction
+data = RooDataSet("data", "raw data", t, vars, "coskpiz>0.24 && cosdpipcm>0.985 && pipp<0.38 && dspPmag>3.2") #pinbcut>0.54 cut applied during the reconstruction
 #data = RooDataSet("data", "raw data", t, vars, "nb>0.68 && coskpizcm>0.64")
 #data = RooDataSet("data", "raw data", t, vars, "nb>0.54 && nbgm1>-0.28 && nbgm2>-0.28 && coskpiz>0.12")
 
@@ -138,7 +140,7 @@ fitRes.Print()
 h1 = TH1F("h1","h1",nBins,lb,rb)
 
 #frame1 = deltam.frame(RooFit.Bins(nBins),RooFit.Title("D^{*+} -> D^{0}(-> #pi^{0} + K_{L}^{0}) + #pi^{+}: From MC")) 
-frame1 = deltam.frame(RooFit.Bins(nBins),RooFit.Title("D^{*+} -> D^{0}(-> #pi^{0} + K_{L}^{0}) + #pi^{+}: From Mixed MC")) 
+frame1 = deltam.frame(RooFit.Bins(nBins),RooFit.Title("D^{*+} -> D^{0}(-> #pi^{0} + K_{L}^{0}) + #pi^{+}: From Mixed MC"))
 pullFrame = deltam.frame(RooFit.Bins(nBins),RooFit.Title(""))
 # Beautification Things
 frame1.SetStats(0)
@@ -215,9 +217,12 @@ tex2.Draw()
 
 #canvas.Print("/home/tkimmel/Research/plots/test.png")
 #canvas.Print("/home/taylor/Research/plots/test.png")
-canvas.Print("/home/tkimmel/Research/plots/alldtokpi/allmfkl54pinbcoskpizcosdpipcmpippcutsbcs.pdf")
-canvas.Print("/home/tkimmel/Research/plots/alldtokpi/allmfkl54pinbcoskpizcosdpipcmpippcutsbcs.eps")
-canvas.Print("/home/tkimmel/Research/plots/alldtokpi/allmfkl54pinbcoskpizcosdpipcmpippcutsbcs.png")
+canvas.Print("/home/tkimmel/Research/plots/alldtokpi/allmfkl54pinbcoskpizcosdpipcmpippdspPmagcutsbcs.pdf")
+canvas.Print("/home/tkimmel/Research/plots/alldtokpi/allmfkl54pinbcoskpizcosdpipcmpippdspPmagcutsbcs.eps")
+canvas.Print("/home/tkimmel/Research/plots/alldtokpi/allmfkl54pinbcoskpizcosdpipcmpippdspPmagcutsbcs.png")
+#canvas.Print("/home/tkimmel/Research/plots/alldtokpi/allmfkl54pinbcoskpizcosdpipcmpippcutsbcs.pdf")
+#canvas.Print("/home/tkimmel/Research/plots/alldtokpi/allmfkl54pinbcoskpizcosdpipcmpippcutsbcs.eps")
+#canvas.Print("/home/tkimmel/Research/plots/alldtokpi/allmfkl54pinbcoskpizcosdpipcmpippcutsbcs.png")
 #canvas.Print("/home/taylor/Research/plots/alldtokpi/allmfkl54pinbcoskpizcosdpipcmpippcutsbcs.pdf")
 #canvas.Print("/home/taylor/Research/plots/alldtokpi/allmfkl54pinbcoskpizcosdpipcmpippcutsbcs.eps")
 #canvas.Print("/home/taylor/Research/plots/alldtokpi/allmfkl54pinbcoskpizcosdpipcmpippcutsbcs.png")
@@ -236,7 +241,8 @@ ws = RooWorkspace("ws")
 getattr(ws,'import')(data)
 getattr(ws,'import')(pdf)
 
-fOutput = TFile("Workspace_allmfkl54pinbcoskpizcosdpipcmpippcutsbcs","RECREATE")
+fOutput = TFile("Workspace_allmfkl54pinbcoskpizcosdpipcmpippdspPmagcutsbcs","RECREATE")
+#fOutput = TFile("Workspace_allmfkl54pinbcoskpizcosdpipcmpippcutsbcs","RECREATE")
 ws.Write()
 fOutput.Write()
 fOutput.Close()
