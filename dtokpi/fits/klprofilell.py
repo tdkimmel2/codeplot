@@ -1,6 +1,6 @@
 from ROOT import *
 
-fInput = TFile("Workspace_fracdeltamklfit.root")
+fInput = TFile("Workspace_allmfks54pinbcoskpizcosdpipcmpippdspPmagcutsbcs")
 #fInput = TFile("Workspace_deltamklfit.root")
 ws = fInput.Get("ws")
 
@@ -26,8 +26,8 @@ RooMinuit(nll).migrad()
 #Plot likelihood scan nsig or frac
 nsig = ws.var("N_{Signal}")
 frac = ws.var("frac")
-#frame1 = nsig.frame(RooFit.Bins(10),RooFit.Range(0.01,0.95),RooFit.Title("LL and ProfileLL in N_{Signal}"))
-frame1 = frac.frame(RooFit.Bins(50),RooFit.Range(0.01,0.95),RooFit.Title("LL and ProfileLL in #frac{S}{B}"))
+frame1 = nsig.frame(RooFit.Bins(10),RooFit.Range(0.01,0.95),RooFit.Title("LL and ProfileLL in N_{Signal}"))
+#frame1 = frac.frame(RooFit.Bins(50),RooFit.Range(0.01,0.95),RooFit.Title("LL and ProfileLL in #frac{S}{B}"))
 #frame1 = nsig.frame(Bins(10),Range(0.01,0.95),Title(""))
 nll.plotOn(frame1,RooFit.ShiftToZero())
 #Plot likelihood in scan of Gaussian Sigma
@@ -36,11 +36,11 @@ frame2 = sigma.frame(RooFit.Bins(50),RooFit.Range(0.01,0.95),RooFit.Title("LL an
 nll.plotOn(frame2,RooFit.ShiftToZero())
 
 #Construct Profile Likelihood in nsig or frac
-#pll_nsig = nll.createProfile(RooArgSet(nsig))
-pll_frac = nll.createProfile(RooArgSet(frac))
+pll_nsig = nll.createProfile(RooArgSet(nsig))
+#pll_frac = nll.createProfile(RooArgSet(frac))
 #Plot the profile likelihood in nsig
-#pll_nsig.plotOn(frame1,RooFit.LineColor(kRed))
-pll_frac.plotOn(frame1,RooFit.LineColor(kRed))
+pll_nsig.plotOn(frame1,RooFit.LineColor(kRed))
+#pll_frac.plotOn(frame1,RooFit.LineColor(kRed))
 
 #Adjust frame min and max to view better
 frame1.SetMinimum(0)
@@ -70,13 +70,16 @@ gPad.SetLeftMargin(0.15)
 #frame2.GetXaxis().SetRange(0,3)
 frame2.GetXaxis().SetLimits(-0.01,0.015)
 frame2.Draw()
-c.Print("/home/taylor/Research/plots/fracklprofilelikelihood1var.pdf")
-c.Print("/home/taylor/Research/plots/fracklprofilelikelihood1var.eps")
-c.Print("/home/taylor/Research/plots/fracklprofilelikelihood1var.png")
+c.Print("/home/tkimmel/Research/plots/profiletest.pdf")
+c.Print("/home/tkimmel/Research/plots/profiletest.eps")
+c.Print("/home/tkimmel/Research/plots/profiletest.png")
+#c.Print("/home/taylor/Research/plots/fracklprofilelikelihood1var.pdf")
+#c.Print("/home/taylor/Research/plots/fracklprofilelikelihood1var.eps")
+#c.Print("/home/taylor/Research/plots/fracklprofilelikelihood1var.png")
 
-#del pll_nsig
-del pll_frac
-#del pll_sigma
+del pll_nsig
+#del pll_frac
+del pll_sigma
 del nll
 
 #pll_frac.plotOn(frame1,LineColor(kRed)

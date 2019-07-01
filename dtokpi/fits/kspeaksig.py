@@ -1,6 +1,7 @@
 from ROOT import *
 
-fInput = TFile("Workspace_deltamksfit.root")
+#fInput = TFile("Workspace_deltamksfit.root")
+fInput = TFile("Workspace_allmfks54pinbcoskpizcosdpipcmpippdspPmagcutsbcs")
 ws = fInput.Get("ws")
 
 ws.Print()
