@@ -61,7 +61,7 @@ bwwidth = RooRealVar("#Gamma_{sig}", "#Gamma_{sig}", 0.0009, 0, 0.1)
 gausmean = RooRealVar("#mu_{sig}","#mu_{sig}",0.145465,0.144,0.146)
 #gausmean = RooRealVar("#mu_{sig}","#mu_{sig}",0.1455,0,0.2)
 #gausmean.setConstant()
-gaussigma = RooRealVar("#sigma_{sig}","#sigma_{sig}",0.0006,0,0.001)
+gaussigma = RooRealVar("#sigma_{sig}","#sigma_{sig}",0.0006,0,0.0007)
 
 #DstD0BG
 dm0 = RooRealVar("dm0", "dm0", 0.137, 0.136, 0.140);
