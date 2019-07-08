@@ -51,7 +51,7 @@ def plot_variable(Tree,Variable,Option,Title,XTitle,Histogram,Frame,LegendLeftEd
     c1.Print(OutputFilename+".png")
 
 
-def plot_variable2histos(Tree,Variable,Option1,Option1Legend,Option2,Option2Legend,Title,XTitle,Histogram1,Histogram2,Frame,LegendLeftEdge,LegendBottomEdge,OutputFilename):
+def plot_variable2histos(rb,lb,Tree,Variable,Option1,Option1Legend,Option2,Option2Legend,Title,XTitle,Histogram1,Histogram2,Frame,LegendLeftEdge,LegendBottomEdge,OutputFilename):
     nBins = 100
     c1 = TCanvas("c1","",800,500)
     gPad.SetRightMargin(0.2)
@@ -92,10 +92,10 @@ def plot_variable2histos(Tree,Variable,Option1,Option1Legend,Option2,Option2Lege
 
     norm1 = h1.GetEntries()
     norm2 = h2.GetEntries()
-    if norm1 != 0:
-        h1.Scale(1/norm1)
-    if norm2 != 0:
-        h2.Scale(1/norm2)
+    #if norm1 != 0:
+    #    h1.Scale(1/norm1)
+    #if norm2 != 0:
+    #    h2.Scale(1/norm2)
 
     Frame.addTH1(Histogram1)
     Frame.addTH1(Histogram2)
