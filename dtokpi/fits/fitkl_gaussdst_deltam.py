@@ -8,7 +8,9 @@ gInterpreter.ProcessLine('.L RooVoigtian.cxx++')
 #gSystem.Load('RooCruijff.cxx++')
 
 
-f1 = "/home/tkimmel/Research/root/allmfdtokpi.root"
+#f1 = "/home/tkimmel/Research/root/allmfrecon.root"
+#f1 = "/home/tkimmel/Research/root/allmfdtokpi.root"
+f1 = "/home/taylor/Research/root/allmfrecon.root"
 #f1 = "/home/taylor/Research/root/allmfdtokpi.root"
 tree = "dsplrecontree"
 f = TFile(f1,"READ")
@@ -31,14 +33,14 @@ binWidth = (rb-lb)/nBins
 binWidthMEV = binWidth*1000
 
 
-vars = RooArgSet(deltam,nb,nbgm1,nbgm2,coskpiz,coskpizcm,cosdpipcm,pipp,dspPmag)
+vars = RooArgSet(deltam,nb,coskpiz,cosdpipcm,pipp,dspPmag)
 
 
-#data = RooDataSet("data", "raw data", t, vars)
-#data = RooDataSet("data", "raw data", t, vars, "nb>0.68 && coskpiz>0.24 && cosdpipcm>0.985 && pipp<0.38")
+#data = RooDataSet("data", "raw data", t, vars) #No cuts
+data = RooDataSet("data", "raw data", t, vars, "nb>0.54 && coskpiz>0.24 && cosdpipcm>0.985 && pipp<0.38")
 #data = RooDataSet("data", "raw data", t, vars, "coskpiz>0.24 && cosdpipcm>0.985 && pipp<0.38") #pinbcut>0.54 cut applied during the reconstruction
 #data = RooDataSet("data", "raw data", t, vars, "coskpiz>0.24 && cosdpipcm>0.985 && pipp<0.38 && dspPmag>3.2") #pinbcut>0.54 cut applied during the reconstruction
-data = RooDataSet("data", "raw data", t, vars, "nb>0.54 && coskpiz>0.24 && cosdpipcm>0.985 && pipp<0.38 && dspPmag>3.2")
+#data = RooDataSet("data", "raw data", t, vars, "nb>0.54 && coskpiz>0.24 && cosdpipcm>0.985 && pipp<0.38 && dspPmag>3.2")
 #data = RooDataSet("data", "raw data", t, vars, "nb>0.68 && coskpizcm>0.64")
 #data = RooDataSet("data", "raw data", t, vars, "nb>0.54 && nbgm1>-0.28 && nbgm2>-0.28 && coskpiz>0.12")
 
@@ -62,7 +64,8 @@ bwwidth = RooRealVar("#Gamma_{sig}", "#Gamma_{sig}", 0.0009, 0, 0.1)
 gausmean = RooRealVar("#mu_{sig}","#mu_{sig}",0.145465,0.144,0.146)
 #gausmean = RooRealVar("#mu_{sig}","#mu_{sig}",0.1455,0,0.2)
 #gausmean.setConstant()
-gaussigma = RooRealVar("#sigma_{sig}","#sigma_{sig}",0.0009,0.0005,0.001) #coskpiz+cosdpip+pinb
+#gaussigma = RooRealVar("#sigma_{sig}","#sigma_{sig}",0.0009,0.0005,0.001) #coskpiz+cosdpip+pinb #Old, resolution somehow got better after moving reconstruction to BASF rather than pyROOT
+gaussigma = RooRealVar("#sigma_{sig}","#sigma_{sig}",0.0009,0.0001,0.001) #coskpiz+cosdpip+pinb
 #gaussigma = RooRealVar("#sigma_{sig}","#sigma_{sig}",0.0009,0,0.01) #coskpizcm+pinb
 #gaussigma = RooRealVar("#sigma_{sig}","#sigma_{sig}",0.001,0,0.1)
 
@@ -216,14 +219,14 @@ tex2.SetTextSize(0.1)
 tex2.SetNDC()
 tex2.Draw()
 
-#canvas.Print("/home/tkimmel/Research/plots/test.png")
-#canvas.Print("/home/taylor/Research/plots/test.png")
+#canvas.Print("/home/tkimmel/Research/plots/testl.png")
+canvas.Print("/home/taylor/Research/plots/testl.png")
 #canvas.Print("/home/tkimmel/Research/plots/alldtokpi/allmfkl54pinbcoskpizcosdpipcmpippdspPmagcutsbcs.pdf")
 #canvas.Print("/home/tkimmel/Research/plots/alldtokpi/allmfkl54pinbcoskpizcosdpipcmpippdspPmagcutsbcs.eps")
 #canvas.Print("/home/tkimmel/Research/plots/alldtokpi/allmfkl54pinbcoskpizcosdpipcmpippdspPmagcutsbcs.png")
-canvas.Print("/home/tkimmel/Research/plots/alldtokpi/allmfkl54pinbcoskpizcosdpipcmpippdspPmagcuts.pdf")
-canvas.Print("/home/tkimmel/Research/plots/alldtokpi/allmfkl54pinbcoskpizcosdpipcmpippdspPmagcuts.eps")
-canvas.Print("/home/tkimmel/Research/plots/alldtokpi/allmfkl54pinbcoskpizcosdpipcmpippdspPmagcuts.png")
+#canvas.Print("/home/tkimmel/Research/plots/alldtokpi/allmfkl54pinbcoskpizcosdpipcmpippdspPmagcuts.pdf")
+#canvas.Print("/home/tkimmel/Research/plots/alldtokpi/allmfkl54pinbcoskpizcosdpipcmpippdspPmagcuts.eps")
+#canvas.Print("/home/tkimmel/Research/plots/alldtokpi/allmfkl54pinbcoskpizcosdpipcmpippdspPmagcuts.png")
 #canvas.Print("/home/tkimmel/Research/plots/alldtokpi/allmfkl54pinbcoskpizcosdpipcmpippcutsbcs.pdf")
 #canvas.Print("/home/tkimmel/Research/plots/alldtokpi/allmfkl54pinbcoskpizcosdpipcmpippcutsbcs.eps")
 #canvas.Print("/home/tkimmel/Research/plots/alldtokpi/allmfkl54pinbcoskpizcosdpipcmpippcutsbcs.png")
@@ -241,6 +244,7 @@ canvas.Print("/home/tkimmel/Research/plots/alldtokpi/allmfkl54pinbcoskpizcosdpip
 #canvas.Print("/home/taylor/Research/plots/dtokpipi0nb/mfkl54cuts.png")
 #canvas.Print("/home/taylor/Research/plots/testl")
 
+"""
 ws = RooWorkspace("ws")
 getattr(ws,'import')(data)
 getattr(ws,'import')(pdf)
@@ -250,3 +254,4 @@ fOutput = TFile("Workspace_allmfkl54pinbcoskpizcosdpipcmpippdspPmagcutsbcs","REC
 ws.Write()
 fOutput.Write()
 fOutput.Close()
+"""

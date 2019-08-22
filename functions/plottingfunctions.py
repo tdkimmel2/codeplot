@@ -485,15 +485,19 @@ def OptimizeCut_GreaterThan(rb,lb,Tree,Variable,TruthVariable,CutString,Title,XT
     #nBkgTotal = Tree.Draw(Variable+">>h2","deltam < 0.1476 && deltam > 0.1434 && "+TruthVariable+"<"+signalvarstr,"goff")
     #print Variable+">>h1",CutString+" && "+TruthVariable+">="+signalvarstr,"goff"
     if CutString != "":
-        #nSigTotal = Tree.Draw(Variable+">>h1",CutString+" && "+TruthVariable+">="+signalvarstr,"goff")
-        #nBkgTotal = Tree.Draw(Variable+">>h2",CutString+" && "+TruthVariable+"<"+signalvarstr,"goff")
-        nSigTotal = Tree.Draw(Variable+">>h1",CutString+" && "+TruthVariable+"<="+signalvarstr,"goff")
-        nBkgTotal = Tree.Draw(Variable+">>h2",CutString+" && "+TruthVariable+">"+signalvarstr,"goff")
+        if TruthVariable == "whomi":
+            nSigTotal = Tree.Draw(Variable+">>h1",CutString+" && "+TruthVariable+">="+signalvarstr,"goff")
+            nBkgTotal = Tree.Draw(Variable+">>h2",CutString+" && "+TruthVariable+"<"+signalvarstr,"goff")
+        if TruthVariable == "mcflag":
+            nSigTotal = Tree.Draw(Variable+">>h1",CutString+" && "+TruthVariable+"<="+signalvarstr,"goff")
+            nBkgTotal = Tree.Draw(Variable+">>h2",CutString+" && "+TruthVariable+">"+signalvarstr,"goff")
     else:
-        #nSigTotal = Tree.Draw(Variable+">>h1",TruthVariable+">="+signalvarstr,"goff")
-        #nBkgTotal = Tree.Draw(Variable+">>h2",TruthVariable+"<"+signalvarstr,"goff")
-        nSigTotal = Tree.Draw(Variable+">>h1",TruthVariable+"<="+signalvarstr,"goff")
-        nBkgTotal = Tree.Draw(Variable+">>h2",TruthVariable+">"+signalvarstr,"goff")
+        if TruthVariable == "whomi":
+            nSigTotal = Tree.Draw(Variable+">>h1",TruthVariable+">="+signalvarstr,"goff")
+            nBkgTotal = Tree.Draw(Variable+">>h2",TruthVariable+"<"+signalvarstr,"goff")
+        if TruthVariable == "mcflag":
+            nSigTotal = Tree.Draw(Variable+">>h1",TruthVariable+"<="+signalvarstr,"goff")
+            nBkgTotal = Tree.Draw(Variable+">>h2",TruthVariable+">"+signalvarstr,"goff")
 
     nSigRetained = []
     nBkgRetained = []
@@ -504,15 +508,19 @@ def OptimizeCut_GreaterThan(rb,lb,Tree,Variable,TruthVariable,CutString,Title,XT
         #nSigRetained.append(Tree.Draw(Variable+">>h1","deltam < 0.1476 && deltam > 0.1434 && "+TruthVariable+">="+signalvarstr+" && "+Variable+">%f"%CUT,"goff"))
         #nBkgRetained.append(Tree.Draw(Variable+">>h2","deltam < 0.1476 && deltam > 0.1434 && "+TruthVariable+"<"+signalvarstr+" && "+Variable+">%f"%CUT,"goff"))
         if CutString != "":
-            #nSigRetained.append(Tree.Draw(Variable+">>h1",CutString+" && "+TruthVariable+">="+signalvarstr+" && "+Variable+">%f"%CUT,"goff"))
-            #nBkgRetained.append(Tree.Draw(Variable+">>h2",CutString+" && "+TruthVariable+"<"+signalvarstr+" && "+Variable+">%f"%CUT,"goff"))
-            nSigRetained.append(Tree.Draw(Variable+">>h1",CutString+" && "+TruthVariable+"<="+signalvarstr+" && "+Variable+">%f"%CUT,"goff"))
-            nBkgRetained.append(Tree.Draw(Variable+">>h2",CutString+" && "+TruthVariable+">"+signalvarstr+" && "+Variable+">%f"%CUT,"goff"))
+            if TruthVariable == "whomi":
+                nSigRetained.append(Tree.Draw(Variable+">>h1",CutString+" && "+TruthVariable+">="+signalvarstr+" && "+Variable+">%f"%CUT,"goff"))
+                nBkgRetained.append(Tree.Draw(Variable+">>h2",CutString+" && "+TruthVariable+"<"+signalvarstr+" && "+Variable+">%f"%CUT,"goff"))
+            if TruthVariable == "mcflag":
+                nSigRetained.append(Tree.Draw(Variable+">>h1",CutString+" && "+TruthVariable+"<="+signalvarstr+" && "+Variable+">%f"%CUT,"goff"))
+                nBkgRetained.append(Tree.Draw(Variable+">>h2",CutString+" && "+TruthVariable+">"+signalvarstr+" && "+Variable+">%f"%CUT,"goff"))
         else:
-            #nSigRetained.append(Tree.Draw(Variable+">>h1",TruthVariable+">="+signalvarstr+" && "+Variable+">%f"%CUT,"goff"))
-            #nBkgRetained.append(Tree.Draw(Variable+">>h2",TruthVariable+"<"+signalvarstr+" && "+Variable+">%f"%CUT,"goff"))
-            nSigRetained.append(Tree.Draw(Variable+">>h1",TruthVariable+"<="+signalvarstr+" && "+Variable+">%f"%CUT,"goff"))
-            nBkgRetained.append(Tree.Draw(Variable+">>h2",TruthVariable+">"+signalvarstr+" && "+Variable+">%f"%CUT,"goff"))
+            if TruthVariable == "whomi":
+                nSigRetained.append(Tree.Draw(Variable+">>h1",TruthVariable+">="+signalvarstr+" && "+Variable+">%f"%CUT,"goff"))
+                nBkgRetained.append(Tree.Draw(Variable+">>h2",TruthVariable+"<"+signalvarstr+" && "+Variable+">%f"%CUT,"goff"))
+            if TruthVariable == "mcflag":
+                nSigRetained.append(Tree.Draw(Variable+">>h1",TruthVariable+"<="+signalvarstr+" && "+Variable+">%f"%CUT,"goff"))
+                nBkgRetained.append(Tree.Draw(Variable+">>h2",TruthVariable+">"+signalvarstr+" && "+Variable+">%f"%CUT,"goff"))
         #print math.sqrt((sigweight*nSigRetained[i])+nBkgRetained[i])
         #print nBkgRetained[i]
         if FoM=="std":
@@ -575,15 +583,19 @@ def OptimizeCut_GreaterThan(rb,lb,Tree,Variable,TruthVariable,CutString,Title,XT
     #Tree.Draw(Variable+">>h1","deltam<0.1476 && deltam>0.1434 && "+TruthVariable+">="+signalvarstr)
     #Tree.Draw(Variable+">>h2","deltam<0.1476 && deltam>0.1434 && "+TruthVariable+"<"+signalvarstr)
     if CutString != "":
-        #Tree.Draw(Variable+">>h1",CutString+" && "+TruthVariable+">="+signalvarstr)
-        #Tree.Draw(Variable+">>h2",CutString+" && "+TruthVariable+"<"+signalvarstr)
-        Tree.Draw(Variable+">>h1",CutString+" && "+TruthVariable+"<="+signalvarstr)
-        Tree.Draw(Variable+">>h2",CutString+" && "+TruthVariable+">"+signalvarstr)
+        if TruthVariable == "whomi":
+            Tree.Draw(Variable+">>h1",CutString+" && "+TruthVariable+">="+signalvarstr)
+            Tree.Draw(Variable+">>h2",CutString+" && "+TruthVariable+"<"+signalvarstr)
+        if TruthVariable == "mcflag":
+            Tree.Draw(Variable+">>h1",CutString+" && "+TruthVariable+"<="+signalvarstr)
+            Tree.Draw(Variable+">>h2",CutString+" && "+TruthVariable+">"+signalvarstr)
     else:
-        #Tree.Draw(Variable+">>h1",TruthVariable+">="+signalvarstr)
-        #Tree.Draw(Variable+">>h2",TruthVariable+"<"+signalvarstr)
-        Tree.Draw(Variable+">>h1",TruthVariable+"<="+signalvarstr)
-        Tree.Draw(Variable+">>h2",TruthVariable+">"+signalvarstr)
+        if TruthVariable == "whomi":
+            Tree.Draw(Variable+">>h1",TruthVariable+">="+signalvarstr)
+            Tree.Draw(Variable+">>h2",TruthVariable+"<"+signalvarstr)
+        if TruthVariable == "mcflag":
+            Tree.Draw(Variable+">>h1",TruthVariable+"<="+signalvarstr)
+            Tree.Draw(Variable+">>h2",TruthVariable+">"+signalvarstr)
 
     #Normalize histograms
     norm1 = h1.GetEntries()
@@ -712,9 +724,18 @@ def OptimizeCut_LessThan(rb,lb,Tree,Variable,TruthVariable,CutString,Title,XTitl
 
     #nSigTotal = Tree.Draw(Variable+">>h1","deltam < 0.1476 && deltam > 0.1434 && "+TruthVariable+">="+signalvarstr,"goff")
     #nBkgTotal = Tree.Draw(Variable+">>h2","deltam < 0.1476 && deltam > 0.1434 && "+TruthVariable+"<"+signalvarstr,"goff")
-    nSigTotal = Tree.Draw(Variable+">>h1",CutString+TruthVariable+">="+signalvarstr,"goff")
-    nBkgTotal = Tree.Draw(Variable+">>h2",CutString+TruthVariable+"<"+signalvarstr,"goff")
-
+    #nSigTotal = Tree.Draw(Variable+">>h1",CutString+TruthVariable+">="+signalvarstr,"goff")
+    #nBkgTotal = Tree.Draw(Variable+">>h2",CutString+TruthVariable+"<"+signalvarstr,"goff")
+    if CutString != "":
+        #nSigTotal = Tree.Draw(Variable+">>h1",CutString+" && "+TruthVariable+">="+signalvarstr,"goff")
+        #nBkgTotal = Tree.Draw(Variable+">>h2",CutString+" && "+TruthVariable+"<"+signalvarstr,"goff")
+        nSigTotal = Tree.Draw(Variable+">>h1",CutString+" && "+TruthVariable+"<="+signalvarstr,"goff")
+        nBkgTotal = Tree.Draw(Variable+">>h2",CutString+" && "+TruthVariable+">"+signalvarstr,"goff")
+    else:
+        #nSigTotal = Tree.Draw(Variable+">>h1",TruthVariable+">="+signalvarstr,"goff")
+        #nBkgTotal = Tree.Draw(Variable+">>h2",TruthVariable+"<"+signalvarstr,"goff")
+        nSigTotal = Tree.Draw(Variable+">>h1",TruthVariable+"<="+signalvarstr,"goff")
+        nBkgTotal = Tree.Draw(Variable+">>h2",TruthVariable+">"+signalvarstr,"goff")
 
     nSigRetained = []
     nBkgRetained = []
@@ -724,8 +745,20 @@ def OptimizeCut_LessThan(rb,lb,Tree,Variable,TruthVariable,CutString,Title,XTitl
         CUT = rb - i*binWidth
         #nSigRetained.append(Tree.Draw(Variable+">>h1","deltam < 0.1476 && deltam > 0.1434 && "+TruthVariable+">="+signalvarstr+" && "+Variable+">%f"%CUT,"goff"))
         #nBkgRetained.append(Tree.Draw(Variable+">>h2","deltam < 0.1476 && deltam > 0.1434 && "+TruthVariable+"<"+signalvarstr+" && "+Variable+">%f"%CUT,"goff"))
-        nSigRetained.append(Tree.Draw(Variable+">>h1",CutString+TruthVariable+">="+signalvarstr+" && "+Variable+"<%f"%CUT,"goff"))
-        nBkgRetained.append(Tree.Draw(Variable+">>h2",CutString+TruthVariable+"<"+signalvarstr+" && "+Variable+"<%f"%CUT,"goff"))
+        if CutString != "":
+            #nSigRetained.append(Tree.Draw(Variable+">>h1",CutString+" && "+TruthVariable+">="+signalvarstr+" && "+Variable+">%f"%CUT,"goff"))
+            #nBkgRetained.append(Tree.Draw(Variable+">>h2",CutString+" && "+TruthVariable+"<"+signalvarstr+" && "+Variable+">%f"%CUT,"goff"))
+            nSigRetained.append(Tree.Draw(Variable+">>h1",CutString+" && "+TruthVariable+"<="+signalvarstr+" && "+Variable+">%f"%CUT,"goff"))
+            nBkgRetained.append(Tree.Draw(Variable+">>h2",CutString+" && "+TruthVariable+">"+signalvarstr+" && "+Variable+">%f"%CUT,"goff"))
+        else:
+            #nSigRetained.append(Tree.Draw(Variable+">>h1",TruthVariable+">="+signalvarstr+" && "+Variable+">%f"%CUT,"goff"))
+            #nBkgRetained.append(Tree.Draw(Variable+">>h2",TruthVariable+"<"+signalvarstr+" && "+Variable+">%f"%CUT,"goff"))
+            nSigRetained.append(Tree.Draw(Variable+">>h1",TruthVariable+"<="+signalvarstr+" && "+Variable+">%f"%CUT,"goff"))
+            nBkgRetained.append(Tree.Draw(Variable+">>h2",TruthVariable+">"+signalvarstr+" && "+Variable+">%f"%CUT,"goff"))
+        #print math.sqrt((sigweight*nSigRetained[i])+nBkgRetained[i])
+        #print nBkgRetained[i]
+        #nSigRetained.append(Tree.Draw(Variable+">>h1",CutString+TruthVariable+">="+signalvarstr+" && "+Variable+"<%f"%CUT,"goff"))
+        #nBkgRetained.append(Tree.Draw(Variable+">>h2",CutString+TruthVariable+"<"+signalvarstr+" && "+Variable+"<%f"%CUT,"goff"))
         if FoM=="std":
             denominator = math.sqrt((sigweight*nSigRetained[i])+nBkgRetained[i])
         if FoM=="punz":
@@ -779,9 +812,18 @@ def OptimizeCut_LessThan(rb,lb,Tree,Variable,TruthVariable,CutString,Title,XTitl
 
     #Tree.Draw(Variable+">>h1","deltam<0.1476 && deltam>0.1434 && "+TruthVariable+">="+signalvarstr)
     #Tree.Draw(Variable+">>h2","deltam<0.1476 && deltam>0.1434 && "+TruthVariable+"<"+signalvarstr)
-    Tree.Draw(Variable+">>h1",CutString+TruthVariable+">="+signalvarstr)
-    Tree.Draw(Variable+">>h2",CutString+TruthVariable+"<"+signalvarstr)
-
+    #Tree.Draw(Variable+">>h1",CutString+TruthVariable+">="+signalvarstr)
+    #Tree.Draw(Variable+">>h2",CutString+TruthVariable+"<"+signalvarstr)
+    if CutString != "":
+        #Tree.Draw(Variable+">>h1",CutString+" && "+TruthVariable+">="+signalvarstr)
+        #Tree.Draw(Variable+">>h2",CutString+" && "+TruthVariable+"<"+signalvarstr)
+        Tree.Draw(Variable+">>h1",CutString+" && "+TruthVariable+"<="+signalvarstr)
+        Tree.Draw(Variable+">>h2",CutString+" && "+TruthVariable+">"+signalvarstr)
+    else:
+        #Tree.Draw(Variable+">>h1",TruthVariable+">="+signalvarstr)
+        #Tree.Draw(Variable+">>h2",TruthVariable+"<"+signalvarstr)
+        Tree.Draw(Variable+">>h1",TruthVariable+"<="+signalvarstr)
+        Tree.Draw(Variable+">>h2",TruthVariable+">"+signalvarstr)
     #Normalize histograms
     norm1 = h1.GetEntries()
     norm2 = h2.GetEntries()

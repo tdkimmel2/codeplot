@@ -8,8 +8,10 @@ gInterpreter.ProcessLine('.L RooVoigtian.cxx++')
 #gSystem.Load('RooCruijff.cxx++')
 
 
-f1 = "/home/tkimmel/Research/root/allmfdtokpi.root"
+#f1 = "/home/tkimmel/Research/root/allmfrecon.root"
+#f1 = "/home/tkimmel/Research/root/allmfdtokpi.root"
 #f1 = "/home/taylor/Research/root/allmfdtokpi.root"
+f1 = "/home/taylor/Research/root/allmfrecon.root"
 tree = "dsprecontree"
 f = TFile(f1,"READ")
 t = f.Get(tree)
@@ -23,22 +25,26 @@ coskpizcm = RooRealVar("coskpizcm", "coskpizcm", -1, 1)
 cosdpipcm = RooRealVar("cosdpipcm", "cosdpipcm", -1, 1)
 pipp = RooRealVar("pipp", "pipp", 0, 1)
 dspPmag = RooRealVar("dspPmag", "dspPmag", 0, 5)
+R2 = RooRealVar("R2", "R2", 0, 1)
 
 lb = deltam.getMin()
 rb = deltam.getMax()
-nBins = 42
+#nBins = 42
+nBins = 50
 binWidth = (rb-lb)/nBins
 binWidthMEV = binWidth*1000
 
 
-vars = RooArgSet(deltam,nb,nbgm1,nbgm2,coskpiz,coskpizcm,cosdpipcm,pipp,dspPmag)
+#vars = RooArgSet(deltam,nb,nbgm1,nbgm2,coskpiz,coskpizcm,cosdpipcm,pipp,dspPmag)
+vars = RooArgSet(deltam,nb,coskpiz,cosdpipcm,pipp,dspPmag)
 
 
-#data = RooDataSet("data", "raw data", t, vars)
-#data = RooDataSet("data", "raw data", t, vars, "nb>0.68 && coskpiz>0.24 && cosdpipcm>0.985 && pipp<0.38")
+#data = RooDataSet("data", "raw data", t, vars) #No cuts
+#data = RooDataSet("data", "raw data", t, vars, "R2>0.41") #R2 Cut
+data = RooDataSet("data", "raw data", t, vars, "nb>0.54 && coskpiz>0.24 && cosdpipcm>0.985 && pipp<0.38")
 #data = RooDataSet("data", "raw data", t, vars, "coskpiz>0.24 && cosdpipcm>0.985 && pipp<0.38") #pinbcut>0.54 cut applied during the reconstruction
 #data = RooDataSet("data", "raw data", t, vars, "coskpiz>0.24 && cosdpipcm>0.985 && pipp<0.38 && dspPmag>3.2") #pinbcut>0.54 cut applied during the reconstruction
-data = RooDataSet("data", "raw data", t, vars, "nb>0.54 && coskpiz>0.24 && cosdpipcm>0.985 && pipp<0.38 && dspPmag>3.2")
+#data = RooDataSet("data", "raw data", t, vars, "nb>0.54 && coskpiz>0.24 && cosdpipcm>0.985 && pipp<0.38 && dspPmag>3.2")
 #data = RooDataSet("data", "raw data", t, vars, "nb>0.68 && coskpizcm>0.64")
 #data = RooDataSet("data", "raw data", t, vars, "nb>0.54 && nbgm1>-0.28 && nbgm2>-0.28 && coskpiz>0.12")
 
@@ -216,13 +222,14 @@ tex2.SetNDC()
 tex2.Draw()
 
 #canvas.Print("/home/tkimmel/Research/plots/test.png")
-#canvas.Print("/home/taylor/Research/plots/test.png")
+canvas.Print("/home/taylor/Research/plots/test50bins.png")
+#canvas.Print("/home/taylor/Research/plots/r2cutfit.png")
 #canvas.Print("/home/tkimmel/Research/plots/alldtokpi/allmfks54pinbcoskpizcosdpipcmpippdspPmagcutsbcs.pdf")
 #canvas.Print("/home/tkimmel/Research/plots/alldtokpi/allmfks54pinbcoskpizcosdpipcmpippdspPmagcutsbcs.eps")
 #canvas.Print("/home/tkimmel/Research/plots/alldtokpi/allmfks54pinbcoskpizcosdpipcmpippdspPmagcutsbcs.png")
-canvas.Print("/home/tkimmel/Research/plots/alldtokpi/allmfks54pinbcoskpizcosdpipcmpippdspPmagcuts.pdf")
-canvas.Print("/home/tkimmel/Research/plots/alldtokpi/allmfks54pinbcoskpizcosdpipcmpippdspPmagcuts.eps")
-canvas.Print("/home/tkimmel/Research/plots/alldtokpi/allmfks54pinbcoskpizcosdpipcmpippdspPmagcuts.png")
+#canvas.Print("/home/tkimmel/Research/plots/alldtokpi/allmfks54pinbcoskpizcosdpipcmpippdspPmagcuts.pdf")
+#canvas.Print("/home/tkimmel/Research/plots/alldtokpi/allmfks54pinbcoskpizcosdpipcmpippdspPmagcuts.eps")
+#canvas.Print("/home/tkimmel/Research/plots/alldtokpi/allmfks54pinbcoskpizcosdpipcmpippdspPmagcuts.png")
 #canvas.Print("/home/tkimmel/Research/plots/alldtokpi/allmfks54pinbcoskpizcosdpipcmpippcutsbcs.pdf")
 #canvas.Print("/home/tkimmel/Research/plots/alldtokpi/allmfks54pinbcoskpizcosdpipcmpippcutsbcs.eps")
 #canvas.Print("/home/tkimmel/Research/plots/alldtokpi/allmfks54pinbcoskpizcosdpipcmpippcutsbcs.png")
@@ -240,6 +247,7 @@ canvas.Print("/home/tkimmel/Research/plots/alldtokpi/allmfks54pinbcoskpizcosdpip
 #canvas.Print("/home/taylor/Research/plots/dtokpipi0nb/mfks54cuts.png")
 #canvas.Print("/home/taylor/Research/plots/tests")
 
+"""
 ws = RooWorkspace("ws")
 getattr(ws,'import')(data)
 getattr(ws,'import')(pdf)
@@ -249,3 +257,4 @@ fOutput = TFile("Workspace_allmfks54pinbcoskpizcosdpipcmpippdspPmagcutsbcs","REC
 ws.Write()
 fOutput.Write()
 fOutput.Close()
+"""
