@@ -25,6 +25,7 @@ coskpizcm = RooRealVar("coskpizcm", "coskpizcm", -1, 1)
 cosdpipcm = RooRealVar("cosdpipcm", "cosdpipcm", -1, 1)
 pipp = RooRealVar("pipp", "pipp", 0, 1)
 dspPmag = RooRealVar("dspPmag", "dspPmag", 0, 5)
+dnb = RooRealVar("dnb", "dnb", -1, 1)
 
 lb = deltam.getMin()
 rb = deltam.getMax()
@@ -33,11 +34,13 @@ binWidth = (rb-lb)/nBins
 binWidthMEV = binWidth*1000
 
 
-vars = RooArgSet(deltam,nb,coskpiz,cosdpipcm,pipp,dspPmag)
+#vars = RooArgSet(deltam,nb,coskpiz,cosdpipcm,pipp,dspPmag)
+vars = RooArgSet(deltam,nb,coskpiz,cosdpipcm,pipp,dspPmag,dnb)
 
 
 #data = RooDataSet("data", "raw data", t, vars) #No cuts
-data = RooDataSet("data", "raw data", t, vars, "nb>0.54 && coskpiz>0.24 && cosdpipcm>0.985 && pipp<0.38")
+data = RooDataSet("data", "raw data", t, vars, "dnb > 0 && nb > 0.54")
+#data = RooDataSet("data", "raw data", t, vars, "nb>0.54 && coskpiz>0.24 && cosdpipcm>0.985 && pipp<0.38")
 #data = RooDataSet("data", "raw data", t, vars, "coskpiz>0.24 && cosdpipcm>0.985 && pipp<0.38") #pinbcut>0.54 cut applied during the reconstruction
 #data = RooDataSet("data", "raw data", t, vars, "coskpiz>0.24 && cosdpipcm>0.985 && pipp<0.38 && dspPmag>3.2") #pinbcut>0.54 cut applied during the reconstruction
 #data = RooDataSet("data", "raw data", t, vars, "nb>0.54 && coskpiz>0.24 && cosdpipcm>0.985 && pipp<0.38 && dspPmag>3.2")
