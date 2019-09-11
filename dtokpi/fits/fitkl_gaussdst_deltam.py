@@ -12,6 +12,7 @@ gInterpreter.ProcessLine('.L RooVoigtian.cxx++')
 #f1 = "/home/tkimmel/Research/root/allmfdtokpi.root"
 f1 = "/home/taylor/Research/root/allmfrecon.root"
 #f1 = "/home/taylor/Research/root/allmfdtokpi.root"
+#f1 = "/home/taylor/Research/root/inclusivemfreconnb.root"
 tree = "dsplrecontree"
 f = TFile(f1,"READ")
 t = f.Get(tree)
@@ -39,7 +40,8 @@ vars = RooArgSet(deltam,nb,coskpiz,cosdpipcm,pipp,dspPmag,dnb)
 
 
 #data = RooDataSet("data", "raw data", t, vars) #No cuts
-data = RooDataSet("data", "raw data", t, vars, "dnb > 0 && nb > 0.54")
+#data = RooDataSet("data", "raw data", t, vars, "dnb > 0.52 && nb > 0.54") #Low stats dnb
+data = RooDataSet("data", "raw data", t, vars, "dnb > 0.68 && nb > 0.54")
 #data = RooDataSet("data", "raw data", t, vars, "nb>0.54 && coskpiz>0.24 && cosdpipcm>0.985 && pipp<0.38")
 #data = RooDataSet("data", "raw data", t, vars, "coskpiz>0.24 && cosdpipcm>0.985 && pipp<0.38") #pinbcut>0.54 cut applied during the reconstruction
 #data = RooDataSet("data", "raw data", t, vars, "coskpiz>0.24 && cosdpipcm>0.985 && pipp<0.38 && dspPmag>3.2") #pinbcut>0.54 cut applied during the reconstruction
@@ -223,7 +225,7 @@ tex2.SetNDC()
 tex2.Draw()
 
 #canvas.Print("/home/tkimmel/Research/plots/testl.png")
-canvas.Print("/home/taylor/Research/plots/testl.png")
+#canvas.Print("/home/taylor/Research/plots/testl.png")
 #canvas.Print("/home/tkimmel/Research/plots/alldtokpi/allmfkl54pinbcoskpizcosdpipcmpippdspPmagcutsbcs.pdf")
 #canvas.Print("/home/tkimmel/Research/plots/alldtokpi/allmfkl54pinbcoskpizcosdpipcmpippdspPmagcutsbcs.eps")
 #canvas.Print("/home/tkimmel/Research/plots/alldtokpi/allmfkl54pinbcoskpizcosdpipcmpippdspPmagcutsbcs.png")
@@ -242,6 +244,8 @@ canvas.Print("/home/taylor/Research/plots/testl.png")
 #canvas.Print("/home/taylor/Research/plots/genericdtokpi/genericmfkl54pinbcutsbcs.pdf")
 #canvas.Print("/home/taylor/Research/plots/genericdtokpi/genericmfkl54pinbcutsbcs.eps")
 #canvas.Print("/home/taylor/Research/plots/genericdtokpi/genericmfkl54pinbcutsbcs.png")
+#canvas.Print("/home/taylor/Research/plots/alldtokpi/allcutsl.png")
+canvas.Print("/home/taylor/Research/plots/alldtokpi/nbdnbcutslmorestats68.png")
 #canvas.Print("/home/taylor/Research/plots/dtokpipi0nb/mfkl54cuts.pdf")
 #canvas.Print("/home/taylor/Research/plots/dtokpipi0nb/mfkl54cuts.eps")
 #canvas.Print("/home/taylor/Research/plots/dtokpipi0nb/mfkl54cuts.png")

@@ -473,7 +473,7 @@ def OptimizeCut_GreaterThan(rb,lb,Tree,Variable,TruthVariable,CutString,Title,XT
     sigweight = 1
     nBins = 100
     binWidth = (rb-lb)/nBins
-    signalvar = 4 #Default
+    signalvar = 1 #Default, true=1 and false=0
     if TruthVariable == "mcflag":
         signalvar = 2 #Use for mcflag
     if TruthVariable == "whomi":
@@ -485,14 +485,14 @@ def OptimizeCut_GreaterThan(rb,lb,Tree,Variable,TruthVariable,CutString,Title,XT
     #nBkgTotal = Tree.Draw(Variable+">>h2","deltam < 0.1476 && deltam > 0.1434 && "+TruthVariable+"<"+signalvarstr,"goff")
     #print Variable+">>h1",CutString+" && "+TruthVariable+">="+signalvarstr,"goff"
     if CutString != "":
-        if TruthVariable == "whomi":
+        if TruthVariable == "whomi" or "truth":
             nSigTotal = Tree.Draw(Variable+">>h1",CutString+" && "+TruthVariable+">="+signalvarstr,"goff")
             nBkgTotal = Tree.Draw(Variable+">>h2",CutString+" && "+TruthVariable+"<"+signalvarstr,"goff")
         if TruthVariable == "mcflag":
             nSigTotal = Tree.Draw(Variable+">>h1",CutString+" && "+TruthVariable+"<="+signalvarstr,"goff")
             nBkgTotal = Tree.Draw(Variable+">>h2",CutString+" && "+TruthVariable+">"+signalvarstr,"goff")
     else:
-        if TruthVariable == "whomi":
+        if TruthVariable == "whomi" or "truth":
             nSigTotal = Tree.Draw(Variable+">>h1",TruthVariable+">="+signalvarstr,"goff")
             nBkgTotal = Tree.Draw(Variable+">>h2",TruthVariable+"<"+signalvarstr,"goff")
         if TruthVariable == "mcflag":
@@ -508,14 +508,14 @@ def OptimizeCut_GreaterThan(rb,lb,Tree,Variable,TruthVariable,CutString,Title,XT
         #nSigRetained.append(Tree.Draw(Variable+">>h1","deltam < 0.1476 && deltam > 0.1434 && "+TruthVariable+">="+signalvarstr+" && "+Variable+">%f"%CUT,"goff"))
         #nBkgRetained.append(Tree.Draw(Variable+">>h2","deltam < 0.1476 && deltam > 0.1434 && "+TruthVariable+"<"+signalvarstr+" && "+Variable+">%f"%CUT,"goff"))
         if CutString != "":
-            if TruthVariable == "whomi":
+            if TruthVariable == "whomi" or "truth":
                 nSigRetained.append(Tree.Draw(Variable+">>h1",CutString+" && "+TruthVariable+">="+signalvarstr+" && "+Variable+">%f"%CUT,"goff"))
                 nBkgRetained.append(Tree.Draw(Variable+">>h2",CutString+" && "+TruthVariable+"<"+signalvarstr+" && "+Variable+">%f"%CUT,"goff"))
             if TruthVariable == "mcflag":
                 nSigRetained.append(Tree.Draw(Variable+">>h1",CutString+" && "+TruthVariable+"<="+signalvarstr+" && "+Variable+">%f"%CUT,"goff"))
                 nBkgRetained.append(Tree.Draw(Variable+">>h2",CutString+" && "+TruthVariable+">"+signalvarstr+" && "+Variable+">%f"%CUT,"goff"))
         else:
-            if TruthVariable == "whomi":
+            if TruthVariable == "whomi" or "truth":
                 nSigRetained.append(Tree.Draw(Variable+">>h1",TruthVariable+">="+signalvarstr+" && "+Variable+">%f"%CUT,"goff"))
                 nBkgRetained.append(Tree.Draw(Variable+">>h2",TruthVariable+"<"+signalvarstr+" && "+Variable+">%f"%CUT,"goff"))
             if TruthVariable == "mcflag":
@@ -583,14 +583,14 @@ def OptimizeCut_GreaterThan(rb,lb,Tree,Variable,TruthVariable,CutString,Title,XT
     #Tree.Draw(Variable+">>h1","deltam<0.1476 && deltam>0.1434 && "+TruthVariable+">="+signalvarstr)
     #Tree.Draw(Variable+">>h2","deltam<0.1476 && deltam>0.1434 && "+TruthVariable+"<"+signalvarstr)
     if CutString != "":
-        if TruthVariable == "whomi":
+        if TruthVariable == "whomi" or "truth":
             Tree.Draw(Variable+">>h1",CutString+" && "+TruthVariable+">="+signalvarstr)
             Tree.Draw(Variable+">>h2",CutString+" && "+TruthVariable+"<"+signalvarstr)
         if TruthVariable == "mcflag":
             Tree.Draw(Variable+">>h1",CutString+" && "+TruthVariable+"<="+signalvarstr)
             Tree.Draw(Variable+">>h2",CutString+" && "+TruthVariable+">"+signalvarstr)
     else:
-        if TruthVariable == "whomi":
+        if TruthVariable == "whomi" or "truth":
             Tree.Draw(Variable+">>h1",TruthVariable+">="+signalvarstr)
             Tree.Draw(Variable+">>h2",TruthVariable+"<"+signalvarstr)
         if TruthVariable == "mcflag":

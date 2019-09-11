@@ -11,8 +11,8 @@ gInterpreter.ProcessLine('.L RooVoigtian.cxx++')
 #f1 = "/home/tkimmel/Research/root/allmfrecon.root"
 #f1 = "/home/tkimmel/Research/root/allmfdtokpi.root"
 #f1 = "/home/taylor/Research/root/allmfdtokpi.root"
-#f1 = "/home/taylor/Research/root/allmfrecon.root"
-f1 = "/home/taylor/Research/root/inclusivemfreconnb.root"
+f1 = "/home/taylor/Research/root/allmfrecon.root"
+#f1 = "/home/taylor/Research/root/inclusivemfreconnb.root"
 tree = "dsprecontree"
 f = TFile(f1,"READ")
 t = f.Get(tree)
@@ -42,7 +42,8 @@ vars = RooArgSet(deltam,nb,coskpiz,cosdpipcm,pipp,dspPmag,dnb)
 
 
 #data = RooDataSet("data", "raw data", t, vars) #No cuts
-data = RooDataSet("data", "raw data", t, vars, "dnb > 0.5 && nb > 0.54")
+#data = RooDataSet("data", "raw data", t, vars, "dnb > 0.52 && nb > 0.54") #Low statistics nb
+data = RooDataSet("data", "raw data", t, vars, "dnb > 0.68 && nb > 0.54")
 #data = RooDataSet("data", "raw data", t, vars, "R2>0.41") #R2 Cut
 #data = RooDataSet("data", "raw data", t, vars, "nb>0.54 && coskpiz>0.24 && cosdpipcm>0.985 && pipp<0.38")
 #data = RooDataSet("data", "raw data", t, vars, "coskpiz>0.24 && cosdpipcm>0.985 && pipp<0.38") #pinbcut>0.54 cut applied during the reconstruction
@@ -82,7 +83,7 @@ d = RooRealVar("d", "d", 0.006, 0, 10);
 a = RooRealVar("a", "a", -20, 0); #coskpiz+cosdpipcm+pinb
 #b = RooRealVar("b", "b", 0, 20);
 #b = RooRealVar("b", "b", -0.1, 0.1); #coskpizcm+pinb
-b = RooRealVar("b", "b", -10, 10); #coskpiz+cosdpipcm+pinb
+b = RooRealVar("b", "b", -10, 20); #coskpiz+cosdpipcm+pinb
 
 nsig = RooRealVar("N_{Signal}","nsig",0,10000)
 nbkg = RooRealVar("N_{Bkg}","nbkg",0,100000)
@@ -245,8 +246,8 @@ tex2.Draw()
 #canvas.Print("/home/taylor/Research/plots/genericdtokpi/genericmfks54pinbcutsbcs.pdf")
 #canvas.Print("/home/taylor/Research/plots/genericdtokpi/genericmfks54pinbcutsbcs.eps")
 #canvas.Print("/home/taylor/Research/plots/genericdtokpi/genericmfks54pinbcutsbcs.png")
-#canvas.Print("/home/taylor/Research/plots/dtokpiinclusive/allcuts.png")
-canvas.Print("/home/taylor/Research/plots/dtokpiinclusive/nbdnbcuts.png")
+#canvas.Print("/home/taylor/Research/plots/alldtokpi/allcuts.png")
+canvas.Print("/home/taylor/Research/plots/alldtokpi/nbdnbcutsmorestats68.png")
 #canvas.Print("/home/taylor/Research/plots/dtokpipi0nb/mfks54cuts.pdf")
 #canvas.Print("/home/taylor/Research/plots/dtokpipi0nb/mfks54cuts.eps")
 #canvas.Print("/home/taylor/Research/plots/dtokpipi0nb/mfks54cuts.png")
