@@ -1031,5 +1031,5 @@ def plot_2d(Tree,Variable1,Variable2,Option1,Option2,Title,XTitle,YTitle,Histogr
     c1.Update()
     #c1.Print(OutputFilename+".pdf")
     #c1.Print(OutputFilename+".eps")
-    #c1.Print(OutputFilename+".png")
+    c1.Print(OutputFilename+".png")
 

@@ -80,7 +80,7 @@ d = RooRealVar("d", "d", 0.006, 0, 10);
 #d = RooRealVar("d", "d", -10, 10);
 #a = RooRealVar("a", "a", 0, 20);
 #a = RooRealVar("a", "a", -0.1, 0.1); #coskpizcm+pinb
-a = RooRealVar("a", "a", -20, -5); #coskpiz+cosdpipcm+pinb
+a = RooRealVar("a", "a", -30, -10); #coskpiz+cosdpipcm+pinb
 #b = RooRealVar("b", "b", 0, 20);
 #b = RooRealVar("b", "b", -0.1, 0.1); #coskpizcm+pinb
 b = RooRealVar("b", "b", -10, 10); #coskpiz+cosdpipcm+pinb
@@ -115,7 +115,10 @@ fitRes = pdf.fitTo(data, RooFit.Save(kTRUE), RooFit.Range("Full"));
 #Figure of Merit
 #deltam.setRange("FullRange",0.138,0.18)
 #deltam.setRange("ThreeSigma",0.1436,0.1474) #Ks Three Sigma Window
-deltam.setRange("ThreeSigma",0.1428,0.1481) #Kl Three Sigma Window
+#deltam.setRange("ThreeSigma",0.1428,0.1481) #Kl Three Sigma Window
+deltam.setRange("ThreeSigma",gausmean.getVal() - 3*gaussigma.getVal(),gausmean.getVal() + 3*gaussigma.getVal())
+#print(gaussigma.getVal())
+#print(fitRes.printValue(gaussigma))
 #print("sig pdf is of type: %s"%(type(pdf)))
 #sigdist = sig.Multiply(nsig.getValV())
 #print("Number of Signal, Background = %s, %s"%(nsig.getValV(),nbkg.getValV()))
