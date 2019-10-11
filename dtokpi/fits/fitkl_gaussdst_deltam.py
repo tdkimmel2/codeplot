@@ -66,11 +66,11 @@ bwmean = RooRealVar("#mu_{sig}", "#mu_{sig}", 0.145, 0, 0.2)
 bwwidth = RooRealVar("#Gamma_{sig}", "#Gamma_{sig}", 0.0009, 0, 0.1)
 
 #Gaussian
-gausmean = RooRealVar("#mu_{sig}","#mu_{sig}",0.145465,0.144,0.146)
+gausmean = RooRealVar("#mu_{sig}","#mu_{sig}",0.145465,0.1452,0.146)
 #gausmean = RooRealVar("#mu_{sig}","#mu_{sig}",0.1455,0,0.2)
 #gausmean.setConstant()
 #gaussigma = RooRealVar("#sigma_{sig}","#sigma_{sig}",0.0009,0.0005,0.001) #coskpiz+cosdpip+pinb #Old, resolution somehow got better after moving reconstruction to BASF rather than pyROOT
-gaussigma = RooRealVar("#sigma_{sig}","#sigma_{sig}",0.0009,0.0001,0.001) #coskpiz+cosdpip+pinb
+gaussigma = RooRealVar("#sigma_{sig}","#sigma_{sig}",0.0009,0.0001,0.01) #coskpiz+cosdpip+pinb
 #gaussigma = RooRealVar("#sigma_{sig}","#sigma_{sig}",0.0009,0,0.01) #coskpizcm+pinb
 #gaussigma = RooRealVar("#sigma_{sig}","#sigma_{sig}",0.001,0,0.1)
 
