@@ -3,12 +3,13 @@ from ROOT import *
 import math, os
 
 
-f1 = "/home/taylor/Research/root/nbpi0/recon55_0_nomf.root"
+f1 = "/home/taylor/Research/root/inclusiverecon.root"
 tree = "pi0tree"
 f = TFile(f1,"READ")
 t = f.Get(tree)
 
-pi0mass = RooRealVar("pi0mass", "pi0mass",0.035,0.235)
+#pi0mass = RooRealVar("pi0mass", "pi0mass",0.035,0.235)
+pi0mass = RooRealVar("pi0mass", "pi0mass",0.085,0.185)
 lb = pi0mass.getMin()
 rb = pi0mass.getMax()
 nBins = 42
@@ -85,7 +86,7 @@ FoM = sigintv
 canvas = TCanvas("canvas", "canvas", 800, 800)
 histPad = TPad("histPad", "Histogram Pad", 0.0, .35, 1.0, 1.0)
 residPad = TPad("residPad", "Residual Pad",0.0, 0.0, 1.0, .35)
-histPad.SetLeftMargin(0.15) 
+histPad.SetLeftMargin(0.15)
 histPad.SetTopMargin(0.1)
 histPad.SetBottomMargin(0.02)
 histPad.SetGrid()
@@ -95,13 +96,14 @@ residPad.SetBottomMargin(0.35)
 residPad.SetGrid()
 histPad.Draw()
 residPad.Draw()
-histPad.cd()  
+histPad.cd()
 
 fitRes.Print()
 # Sanity Check
 h1 = TH1F("h1","h1",nBins,lb,rb)
 
-frame1 = pi0mass.frame(RooFit.Bins(nBins),RooFit.Title("From MC: #pi^{0} Mass")) 
+#frame1 = pi0mass.frame(RooFit.Bins(nBins),RooFit.Title("From MC: #pi^{0} Mass"))
+frame1 = pi0mass.frame(RooFit.Bins(nBins),RooFit.Title("From Inclusive MC: #pi^{0} Mass"))
 pullFrame = pi0mass.frame(RooFit.Bins(nBins),RooFit.Title(""))
 # Beautification Things
 frame1.SetStats(0)
@@ -147,7 +149,7 @@ pullFrame.GetXaxis().SetLabelSize(0.09)
 pullFrame.GetXaxis().SetTitle("#pi^{0} Mass (GeV/c^{2})")
 pullFrame.GetXaxis().SetTitleOffset(1.1)
 pullFrame.GetXaxis().SetTitleSize(0.12)
-  
+
 pullFrame.SetMaximum(5)
 pullFrame.SetMinimum(-5)
 pullFrame.GetYaxis().SetTitle("Pull")
@@ -162,7 +164,7 @@ chisq = frame1.chiSquare()
 chiSQ = "#chi^{2} = %.3f"%chisq
 tex1 = TLatex(0.8,0.1,chiSQ)
 tex1.SetTextSize(0.1)
-tex1.SetNDC() 
+tex1.SetNDC()
 tex1.Draw()
 #expectedYield = "N_{Expected} = %.0f"%nSignal
 #tex2 = TLatex(0.1,0.1,expectedYield)
@@ -176,7 +178,7 @@ tex2.SetTextSize(0.1)
 tex2.SetNDC()
 #tex2.Draw()
 
-canvas.Print("/home/taylor/Research/plots/nbpi0/pi0mass_gaussian+cheby_fit.pdf")
-canvas.Print("/home/taylor/Research/plots/nbpi0/pi0mass_gaussian+cheby_fit.eps")
-canvas.Print("/home/taylor/Research/plots/nbpi0/pi0mass_gaussian+cheby_fit.png")
+canvas.Print("/home/taylor/Research/plots/nbpi0/pi0mass_gaussian+cheby_fit_inclusive.pdf")
+canvas.Print("/home/taylor/Research/plots/nbpi0/pi0mass_gaussian+cheby_fit_inclusive.eps")
+canvas.Print("/home/taylor/Research/plots/nbpi0/pi0mass_gaussian+cheby_fit_inclusive.png")
 
