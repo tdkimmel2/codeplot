@@ -43,7 +43,7 @@ def plot_variable(Tree,Variable,Option,Title,XTitle,Histogram,Frame,LegendLeftEd
     Frame.addObject(leg)
 
     #gStyle.SetOptStat("e");
-    #gPad.SetLogy()
+    #gPad.SetLogy() #For logarithmic scale
     Frame.Draw()
     c1.Update()
     c1.Print(OutputFilename+".pdf")
@@ -51,7 +51,8 @@ def plot_variable(Tree,Variable,Option,Title,XTitle,Histogram,Frame,LegendLeftEd
     c1.Print(OutputFilename+".png")
 
 
-def plot_variable2histos(rb,lb,Tree,Variable,Option1,Option1Legend,Option2,Option2Legend,Title,XTitle,Histogram1,Histogram2,Frame,LegendLeftEdge,LegendBottomEdge,OutputFilename):
+#def plot_variable2histos(rb,lb,Tree,Variable,Option1,Option1Legend,Option2,Option2Legend,Title,XTitle,Histogram1,Histogram2,Frame,LegendLeftEdge,LegendBottomEdge,OutputFilename):
+def plot_variable2histos(Tree,Variable,Option1,Option1Legend,Option2,Option2Legend,Title,XTitle,Histogram1,Histogram2,Frame,LegendLeftEdge,LegendBottomEdge,OutputFilename):
     nBins = 100
     c1 = TCanvas("c1","",800,500)
     gPad.SetRightMargin(0.2)
@@ -111,6 +112,7 @@ def plot_variable2histos(rb,lb,Tree,Variable,Option1,Option1Legend,Option2,Optio
     Frame.addObject(leg)
 
     #gStyle.SetOptStat("e");
+    #gPad.SetLogy() #For logarithmic scale
     Frame.Draw()
     #c1.SetLogy(1)
     c1.Update()

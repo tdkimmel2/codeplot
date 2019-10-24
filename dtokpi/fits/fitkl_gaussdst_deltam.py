@@ -248,11 +248,10 @@ tex2.Draw()
 #canvas.Print("/home/taylor/Research/plots/genericdtokpi/genericmfkl54pinbcutsbcs.eps")
 #canvas.Print("/home/taylor/Research/plots/genericdtokpi/genericmfkl54pinbcutsbcs.png")
 #canvas.Print("/home/taylor/Research/plots/alldtokpi/allcutsl.png")
-canvas.Print("/home/taylor/Research/plots/alldtokpi/nbdnbcutslmorestats68.png")
+canvas.Print("/home/taylor/Research/plots/alldtokpi/asymnbdnbcutsl68.png")
 #canvas.Print("/home/taylor/Research/plots/dtokpipi0nb/mfkl54cuts.pdf")
 #canvas.Print("/home/taylor/Research/plots/dtokpipi0nb/mfkl54cuts.eps")
 #canvas.Print("/home/taylor/Research/plots/dtokpipi0nb/mfkl54cuts.png")
-#canvas.Print("/home/taylor/Research/plots/testl")
 
 """
 ws = RooWorkspace("ws")

@@ -8,7 +8,7 @@ def plot_variable(Tree,Variable,Title,XTitle,Histogram,Frame,OutputFilename):
     gPad.SetRightMargin(0.05)
     gPad.SetBottomMargin(0.2)
     gStyle.SetTitleW(0.99)
-    
+
     Histogram.SetLineColor(kBlack)
     Histogram.SetLineWidth(2)
     Histogram.SetMinimum(1)

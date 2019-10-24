@@ -3,7 +3,7 @@ from ROOT import *
 import math, os
 
 
-f1 = "/home/taylor/Research/root/inclusiverecon.root"
+f1 = "/home/taylor/Research/root/smallccset.root"
 tree = "pi0tree"
 f = TFile(f1,"READ")
 t = f.Get(tree)
@@ -178,7 +178,7 @@ tex2.SetTextSize(0.1)
 tex2.SetNDC()
 #tex2.Draw()
 
-canvas.Print("/home/taylor/Research/plots/nbpi0/pi0mass_gaussian+cheby_fit_inclusive.pdf")
-canvas.Print("/home/taylor/Research/plots/nbpi0/pi0mass_gaussian+cheby_fit_inclusive.eps")
-canvas.Print("/home/taylor/Research/plots/nbpi0/pi0mass_gaussian+cheby_fit_inclusive.png")
+canvas.Print("/home/taylor/Research/plots/nbpi0/pi0mass_gaussian+cheby_fit_smallinclusive.pdf")
+canvas.Print("/home/taylor/Research/plots/nbpi0/pi0mass_gaussian+cheby_fit_smallinclusive.eps")
+canvas.Print("/home/taylor/Research/plots/nbpi0/pi0mass_gaussian+cheby_fit_smallinclusive.png")
 
