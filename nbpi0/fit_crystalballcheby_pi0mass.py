@@ -23,7 +23,7 @@ binWidthMEV = binWidth*1000
 vars = RooArgSet(pi0mass, whomi)
 
 
-data = RooDataSet("data", "raw data", t, vars, "whomi==1")
+data = RooDataSet("data", "raw data", t, vars)
 
 #Function Variables
 
@@ -78,8 +78,8 @@ sig = RooCBShape("sig","Crystal Ball Signal Fcn",pi0mass,crymu,crysigma,cryalpha
 #pdf = RooExtendPdf("pdf","nsig*sig", sig, nsig);
 SIG = RooArgSet(sig)
 BKG = RooArgSet(bkg)
-#pdf = RooAddPdf("pdf","sig+bkg",RooArgList(sig,bkg),RooArgList(nsig,nbkg))
-pdf = RooAddPdf("pdf","sig",RooArgList(sig),RooArgList(nsig))
+pdf = RooAddPdf("pdf","sig+bkg",RooArgList(sig,bkg),RooArgList(nsig,nbkg))
+#pdf = RooAddPdf("pdf","sig",RooArgList(sig),RooArgList(nsig))
 
 #----------------------------------------------------------------------- 
 #----------------------------------------------------------------------- 
@@ -192,7 +192,7 @@ tex1.Draw()
 #tex2.SetNDC()
 #tex2.Draw()
 
-canvas.Print("/home/taylor/Research/plots/nbpi0/pi0mass_crystalball_fit_smallinclusive.pdf")
-canvas.Print("/home/taylor/Research/plots/nbpi0/pi0mass_crystalball_fit_smallinclusive.eps")
-canvas.Print("/home/taylor/Research/plots/nbpi0/pi0mass_crystalball_fit_smallinclusive.png")
+canvas.Print("/home/taylor/Research/plots/nbpi0/pi0mass_crystalballcheby_fit_smallinclusive.pdf")
+canvas.Print("/home/taylor/Research/plots/nbpi0/pi0mass_crystalbalchebyl_fit_smallinclusive.eps")
+canvas.Print("/home/taylor/Research/plots/nbpi0/pi0mass_crystalbalchebyl_fit_smallinclusive.png")
 
