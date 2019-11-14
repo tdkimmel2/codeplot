@@ -2,8 +2,6 @@ from ROOT import *
 #from ROOT import gInterpreter, gSystem
 import math, os
 
-gInterpreter.ProcessLine('.L RooCruijff.cxx++')
-
 f1 = "/home/taylor/Research/root/smallccset.root"
 #f1 = "/home/tkimmel/Research/root/smallccset.root"
 tree = "pi0tree"
@@ -27,59 +25,31 @@ data = RooDataSet("data", "raw data", t, vars, "whomi==1")
 
 #Function Variables
 
-#Breit Wigner
-bwmean = RooRealVar("#mu_{sig}", "#mu_{sig}", 0.145, 0, 0.2)
-bwwidth = RooRealVar("#Gamma_{sig}", "#Gamma_{sig}", 0.0005, 0, 0.1)
-
-#Gaussian
-gausmean = RooRealVar("#mu_{sig}","#mu_{sig}",0.148,0,0.2)
-gaussigma = RooRealVar("#sigma1_{sig}","#sigma1_{sig}",0.0006,0,0.1)
-gaussigma2 = RooRealVar("#sigma2_{sig}","#sigma2_{sig}",0.006,0,0.1)
-
-#Cruijff
-crumu = RooRealVar("#mu","Mean of Cruijff",0.1348,0.125,0.145)
-crusigmaR = RooRealVar("#sigma_{CR}","Cruijff SigmaR",0.0044,0,0.01)
-crusigmaL = RooRealVar("#sigma_{CL}","Cruijff SigmaL",0.00514,0,0.01)
-crualphaR = RooRealVar("#alpha_{R}","Cruijff AlphaR",0.084,0,1)
-crualphaL = RooRealVar("#alpha_{L}","Cruijff AlphaL",0.144,0,1)
-
 #Crystal Ball
-crymu = RooRealVar("#mu","Mean of Crystal Ball",0.1348,0.125,0.145)
-crysigma = RooRealVar("#sigma","#sigma",0.01,0,1)
-cryalpha = RooRealVar("#alpha","#alpha",-100,100)
-cryn = RooRealVar("n","n",0,100)
+crymu = RooRealVar("#mu","Mean of Crystal Ball",0.1346,0.13,0.14)
+crysigma = RooRealVar("#sigma","#sigma",0.005441,0.004,0.01)
+cryalpha = RooRealVar("#alpha","#alpha",1.486,0,2)
+cryn = RooRealVar("n","n",0.747,0,3)
+#Set Constants for testing
+#crymu = RooRealVar("#mu","Mean of Crystal Ball",0.1346,0.132,0.14)
+#crysigma = RooRealVar("#sigma","#sigma",0.006,0.1,0.01)
+#cryalpha = RooRealVar("#alpha","#alpha",1.5,0.1,2)
+#cryn = RooRealVar("n","n",0.7,0.1,5)
+#nsig = RooRealVar("N_{Signal}","nsig",77555,0,100000)
+#crymu.setConstant()
+#crysigma.setConstant()
+#cryalpha.setConstant()
+#cryn.setConstant()
+#nsig.setConstant()
 
-#DstD0BG
-dm0 = RooRealVar("dm0", "dm0", 0.137, 0.135, 0.140);
-d = RooRealVar("d", "d", 0.006, 0, 10);
-a = RooRealVar("a", "a", 0, 20);
-b = RooRealVar("b", "b", 0, 20);
+nsig = RooRealVar("N_{Signal}","nsig",77555,0,100000)
 
-#Chebychev
-c0 = RooRealVar("c0","c0",-1,1)
-c1 = RooRealVar("c1","c1",-2,1)
-c2 = RooRealVar("c2","c2",-1,1)
-
-nsig = RooRealVar("N_{Signal}","nsig",77000,0,100000)
-nbkg = RooRealVar("N_{Bkg}","nbkg",0,1000000)
-
-#bkg = RooDstD0BG("bkg","DstD0BG Bkg Fcn",pi0mass,dm0,d,a,b)
-bkg = RooChebychev("poly","Chebychev Bkg Fcn",pi0mass,RooArgList(c0,c1))
-#sig = RooVoigtian("sig","Voigtian Signal Fcn",pi0mass,voigmean,voigwidth,voigsigma) #Use for Voigtian Signal
-#sig = RooBreitWigner("sig","Breit Wigner Signal Fcn", pi0mass,bwmean,bwwidth) #Use for Breit Wigner Signal
-#sig = RooGaussian("sig","Gaussian Signal Fcn", pi0mass,gausmean,gaussigma) #Use for Gaussian Signal
-#sig = RooCruijff("sig","Cruijff Signal Fcn",pi0mass,crumu,crusigmaL,crusigmaR,crualphaL,crualphaR) #Use for signal Cruijff
-sig = RooCBShape("sig","Crystal Ball Signal Fcn",pi0mass,crymu,crysigma,cryalpha,cryn) #Use for signal Crystal Ball
-#sig2 = RooGaussian("sig2","Gaussian Signal Fcn", pi0mass,gausmean,gaussigma2)
-#frac1 = RooRealVar("frac1","frac1",0,1)
-#sig = RooAddPdf("signal","Double Gaussian Signal Fcn", RooArgList(sig1,sig2),RooArgList(frac1))
-#pdf = RooAddPdf("pdf","nbkg*bkg", RooArgList(bkg),RooArgList(nbkg));
-#pdf = RooAddPdf("pdf","nsig*sig", RooArgList(sig),RooArgList(nsig));
-#pdf = RooExtendPdf("pdf","nsig*sig", sig, nsig);
+sig = RooCBShape("sig","Crystal Ball Signal Function",pi0mass,crymu,crysigma,cryalpha,cryn) #Use for signal Crystal Ball
 SIG = RooArgSet(sig)
-BKG = RooArgSet(bkg)
-#pdf = RooAddPdf("pdf","sig+bkg",RooArgList(sig,bkg),RooArgList(nsig,nbkg))
-pdf = RooAddPdf("pdf","sig",RooArgList(sig),RooArgList(nsig))
+
+#sig1 = RooCBShape("sig","Crystal Ball Signal Function",pi0mass,crymu,crysigma,cryalpha,cryn) #Use for signal Crystal Ball
+#SIG = RooArgSet(sig1)
+#sig = RooAddPdf("sig","CrystalBall*Yield",RooArgList(sig1),RooArgList(nsig))
 
 #----------------------------------------------------------------------- 
 #----------------------------------------------------------------------- 
@@ -87,7 +57,9 @@ pdf = RooAddPdf("pdf","sig",RooArgList(sig),RooArgList(nsig))
 #----------------------------------------------------------------------- 
 #-----------------------------------------------------------------------
 
-fitRes = pdf.fitTo(data, RooFit.Save(kTRUE), RooFit.Range("Full"));
+#fitRes = sig.fitTo(data, RooFit.Save(kTRUE), RooFit.Range("Full"));
+fitRes = sig.fitTo(data, RooFit.Save(kTRUE), RooFit.Extended(kTRUE), RooFit.NumCPU(4), RooFit.Strategy(2), RooFit.Minimizer("Minuit2", "minimize"), RooFit.Minos(kTRUE))
+#fitRes = sig.fitTo(data, RooFit.Save(kTRUE), RooFit.Extended(kTRUE), RooFit.NumCPU(4), RooFit.Strategy(2), RooFit.Minos(kTRUE))
 
 #Figure of Merit
 #pi0mass.setRange("FullRange",0.085,0.185)
@@ -137,11 +109,10 @@ frame1.GetYaxis().SetTitle("Events/[%.3f MeV]"%binWidthMEV)
 
 data.plotOn(frame1)
 #dchib1Sig_1k.plotOn(frame1)
-#pdf.plotOn(frame1, RooFit.Components(BKG),RooFit.LineColor(kRed),RooFit.LineStyle(kDashed)) #Uncomment for background dashed line
-pdf.plotOn(frame1, RooFit.LineColor(kBlack))
-#pdf.plotOn(frame1, RooFit.Components(SIG),RooFit.LineColor(kBlue))
-#pdf.plotOn(frame1, RooFit.Components(bkg),RooFit.LineColor(kRed),RooFit.LineStyle(kDashed))
-pdf.paramOn(frame1,RooFit.Format("NEU", RooFit.AutoPrecision(2)), RooFit.Layout(0.57, 0.96, 0.93))
+#sig.plotOn(frame1, RooFit.Components(BKG),RooFit.LineColor(kRed),RooFit.LineStyle(kDashed)) #Uncomment for background dashed line
+#sig.plotOn(frame1, RooFit.Components(SIG),RooFit.LineColor(kBlue))
+sig.plotOn(frame1, RooFit.LineColor(kBlack))
+sig.paramOn(frame1,RooFit.Format("NEU", RooFit.AutoPrecision(2)), RooFit.Layout(0.57, 0.96, 0.93))
 frame1.Draw()
 
 hpull1 = frame1.pullHist()
@@ -192,7 +163,9 @@ tex1.Draw()
 #tex2.SetNDC()
 #tex2.Draw()
 
-canvas.Print("/home/taylor/Research/plots/nbpi0/pi0mass_crystalball_fit_smallinclusive.pdf")
-canvas.Print("/home/taylor/Research/plots/nbpi0/pi0mass_crystalball_fit_smallinclusive.eps")
-canvas.Print("/home/taylor/Research/plots/nbpi0/pi0mass_crystalball_fit_smallinclusive.png")
+#canvas.Print("/home/taylor/Research/plots/nbpi0/pi0mass_crystalball_fit_smallinclusive.pdf")
+#canvas.Print("/home/taylor/Research/plots/nbpi0/pi0mass_crystalball_fit_smallinclusive.eps")
+#canvas.Print("/home/taylor/Research/plots/nbpi0/pi0mass_crystalball_fit_smallinclusive.png")
+canvas.Print("/home/taylor/Research/plots/nbpi0/pi0mass_crystalball_fit_smallinclusiveminuit2.png")
+#canvas.Print("/home/taylor/Research/plots/nbpi0/pi0mass_crystalball_fit_smallinclusiveconstants.png")
 

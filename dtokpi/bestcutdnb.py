@@ -24,5 +24,6 @@ nBins = 100
 h1 = TH1F("h1","h1",nBins,lb,rb)
 h2 = TH1F("h2","h2",nBins,lb,rb)
 
-OptimizeCut_GreaterThan(rb,lb,t,"nn","truth","","From MC: D^{*+} NeuroBayes Output D^{*+} -> D^{0}(-> #pi^{0} + K^{0}) + #pi^{+}","nn",h1,h2,frame,frame2,0.7,"/home/taylor/Research/plots/bestcutdnbexpert","std")
+#OptimizeCut_GreaterThan(rb,lb,t,"nn","truth","","From MC: D^{*+} NeuroBayes Output D^{*+} -> D^{0}(-> #pi^{0} + K^{0}) + #pi^{+}","nn",h1,h2,frame,frame2,0.7,"/home/taylor/Research/plots/bestcutdnbexpert","std")
 #OptimizeCut_GreaterThan(rb,lb,t,"dnb","whomi","","From MC: D^{*+} NeuroBayes Output D^{*+} -> D^{0}(-> #pi^{0} + K_{S}^{0}) + #pi^{+}","dnb",h1,h2,frame,frame2,0.7,"/home/taylor/Research/plots/bestcutdnbmorestats","std")
+OptimizeCut_GreaterThan(rb,lb,t,"nn","truth","","From MC: D^{*+} NeuroBayes Output D^{*+} -> D^{0}(-> #pi^{0} + K^{0}) + #pi^{+}","nn",h1,h2,frame,frame2,0.7,"/home/taylor/Research/plots/bestcutdnbexpertnew","std")

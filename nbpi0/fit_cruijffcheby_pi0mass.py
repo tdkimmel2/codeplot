@@ -25,27 +25,15 @@ data = RooDataSet("data", "raw data", t, vars)
 
 #Function Variables
 
-#Breit Wigner
-bwmean = RooRealVar("#mu_{sig}", "#mu_{sig}", 0.145, 0, 0.2)
-bwwidth = RooRealVar("#Gamma_{sig}", "#Gamma_{sig}", 0.0005, 0, 0.1)
-
-#Gaussian
-gausmean = RooRealVar("#mu_{sig}","#mu_{sig}",0.148,0,0.2)
-gaussigma = RooRealVar("#sigma1_{sig}","#sigma1_{sig}",0.0006,0,0.1)
-gaussigma2 = RooRealVar("#sigma2_{sig}","#sigma2_{sig}",0.006,0,0.1)
-
 #Cruijff
-crumu = RooRealVar("#mu","Mean of Cruijff",0.1348,0.125,0.145)
-crusigmaR = RooRealVar("#sigma_{CR}","Cruijff SigmaR",0.0044,0,0.01)
-crusigmaL = RooRealVar("#sigma_{CL}","Cruijff SigmaL",0.00514,0,0.01)
-crualphaR = RooRealVar("#alpha_{R}","Cruijff AlphaR",0.084,0,1)
-crualphaL = RooRealVar("#alpha_{L}","Cruijff AlphaL",0.144,0,1)
-
-#DstD0BG
-dm0 = RooRealVar("dm0", "dm0", 0.137, 0.135, 0.140);
-d = RooRealVar("d", "d", 0.006, 0, 10);
-a = RooRealVar("a", "a", 0, 20);
-b = RooRealVar("b", "b", 0, 20);
+crumu = RooRealVar("#mu","Mean of Cruijff",0.134674,0.125,0.145)
+crusigmaR = RooRealVar("#sigma_{CR}","Cruijff SigmaR",0.00427,0,0.005)
+crusigmaL = RooRealVar("#sigma_{CL}","Cruijff SigmaL",0.00496,0,0.006)
+crualphaR = RooRealVar("#alpha_{R}","Cruijff AlphaR",0.1796,0,0.2)
+crualphaL = RooRealVar("#alpha_{L}","Cruijff AlphaL",0.349,0,0.4)
+#Set alphas constant
+crualphaR.setConstant()
+crualphaL.setConstant()
 
 #Chebychev
 c0 = RooRealVar("c0","c0",-1,1)
@@ -55,18 +43,8 @@ c2 = RooRealVar("c2","c2",-1,1)
 nsig = RooRealVar("N_{Signal}","nsig",0,100000)
 nbkg = RooRealVar("N_{Bkg}","nbkg",0,1000000)
 
-#bkg = RooDstD0BG("bkg","DstD0BG Bkg Fcn",pi0mass,dm0,d,a,b)
 bkg = RooChebychev("poly","Chebychev Bkg Fcn",pi0mass,RooArgList(c0,c1))
-#sig = RooVoigtian("sig","Voigtian Signal Fcn",pi0mass,voigmean,voigwidth,voigsigma) #Use for Voigtian Signal
-#sig = RooBreitWigner("sig","Breit Wigner Signal Fcn", pi0mass,bwmean,bwwidth) #Use for Breit Wigner Signal
-#sig = RooGaussian("sig","Gaussian Signal Fcn", pi0mass,gausmean,gaussigma) #Use for Gaussian Signal
 sig = RooCruijff("sig","Cruijff Signal Fcn",pi0mass,crumu,crusigmaL,crusigmaR,crualphaL,crualphaR) #Use for signal Cruijff
-#sig2 = RooGaussian("sig2","Gaussian Signal Fcn", pi0mass,gausmean,gaussigma2)
-#frac1 = RooRealVar("frac1","frac1",0,1)
-#sig = RooAddPdf("signal","Double Gaussian Signal Fcn", RooArgList(sig1,sig2),RooArgList(frac1))
-#pdf = RooAddPdf("pdf","nbkg*bkg", RooArgList(bkg),RooArgList(nbkg));
-#pdf = RooAddPdf("pdf","nsig*sig", RooArgList(sig),RooArgList(nsig));
-#pdf = RooExtendPdf("pdf","nsig*sig", sig, nsig);
 SIG = RooArgSet(sig)
 BKG = RooArgSet(bkg)
 pdf = RooAddPdf("pdf","sig+bkg",RooArgList(sig,bkg),RooArgList(nsig,nbkg))
@@ -81,16 +59,16 @@ fitRes = pdf.fitTo(data, RooFit.Save(kTRUE), RooFit.Range("Full"));
 
 #Figure of Merit
 #pi0mass.setRange("FullRange",0.035,0.235)
-pi0mass.setRange("FullRange",0.085,0.185)
+#pi0mass.setRange("FullRange",0.085,0.185)
 #pi0mass.setRange("ThreeSigma",0.1436,0.1474) #Ks Three Sigma Window
 #pi0mass.setRange("ThreeSigma",0.1428,0.1481) #Kl Three Sigma Window
-sigint = sig.createIntegral(vars,RooFit.Range("FullRange"))
-bkgint = bkg.createIntegral(vars,RooFit.Range("FullRange"))
-sigintv = sigint.getVal()
-bkgintv = bkgint.getVal()
+#sigint = sig.createIntegral(vars,RooFit.Range("FullRange"))
+#bkgint = bkg.createIntegral(vars,RooFit.Range("FullRange"))
+#sigintv = sigint.getVal()
+#bkgintv = bkgint.getVal()
 #print("%s,%s"%(sigintv,bkgintv))
 #FoM = sigintv/math.sqrt(sigintv + bkgintv)
-FoM = sigintv
+#FoM = sigintv
 
 # Create a new canvas
 canvas = TCanvas("canvas", "canvas", 800, 800)
@@ -133,11 +111,9 @@ frame1.GetYaxis().SetTitle("Events/[%.3f MeV]"%binWidthMEV)
 data.plotOn(frame1)
 #dchib1Sig_1k.plotOn(frame1)
 pdf.plotOn(frame1, RooFit.Components(BKG),RooFit.LineColor(kRed),RooFit.LineStyle(kDashed))
+pdf.plotOn(frame1, RooFit.Components(SIG),RooFit.LineColor(kBlue))
 pdf.plotOn(frame1, RooFit.LineColor(kBlack))
-#pdf.plotOn(frame1, RooFit.Components(SIG),RooFit.LineColor(kBlue))
-#pdf.plotOn(frame1, RooFit.Components(bkg),RooFit.LineColor(kRed),RooFit.LineStyle(kDashed))
-#pdf.paramOn(frame1,Parameters(RooArgList(mu,sigmaL,sigmaR,alphaL,alphaR,nsig)),Format("NEU", AutoPrecision(2)), Layout(0.55, 0.89, 0.89))
-#pdf.paramOn(frame1,RooFit.Format("NEU", RooFit.AutoPrecision(2)), RooFit.Layout(0.57, 0.96, 0.93))
+pdf.paramOn(frame1,RooFit.Format("NEU", RooFit.AutoPrecision(2)), RooFit.Layout(0.57, 0.96, 0.93)) #Comment for no parameters/legend
 frame1.Draw()
 
 hpull1 = frame1.pullHist()
@@ -182,13 +158,13 @@ tex1.Draw()
 #tex2.SetNDC() 
 #tex2.Draw()
 
-FOM = "#frac{S}{#sqrt{S+B}} = %.3f"%FoM
-tex2 = TLatex(0.1,0.1,FOM)
-tex2.SetTextSize(0.1)
-tex2.SetNDC()
+#FOM = "#frac{S}{#sqrt{S+B}} = %.3f"%FoM
+#tex2 = TLatex(0.1,0.1,FOM)
+#tex2.SetTextSize(0.1)
+#tex2.SetNDC()
 #tex2.Draw()
 
-canvas.Print("/home/taylor/Research/plots/nbpi0/pi0mass_cruijff+cheby_fit_smallinclusive_nolegend.pdf")
-canvas.Print("/home/taylor/Research/plots/nbpi0/pi0mass_cruijff+cheby_fit_smallinclusive_nolegend.eps")
-canvas.Print("/home/taylor/Research/plots/nbpi0/pi0mass_cruijff+cheby_fit_smallinclusive_nolegend.png")
+canvas.Print("/home/taylor/Research/plots/nbpi0/pi0mass_cruijff+cheby_fit_smallinclusive.pdf")
+canvas.Print("/home/taylor/Research/plots/nbpi0/pi0mass_cruijff+cheby_fit_smallinclusive.eps")
+canvas.Print("/home/taylor/Research/plots/nbpi0/pi0mass_cruijff+cheby_fit_smallinclusive.png")
 
