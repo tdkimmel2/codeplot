@@ -181,15 +181,15 @@ def plot_variable3histos(rb,lb,Tree,Variable,Option1,Leg1,Option2,Leg2,Option3,L
 
     Histogram1.SetLineColor(kBlue)
     #Histogram1.SetFillColor(kBlue)
-    Histogram1.SetLineWidth(2)
+    Histogram1.SetLineWidth(3)
     Histogram1.SetMinimum(1)
 
     Histogram2.SetLineColor(kRed)
-    Histogram2.SetLineWidth(2)
+    Histogram2.SetLineWidth(3)
     Histogram2.SetMinimum(1)
 
     Histogram3.SetLineColor(kBlack)
-    Histogram3.SetLineWidth(2)
+    Histogram3.SetLineWidth(3)
     Histogram3.SetMinimum(1)
 
     Frame.SetTitle(Title)
