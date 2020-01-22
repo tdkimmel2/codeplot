@@ -42,8 +42,8 @@ vars = RooArgSet(deltam,nb,coskpiz,cosdpipcm,pipp,dspPmag,dnb)
 
 #data = RooDataSet("data", "raw data", t, vars) #No cuts
 #data = RooDataSet("data", "raw data", t, vars, "dnb > 0.52 && nb > 0.54") #Low stats dnb
-data = RooDataSet("data", "raw data", t, vars, "dnb > 0.68 && nb > 0.54")
-#data = RooDataSet("data", "raw data", t, vars, "nb>0.54 && coskpiz>0.24 && cosdpipcm>0.985 && pipp<0.38")
+#data = RooDataSet("data", "raw data", t, vars, "dnb > 0.68 && nb > 0.54")
+data = RooDataSet("data", "raw data", t, vars, "nb>0.54 && coskpiz>0.24 && cosdpipcm>0.985 && pipp<0.38")
 #data = RooDataSet("data", "raw data", t, vars, "coskpiz>0.24 && cosdpipcm>0.985 && pipp<0.38") #pinbcut>0.54 cut applied during the reconstruction
 #data = RooDataSet("data", "raw data", t, vars, "coskpiz>0.24 && cosdpipcm>0.985 && pipp<0.38 && dspPmag>3.2") #pinbcut>0.54 cut applied during the reconstruction
 #data = RooDataSet("data", "raw data", t, vars, "nb>0.54 && coskpiz>0.24 && cosdpipcm>0.985 && pipp<0.38 && dspPmag>3.2")
@@ -71,7 +71,7 @@ gausmean = RooRealVar("#mu_{sig}","#mu_{sig}",0.1453,0.145,0.146)
 #gausmean = RooRealVar("#mu_{sig}","#mu_{sig}",0.1455,0,0.2)
 #gausmean.setConstant()
 #gaussigma = RooRealVar("#sigma_{sig}","#sigma_{sig}",0.0009,0.0005,0.001) #coskpiz+cosdpip+pinb #Old, resolution somehow got better after moving reconstruction to BASF rather than pyROOT
-gaussigma = RooRealVar("#sigma_{sig}","#sigma_{sig}",0.0009,0.0001,0.01) #coskpiz+cosdpip+pinb
+gaussigma = RooRealVar("#sigma_{sig}","#sigma_{sig}",0.0009,0.0001,0.001) #coskpiz+cosdpip+pinb
 #gaussigma = RooRealVar("#sigma_{sig}","#sigma_{sig}",0.0009,0,0.01) #coskpizcm+pinb
 #gaussigma = RooRealVar("#sigma_{sig}","#sigma_{sig}",0.001,0,0.1)
 
@@ -250,7 +250,8 @@ tex2.Draw()
 #canvas.Print("/home/taylor/Research/plots/genericdtokpi/genericmfkl54pinbcutsbcs.png")
 #canvas.Print("/home/taylor/Research/plots/alldtokpi/allcutsl.png")
 #canvas.Print("/home/taylor/Research/plots/alldtokpi/asymnbdnbcutsl5468.png")
-canvas.Print("/home/taylor/Research/plots/alldtokpi/asymnbdnbcutsl5452.png")
+#canvas.Print("/home/taylor/Research/plots/alldtokpi/asymnbdnbcutsl5452.png")
+canvas.Print("/home/taylor/Research/plots/alldtokpi/allcutsl2.png")
 #canvas.Print("/home/taylor/Research/plots/signal/asymnbdnbcutsl5452.png")
 #canvas.Print("/home/taylor/Research/plots/dtokpipi0nb/mfkl54cuts.pdf")
 #canvas.Print("/home/taylor/Research/plots/dtokpipi0nb/mfkl54cuts.eps")
