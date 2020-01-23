@@ -3,7 +3,8 @@ import sys
 sys.path.append('/home/taylor/Research/codeplot/functions/')
 from plottingfunctions import *
 
-f = TFile("/home/taylor/Research/root/signalmfrecon.root","READ")
+#f = TFile("/home/taylor/Research/root/signalmfrecon.root","READ")
+f = TFile("/home/taylor/Research/root/tmpizk0signalmfrecon.root","READ")
 t = f.Get("dsprecontree")
 
 pi0p3 = RooRealVar("pi0p3", "pi0p3",0,3)
@@ -39,8 +40,11 @@ for x in range(len(variables)-1):
         #print(str(variables[x]))
         t.Draw("%s:%s>>graph"%(variablesstr[x],variablesstr[y]))
         cor = graph.GetCorrelationFactor()
-        print(variablesstr[x]+" "+variablesstr[y])
-        print(cor)
+        #print(variablesstr[x]+" "+variablesstr[y])
+        #print(cor)
+        if cor>0.9:
+            print(variablesstr[x]+" "+variablesstr[y])
+            print(cor)
         if i%2==0:
             del graph
         else:

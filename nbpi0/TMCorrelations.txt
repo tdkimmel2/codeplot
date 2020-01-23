@@ -1,0 +1,187 @@
+
+[1mRooFit v3.60 -- Developed by Wouter Verkerke and David Kirkby[0m 
+                Copyright (C) 2000-2013 NIKHEF, University of California & Stanford University
+                All rights reserved, please read http://roofit.sourceforge.net/license.txt
+
+pi0p3 pi0p3cms
+0.979003482
+pi0p3 gm1e
+0.968899705168
+pi0p3 gm2e
+0.816572470888
+pi0p3 gm1e925
+-0.344401069457
+pi0p3 gm2e925
+-0.504498149724
+pi0p3 ediff
+0.781457929599
+pi0p3 gm1eerror
+0.231942077242
+pi0p3 gm2eerror
+0.0
+pi0p3 gm1p3
+0.968899705168
+pi0p3 gm2p3
+0.816572470888
+pi0p3 gm1p3cms
+0.950445070811
+pi0p3 gm2p3cms
+0.806720342946
+pi0p3 gmthetacms
+-0.662077298634
+pi0p3cms gm1e
+0.948217516655
+pi0p3cms gm2e
+0.799899462547
+pi0p3cms gm1e925
+-0.32011769437
+pi0p3cms gm2e925
+-0.468146550401
+pi0p3cms ediff
+0.761106407376
+pi0p3cms gm1eerror
+0.254126513503
+pi0p3cms gm2eerror
+0.0
+pi0p3cms gm1p3
+0.948217516655
+pi0p3cms gm2p3
+0.799899462547
+pi0p3cms gm1p3cms
+0.970170529747
+pi0p3cms gm2p3cms
+0.826472718823
+pi0p3cms gmthetacms
+-0.646414182649
+gm1e gm2e
+0.649494694253
+gm1e gm1e925
+-0.265020545729
+gm1e gm2e925
+-0.444568064781
+gm1e ediff
+0.911880314041
+gm1e gm1eerror
+0.377628970238
+gm1e gm2eerror
+0.0
+gm1e gm1p3
+1.0
+gm1e gm2p3
+0.649494694253
+gm1e gm1p3cms
+0.980404112583
+gm1e gm2p3cms
+0.645996163564
+gm1e gmthetacms
+-0.608429053518
+gm2e gm1e925
+-0.450166883811
+gm2e gm2e925
+-0.527555132134
+gm2e ediff
+0.274941941744
+gm2e gm1eerror
+-0.241041742011
+gm2e gm2eerror
+0.0
+gm2e gm1p3
+0.649494694253
+gm2e gm2p3
+1.0
+gm2e gm1p3cms
+0.639722737699
+gm2e gm2p3cms
+0.978896043024
+gm2e gmthetacms
+-0.573136548578
+gm1e925 gm2e925
+0.589393175875
+gm1e925 ediff
+-0.0905270433171
+gm1e925 gm1eerror
+0.0712870501184
+gm1e925 gm2eerror
+0.0
+gm1e925 gm1p3
+-0.265020545729
+gm1e925 gm2p3
+-0.450166883811
+gm1e925 gm1p3cms
+-0.252796328048
+gm1e925 gm2p3cms
+-0.429983218682
+gm1e925 gmthetacms
+0.143614369352
+gm2e925 ediff
+-0.27650536414
+gm2e925 gm1eerror
+0.0861943329926
+gm2e925 gm2eerror
+0.0
+gm2e925 gm1p3
+-0.444568064781
+gm2e925 gm2p3
+-0.527555132134
+gm2e925 gm1p3cms
+-0.426242960824
+gm2e925 gm2p3cms
+-0.504520430681
+gm2e925 gmthetacms
+0.209046123096
+ediff gm1eerror
+0.389013603814
+ediff gm2eerror
+0.0
+ediff gm1p3
+0.912501041839
+ediff gm2p3
+0.281283416222
+ediff gm1p3cms
+0.892994110979
+ediff gm2p3cms
+0.288224655134
+ediff gmthetacms
+-0.459768138442
+gm1eerror gm2eerror
+0.0
+gm1eerror gm1p3
+0.785049556754
+gm1eerror gm2p3
+-0.0104019363767
+gm1eerror gm1p3cms
+0.757956779888
+gm1eerror gm2p3cms
+0.0433186555084
+gm1eerror gmthetacms
+-0.208456192548
+gm2eerror gm1p3
+0.220165294336
+gm2eerror gm2p3
+0.390249570843
+gm2eerror gm1p3cms
+0.238449367693
+gm2eerror gm2p3cms
+0.404551026676
+gm2eerror gmthetacms
+-0.222261080452
+gm1p3 gm2p3
+0.649494694253
+gm1p3 gm1p3cms
+0.980404112583
+gm1p3 gm2p3cms
+0.645996163564
+gm1p3 gmthetacms
+-0.608429053518
+gm2p3 gm1p3cms
+0.639722737699
+gm2p3 gm2p3cms
+0.978896043024
+gm2p3 gmthetacms
+-0.573136548578
+gm1p3cms gm2p3cms
+0.670721783979
+gm1p3cms gmthetacms
+-0.593695585041
+gm2p3cms gmthetacms
+-0.56199716736

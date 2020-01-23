@@ -42,8 +42,9 @@ vars = RooArgSet(deltam,nb,coskpiz,cosdpipcm,pipp,dspPmag,dnb)
 
 #data = RooDataSet("data", "raw data", t, vars) #No cuts
 #data = RooDataSet("data", "raw data", t, vars, "dnb > 0.52 && nb > 0.54") #Low stats dnb
+data = RooDataSet("data", "raw data", t, vars, "nb > 0.94") #Reduced pi variables
 #data = RooDataSet("data", "raw data", t, vars, "dnb > 0.68 && nb > 0.54")
-data = RooDataSet("data", "raw data", t, vars, "nb>0.54 && coskpiz>0.24 && cosdpipcm>0.985 && pipp<0.38")
+#data = RooDataSet("data", "raw data", t, vars, "nb>0.54 && coskpiz>0.24 && cosdpipcm>0.985 && pipp<0.38")
 #data = RooDataSet("data", "raw data", t, vars, "coskpiz>0.24 && cosdpipcm>0.985 && pipp<0.38") #pinbcut>0.54 cut applied during the reconstruction
 #data = RooDataSet("data", "raw data", t, vars, "coskpiz>0.24 && cosdpipcm>0.985 && pipp<0.38 && dspPmag>3.2") #pinbcut>0.54 cut applied during the reconstruction
 #data = RooDataSet("data", "raw data", t, vars, "nb>0.54 && coskpiz>0.24 && cosdpipcm>0.985 && pipp<0.38 && dspPmag>3.2")
@@ -251,7 +252,8 @@ tex2.Draw()
 #canvas.Print("/home/taylor/Research/plots/alldtokpi/allcutsl.png")
 #canvas.Print("/home/taylor/Research/plots/alldtokpi/asymnbdnbcutsl5468.png")
 #canvas.Print("/home/taylor/Research/plots/alldtokpi/asymnbdnbcutsl5452.png")
-canvas.Print("/home/taylor/Research/plots/alldtokpi/allcutsl2.png")
+#canvas.Print("/home/taylor/Research/plots/alldtokpi/allcutsl2.png")
+canvas.Print("/home/taylor/Research/plots/alldtokpi/reducedpivariablesl.png")
 #canvas.Print("/home/taylor/Research/plots/signal/asymnbdnbcutsl5452.png")
 #canvas.Print("/home/taylor/Research/plots/dtokpipi0nb/mfkl54cuts.pdf")
 #canvas.Print("/home/taylor/Research/plots/dtokpipi0nb/mfkl54cuts.eps")

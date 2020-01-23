@@ -1,0 +1,35 @@
+
+[1mRooFit v3.60 -- Developed by Wouter Verkerke and David Kirkby[0m 
+                Copyright (C) 2000-2013 NIKHEF, University of California & Stanford University
+                All rights reserved, please read http://roofit.sourceforge.net/license.txt
+
+pi0p3 pi0p3cms
+0.979003482
+pi0p3 gm1e
+0.968899705168
+pi0p3 gm1p3
+0.968899705168
+pi0p3 gm1p3cms
+0.950445070811
+pi0p3cms gm1e
+0.948217516655
+pi0p3cms gm1p3
+0.948217516655
+pi0p3cms gm1p3cms
+0.970170529747
+gm1e ediff
+0.911880314041
+gm1e gm1p3
+1.0
+gm1e gm1p3cms
+0.980404112583
+gm2e gm2p3
+1.0
+gm2e gm2p3cms
+0.978896043024
+ediff gm1p3
+0.912501041839
+gm1p3 gm1p3cms
+0.980404112583
+gm2p3 gm2p3cms
+0.978896043024
