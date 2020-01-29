@@ -1,0 +1,574 @@
+DataSetInfo              : [dataset] : Added class "Signal"
+                         : Add Tree pi0tree of type Signal with 174683 events
+DataSetInfo              : [dataset] : Added class "Background"
+                         : Add Tree pi0tree of type Background with 4933019 events
+Model: "sequential_1"
+_________________________________________________________________
+Layer (type)                 Output Shape              Param #   
+=================================================================
+dense_1 (Dense)              (None, 32)                448       
+_________________________________________________________________
+dropout_1 (Dropout)          (None, 32)                0         
+_________________________________________________________________
+dense_2 (Dense)              (None, 32)                1056      
+_________________________________________________________________
+dropout_2 (Dropout)          (None, 32)                0         
+_________________________________________________________________
+dense_3 (Dense)              (None, 2)                 66        
+=================================================================
+Total params: 1,570
+Trainable params: 1,570
+Non-trainable params: 0
+_________________________________________________________________
+Factory                  : Booking method: [1mPyKeras[0m
+                         : 
+PyKeras                  : [dataset] : Create Transformation "G" with events from all classes.
+                         : 
+                         : Transformation, Variable selection : 
+                         : Input : variable 'pi0p3' <---> Output : variable 'pi0p3'
+                         : Input : variable 'pi0p3cms' <---> Output : variable 'pi0p3cms'
+                         : Input : variable 'gm1e' <---> Output : variable 'gm1e'
+                         : Input : variable 'gm2e' <---> Output : variable 'gm2e'
+                         : Input : variable 'gm1e925' <---> Output : variable 'gm1e925'
+                         : Input : variable 'gm2e925' <---> Output : variable 'gm2e925'
+                         : Input : variable 'ediff' <---> Output : variable 'ediff'
+                         : Input : variable 'gm1eerror' <---> Output : variable 'gm1eerror'
+                         : Input : variable 'gm2eerror' <---> Output : variable 'gm2eerror'
+                         : Input : variable 'gm1p3cms' <---> Output : variable 'gm1p3cms'
+                         : Input : variable 'gm2p3cms' <---> Output : variable 'gm2p3cms'
+                         : Input : variable 'gmthetacms' <---> Output : variable 'gmthetacms'
+                         : Input : variable 'mfchi2' <---> Output : variable 'mfchi2'
+                         : Load model from file: model.h5
+Factory                  : Booking method: [1mGTB[0m
+                         : 
+Factory                  : Booking method: [1mBDT[0m
+                         : 
+DataSetFactory           : [dataset] : Number of events in input trees
+                         : 
+                         : 
+                         : Number of training and testing events
+                         : ---------------------------------------------------------------------------
+                         : Signal     -- training events            : 10000
+                         : Signal     -- testing events             : 10000
+                         : Signal     -- training and testing events: 20000
+                         : Background -- training events            : 10000
+                         : Background -- testing events             : 10000
+                         : Background -- training and testing events: 20000
+                         : 
+DataSetInfo              : Correlation matrix (Signal):
+                         : -----------------------------------------------------------------------------------------------------------------------------
+                         :               pi0p3 pi0p3cms    gm1e    gm2e gm1e925 gm2e925   ediff gm1eerror gm2eerror gm1p3cms gm2p3cms gmthetacms  mfchi2
+                         :      pi0p3:  +1.000   +0.976  +0.956  +0.757  -0.198  -0.198  +0.725    +0.768    +0.631   +0.938   +0.758     -0.684  -0.209
+                         :   pi0p3cms:  +0.976   +1.000  +0.933  +0.740  -0.184  -0.184  +0.706    +0.773    +0.640   +0.961   +0.780     -0.669  -0.186
+                         :       gm1e:  +0.956   +0.933  +1.000  +0.533  -0.135  -0.135  +0.895    +0.828    +0.441   +0.977   +0.545     -0.619  -0.189
+                         :       gm2e:  +0.757   +0.740  +0.533  +1.000  -0.273  -0.273  +0.100    +0.379    +0.850   +0.534   +0.979     -0.561  -0.194
+                         :    gm1e925:  -0.198   -0.184  -0.135  -0.273  +1.000  +1.000  -0.015    -0.092    -0.269   -0.128   -0.258     +0.084  -0.032
+                         :    gm2e925:  -0.198   -0.184  -0.135  -0.273  +1.000  +1.000  -0.015    -0.092    -0.269   -0.128   -0.258     +0.084  -0.032
+                         :      ediff:  +0.725   +0.706  +0.895  +0.100  -0.015  -0.015  +1.000    +0.774    +0.070   +0.867   +0.125     -0.432  -0.120
+                         :  gm1eerror:  +0.768   +0.773  +0.828  +0.379  -0.092  -0.092  +0.774    +1.000    +0.356   +0.833   +0.403     -0.375  -0.116
+                         :  gm2eerror:  +0.631   +0.640  +0.441  +0.850  -0.269  -0.269  +0.070    +0.356    +1.000   +0.457   +0.860     -0.360  -0.130
+                         :   gm1p3cms:  +0.938   +0.961  +0.977  +0.534  -0.128  -0.128  +0.867    +0.833    +0.457   +1.000   +0.577     -0.613  -0.170
+                         :   gm2p3cms:  +0.758   +0.780  +0.545  +0.979  -0.258  -0.258  +0.125    +0.403    +0.860   +0.577   +1.000     -0.562  -0.178
+                         : gmthetacms:  -0.684   -0.669  -0.619  -0.561  +0.084  +0.084  -0.432    -0.375    -0.360   -0.613   -0.562     +1.000  +0.209
+                         :     mfchi2:  -0.209   -0.186  -0.189  -0.194  -0.032  -0.032  -0.120    -0.116    -0.130   -0.170   -0.178     +0.209  +1.000
+                         : -----------------------------------------------------------------------------------------------------------------------------
+DataSetInfo              : Correlation matrix (Background):
+                         : -----------------------------------------------------------------------------------------------------------------------------
+                         :               pi0p3 pi0p3cms    gm1e    gm2e gm1e925 gm2e925   ediff gm1eerror gm2eerror gm1p3cms gm2p3cms gmthetacms  mfchi2
+                         :      pi0p3:  +1.000   +0.977  +0.967  +0.647  -0.078  -0.078  +0.850    +0.803    +0.518   +0.951   +0.647     -0.699  -0.142
+                         :   pi0p3cms:  +0.977   +1.000  +0.946  +0.637  -0.072  -0.072  +0.830    +0.803    +0.524   +0.970   +0.676     -0.707  -0.129
+                         :       gm1e:  +0.967   +0.946  +1.000  +0.448  -0.071  -0.071  +0.953    +0.857    +0.360   +0.980   +0.459     -0.607  -0.139
+                         :       gm2e:  +0.647   +0.637  +0.448  +1.000  -0.071  -0.071  +0.158    +0.333    +0.829   +0.450   +0.965     -0.529  -0.123
+                         :    gm1e925:  -0.078   -0.072  -0.071  -0.071  +1.000  +1.000  -0.054    -0.041    -0.056   -0.065   -0.066     +0.056  +0.015
+                         :    gm2e925:  -0.078   -0.072  -0.071  -0.071  +1.000  +1.000  -0.054    -0.041    -0.056   -0.065   -0.066     +0.056  +0.015
+                         :      ediff:  +0.850   +0.830  +0.953  +0.158  -0.054  -0.054  +1.000    +0.834    +0.118   +0.930   +0.181     -0.492  -0.112
+                         :  gm1eerror:  +0.803   +0.803  +0.857  +0.333  -0.041  -0.041  +0.834    +1.000    +0.285   +0.854   +0.349     -0.374  -0.118
+                         :  gm2eerror:  +0.518   +0.524  +0.360  +0.829  -0.056  -0.056  +0.118    +0.285    +1.000   +0.371   +0.820     -0.323  -0.101
+                         :   gm1p3cms:  +0.951   +0.970  +0.980  +0.450  -0.065  -0.065  +0.930    +0.854    +0.371   +1.000   +0.485     -0.620  -0.127
+                         :   gm2p3cms:  +0.647   +0.676  +0.459  +0.965  -0.066  -0.066  +0.181    +0.349    +0.820   +0.485   +1.000     -0.572  -0.110
+                         : gmthetacms:  -0.699   -0.707  -0.607  -0.529  +0.056  +0.056  -0.492    -0.374    -0.323   -0.620   -0.572     +1.000  +0.075
+                         :     mfchi2:  -0.142   -0.129  -0.139  -0.123  +0.015  +0.015  -0.112    -0.118    -0.101   -0.127   -0.110     +0.075  +1.000
+                         : -----------------------------------------------------------------------------------------------------------------------------
+DataSetFactory           : [dataset] :  
+                         : 
+Factory                  : [1mTrain all methods[0m
+Factory                  : [dataset] : Create Transformation "I" with events from all classes.
+                         : 
+                         : Transformation, Variable selection : 
+                         : Input : variable 'pi0p3' <---> Output : variable 'pi0p3'
+                         : Input : variable 'pi0p3cms' <---> Output : variable 'pi0p3cms'
+                         : Input : variable 'gm1e' <---> Output : variable 'gm1e'
+                         : Input : variable 'gm2e' <---> Output : variable 'gm2e'
+                         : Input : variable 'gm1e925' <---> Output : variable 'gm1e925'
+                         : Input : variable 'gm2e925' <---> Output : variable 'gm2e925'
+                         : Input : variable 'ediff' <---> Output : variable 'ediff'
+                         : Input : variable 'gm1eerror' <---> Output : variable 'gm1eerror'
+                         : Input : variable 'gm2eerror' <---> Output : variable 'gm2eerror'
+                         : Input : variable 'gm1p3cms' <---> Output : variable 'gm1p3cms'
+                         : Input : variable 'gm2p3cms' <---> Output : variable 'gm2p3cms'
+                         : Input : variable 'gmthetacms' <---> Output : variable 'gmthetacms'
+                         : Input : variable 'mfchi2' <---> Output : variable 'mfchi2'
+Factory                  : [dataset] : Create Transformation "G" with events from all classes.
+                         : 
+                         : Transformation, Variable selection : 
+                         : Input : variable 'pi0p3' <---> Output : variable 'pi0p3'
+                         : Input : variable 'pi0p3cms' <---> Output : variable 'pi0p3cms'
+                         : Input : variable 'gm1e' <---> Output : variable 'gm1e'
+                         : Input : variable 'gm2e' <---> Output : variable 'gm2e'
+                         : Input : variable 'gm1e925' <---> Output : variable 'gm1e925'
+                         : Input : variable 'gm2e925' <---> Output : variable 'gm2e925'
+                         : Input : variable 'ediff' <---> Output : variable 'ediff'
+                         : Input : variable 'gm1eerror' <---> Output : variable 'gm1eerror'
+                         : Input : variable 'gm2eerror' <---> Output : variable 'gm2eerror'
+                         : Input : variable 'gm1p3cms' <---> Output : variable 'gm1p3cms'
+                         : Input : variable 'gm2p3cms' <---> Output : variable 'gm2p3cms'
+                         : Input : variable 'gmthetacms' <---> Output : variable 'gmthetacms'
+                         : Input : variable 'mfchi2' <---> Output : variable 'mfchi2'
+                         : Preparing the Gaussian transformation...
+TFHandler_Factory        :   Variable          Mean          RMS   [        Min          Max ]
+                         : ---------------------------------------------------------------------
+                         :      pi0p3:   0.0031512     0.99882   [     -3.3750      5.7307 ]
+                         :   pi0p3cms:   0.0031209     0.99882   [     -3.3767      5.7307 ]
+                         :       gm1e:   0.0030234     0.99830   [     -3.3720      5.7307 ]
+                         :       gm2e:   0.0035679      1.0009   [     -3.2180      5.7307 ]
+                         :    gm1e925:     0.73273      2.1247   [     -3.3422      5.7307 ]
+                         :    gm2e925:     0.73273      2.1247   [     -3.3422      5.7307 ]
+                         :      ediff:   0.0029374     0.99815   [     -3.2399      5.7307 ]
+                         :  gm1eerror:   0.0055472     0.99324   [     -3.1522      5.7307 ]
+                         :  gm2eerror:   0.0039445     0.99745   [     -3.1447      5.7307 ]
+                         :   gm1p3cms:   0.0030584     0.99823   [     -3.3741      5.7307 ]
+                         :   gm2p3cms:   0.0035013      1.0004   [     -3.3505      5.7307 ]
+                         : gmthetacms:   0.0035246      1.0004   [     -3.3772      5.7307 ]
+                         :     mfchi2:   0.0076028     0.98851   [     -2.2125      5.7307 ]
+                         : ---------------------------------------------------------------------
+                         : Ranking input variables (method unspecific)...
+Id_GaussTransformation   : Ranking result (top variable is best ranked)
+                         : -----------------------------------
+                         : Rank : Variable   : Separation
+                         : -----------------------------------
+                         :    1 : pi0p3      : 2.857e-01
+                         :    2 : gm1e       : 2.559e-01
+                         :    3 : gmthetacms : 2.513e-01
+                         :    4 : pi0p3cms   : 2.436e-01
+                         :    5 : gm1eerror  : 2.390e-01
+                         :    6 : mfchi2     : 2.363e-01
+                         :    7 : gm2e       : 2.355e-01
+                         :    8 : gm1p3cms   : 2.183e-01
+                         :    9 : gm2eerror  : 2.158e-01
+                         :   10 : gm2p3cms   : 1.962e-01
+                         :   11 : ediff      : 1.350e-01
+                         :   12 : gm1e925    : 7.653e-02
+                         :   13 : gm2e925    : 7.653e-02
+                         : -----------------------------------
+Factory                  : Train method: PyKeras for Classification
+                         : 
+                         : 
+                         : [1m================================================================[0m
+                         : [1mH e l p   f o r   M V A   m e t h o d   [ PyKeras ] :[0m
+                         : 
+                         : Keras is a high-level API for the Theano and Tensorflow packages.
+                         : This method wraps the training and predictions steps of the Keras
+                         : Python package for TMVA, so that dataloading, preprocessing and
+                         : evaluation can be done within the TMVA system. To use this Keras
+                         : interface, you have to generate a model with Keras first. Then,
+                         : this model can be loaded and trained in TMVA.
+                         : 
+                         : 
+                         : <Suppress this message by specifying "!H" in the booking option>
+                         : [1m================================================================[0m
+                         : 
+                         : Preparing the Gaussian transformation...
+TFHandler_PyKeras        :   Variable          Mean          RMS   [        Min          Max ]
+                         : ---------------------------------------------------------------------
+                         :      pi0p3:   0.0031512     0.99882   [     -3.3750      5.7307 ]
+                         :   pi0p3cms:   0.0031209     0.99882   [     -3.3767      5.7307 ]
+                         :       gm1e:   0.0030234     0.99830   [     -3.3720      5.7307 ]
+                         :       gm2e:   0.0035679      1.0009   [     -3.2180      5.7307 ]
+                         :    gm1e925:     0.73273      2.1247   [     -3.3422      5.7307 ]
+                         :    gm2e925:     0.73273      2.1247   [     -3.3422      5.7307 ]
+                         :      ediff:   0.0029374     0.99815   [     -3.2399      5.7307 ]
+                         :  gm1eerror:   0.0055472     0.99324   [     -3.1522      5.7307 ]
+                         :  gm2eerror:   0.0039445     0.99745   [     -3.1447      5.7307 ]
+                         :   gm1p3cms:   0.0030584     0.99823   [     -3.3741      5.7307 ]
+                         :   gm2p3cms:   0.0035013      1.0004   [     -3.3505      5.7307 ]
+                         : gmthetacms:   0.0035246      1.0004   [     -3.3772      5.7307 ]
+                         :     mfchi2:   0.0076028     0.98851   [     -2.2125      5.7307 ]
+                         : ---------------------------------------------------------------------
+                         : Option SaveBestOnly: Only model weights with smallest validation loss will be stored
+Train on 20000 samples, validate on 20000 samples
+Epoch 1/10
+
+   32/20000 [..............................] - ETA: 1:42 - loss: 1.3288 - categorical_accuracy: 0.5625
+ 1600/20000 [=>............................] - ETA: 2s - loss: 0.8781 - categorical_accuracy: 0.5838  
+ 3264/20000 [===>..........................] - ETA: 1s - loss: 0.7888 - categorical_accuracy: 0.6155
+ 4928/20000 [======>.......................] - ETA: 0s - loss: 0.7316 - categorical_accuracy: 0.6414
+ 6592/20000 [========>.....................] - ETA: 0s - loss: 0.7041 - categorical_accuracy: 0.6581
+ 8192/20000 [===========>..................] - ETA: 0s - loss: 0.6837 - categorical_accuracy: 0.6672
+ 9824/20000 [=============>................] - ETA: 0s - loss: 0.6618 - categorical_accuracy: 0.6764
+11424/20000 [================>.............] - ETA: 0s - loss: 0.6447 - categorical_accuracy: 0.6859
+13056/20000 [==================>...........] - ETA: 0s - loss: 0.6294 - categorical_accuracy: 0.6942
+14688/20000 [=====================>........] - ETA: 0s - loss: 0.6197 - categorical_accuracy: 0.6999
+16288/20000 [=======================>......] - ETA: 0s - loss: 0.6105 - categorical_accuracy: 0.7044
+17920/20000 [=========================>....] - ETA: 0s - loss: 0.6040 - categorical_accuracy: 0.7084
+19552/20000 [============================>.] - ETA: 0s - loss: 0.5966 - categorical_accuracy: 0.7132
+20000/20000 [==============================] - 1s 61us/step - loss: 0.5955 - categorical_accuracy: 0.7139 - val_loss: 0.4767 - val_categorical_accuracy: 0.7808
+
+Epoch 00001: val_loss improved from inf to 0.47666, saving model to dataset/weights/TrainedModel_PyKeras.h5
+Epoch 2/10
+
+   32/20000 [..............................] - ETA: 0s - loss: 0.9162 - categorical_accuracy: 0.5312
+ 1664/20000 [=>............................] - ETA: 0s - loss: 0.5497 - categorical_accuracy: 0.7290
+ 3328/20000 [===>..........................] - ETA: 0s - loss: 0.5446 - categorical_accuracy: 0.7332
+ 4928/20000 [======>.......................] - ETA: 0s - loss: 0.5323 - categorical_accuracy: 0.7425
+ 6592/20000 [========>.....................] - ETA: 0s - loss: 0.5274 - categorical_accuracy: 0.7486
+ 8224/20000 [===========>..................] - ETA: 0s - loss: 0.5270 - categorical_accuracy: 0.7535
+ 9856/20000 [=============>................] - ETA: 0s - loss: 0.5247 - categorical_accuracy: 0.7545
+11456/20000 [================>.............] - ETA: 0s - loss: 0.5177 - categorical_accuracy: 0.7595
+13088/20000 [==================>...........] - ETA: 0s - loss: 0.5168 - categorical_accuracy: 0.7615
+14688/20000 [=====================>........] - ETA: 0s - loss: 0.5160 - categorical_accuracy: 0.7625
+16320/20000 [=======================>......] - ETA: 0s - loss: 0.5148 - categorical_accuracy: 0.7635
+17792/20000 [=========================>....] - ETA: 0s - loss: 0.5126 - categorical_accuracy: 0.7650
+19456/20000 [============================>.] - ETA: 0s - loss: 0.5126 - categorical_accuracy: 0.7649
+20000/20000 [==============================] - 1s 50us/step - loss: 0.5116 - categorical_accuracy: 0.7659 - val_loss: 0.4704 - val_categorical_accuracy: 0.7843
+
+Epoch 00002: val_loss improved from 0.47666 to 0.47037, saving model to dataset/weights/TrainedModel_PyKeras.h5
+Epoch 3/10
+
+   32/20000 [..............................] - ETA: 1s - loss: 0.4389 - categorical_accuracy: 0.7188
+ 1568/20000 [=>............................] - ETA: 0s - loss: 0.5265 - categorical_accuracy: 0.7628
+ 3232/20000 [===>..........................] - ETA: 0s - loss: 0.5109 - categorical_accuracy: 0.7723
+ 4864/20000 [======>.......................] - ETA: 0s - loss: 0.5113 - categorical_accuracy: 0.7728
+ 6496/20000 [========>.....................] - ETA: 0s - loss: 0.5057 - categorical_accuracy: 0.7740
+ 8096/20000 [===========>..................] - ETA: 0s - loss: 0.5008 - categorical_accuracy: 0.7754
+ 9760/20000 [=============>................] - ETA: 0s - loss: 0.5010 - categorical_accuracy: 0.7732
+11360/20000 [================>.............] - ETA: 0s - loss: 0.5016 - categorical_accuracy: 0.7728
+13024/20000 [==================>...........] - ETA: 0s - loss: 0.5000 - categorical_accuracy: 0.7736
+14592/20000 [====================>.........] - ETA: 0s - loss: 0.5000 - categorical_accuracy: 0.7736
+16128/20000 [=======================>......] - ETA: 0s - loss: 0.4999 - categorical_accuracy: 0.7737
+17760/20000 [=========================>....] - ETA: 0s - loss: 0.4982 - categorical_accuracy: 0.7744
+19360/20000 [============================>.] - ETA: 0s - loss: 0.4986 - categorical_accuracy: 0.7751
+20000/20000 [==============================] - 1s 50us/step - loss: 0.4983 - categorical_accuracy: 0.7755 - val_loss: 0.4661 - val_categorical_accuracy: 0.7855
+
+Epoch 00003: val_loss improved from 0.47037 to 0.46608, saving model to dataset/weights/TrainedModel_PyKeras.h5
+Epoch 4/10
+
+   32/20000 [..............................] - ETA: 0s - loss: 0.3060 - categorical_accuracy: 0.9062
+ 1632/20000 [=>............................] - ETA: 0s - loss: 0.4927 - categorical_accuracy: 0.7770
+ 3264/20000 [===>..........................] - ETA: 0s - loss: 0.4908 - categorical_accuracy: 0.7767
+ 4960/20000 [======>.......................] - ETA: 0s - loss: 0.4926 - categorical_accuracy: 0.7776
+ 6560/20000 [========>.....................] - ETA: 0s - loss: 0.4917 - categorical_accuracy: 0.7776
+ 8192/20000 [===========>..................] - ETA: 0s - loss: 0.4923 - categorical_accuracy: 0.7762
+ 9792/20000 [=============>................] - ETA: 0s - loss: 0.4937 - categorical_accuracy: 0.7765
+11456/20000 [================>.............] - ETA: 0s - loss: 0.4922 - categorical_accuracy: 0.7791
+13024/20000 [==================>...........] - ETA: 0s - loss: 0.4908 - categorical_accuracy: 0.7801
+14656/20000 [====================>.........] - ETA: 0s - loss: 0.4889 - categorical_accuracy: 0.7811
+16160/20000 [=======================>......] - ETA: 0s - loss: 0.4892 - categorical_accuracy: 0.7808
+17824/20000 [=========================>....] - ETA: 0s - loss: 0.4890 - categorical_accuracy: 0.7816
+19392/20000 [============================>.] - ETA: 0s - loss: 0.4911 - categorical_accuracy: 0.7809
+20000/20000 [==============================] - 1s 49us/step - loss: 0.4921 - categorical_accuracy: 0.7804 - val_loss: 0.4686 - val_categorical_accuracy: 0.7855
+
+Epoch 00004: val_loss did not improve from 0.46608
+Epoch 5/10
+
+   32/20000 [..............................] - ETA: 1s - loss: 0.4811 - categorical_accuracy: 0.8125
+ 1600/20000 [=>............................] - ETA: 0s - loss: 0.4882 - categorical_accuracy: 0.7825
+ 3200/20000 [===>..........................] - ETA: 0s - loss: 0.4960 - categorical_accuracy: 0.7750
+ 4832/20000 [======>.......................] - ETA: 0s - loss: 0.4958 - categorical_accuracy: 0.7713
+ 6464/20000 [========>.....................] - ETA: 0s - loss: 0.4913 - categorical_accuracy: 0.7707
+ 8096/20000 [===========>..................] - ETA: 0s - loss: 0.4902 - categorical_accuracy: 0.7733
+ 9728/20000 [=============>................] - ETA: 0s - loss: 0.4895 - categorical_accuracy: 0.7752
+11392/20000 [================>.............] - ETA: 0s - loss: 0.4878 - categorical_accuracy: 0.7783
+13024/20000 [==================>...........] - ETA: 0s - loss: 0.4850 - categorical_accuracy: 0.7806
+14656/20000 [====================>.........] - ETA: 0s - loss: 0.4844 - categorical_accuracy: 0.7813
+16128/20000 [=======================>......] - ETA: 0s - loss: 0.4859 - categorical_accuracy: 0.7816
+17696/20000 [=========================>....] - ETA: 0s - loss: 0.4867 - categorical_accuracy: 0.7819
+19328/20000 [===========================>..] - ETA: 0s - loss: 0.4858 - categorical_accuracy: 0.7826
+20000/20000 [==============================] - 1s 50us/step - loss: 0.4856 - categorical_accuracy: 0.7825 - val_loss: 0.4601 - val_categorical_accuracy: 0.7889
+
+Epoch 00005: val_loss improved from 0.46608 to 0.46011, saving model to dataset/weights/TrainedModel_PyKeras.h5
+Epoch 6/10
+
+   32/20000 [..............................] - ETA: 0s - loss: 0.3793 - categorical_accuracy: 0.9062
+ 1664/20000 [=>............................] - ETA: 0s - loss: 0.4629 - categorical_accuracy: 0.7945
+ 3264/20000 [===>..........................] - ETA: 0s - loss: 0.4809 - categorical_accuracy: 0.7898
+ 4928/20000 [======>.......................] - ETA: 0s - loss: 0.4837 - categorical_accuracy: 0.7888
+ 6528/20000 [========>.....................] - ETA: 0s - loss: 0.4839 - categorical_accuracy: 0.7877
+ 8192/20000 [===========>..................] - ETA: 0s - loss: 0.4821 - categorical_accuracy: 0.7877
+ 9792/20000 [=============>................] - ETA: 0s - loss: 0.4834 - categorical_accuracy: 0.7855
+11424/20000 [================>.............] - ETA: 0s - loss: 0.4829 - categorical_accuracy: 0.7851
+13024/20000 [==================>...........] - ETA: 0s - loss: 0.4852 - categorical_accuracy: 0.7836
+14560/20000 [====================>.........] - ETA: 0s - loss: 0.4854 - categorical_accuracy: 0.7832
+16064/20000 [=======================>......] - ETA: 0s - loss: 0.4828 - categorical_accuracy: 0.7856
+17664/20000 [=========================>....] - ETA: 0s - loss: 0.4843 - categorical_accuracy: 0.7839
+19296/20000 [===========================>..] - ETA: 0s - loss: 0.4847 - categorical_accuracy: 0.7839
+20000/20000 [==============================] - 1s 50us/step - loss: 0.4842 - categorical_accuracy: 0.7841 - val_loss: 0.4583 - val_categorical_accuracy: 0.7897
+
+Epoch 00006: val_loss improved from 0.46011 to 0.45826, saving model to dataset/weights/TrainedModel_PyKeras.h5
+Epoch 7/10
+
+   32/20000 [..............................] - ETA: 0s - loss: 0.6217 - categorical_accuracy: 0.5938
+ 1664/20000 [=>............................] - ETA: 0s - loss: 0.4827 - categorical_accuracy: 0.7819
+ 3264/20000 [===>..........................] - ETA: 0s - loss: 0.4773 - categorical_accuracy: 0.7889
+ 4928/20000 [======>.......................] - ETA: 0s - loss: 0.4805 - categorical_accuracy: 0.7871
+ 6528/20000 [========>.....................] - ETA: 0s - loss: 0.4846 - categorical_accuracy: 0.7831
+ 8192/20000 [===========>..................] - ETA: 0s - loss: 0.4795 - categorical_accuracy: 0.7861
+ 9824/20000 [=============>................] - ETA: 0s - loss: 0.4809 - categorical_accuracy: 0.7868
+11456/20000 [================>.............] - ETA: 0s - loss: 0.4823 - categorical_accuracy: 0.7847
+13088/20000 [==================>...........] - ETA: 0s - loss: 0.4804 - categorical_accuracy: 0.7859
+14592/20000 [====================>.........] - ETA: 0s - loss: 0.4800 - categorical_accuracy: 0.7864
+16096/20000 [=======================>......] - ETA: 0s - loss: 0.4788 - categorical_accuracy: 0.7861
+17760/20000 [=========================>....] - ETA: 0s - loss: 0.4796 - categorical_accuracy: 0.7867
+19360/20000 [============================>.] - ETA: 0s - loss: 0.4824 - categorical_accuracy: 0.7848
+20000/20000 [==============================] - 1s 50us/step - loss: 0.4827 - categorical_accuracy: 0.7842 - val_loss: 0.4596 - val_categorical_accuracy: 0.7897
+
+Epoch 00007: val_loss did not improve from 0.45826
+Epoch 8/10
+
+   32/20000 [..............................] - ETA: 0s - loss: 0.5552 - categorical_accuracy: 0.8125
+ 1600/20000 [=>............................] - ETA: 0s - loss: 0.4940 - categorical_accuracy: 0.7725
+ 3200/20000 [===>..........................] - ETA: 0s - loss: 0.4795 - categorical_accuracy: 0.7844
+ 4768/20000 [======>.......................] - ETA: 0s - loss: 0.4896 - categorical_accuracy: 0.7783
+ 6400/20000 [========>.....................] - ETA: 0s - loss: 0.4928 - categorical_accuracy: 0.7727
+ 8000/20000 [===========>..................] - ETA: 0s - loss: 0.4862 - categorical_accuracy: 0.7790
+ 9632/20000 [=============>................] - ETA: 0s - loss: 0.4847 - categorical_accuracy: 0.7793
+11200/20000 [===============>..............] - ETA: 0s - loss: 0.4844 - categorical_accuracy: 0.7795
+12864/20000 [==================>...........] - ETA: 0s - loss: 0.4854 - categorical_accuracy: 0.7790
+14528/20000 [====================>.........] - ETA: 0s - loss: 0.4828 - categorical_accuracy: 0.7807
+16000/20000 [=======================>......] - ETA: 0s - loss: 0.4812 - categorical_accuracy: 0.7831
+17632/20000 [=========================>....] - ETA: 0s - loss: 0.4813 - categorical_accuracy: 0.7833
+19264/20000 [===========================>..] - ETA: 0s - loss: 0.4787 - categorical_accuracy: 0.7846
+20000/20000 [==============================] - 1s 50us/step - loss: 0.4793 - categorical_accuracy: 0.7843 - val_loss: 0.4542 - val_categorical_accuracy: 0.7898
+
+Epoch 00008: val_loss improved from 0.45826 to 0.45421, saving model to dataset/weights/TrainedModel_PyKeras.h5
+Epoch 9/10
+
+   32/20000 [..............................] - ETA: 1s - loss: 0.4679 - categorical_accuracy: 0.8750
+ 1632/20000 [=>............................] - ETA: 0s - loss: 0.4778 - categorical_accuracy: 0.7886
+ 3232/20000 [===>..........................] - ETA: 0s - loss: 0.4702 - categorical_accuracy: 0.7924
+ 4896/20000 [======>.......................] - ETA: 0s - loss: 0.4723 - categorical_accuracy: 0.7917
+ 6496/20000 [========>.....................] - ETA: 0s - loss: 0.4684 - categorical_accuracy: 0.7926
+ 8192/20000 [===========>..................] - ETA: 0s - loss: 0.4736 - categorical_accuracy: 0.7892
+ 9760/20000 [=============>................] - ETA: 0s - loss: 0.4752 - categorical_accuracy: 0.7863
+11424/20000 [================>.............] - ETA: 0s - loss: 0.4770 - categorical_accuracy: 0.7864
+12992/20000 [==================>...........] - ETA: 0s - loss: 0.4791 - categorical_accuracy: 0.7837
+14656/20000 [====================>.........] - ETA: 0s - loss: 0.4778 - categorical_accuracy: 0.7847
+16128/20000 [=======================>......] - ETA: 0s - loss: 0.4776 - categorical_accuracy: 0.7851
+17696/20000 [=========================>....] - ETA: 0s - loss: 0.4777 - categorical_accuracy: 0.7842
+19264/20000 [===========================>..] - ETA: 0s - loss: 0.4780 - categorical_accuracy: 0.7837
+20000/20000 [==============================] - 1s 50us/step - loss: 0.4780 - categorical_accuracy: 0.7840 - val_loss: 0.4545 - val_categorical_accuracy: 0.7919
+
+Epoch 00009: val_loss did not improve from 0.45421
+Epoch 10/10
+
+   32/20000 [..............................] - ETA: 1s - loss: 0.4695 - categorical_accuracy: 0.8750
+ 1600/20000 [=>............................] - ETA: 0s - loss: 0.4988 - categorical_accuracy: 0.7694
+ 3168/20000 [===>..........................] - ETA: 0s - loss: 0.4960 - categorical_accuracy: 0.7718
+ 4768/20000 [======>.......................] - ETA: 0s - loss: 0.4889 - categorical_accuracy: 0.7762
+ 6368/20000 [========>.....................] - ETA: 0s - loss: 0.4883 - categorical_accuracy: 0.7764
+ 8000/20000 [===========>..................] - ETA: 0s - loss: 0.4859 - categorical_accuracy: 0.7793
+ 9632/20000 [=============>................] - ETA: 0s - loss: 0.4826 - categorical_accuracy: 0.7832
+11232/20000 [===============>..............] - ETA: 0s - loss: 0.4798 - categorical_accuracy: 0.7849
+12896/20000 [==================>...........] - ETA: 0s - loss: 0.4795 - categorical_accuracy: 0.7842
+14528/20000 [====================>.........] - ETA: 0s - loss: 0.4779 - categorical_accuracy: 0.7844
+16128/20000 [=======================>......] - ETA: 0s - loss: 0.4789 - categorical_accuracy: 0.7837
+17760/20000 [=========================>....] - ETA: 0s - loss: 0.4776 - categorical_accuracy: 0.7846
+19392/20000 [============================>.] - ETA: 0s - loss: 0.4775 - categorical_accuracy: 0.7846
+20000/20000 [==============================] - 1s 50us/step - loss: 0.4768 - categorical_accuracy: 0.7853 - val_loss: 0.4538 - val_categorical_accuracy: 0.7926
+
+Epoch 00010: val_loss improved from 0.45421 to 0.45380, saving model to dataset/weights/TrainedModel_PyKeras.h5
+                         : Elapsed time for training with 20000 events: [1;31m11.1 sec[0m         
+                         : Creating xml weight file: [0;36mdataset/weights/TMVAClassification_PyKeras.weights.xml[0m
+                         : Creating standalone class: [0;36mdataset/weights/TMVAClassification_PyKeras.class.C[0m
+Factory                  : Training finished
+                         : 
+Factory                  : Train method: GTB for Classification
+                         : 
+                         : 
+                         : [1m================================================================[0m
+                         : [1mH e l p   f o r   M V A   m e t h o d   [ GTB ] :[0m
+                         : A gradient tree boosting classifier builds a model from an ensemble
+                         : of decision trees, which are adapted each boosting step to fit better
+                         : to previously misclassified events.
+                         : 
+                         : Check out the scikit-learn documentation for more information.
+                         : 
+                         : <Suppress this message by specifying "!H" in the booking option>
+                         : [1m================================================================[0m
+                         : 
+                         : 
+                         : [1mSaving state file: [0mdataset/weights/PyGTBModel_GTB.PyData
+                         : 
+                         : Elapsed time for training with 20000 events: [1;31m6.14 sec[0m         
+                         : Creating xml weight file: [0;36mdataset/weights/TMVAClassification_GTB.weights.xml[0m
+                         : Creating standalone class: [0;36mdataset/weights/TMVAClassification_GTB.class.C[0m
+Factory                  : Training finished
+                         : 
+Factory                  : Train method: BDT for Classification
+                         : 
+BDT                      : #events: (reweighted) sig: 10000 bkg: 10000
+                         : #events: (unweighted) sig: 10000 bkg: 10000
+                         : Training 10 Decision Trees ... patience please
+                         : Elapsed time for training with 20000 events: [1;31m0.507 sec[0m         
+BDT                      : [dataset] : Evaluation of BDT on training sample (20000 events)
+                         : Elapsed time for evaluation of 20000 events: [1;31m0.0155 sec[0m       
+                         : Creating xml weight file: [0;36mdataset/weights/TMVAClassification_BDT.weights.xml[0m
+                         : Creating standalone class: [0;36mdataset/weights/TMVAClassification_BDT.class.C[0m
+                         : MVAOutput.root:/dataset/Method_BDT/BDT
+Factory                  : Training finished
+                         : 
+                         : Ranking input variables (method specific)...
+                         : No variable ranking supplied by classifier: PyKeras
+GTB                      : Ranking result (top variable is best ranked)
+                         : --------------------------------------------
+                         : Rank : Variable   : Variable Importance
+                         : --------------------------------------------
+                         :    1 : pi0p3      : 4.984e-01
+                         :    2 : mfchi2     : 2.528e-01
+                         :    3 : gm2e       : 5.137e-02
+                         :    4 : gm2p3cms   : 2.942e-02
+                         :    5 : gm1p3cms   : 2.502e-02
+                         :    6 : gmthetacms : 2.460e-02
+                         :    7 : gm2e925    : 2.337e-02
+                         :    8 : pi0p3cms   : 2.299e-02
+                         :    9 : gm1e925    : 2.266e-02
+                         :   10 : gm1e       : 1.480e-02
+                         :   11 : gm1eerror  : 1.374e-02
+                         :   12 : ediff      : 1.228e-02
+                         :   13 : gm2eerror  : 8.500e-03
+                         : --------------------------------------------
+BDT                      : Ranking result (top variable is best ranked)
+                         : --------------------------------------------
+                         : Rank : Variable   : Variable Importance
+                         : --------------------------------------------
+                         :    1 : pi0p3      : 3.671e-01
+                         :    2 : mfchi2     : 2.586e-01
+                         :    3 : gm2e       : 2.311e-01
+                         :    4 : gm1e925    : 6.502e-02
+                         :    5 : gm2p3cms   : 3.034e-02
+                         :    6 : pi0p3cms   : 2.396e-02
+                         :    7 : gm1p3cms   : 1.882e-02
+                         :    8 : gmthetacms : 4.193e-03
+                         :    9 : gm1e       : 8.761e-04
+                         :   10 : gm2e925    : 0.000e+00
+                         :   11 : ediff      : 0.000e+00
+                         :   12 : gm1eerror  : 0.000e+00
+                         :   13 : gm2eerror  : 0.000e+00
+                         : --------------------------------------------
+Factory                  : === Destroy and recreate all methods via weight files for testing ===
+                         : 
+Factory                  : [1mTest all methods[0m
+Factory                  : Test method: PyKeras for Classification performance
+                         : 
+                         : Load model from file: dataset/weights/TrainedModel_PyKeras.h5
+Factory                  : Test method: GTB for Classification performance
+                         : 
+                         : 
+                         : [1mLoading state file: [0mdataset/weights/PyGTBModel_GTB.PyData
+                         : 
+Factory                  : Test method: BDT for Classification performance
+                         : 
+BDT                      : [dataset] : Evaluation of BDT on testing sample (20000 events)
+                         : Elapsed time for evaluation of 20000 events: [1;31m0.0158 sec[0m       
+Factory                  : [1mEvaluate all methods[0m
+Factory                  : Evaluate classifier: PyKeras
+                         : 
+TFHandler_PyKeras        :   Variable          Mean          RMS   [        Min          Max ]
+                         : ---------------------------------------------------------------------
+                         :      pi0p3:    0.024878     0.98827   [     -3.3567      5.7307 ]
+                         :   pi0p3cms:    0.024357     0.98808   [     -3.1973      5.7307 ]
+                         :       gm1e:    0.022319     0.99121   [     -3.3419      5.7307 ]
+                         :       gm2e:    0.023584     0.99197   [     -3.2672      5.7307 ]
+                         :    gm1e925:     0.70461      2.1043   [     -3.6164      5.7307 ]
+                         :    gm2e925:     0.70461      2.1043   [     -3.6164      5.7307 ]
+                         :      ediff:    0.017527     0.99299   [     -3.2423      5.7307 ]
+                         :  gm1eerror:    0.024705     0.98259   [     -3.1523      5.7307 ]
+                         :  gm2eerror:    0.021860     0.98751   [     -3.1516      3.9994 ]
+                         :   gm1p3cms:    0.023733     0.98754   [     -3.2743      5.7307 ]
+                         :   gm2p3cms:    0.019450     0.99722   [     -3.1333      4.1435 ]
+                         : gmthetacms:   -0.018842     0.98729   [     -3.1338      5.7307 ]
+                         :     mfchi2:  -0.0046420     0.98567   [     -2.2125      5.7307 ]
+                         : ---------------------------------------------------------------------
+PyKeras                  : [dataset] : Loop over test events and fill histograms with classifier response...
+                         : 
+TFHandler_PyKeras        :   Variable          Mean          RMS   [        Min          Max ]
+                         : ---------------------------------------------------------------------
+                         :      pi0p3:    0.024878     0.98827   [     -3.3567      5.7307 ]
+                         :   pi0p3cms:    0.024357     0.98808   [     -3.1973      5.7307 ]
+                         :       gm1e:    0.022319     0.99121   [     -3.3419      5.7307 ]
+                         :       gm2e:    0.023584     0.99197   [     -3.2672      5.7307 ]
+                         :    gm1e925:     0.70461      2.1043   [     -3.6164      5.7307 ]
+                         :    gm2e925:     0.70461      2.1043   [     -3.6164      5.7307 ]
+                         :      ediff:    0.017527     0.99299   [     -3.2423      5.7307 ]
+                         :  gm1eerror:    0.024705     0.98259   [     -3.1523      5.7307 ]
+                         :  gm2eerror:    0.021860     0.98751   [     -3.1516      3.9994 ]
+                         :   gm1p3cms:    0.023733     0.98754   [     -3.2743      5.7307 ]
+                         :   gm2p3cms:    0.019450     0.99722   [     -3.1333      4.1435 ]
+                         : gmthetacms:   -0.018842     0.98729   [     -3.1338      5.7307 ]
+                         :     mfchi2:  -0.0046420     0.98567   [     -2.2125      5.7307 ]
+                         : ---------------------------------------------------------------------
+Factory                  : Evaluate classifier: GTB
+                         : 
+GTB                      : [dataset] : Loop over test events and fill histograms with classifier response...
+                         : 
+TFHandler_GTB            :   Variable          Mean          RMS   [        Min          Max ]
+                         : ---------------------------------------------------------------------
+                         :      pi0p3:     0.59789     0.55490   [   0.0049119      4.9404 ]
+                         :   pi0p3cms:     0.75554     0.74358   [    0.011479      7.1892 ]
+                         :       gm1e:     0.44251     0.41797   [    0.063063      4.8358 ]
+                         :       gm2e:     0.18208     0.17424   [    0.060001      1.9359 ]
+                         :    gm1e925:     0.95285    0.061070   [     0.21284      1.0000 ]
+                         :    gm2e925:     0.95285    0.061070   [     0.21284      1.0000 ]
+                         :      ediff:     0.26043     0.34430   [  2.2352e-07      4.7205 ]
+                         :  gm1eerror:  0.00013603  0.00032108   [  1.8598e-06   0.0088087 ]
+                         :  gm2eerror:  2.6368e-05  6.7854e-05   [  1.7062e-06   0.0015329 ]
+                         :   gm1p3cms:     0.55257     0.56342   [    0.048464      6.9342 ]
+                         :   gm2p3cms:     0.22493     0.23396   [    0.043817      2.6974 ]
+                         : gmthetacms:     0.72747     0.52318   [    0.044029      3.0902 ]
+                         :     mfchi2:      8.7557      11.432   [  1.1481e-09      49.973 ]
+                         : ---------------------------------------------------------------------
+Factory                  : Evaluate classifier: BDT
+                         : 
+BDT                      : [dataset] : Loop over test events and fill histograms with classifier response...
+                         : 
+TFHandler_BDT            :   Variable          Mean          RMS   [        Min          Max ]
+                         : ---------------------------------------------------------------------
+                         :      pi0p3:     0.59789     0.55490   [   0.0049119      4.9404 ]
+                         :   pi0p3cms:     0.75554     0.74358   [    0.011479      7.1892 ]
+                         :       gm1e:     0.44251     0.41797   [    0.063063      4.8358 ]
+                         :       gm2e:     0.18208     0.17424   [    0.060001      1.9359 ]
+                         :    gm1e925:     0.95285    0.061070   [     0.21284      1.0000 ]
+                         :    gm2e925:     0.95285    0.061070   [     0.21284      1.0000 ]
+                         :      ediff:     0.26043     0.34430   [  2.2352e-07      4.7205 ]
+                         :  gm1eerror:  0.00013603  0.00032108   [  1.8598e-06   0.0088087 ]
+                         :  gm2eerror:  2.6368e-05  6.7854e-05   [  1.7062e-06   0.0015329 ]
+                         :   gm1p3cms:     0.55257     0.56342   [    0.048464      6.9342 ]
+                         :   gm2p3cms:     0.22493     0.23396   [    0.043817      2.6974 ]
+                         : gmthetacms:     0.72747     0.52318   [    0.044029      3.0902 ]
+                         :     mfchi2:      8.7557      11.432   [  1.1481e-09      49.973 ]
+                         : ---------------------------------------------------------------------
+                         : 
+                         : Evaluation results ranked by best signal efficiency and purity (area)
+                         : -------------------------------------------------------------------------------------------------------------------
+                         : DataSet       MVA                       
+                         : Name:         Method:          ROC-integ
+                         : dataset       PyKeras        : 0.869
+                         : dataset       GTB            : 0.869
+                         : dataset       BDT            : 0.864
+                         : -------------------------------------------------------------------------------------------------------------------
+                         : 
+                         : Testing efficiency compared to training efficiency (overtraining check)
+                         : -------------------------------------------------------------------------------------------------------------------
+                         : DataSet              MVA              Signal efficiency: from test sample (from training sample) 
+                         : Name:                Method:          @B=0.01             @B=0.10            @B=0.30   
+                         : -------------------------------------------------------------------------------------------------------------------
+                         : dataset              PyKeras        : 0.252 (0.258)       0.651 (0.658)      0.856 (0.862)
+                         : dataset              GTB            : 0.258 (0.428)       0.651 (0.733)      0.853 (0.886)
+                         : dataset              BDT            : 0.000 (0.000)       0.647 (0.656)      0.847 (0.851)
+                         : -------------------------------------------------------------------------------------------------------------------
+                         : 
+Dataset:dataset          : Created tree 'TestTree' with 20000 events
+                         : 
+Dataset:dataset          : Created tree 'TrainTree' with 20000 events
+                         : 
+Factory                  : [1mThank you for using TMVA![0m
+                         : [1mFor citation information, please visit: http://tmva.sf.net/citeTMVA.html[0m

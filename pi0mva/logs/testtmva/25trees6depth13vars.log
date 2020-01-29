@@ -1,0 +1,446 @@
+
+[1mRooFit v3.60 -- Developed by Wouter Verkerke and David Kirkby[0m 
+                Copyright (C) 2000-2013 NIKHEF, University of California & Stanford University
+                All rights reserved, please read http://roofit.sourceforge.net/license.txt
+
+DataSetInfo              : [dataset] : Added class "Signal"
+                         : Add Tree pi0tree of type Signal with 174683 events
+DataSetInfo              : [dataset] : Added class "Background"
+                         : Add Tree pi0tree of type Background with 4933019 events
+Factory                  : Booking method: [1mBDT[0m
+                         : 
+DataSetFactory           : [dataset] : Number of events in input trees
+                         : 
+                         : 
+                         : Number of training and testing events
+                         : ---------------------------------------------------------------------------
+                         : Signal     -- training events            : 87341
+                         : Signal     -- testing events             : 87341
+                         : Signal     -- training and testing events: 174682
+                         : Background -- training events            : 87341
+                         : Background -- testing events             : 87341
+                         : Background -- training and testing events: 174682
+                         : 
+DataSetInfo              : Correlation matrix (Signal):
+                         : -----------------------------------------------------------------------------------------------------------------------------
+                         :               pi0p3 pi0p3cms    gm1e    gm2e gm1e925 gm2e925   ediff gm1eerror gm2eerror gm1p3cms gm2p3cms gmthetacms  mfchi2
+                         :      pi0p3:  +1.000   +0.976  +0.958  +0.757  -0.194  -0.194  +0.736    +0.790    +0.645   +0.939   +0.758     -0.680  -0.217
+                         :   pi0p3cms:  +0.976   +1.000  +0.934  +0.740  -0.182  -0.182  +0.718    +0.795    +0.652   +0.962   +0.780     -0.665  -0.195
+                         :       gm1e:  +0.958   +0.934  +1.000  +0.539  -0.140  -0.140  +0.899    +0.847    +0.458   +0.977   +0.550     -0.614  -0.196
+                         :       gm2e:  +0.757   +0.740  +0.539  +1.000  -0.257  -0.257  +0.116    +0.402    +0.860   +0.538   +0.978     -0.563  -0.202
+                         :    gm1e925:  -0.194   -0.182  -0.140  -0.257  +1.000  +1.000  -0.031    -0.108    -0.268   -0.132   -0.243     +0.077  -0.037
+                         :    gm2e925:  -0.194   -0.182  -0.140  -0.257  +1.000  +1.000  -0.031    -0.108    -0.268   -0.132   -0.243     +0.077  -0.037
+                         :      ediff:  +0.736   +0.718  +0.899  +0.116  -0.031  -0.031  +1.000    +0.791    +0.093   +0.873   +0.140     -0.432  -0.127
+                         :  gm1eerror:  +0.790   +0.795  +0.847  +0.402  -0.108  -0.108  +0.791    +1.000    +0.391   +0.852   +0.426     -0.385  -0.124
+                         :  gm2eerror:  +0.645   +0.652  +0.458  +0.860  -0.268  -0.268  +0.093    +0.391    +1.000   +0.473   +0.867     -0.370  -0.132
+                         :   gm1p3cms:  +0.939   +0.962  +0.977  +0.538  -0.132  -0.132  +0.873    +0.852    +0.473   +1.000   +0.580     -0.607  -0.179
+                         :   gm2p3cms:  +0.758   +0.780  +0.550  +0.978  -0.243  -0.243  +0.140    +0.426    +0.867   +0.580   +1.000     -0.564  -0.186
+                         : gmthetacms:  -0.680   -0.665  -0.614  -0.563  +0.077  +0.077  -0.432    -0.385    -0.370   -0.607   -0.564     +1.000  +0.220
+                         :     mfchi2:  -0.217   -0.195  -0.196  -0.202  -0.037  -0.037  -0.127    -0.124    -0.132   -0.179   -0.186     +0.220  +1.000
+                         : -----------------------------------------------------------------------------------------------------------------------------
+DataSetInfo              : Correlation matrix (Background):
+                         : -----------------------------------------------------------------------------------------------------------------------------
+                         :               pi0p3 pi0p3cms    gm1e    gm2e gm1e925 gm2e925   ediff gm1eerror gm2eerror gm1p3cms gm2p3cms gmthetacms  mfchi2
+                         :      pi0p3:  +1.000   +0.977  +0.969  +0.620  -0.072  -0.072  +0.860    +0.741    +0.491   +0.950   +0.622     -0.691  -0.138
+                         :   pi0p3cms:  +0.977   +1.000  +0.949  +0.602  -0.067  -0.067  +0.844    +0.747    +0.492   +0.971   +0.646     -0.699  -0.127
+                         :       gm1e:  +0.969   +0.949  +1.000  +0.420  -0.068  -0.068  +0.958    +0.799    +0.334   +0.980   +0.433     -0.596  -0.131
+                         :       gm2e:  +0.620   +0.602  +0.420  +1.000  -0.048  -0.048  +0.142    +0.255    +0.816   +0.415   +0.963     -0.527  -0.125
+                         :    gm1e925:  -0.072   -0.067  -0.068  -0.048  +1.000  +1.000  -0.059    -0.039    -0.044   -0.064   -0.047     +0.049  +0.014
+                         :    gm2e925:  -0.072   -0.067  -0.068  -0.048  +1.000  +1.000  -0.059    -0.039    -0.044   -0.064   -0.047     +0.049  +0.014
+                         :      ediff:  +0.860   +0.844  +0.958  +0.142  -0.059  -0.059  +1.000    +0.791    +0.106   +0.938   +0.168     -0.483  -0.104
+                         :  gm1eerror:  +0.741   +0.747  +0.799  +0.255  -0.039  -0.039  +0.791    +1.000    +0.226   +0.801   +0.272     -0.318  -0.093
+                         :  gm2eerror:  +0.491   +0.492  +0.334  +0.816  -0.044  -0.044  +0.106    +0.226    +1.000   +0.339   +0.806     -0.322  -0.097
+                         :   gm1p3cms:  +0.950   +0.971  +0.980  +0.415  -0.064  -0.064  +0.938    +0.801    +0.339   +1.000   +0.454     -0.606  -0.122
+                         :   gm2p3cms:  +0.622   +0.646  +0.433  +0.963  -0.047  -0.047  +0.168    +0.272    +0.806   +0.454   +1.000     -0.577  -0.114
+                         : gmthetacms:  -0.691   -0.699  -0.596  -0.527  +0.049  +0.049  -0.483    -0.318    -0.322   -0.606   -0.577     +1.000  +0.086
+                         :     mfchi2:  -0.138   -0.127  -0.131  -0.125  +0.014  +0.014  -0.104    -0.093    -0.097   -0.122   -0.114     +0.086  +1.000
+                         : -----------------------------------------------------------------------------------------------------------------------------
+DataSetFactory           : [dataset] :  
+                         : 
+Factory                  : [1mTrain all methods[0m
+Factory                  : [dataset] : Create Transformation "I" with events from all classes.
+                         : 
+                         : Transformation, Variable selection : 
+                         : Input : variable 'pi0p3' <---> Output : variable 'pi0p3'
+                         : Input : variable 'pi0p3cms' <---> Output : variable 'pi0p3cms'
+                         : Input : variable 'gm1e' <---> Output : variable 'gm1e'
+                         : Input : variable 'gm2e' <---> Output : variable 'gm2e'
+                         : Input : variable 'gm1e925' <---> Output : variable 'gm1e925'
+                         : Input : variable 'gm2e925' <---> Output : variable 'gm2e925'
+                         : Input : variable 'ediff' <---> Output : variable 'ediff'
+                         : Input : variable 'gm1eerror' <---> Output : variable 'gm1eerror'
+                         : Input : variable 'gm2eerror' <---> Output : variable 'gm2eerror'
+                         : Input : variable 'gm1p3cms' <---> Output : variable 'gm1p3cms'
+                         : Input : variable 'gm2p3cms' <---> Output : variable 'gm2p3cms'
+                         : Input : variable 'gmthetacms' <---> Output : variable 'gmthetacms'
+                         : Input : variable 'mfchi2' <---> Output : variable 'mfchi2'
+Factory                  : [dataset] : Create Transformation "D" with events from all classes.
+                         : 
+                         : Transformation, Variable selection : 
+                         : Input : variable 'pi0p3' <---> Output : variable 'pi0p3'
+                         : Input : variable 'pi0p3cms' <---> Output : variable 'pi0p3cms'
+                         : Input : variable 'gm1e' <---> Output : variable 'gm1e'
+                         : Input : variable 'gm2e' <---> Output : variable 'gm2e'
+                         : Input : variable 'gm1e925' <---> Output : variable 'gm1e925'
+                         : Input : variable 'gm2e925' <---> Output : variable 'gm2e925'
+                         : Input : variable 'ediff' <---> Output : variable 'ediff'
+                         : Input : variable 'gm1eerror' <---> Output : variable 'gm1eerror'
+                         : Input : variable 'gm2eerror' <---> Output : variable 'gm2eerror'
+                         : Input : variable 'gm1p3cms' <---> Output : variable 'gm1p3cms'
+                         : Input : variable 'gm2p3cms' <---> Output : variable 'gm2p3cms'
+                         : Input : variable 'gmthetacms' <---> Output : variable 'gmthetacms'
+                         : Input : variable 'mfchi2' <---> Output : variable 'mfchi2'
+Factory                  : [dataset] : Create Transformation "P" with events from all classes.
+                         : 
+                         : Transformation, Variable selection : 
+                         : Input : variable 'pi0p3' <---> Output : variable 'pi0p3'
+                         : Input : variable 'pi0p3cms' <---> Output : variable 'pi0p3cms'
+                         : Input : variable 'gm1e' <---> Output : variable 'gm1e'
+                         : Input : variable 'gm2e' <---> Output : variable 'gm2e'
+                         : Input : variable 'gm1e925' <---> Output : variable 'gm1e925'
+                         : Input : variable 'gm2e925' <---> Output : variable 'gm2e925'
+                         : Input : variable 'ediff' <---> Output : variable 'ediff'
+                         : Input : variable 'gm1eerror' <---> Output : variable 'gm1eerror'
+                         : Input : variable 'gm2eerror' <---> Output : variable 'gm2eerror'
+                         : Input : variable 'gm1p3cms' <---> Output : variable 'gm1p3cms'
+                         : Input : variable 'gm2p3cms' <---> Output : variable 'gm2p3cms'
+                         : Input : variable 'gmthetacms' <---> Output : variable 'gmthetacms'
+                         : Input : variable 'mfchi2' <---> Output : variable 'mfchi2'
+Factory                  : [dataset] : Create Transformation "G" with events from all classes.
+                         : 
+                         : Transformation, Variable selection : 
+                         : Input : variable 'pi0p3' <---> Output : variable 'pi0p3'
+                         : Input : variable 'pi0p3cms' <---> Output : variable 'pi0p3cms'
+                         : Input : variable 'gm1e' <---> Output : variable 'gm1e'
+                         : Input : variable 'gm2e' <---> Output : variable 'gm2e'
+                         : Input : variable 'gm1e925' <---> Output : variable 'gm1e925'
+                         : Input : variable 'gm2e925' <---> Output : variable 'gm2e925'
+                         : Input : variable 'ediff' <---> Output : variable 'ediff'
+                         : Input : variable 'gm1eerror' <---> Output : variable 'gm1eerror'
+                         : Input : variable 'gm2eerror' <---> Output : variable 'gm2eerror'
+                         : Input : variable 'gm1p3cms' <---> Output : variable 'gm1p3cms'
+                         : Input : variable 'gm2p3cms' <---> Output : variable 'gm2p3cms'
+                         : Input : variable 'gmthetacms' <---> Output : variable 'gmthetacms'
+                         : Input : variable 'mfchi2' <---> Output : variable 'mfchi2'
+Factory                  : [dataset] : Create Transformation "D" with events from all classes.
+                         : 
+                         : Transformation, Variable selection : 
+                         : Input : variable 'pi0p3' <---> Output : variable 'pi0p3'
+                         : Input : variable 'pi0p3cms' <---> Output : variable 'pi0p3cms'
+                         : Input : variable 'gm1e' <---> Output : variable 'gm1e'
+                         : Input : variable 'gm2e' <---> Output : variable 'gm2e'
+                         : Input : variable 'gm1e925' <---> Output : variable 'gm1e925'
+                         : Input : variable 'gm2e925' <---> Output : variable 'gm2e925'
+                         : Input : variable 'ediff' <---> Output : variable 'ediff'
+                         : Input : variable 'gm1eerror' <---> Output : variable 'gm1eerror'
+                         : Input : variable 'gm2eerror' <---> Output : variable 'gm2eerror'
+                         : Input : variable 'gm1p3cms' <---> Output : variable 'gm1p3cms'
+                         : Input : variable 'gm2p3cms' <---> Output : variable 'gm2p3cms'
+                         : Input : variable 'gmthetacms' <---> Output : variable 'gmthetacms'
+                         : Input : variable 'mfchi2' <---> Output : variable 'mfchi2'
+TFHandler_Factory        :   Variable          Mean          RMS   [        Min          Max ]
+                         : ---------------------------------------------------------------------
+                         :      pi0p3:     0.59141     0.55178   [   0.0014890      5.7497 ]
+                         :   pi0p3cms:     0.74663     0.73948   [   0.0032892      8.3847 ]
+                         :       gm1e:     0.43859     0.41629   [    0.060619      5.7336 ]
+                         :       gm2e:     0.18000     0.17136   [    0.060000      2.2289 ]
+                         :    gm1e925:     0.95330    0.060191   [     0.18012      1.0000 ]
+                         :    gm2e925:     0.95330    0.060191   [     0.18012      1.0000 ]
+                         :      ediff:     0.25858     0.34258   [  6.7800e-07      5.6431 ]
+                         :  gm1eerror:  0.00013564  0.00032316   [  1.7802e-06    0.015412 ]
+                         :  gm2eerror:  2.5920e-05  6.7964e-05   [  1.6853e-06   0.0038060 ]
+                         :   gm1p3cms:     0.54694     0.56146   [    0.043890      8.3621 ]
+                         :   gm2p3cms:     0.22219     0.22966   [    0.042935      3.2740 ]
+                         : gmthetacms:     0.73936     0.53124   [    0.034714      3.1111 ]
+                         :     mfchi2:      8.8528      11.492   [  1.8515e-10      49.999 ]
+                         : ---------------------------------------------------------------------
+                         : Preparing the Decorrelation transformation...
+<WARNING>                : <GetSQRootMatrix> error in matrix diagonalization; printed S and B
+<WARNING>                : <GetSQRootMatrix> error in matrix diagonalization; printed S and B
+<WARNING>                : <GetSQRootMatrix> error in matrix diagonalization; printed S and B
+<WARNING>                : <GetSQRootMatrix> error in matrix diagonalization; printed S and B
+<WARNING>                : <GetSQRootMatrix> error in matrix diagonalization; printed S and B
+<WARNING>                : <GetSQRootMatrix> error in matrix diagonalization; printed S and B
+<WARNING>                : <GetSQRootMatrix> error in matrix diagonalization; printed S and B
+<WARNING>                : <GetSQRootMatrix> error in matrix diagonalization; printed S and B
+<WARNING>                : <GetSQRootMatrix> error in matrix diagonalization; printed S and B
+<WARNING>                : <GetSQRootMatrix> error in matrix diagonalization; printed S and B
+<WARNING>                : <GetSQRootMatrix> error in matrix diagonalization; printed S and B
+<WARNING>                : <GetSQRootMatrix> error in matrix diagonalization; printed S and B
+<WARNING>                : <GetSQRootMatrix> error in matrix diagonalization; printed S and B
+<WARNING>                : <GetSQRootMatrix> error in matrix diagonalization; printed S and B
+<WARNING>                : <GetSQRootMatrix> error in matrix diagonalization; printed S and B
+<WARNING>                : <GetSQRootMatrix> error in matrix diagonalization; printed S and B
+<WARNING>                : <GetSQRootMatrix> error in matrix diagonalization; printed S and B
+<WARNING>                : <GetSQRootMatrix> error in matrix diagonalization; printed S and B
+<WARNING>                : <GetSQRootMatrix> error in matrix diagonalization; printed S and B
+<WARNING>                : <GetSQRootMatrix> error in matrix diagonalization; printed S and B
+<WARNING>                : <GetSQRootMatrix> error in matrix diagonalization; printed S and B
+<WARNING>                : <GetSQRootMatrix> error in matrix diagonalization; printed S and B
+<WARNING>                : <GetSQRootMatrix> error in matrix diagonalization; printed S and B
+<WARNING>                : <GetSQRootMatrix> error in matrix diagonalization; printed S and B
+<WARNING>                : <GetSQRootMatrix> error in matrix diagonalization; printed S and B
+<WARNING>                : <GetSQRootMatrix> error in matrix diagonalization; printed S and B
+<WARNING>                : <GetSQRootMatrix> error in matrix diagonalization; printed S and B
+<WARNING>                : <GetSQRootMatrix> error in matrix diagonalization; printed S and B
+<WARNING>                : <GetSQRootMatrix> error in matrix diagonalization; printed S and B
+<WARNING>                : <GetSQRootMatrix> error in matrix diagonalization; printed S and B
+<WARNING>                : <GetSQRootMatrix> error in matrix diagonalization; printed S and B
+<WARNING>                : <GetSQRootMatrix> error in matrix diagonalization; printed S and B
+<WARNING>                : <GetSQRootMatrix> error in matrix diagonalization; printed S and B
+<WARNING>                : <GetSQRootMatrix> error in matrix diagonalization; printed S and B
+<WARNING>                : <GetSQRootMatrix> error in matrix diagonalization; printed S and B
+<WARNING>                : <GetSQRootMatrix> error in matrix diagonalization; printed S and B
+<WARNING>                : <GetSQRootMatrix> error in matrix diagonalization; printed S and B
+<WARNING>                : <GetSQRootMatrix> error in matrix diagonalization; printed S and B
+<WARNING>                : <GetSQRootMatrix> error in matrix diagonalization; printed S and B
+<WARNING>                : <GetSQRootMatrix> error in matrix diagonalization; printed S and B
+<WARNING>                : <GetSQRootMatrix> error in matrix diagonalization; printed S and B
+<WARNING>                : <GetSQRootMatrix> error in matrix diagonalization; printed S and B
+<WARNING>                : <GetSQRootMatrix> error in matrix diagonalization; printed S and B
+<WARNING>                : <GetSQRootMatrix> error in matrix diagonalization; printed S and B
+<WARNING>                : <GetSQRootMatrix> error in matrix diagonalization; printed S and B
+<WARNING>                : <GetSQRootMatrix> error in matrix diagonalization; printed S and B
+<WARNING>                : <GetSQRootMatrix> error in matrix diagonalization; printed S and B
+<WARNING>                : <GetSQRootMatrix> error in matrix diagonalization; printed S and B
+<WARNING>                : <GetSQRootMatrix> error in matrix diagonalization; printed S and B
+<WARNING>                : <GetSQRootMatrix> error in matrix diagonalization; printed S and B
+<WARNING>                : <GetSQRootMatrix> error in matrix diagonalization; printed S and B
+<WARNING>                : <GetSQRootMatrix> error in matrix diagonalization; printed S and B
+<WARNING>                : <GetSQRootMatrix> error in matrix diagonalization; printed S and B
+<WARNING>                : <GetSQRootMatrix> error in matrix diagonalization; printed S and B
+<WARNING>                : <GetSQRootMatrix> error in matrix diagonalization; printed S and B
+<WARNING>                : <GetSQRootMatrix> error in matrix diagonalization; printed S and B
+<WARNING>                : <GetSQRootMatrix> error in matrix diagonalization; printed S and B
+<WARNING>                : <GetSQRootMatrix> error in matrix diagonalization; printed S and B
+<WARNING>                : <GetSQRootMatrix> error in matrix diagonalization; printed S and B
+<WARNING>                : <GetSQRootMatrix> error in matrix diagonalization; printed S and B
+<WARNING>                : <GetSQRootMatrix> error in matrix diagonalization; printed S and B
+<WARNING>                : <GetSQRootMatrix> error in matrix diagonalization; printed S and B
+<WARNING>                : <GetSQRootMatrix> error in matrix diagonalization; printed S and B
+<WARNING>                : <GetSQRootMatrix> error in matrix diagonalization; printed S and B
+<WARNING>                : <GetSQRootMatrix> error in matrix diagonalization; printed S and B
+TFHandler_Factory        :   Variable          Mean          RMS   [        Min          Max ]
+                         : ---------------------------------------------------------------------
+                         :      pi0p3:      1.1822      1.0000   [     -2.3218      8.7300 ]
+                         :   pi0p3cms:      1.3576      1.0000   [     -3.1659      12.632 ]
+                         :       gm1e:      1.3216     0.81701   [     -2.1704      12.801 ]
+                         :       gm2e:      1.3632     0.81703   [     -2.4380      10.825 ]
+                         :    gm1e925:      11.525     0.70729   [      2.3033      12.617 ]
+                         :    gm2e925:      11.525     0.70729   [      2.2572      12.624 ]
+                         :      ediff:   -0.041701     0.81702   [     -6.2975      12.907 ]
+                         :  gm1eerror:     -2.0614      1.0000   [     -5.6756      69.991 ]
+                         :  gm2eerror:    -0.62303      1.0000   [     -7.9410      94.696 ]
+                         :   gm1p3cms:   -0.065484      1.0000   [     -9.9622      19.132 ]
+                         :   gm2p3cms:     0.21664      1.0000   [     -11.265      12.340 ]
+                         : gmthetacms:      2.5020      1.0000   [     0.82898      7.9367 ]
+                         :     mfchi2:     0.80149      1.0000   [   -0.038896      4.4518 ]
+                         : ---------------------------------------------------------------------
+                         : Preparing the Principle Component (PCA) transformation...
+TFHandler_Factory        :   Variable          Mean          RMS   [        Min          Max ]
+                         : ---------------------------------------------------------------------
+                         :      pi0p3:  5.0682e-11      11.499   [     -9.2313      41.176 ]
+                         :   pi0p3cms:  9.7348e-11      1.1920   [     -2.0699      13.222 ]
+                         :       gm1e:  5.2118e-11     0.39096   [    -0.70893      4.4764 ]
+                         :       gm2e:  2.8190e-11     0.29447   [     -2.5585      3.8846 ]
+                         :    gm1e925: -3.5760e-12     0.11414   [    -0.76902      1.4498 ]
+                         :    gm2e925: -6.7462e-13    0.084086   [     -1.1034     0.14985 ]
+                         :      ediff:  4.2639e-13    0.026335   [    -0.31580     0.37602 ]
+                         :  gm1eerror: -8.4715e-13    0.012657   [    -0.10007     0.15950 ]
+                         :  gm2eerror: -1.3790e-13   0.0028577   [   -0.020810    0.017326 ]
+                         :   gm1p3cms: -4.6786e-15  0.00015774   [   -0.011338  0.00057318 ]
+                         :   gm2p3cms: -2.1695e-15  3.1816e-05   [ -0.00028067   0.0030267 ]
+                         : gmthetacms:  4.2432e-19  5.0161e-14   [ -1.0340e-12  8.4501e-13 ]
+                         :     mfchi2: -2.8204e-15  6.4236e-09   [ -1.2942e-07  1.0995e-07 ]
+                         : ---------------------------------------------------------------------
+                         : Preparing the Gaussian transformation...
+                         : Preparing the Decorrelation transformation...
+<WARNING>                : <GetSQRootMatrix> error in matrix diagonalization; printed S and B
+<WARNING>                : <GetSQRootMatrix> error in matrix diagonalization; printed S and B
+<WARNING>                : <GetSQRootMatrix> error in matrix diagonalization; printed S and B
+<WARNING>                : <GetSQRootMatrix> error in matrix diagonalization; printed S and B
+<WARNING>                : <GetSQRootMatrix> error in matrix diagonalization; printed S and B
+<WARNING>                : <GetSQRootMatrix> error in matrix diagonalization; printed S and B
+<WARNING>                : <GetSQRootMatrix> error in matrix diagonalization; printed S and B
+<WARNING>                : <GetSQRootMatrix> error in matrix diagonalization; printed S and B
+<WARNING>                : <GetSQRootMatrix> error in matrix diagonalization; printed S and B
+<WARNING>                : <GetSQRootMatrix> error in matrix diagonalization; printed S and B
+<WARNING>                : <GetSQRootMatrix> error in matrix diagonalization; printed S and B
+<WARNING>                : <GetSQRootMatrix> error in matrix diagonalization; printed S and B
+<WARNING>                : <GetSQRootMatrix> error in matrix diagonalization; printed S and B
+<WARNING>                : <GetSQRootMatrix> error in matrix diagonalization; printed S and B
+<WARNING>                : <GetSQRootMatrix> error in matrix diagonalization; printed S and B
+<WARNING>                : <GetSQRootMatrix> error in matrix diagonalization; printed S and B
+<WARNING>                : <GetSQRootMatrix> error in matrix diagonalization; printed S and B
+<WARNING>                : <GetSQRootMatrix> error in matrix diagonalization; printed S and B
+<WARNING>                : <GetSQRootMatrix> error in matrix diagonalization; printed S and B
+<WARNING>                : <GetSQRootMatrix> error in matrix diagonalization; printed S and B
+<WARNING>                : <GetSQRootMatrix> error in matrix diagonalization; printed S and B
+<WARNING>                : <GetSQRootMatrix> error in matrix diagonalization; printed S and B
+<WARNING>                : <GetSQRootMatrix> error in matrix diagonalization; printed S and B
+<WARNING>                : <GetSQRootMatrix> error in matrix diagonalization; printed S and B
+<WARNING>                : <GetSQRootMatrix> error in matrix diagonalization; printed S and B
+<WARNING>                : <GetSQRootMatrix> error in matrix diagonalization; printed S and B
+<WARNING>                : <GetSQRootMatrix> error in matrix diagonalization; printed S and B
+<WARNING>                : <GetSQRootMatrix> error in matrix diagonalization; printed S and B
+<WARNING>                : <GetSQRootMatrix> error in matrix diagonalization; printed S and B
+<WARNING>                : <GetSQRootMatrix> error in matrix diagonalization; printed S and B
+<WARNING>                : <GetSQRootMatrix> error in matrix diagonalization; printed S and B
+<WARNING>                : <GetSQRootMatrix> error in matrix diagonalization; printed S and B
+<WARNING>                : <GetSQRootMatrix> error in matrix diagonalization; printed S and B
+<WARNING>                : <GetSQRootMatrix> error in matrix diagonalization; printed S and B
+<WARNING>                : <GetSQRootMatrix> error in matrix diagonalization; printed S and B
+<WARNING>                : <GetSQRootMatrix> error in matrix diagonalization; printed S and B
+<WARNING>                : <GetSQRootMatrix> error in matrix diagonalization; printed S and B
+<WARNING>                : <GetSQRootMatrix> error in matrix diagonalization; printed S and B
+<WARNING>                : <GetSQRootMatrix> error in matrix diagonalization; printed S and B
+<WARNING>                : <GetSQRootMatrix> error in matrix diagonalization; printed S and B
+<WARNING>                : <GetSQRootMatrix> error in matrix diagonalization; printed S and B
+<WARNING>                : <GetSQRootMatrix> error in matrix diagonalization; printed S and B
+<WARNING>                : <GetSQRootMatrix> error in matrix diagonalization; printed S and B
+<WARNING>                : <GetSQRootMatrix> error in matrix diagonalization; printed S and B
+<WARNING>                : <GetSQRootMatrix> error in matrix diagonalization; printed S and B
+<WARNING>                : <GetSQRootMatrix> error in matrix diagonalization; printed S and B
+<WARNING>                : <GetSQRootMatrix> error in matrix diagonalization; printed S and B
+<WARNING>                : <GetSQRootMatrix> error in matrix diagonalization; printed S and B
+<WARNING>                : <GetSQRootMatrix> error in matrix diagonalization; printed S and B
+<WARNING>                : <GetSQRootMatrix> error in matrix diagonalization; printed S and B
+<WARNING>                : <GetSQRootMatrix> error in matrix diagonalization; printed S and B
+<WARNING>                : <GetSQRootMatrix> error in matrix diagonalization; printed S and B
+<WARNING>                : <GetSQRootMatrix> error in matrix diagonalization; printed S and B
+<WARNING>                : <GetSQRootMatrix> error in matrix diagonalization; printed S and B
+<WARNING>                : <GetSQRootMatrix> error in matrix diagonalization; printed S and B
+<WARNING>                : <GetSQRootMatrix> error in matrix diagonalization; printed S and B
+<WARNING>                : <GetSQRootMatrix> error in matrix diagonalization; printed S and B
+<WARNING>                : <GetSQRootMatrix> error in matrix diagonalization; printed S and B
+<WARNING>                : <GetSQRootMatrix> error in matrix diagonalization; printed S and B
+<WARNING>                : <GetSQRootMatrix> error in matrix diagonalization; printed S and B
+<WARNING>                : <GetSQRootMatrix> error in matrix diagonalization; printed S and B
+<WARNING>                : <GetSQRootMatrix> error in matrix diagonalization; printed S and B
+<WARNING>                : <GetSQRootMatrix> error in matrix diagonalization; printed S and B
+<WARNING>                : <GetSQRootMatrix> error in matrix diagonalization; printed S and B
+<WARNING>                : <GetSQRootMatrix> error in matrix diagonalization; printed S and B
+<WARNING>                : <GetSQRootMatrix> error in matrix diagonalization; printed S and B
+<WARNING>                : <GetSQRootMatrix> error in matrix diagonalization; printed S and B
+<WARNING>                : <GetSQRootMatrix> error in matrix diagonalization; printed S and B
+<WARNING>                : <GetSQRootMatrix> error in matrix diagonalization; printed S and B
+<WARNING>                : <GetSQRootMatrix> error in matrix diagonalization; printed S and B
+<WARNING>                : <GetSQRootMatrix> error in matrix diagonalization; printed S and B
+<WARNING>                : <GetSQRootMatrix> error in matrix diagonalization; printed S and B
+TFHandler_Factory        :   Variable          Mean          RMS   [        Min          Max ]
+                         : ---------------------------------------------------------------------
+                         :      pi0p3:    0.030228      1.0000   [     -11.904      16.112 ]
+                         :   pi0p3cms:    0.021515      1.0000   [     -9.0875      29.792 ]
+                         :       gm1e:    0.028229      1.0000   [     -11.542      12.074 ]
+                         :       gm2e:   0.0020206      1.0000   [     -9.0680      8.0441 ]
+                         :    gm1e925:     0.12655     0.44707   [     -2.3981      4.8241 ]
+                         :    gm2e925:     0.37267      1.0909   [     -3.7898      5.2529 ]
+                         :      ediff:    0.018412      1.0000   [     -9.3527      3.4049 ]
+                         :  gm1eerror:    0.020528      1.0000   [     -9.0840      11.567 ]
+                         :  gm2eerror:    0.019627      1.0000   [     -6.2375      9.1887 ]
+                         :   gm1p3cms:    0.010568      1.0000   [     -6.7159      9.1941 ]
+                         :   gm2p3cms:    0.014296      1.0000   [     -6.4873      10.499 ]
+                         : gmthetacms:    0.025888      1.0000   [     -3.1182      35.218 ]
+                         :     mfchi2:    0.012864      1.0000   [     -3.1480      5.9284 ]
+                         : ---------------------------------------------------------------------
+                         : Ranking input variables (method unspecific)...
+IdTransformation         : Ranking result (top variable is best ranked)
+                         : -----------------------------------
+                         : Rank : Variable   : Separation
+                         : -----------------------------------
+                         :    1 : pi0p3      : 2.859e-01
+                         :    2 : gmthetacms : 2.534e-01
+                         :    3 : gm1e       : 2.517e-01
+                         :    4 : pi0p3cms   : 2.405e-01
+                         :    5 : gm2e       : 2.341e-01
+                         :    6 : mfchi2     : 2.253e-01
+                         :    7 : gm1p3cms   : 2.149e-01
+                         :    8 : gm2p3cms   : 1.934e-01
+                         :    9 : gm1eerror  : 1.772e-01
+                         :   10 : gm2eerror  : 1.711e-01
+                         :   11 : ediff      : 1.304e-01
+                         :   12 : gm1e925    : 7.769e-02
+                         :   13 : gm2e925    : 7.769e-02
+                         : -----------------------------------
+Factory                  : Train method: BDT for Classification
+                         : 
+BDT                      : #events: (reweighted) sig: 87341 bkg: 87341
+                         : #events: (unweighted) sig: 87341 bkg: 87341
+                         : Training 25 Decision Trees ... patience please
+                         : Elapsed time for training with 174682 events: [1;31m12.3 sec[0m         
+BDT                      : [dataset] : Evaluation of BDT on training sample (174682 events)
+                         : Elapsed time for evaluation of 174682 events: [1;31m0.369 sec[0m       
+                         : Creating xml weight file: [0;36mdataset/weights/TMVAClassification_BDT.weights.xml[0m
+                         : Creating standalone class: [0;36mdataset/weights/TMVAClassification_BDT.class.C[0m
+                         : TMVAOutput.root:/dataset/Method_BDT/BDT
+Factory                  : Training finished
+                         : 
+                         : Ranking input variables (method specific)...
+BDT                      : Ranking result (top variable is best ranked)
+                         : --------------------------------------------
+                         : Rank : Variable   : Variable Importance
+                         : --------------------------------------------
+                         :    1 : pi0p3      : 3.182e-01
+                         :    2 : gm2e       : 2.634e-01
+                         :    3 : mfchi2     : 1.099e-01
+                         :    4 : gm1e925    : 9.481e-02
+                         :    5 : gm2p3cms   : 6.242e-02
+                         :    6 : gm1p3cms   : 4.532e-02
+                         :    7 : pi0p3cms   : 2.446e-02
+                         :    8 : gmthetacms : 2.433e-02
+                         :    9 : gm2eerror  : 2.040e-02
+                         :   10 : gm1e       : 1.560e-02
+                         :   11 : ediff      : 1.129e-02
+                         :   12 : gm1eerror  : 9.964e-03
+                         :   13 : gm2e925    : 0.000e+00
+                         : --------------------------------------------
+Factory                  : === Destroy and recreate all methods via weight files for testing ===
+                         : 
+Factory                  : [1mTest all methods[0m
+Factory                  : Test method: BDT for Classification performance
+                         : 
+BDT                      : [dataset] : Evaluation of BDT on testing sample (174682 events)
+                         : Elapsed time for evaluation of 174682 events: [1;31m0.373 sec[0m       
+Factory                  : [1mEvaluate all methods[0m
+Factory                  : Evaluate classifier: BDT
+                         : 
+BDT                      : [dataset] : Loop over test events and fill histograms with classifier response...
+                         : 
+TFHandler_BDT            :   Variable          Mean          RMS   [        Min          Max ]
+                         : ---------------------------------------------------------------------
+                         :      pi0p3:     0.59531     0.55471   [   0.0016308      5.7909 ]
+                         :   pi0p3cms:     0.75176     0.74324   [   0.0056748      8.3613 ]
+                         :       gm1e:     0.44079     0.41840   [    0.061163      5.7610 ]
+                         :       gm2e:     0.18146     0.17291   [    0.060000      2.3850 ]
+                         :    gm1e925:     0.95316    0.060501   [     0.21180      1.0000 ]
+                         :    gm2e925:     0.95316    0.060501   [     0.21180      1.0000 ]
+                         :      ediff:     0.25933     0.34451   [  1.3188e-06      5.6630 ]
+                         :  gm1eerror:  0.00013675  0.00032339   [  1.8327e-06    0.019726 ]
+                         :  gm2eerror:  2.6388e-05  7.0056e-05   [  1.6829e-06   0.0039595 ]
+                         :   gm1p3cms:     0.55011     0.56453   [    0.044837      8.3204 ]
+                         :   gm2p3cms:     0.22389     0.23143   [    0.042868      3.4254 ]
+                         : gmthetacms:     0.73469     0.52823   [    0.035646      3.1001 ]
+                         :     mfchi2:      8.8507      11.490   [  1.8146e-12      50.000 ]
+                         : ---------------------------------------------------------------------
+                         : 
+                         : Evaluation results ranked by best signal efficiency and purity (area)
+                         : -------------------------------------------------------------------------------------------------------------------
+                         : DataSet       MVA                       
+                         : Name:         Method:          ROC-integ
+                         : dataset       BDT            : 0.868
+                         : -------------------------------------------------------------------------------------------------------------------
+                         : 
+                         : Testing efficiency compared to training efficiency (overtraining check)
+                         : -------------------------------------------------------------------------------------------------------------------
+                         : DataSet              MVA              Signal efficiency: from test sample (from training sample) 
+                         : Name:                Method:          @B=0.01             @B=0.10            @B=0.30   
+                         : -------------------------------------------------------------------------------------------------------------------
+                         : dataset              BDT            : 0.261 (0.267)       0.641 (0.647)      0.850 (0.853)
+                         : -------------------------------------------------------------------------------------------------------------------
+                         : 
+Dataset:dataset          : Created tree 'TestTree' with 174682 events
+                         : 
+Dataset:dataset          : Created tree 'TrainTree' with 174682 events
+                         : 
+Factory                  : [1mThank you for using TMVA![0m
+                         : [1mFor citation information, please visit: http://tmva.sf.net/citeTMVA.html[0m

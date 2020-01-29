@@ -1,0 +1,234 @@
+DataSetInfo              : [dataset] : Added class "Signal"
+                         : Add Tree pi0tree of type Signal with 2054980 events
+DataSetInfo              : [dataset] : Added class "Background"
+                         : Add Tree pi0tree of type Background with 4933019 events
+Factory                  : Booking method: [1mBDT[0m
+                         : 
+DataSetFactory           : [dataset] : Number of events in input trees
+                         : 
+                         : 
+                         : Number of training and testing events
+                         : ---------------------------------------------------------------------------
+                         : Signal     -- training events            : 100000
+                         : Signal     -- testing events             : 100000
+                         : Signal     -- training and testing events: 200000
+                         : Background -- training events            : 100000
+                         : Background -- testing events             : 100000
+                         : Background -- training and testing events: 200000
+                         : 
+DataSetInfo              : Correlation matrix (Signal):
+                         : ----------------------------------------------------------------------------------
+                         :               pi0p3    gm2e gm1e925   ediff gm1eerror gm2eerror gmthetacms  mfchi2
+                         :      pi0p3:  +1.000  +0.764  -0.142  +0.745    +0.786    +0.637     -0.681  -0.196
+                         :       gm2e:  +0.764  +1.000  -0.180  +0.139    +0.407    +0.848     -0.561  -0.187
+                         :    gm1e925:  -0.142  -0.180  +1.000  -0.035    -0.082    -0.192     +0.049  -0.044
+                         :      ediff:  +0.745  +0.139  -0.035  +1.000    +0.793    +0.107     -0.440  -0.116
+                         :  gm1eerror:  +0.786  +0.407  -0.082  +0.793    +1.000    +0.384     -0.377  -0.116
+                         :  gm2eerror:  +0.637  +0.848  -0.192  +0.107    +0.384    +1.000     -0.358  -0.121
+                         : gmthetacms:  -0.681  -0.561  +0.049  -0.440    -0.377    -0.358     +1.000  +0.189
+                         :     mfchi2:  -0.196  -0.187  -0.044  -0.116    -0.116    -0.121     +0.189  +1.000
+                         : ----------------------------------------------------------------------------------
+DataSetInfo              : Correlation matrix (Background):
+                         : ----------------------------------------------------------------------------------
+                         :               pi0p3    gm2e gm1e925   ediff gm1eerror gm2eerror gmthetacms  mfchi2
+                         :      pi0p3:  +1.000  +0.626  -0.081  +0.858    +0.772    +0.501     -0.693  -0.136
+                         :       gm2e:  +0.626  +1.000  -0.052  +0.146    +0.283    +0.817     -0.526  -0.124
+                         :    gm1e925:  -0.081  -0.052  +1.000  -0.069    -0.051    -0.046     +0.059  +0.010
+                         :      ediff:  +0.858  +0.146  -0.069  +1.000    +0.816    +0.115     -0.487  -0.103
+                         :  gm1eerror:  +0.772  +0.283  -0.051  +0.816    +1.000    +0.268     -0.342  -0.098
+                         :  gm2eerror:  +0.501  +0.817  -0.046  +0.115    +0.268    +1.000     -0.318  -0.097
+                         : gmthetacms:  -0.693  -0.526  +0.059  -0.487    -0.342    -0.318     +1.000  +0.081
+                         :     mfchi2:  -0.136  -0.124  +0.010  -0.103    -0.098    -0.097     +0.081  +1.000
+                         : ----------------------------------------------------------------------------------
+DataSetFactory           : [dataset] :  
+                         : 
+Factory                  : [1mTrain all methods[0m
+Factory                  : [dataset] : Create Transformation "I" with events from all classes.
+                         : 
+                         : Transformation, Variable selection : 
+                         : Input : variable 'pi0p3' <---> Output : variable 'pi0p3'
+                         : Input : variable 'gm2e' <---> Output : variable 'gm2e'
+                         : Input : variable 'gm1e925' <---> Output : variable 'gm1e925'
+                         : Input : variable 'ediff' <---> Output : variable 'ediff'
+                         : Input : variable 'gm1eerror' <---> Output : variable 'gm1eerror'
+                         : Input : variable 'gm2eerror' <---> Output : variable 'gm2eerror'
+                         : Input : variable 'gmthetacms' <---> Output : variable 'gmthetacms'
+                         : Input : variable 'mfchi2' <---> Output : variable 'mfchi2'
+Factory                  : [dataset] : Create Transformation "D" with events from all classes.
+                         : 
+                         : Transformation, Variable selection : 
+                         : Input : variable 'pi0p3' <---> Output : variable 'pi0p3'
+                         : Input : variable 'gm2e' <---> Output : variable 'gm2e'
+                         : Input : variable 'gm1e925' <---> Output : variable 'gm1e925'
+                         : Input : variable 'ediff' <---> Output : variable 'ediff'
+                         : Input : variable 'gm1eerror' <---> Output : variable 'gm1eerror'
+                         : Input : variable 'gm2eerror' <---> Output : variable 'gm2eerror'
+                         : Input : variable 'gmthetacms' <---> Output : variable 'gmthetacms'
+                         : Input : variable 'mfchi2' <---> Output : variable 'mfchi2'
+Factory                  : [dataset] : Create Transformation "P" with events from all classes.
+                         : 
+                         : Transformation, Variable selection : 
+                         : Input : variable 'pi0p3' <---> Output : variable 'pi0p3'
+                         : Input : variable 'gm2e' <---> Output : variable 'gm2e'
+                         : Input : variable 'gm1e925' <---> Output : variable 'gm1e925'
+                         : Input : variable 'ediff' <---> Output : variable 'ediff'
+                         : Input : variable 'gm1eerror' <---> Output : variable 'gm1eerror'
+                         : Input : variable 'gm2eerror' <---> Output : variable 'gm2eerror'
+                         : Input : variable 'gmthetacms' <---> Output : variable 'gmthetacms'
+                         : Input : variable 'mfchi2' <---> Output : variable 'mfchi2'
+Factory                  : [dataset] : Create Transformation "G" with events from all classes.
+                         : 
+                         : Transformation, Variable selection : 
+                         : Input : variable 'pi0p3' <---> Output : variable 'pi0p3'
+                         : Input : variable 'gm2e' <---> Output : variable 'gm2e'
+                         : Input : variable 'gm1e925' <---> Output : variable 'gm1e925'
+                         : Input : variable 'ediff' <---> Output : variable 'ediff'
+                         : Input : variable 'gm1eerror' <---> Output : variable 'gm1eerror'
+                         : Input : variable 'gm2eerror' <---> Output : variable 'gm2eerror'
+                         : Input : variable 'gmthetacms' <---> Output : variable 'gmthetacms'
+                         : Input : variable 'mfchi2' <---> Output : variable 'mfchi2'
+Factory                  : [dataset] : Create Transformation "D" with events from all classes.
+                         : 
+                         : Transformation, Variable selection : 
+                         : Input : variable 'pi0p3' <---> Output : variable 'pi0p3'
+                         : Input : variable 'gm2e' <---> Output : variable 'gm2e'
+                         : Input : variable 'gm1e925' <---> Output : variable 'gm1e925'
+                         : Input : variable 'ediff' <---> Output : variable 'ediff'
+                         : Input : variable 'gm1eerror' <---> Output : variable 'gm1eerror'
+                         : Input : variable 'gm2eerror' <---> Output : variable 'gm2eerror'
+                         : Input : variable 'gmthetacms' <---> Output : variable 'gmthetacms'
+                         : Input : variable 'mfchi2' <---> Output : variable 'mfchi2'
+TFHandler_Factory        :   Variable          Mean          RMS   [        Min          Max ]
+                         : ---------------------------------------------------------------------
+                         :      pi0p3:     0.50991     0.45922   [  0.00079420      5.1469 ]
+                         :       gm2e:     0.15975     0.14107   [    0.060000      2.1529 ]
+                         :    gm1e925:     0.95432    0.058111   [     0.19151      1.0000 ]
+                         :      ediff:     0.21931     0.28944   [  8.6427e-07      4.9277 ]
+                         :  gm1eerror:  0.00010007  0.00024226   [  1.7932e-06    0.010979 ]
+                         :  gm2eerror:  1.9720e-05  5.1858e-05   [  1.6849e-06   0.0029062 ]
+                         : gmthetacms:     0.78367     0.52835   [    0.038326      3.1196 ]
+                         :     mfchi2:      9.2159      11.581   [  5.1303e-10      50.000 ]
+                         : ---------------------------------------------------------------------
+                         : Preparing the Decorrelation transformation...
+TFHandler_Factory        :   Variable          Mean          RMS   [        Min          Max ]
+                         : ---------------------------------------------------------------------
+                         :      pi0p3:      2.2045      1.0000   [    -0.44705      13.932 ]
+                         :       gm2e:      1.4770      1.0000   [     -6.3031      10.937 ]
+                         :    gm1e925:      16.741      1.0000   [      3.5148      17.906 ]
+                         :      ediff:     0.50926      1.0000   [     -5.6448      17.166 ]
+                         :  gm1eerror:     -2.2163      1.0000   [     -4.9230      70.012 ]
+                         :  gm2eerror:     -1.0006      1.0000   [     -8.0848      87.935 ]
+                         : gmthetacms:      2.3406      1.0000   [     0.65335      7.6500 ]
+                         :     mfchi2:     0.80446      1.0000   [   -0.038223      4.3514 ]
+                         : ---------------------------------------------------------------------
+                         : Preparing the Principle Component (PCA) transformation...
+TFHandler_Factory        :   Variable          Mean          RMS   [        Min          Max ]
+                         : ---------------------------------------------------------------------
+                         :      pi0p3: -6.4076e-10      11.582   [     -9.2805      40.798 ]
+                         :       gm2e:  4.6692e-12     0.65318   [     -2.1564      4.5752 ]
+                         :    gm1e925:  8.9507e-12     0.31143   [     -4.2876     0.41095 ]
+                         :      ediff:  1.0757e-12     0.18409   [     -1.6536      2.6395 ]
+                         :  gm1eerror: -2.0386e-12    0.057768   [   -0.080261     0.76412 ]
+                         :  gm2eerror: -3.8363e-13   0.0061327   [   -0.054677    0.048474 ]
+                         : gmthetacms: -5.8492e-15  0.00012264   [  -0.0088345  0.00033554 ]
+                         :     mfchi2:  1.1485e-15  2.6473e-05   [ -0.00022821   0.0023535 ]
+                         : ---------------------------------------------------------------------
+                         : Preparing the Gaussian transformation...
+                         : Preparing the Decorrelation transformation...
+TFHandler_Factory        :   Variable          Mean          RMS   [        Min          Max ]
+                         : ---------------------------------------------------------------------
+                         :      pi0p3:    0.044991      1.0000   [     -7.9577      14.316 ]
+                         :       gm2e:    0.012266      1.0000   [     -8.6017      8.7483 ]
+                         :    gm1e925:     0.36704      1.0000   [     -1.4250      2.9583 ]
+                         :      ediff:    0.028736      1.0000   [     -7.3386      6.5059 ]
+                         :  gm1eerror:    0.024890      1.0000   [     -5.2161      13.078 ]
+                         :  gm2eerror:    0.017287      1.0000   [     -5.9889      9.0409 ]
+                         : gmthetacms:    0.015520      1.0000   [     -2.7095      14.136 ]
+                         :     mfchi2:    0.014636      1.0000   [     -3.0167      6.2393 ]
+                         : ---------------------------------------------------------------------
+                         : Ranking input variables (method unspecific)...
+IdTransformation         : Ranking result (top variable is best ranked)
+                         : -----------------------------------
+                         : Rank : Variable   : Separation
+                         : -----------------------------------
+                         :    1 : pi0p3      : 1.899e-01
+                         :    2 : mfchi2     : 1.861e-01
+                         :    3 : gmthetacms : 1.708e-01
+                         :    4 : gm2e       : 1.660e-01
+                         :    5 : gm2eerror  : 1.213e-01
+                         :    6 : gm1eerror  : 1.097e-01
+                         :    7 : ediff      : 7.412e-02
+                         :    8 : gm1e925    : 5.996e-02
+                         : -----------------------------------
+Factory                  : Train method: BDT for Classification
+                         : 
+BDT                      : #events: (reweighted) sig: 100000 bkg: 100000
+                         : #events: (unweighted) sig: 100000 bkg: 100000
+                         : Training 100 Decision Trees ... patience please
+                         : Elapsed time for training with 200000 events: [1;31m27.3 sec[0m         
+BDT                      : [dataset] : Evaluation of BDT on training sample (200000 events)
+                         : Elapsed time for evaluation of 200000 events: [1;31m0.995 sec[0m       
+                         : Creating xml weight file: [0;36mdataset/weights/TMVAClassification_BDT.weights.xml[0m
+                         : Creating standalone class: [0;36mdataset/weights/TMVAClassification_BDT.class.C[0m
+                         : TMVAOutput.root:/dataset/Method_BDT/BDT
+Factory                  : Training finished
+                         : 
+                         : Ranking input variables (method specific)...
+BDT                      : Ranking result (top variable is best ranked)
+                         : --------------------------------------------
+                         : Rank : Variable   : Variable Importance
+                         : --------------------------------------------
+                         :    1 : pi0p3      : 2.392e-01
+                         :    2 : gm2e       : 2.017e-01
+                         :    3 : mfchi2     : 1.883e-01
+                         :    4 : gmthetacms : 1.061e-01
+                         :    5 : gm1e925    : 1.043e-01
+                         :    6 : gm2eerror  : 7.147e-02
+                         :    7 : gm1eerror  : 6.478e-02
+                         :    8 : ediff      : 2.420e-02
+                         : --------------------------------------------
+Factory                  : === Destroy and recreate all methods via weight files for testing ===
+                         : 
+Factory                  : [1mTest all methods[0m
+Factory                  : Test method: BDT for Classification performance
+                         : 
+BDT                      : [dataset] : Evaluation of BDT on testing sample (200000 events)
+                         : Elapsed time for evaluation of 200000 events: [1;31m1.05 sec[0m       
+Factory                  : [1mEvaluate all methods[0m
+Factory                  : Evaluate classifier: BDT
+                         : 
+BDT                      : [dataset] : Loop over test events and fill histograms with classifier response...
+                         : 
+TFHandler_BDT            :   Variable          Mean          RMS   [        Min          Max ]
+                         : ---------------------------------------------------------------------
+                         :      pi0p3:     0.51225     0.46117   [  0.00059297      5.0048 ]
+                         :       gm2e:     0.16002     0.14063   [    0.060001      2.0981 ]
+                         :    gm1e925:     0.95405    0.058130   [     0.18367      1.0000 ]
+                         :      ediff:     0.22099     0.29276   [  3.2783e-07      4.8706 ]
+                         :  gm1eerror:  0.00010181  0.00024943   [  1.8438e-06    0.011752 ]
+                         :  gm2eerror:  1.9855e-05  5.3039e-05   [  1.6849e-06   0.0038662 ]
+                         : gmthetacms:     0.78063     0.52627   [    0.038497      3.1388 ]
+                         :     mfchi2:      9.1925      11.576   [  7.1459e-14      49.997 ]
+                         : ---------------------------------------------------------------------
+                         : 
+                         : Evaluation results ranked by best signal efficiency and purity (area)
+                         : -------------------------------------------------------------------------------------------------------------------
+                         : DataSet       MVA                       
+                         : Name:         Method:          ROC-integ
+                         : dataset       BDT            : 0.826
+                         : -------------------------------------------------------------------------------------------------------------------
+                         : 
+                         : Testing efficiency compared to training efficiency (overtraining check)
+                         : -------------------------------------------------------------------------------------------------------------------
+                         : DataSet              MVA              Signal efficiency: from test sample (from training sample) 
+                         : Name:                Method:          @B=0.01             @B=0.10            @B=0.30   
+                         : -------------------------------------------------------------------------------------------------------------------
+                         : dataset              BDT            : 0.172 (0.178)       0.540 (0.545)      0.789 (0.791)
+                         : -------------------------------------------------------------------------------------------------------------------
+                         : 
+Dataset:dataset          : Created tree 'TestTree' with 200000 events
+                         : 
+Dataset:dataset          : Created tree 'TrainTree' with 200000 events
+                         : 
+Factory                  : [1mThank you for using TMVA![0m
+                         : [1mFor citation information, please visit: http://tmva.sf.net/citeTMVA.html[0m
