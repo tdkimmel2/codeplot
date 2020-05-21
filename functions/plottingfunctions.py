@@ -490,16 +490,22 @@ def OptimizeCut_GreaterThan(rb,lb,Tree,Variable,TruthVariable,CutString,Title,XT
         if TruthVariable == "whomi" or "truth":
             nSigTotal = Tree.Draw(Variable+">>h1",CutString+" && "+TruthVariable+">="+signalvarstr,"goff")
             nBkgTotal = Tree.Draw(Variable+">>h2",CutString+" && "+TruthVariable+"<"+signalvarstr,"goff")
-        if TruthVariable == "mcflag":
+        elif TruthVariable == "mcflag":
             nSigTotal = Tree.Draw(Variable+">>h1",CutString+" && "+TruthVariable+"<="+signalvarstr,"goff")
             nBkgTotal = Tree.Draw(Variable+">>h2",CutString+" && "+TruthVariable+">"+signalvarstr,"goff")
+        else:
+            nSigTotal = Tree.Draw(Variable+">>h1",CutString+" && "+TruthVariable+">="+signalvarstr,"goff")
+            nBkgTotal = Tree.Draw(Variable+">>h2",CutString+" && "+TruthVariable+"<"+signalvarstr,"goff")
     else:
         if TruthVariable == "whomi" or "truth":
             nSigTotal = Tree.Draw(Variable+">>h1",TruthVariable+">="+signalvarstr,"goff")
             nBkgTotal = Tree.Draw(Variable+">>h2",TruthVariable+"<"+signalvarstr,"goff")
-        if TruthVariable == "mcflag":
+        elif TruthVariable == "mcflag":
             nSigTotal = Tree.Draw(Variable+">>h1",TruthVariable+"<="+signalvarstr,"goff")
             nBkgTotal = Tree.Draw(Variable+">>h2",TruthVariable+">"+signalvarstr,"goff")
+        else:
+            nSigTotal = Tree.Draw(Variable+">>h1",TruthVariable+">="+signalvarstr,"goff")
+            nBkgTotal = Tree.Draw(Variable+">>h2",TruthVariable+"<"+signalvarstr,"goff")
 
     nSigRetained = []
     nBkgRetained = []
@@ -600,14 +606,14 @@ def OptimizeCut_GreaterThan(rb,lb,Tree,Variable,TruthVariable,CutString,Title,XT
             Tree.Draw(Variable+">>h2",TruthVariable+">"+signalvarstr)
 
     #Normalize histograms
-    norm1 = h1.GetEntries()
-    norm2 = h2.GetEntries()
+    norm1 = Histogram1.GetEntries()
+    norm2 = Histogram2.GetEntries()
     #print(norm1)
     #print(norm2)
     if norm1 != 0:
-        h1.Scale(1/norm1)
+        Histogram1.Scale(1/norm1)
     if norm2 != 0:
-        h2.Scale(1/norm2)
+        Histogram2.Scale(1/norm2)
 
     Frame.addTH1(Histogram1)
     Frame.addTH1(Histogram2)
