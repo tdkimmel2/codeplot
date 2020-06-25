@@ -4,7 +4,7 @@ sys.path.append('/home/tkimmel/Research/codeplot/functions/')
 #sys.path.append('/home/taylor/Research/codeplot/functions/')
 from plottingfunctions import *
 
-f = TFile("/home/tkimmel/Research/root/allmfdtokpi.root","READ")
+f = TFile("/home/tkimmel/Research/root/allmfrecon_mfsigtrain10vars.root","READ")
 #f = TFile("/home/taylor/Research/root/allmfdtokpi.root","READ")
 t = f.Get("dsplrecontree")
 
@@ -19,5 +19,8 @@ h2 = TH1F("h2","h2",nBins,lb,rb)
 h3 = TH1F("h3","h3",nBins,lb,rb)
 h4 = TH1F("h4","h4",nBins,lb,rb)
 
-plot_variable4histos(rb,lb,t,"deltam","mcflag==2","Charm MC","mcflag==3","Mixed MC","mcflag==4","Charged MC","mcflag==5","UDS MC","#DeltaM_{D^{*+}D^{0}} D^{*+} -> D^{0}(-> #pi^{0} + K_{L}^{0}) + #pi^{+}: From All MC","#DeltaM_{D^{*+}D^{0}} (GeV/c^{2})",h1,h2,h3,h4,frame,0.25,0.65,"/home/tkimmel/Research/plots/alldtokpi/alldeltaml")
+#plot_variable4histos(rb,lb,t,"deltam","mcflag==2","Charm MC","mcflag==3","Mixed MC","mcflag==4","Charged MC","mcflag==5","UDS MC","#DeltaM_{D^{*+}D^{0}} D^{*+} -> D^{0}(-> #pi^{0} + K_{L}^{0}) + #pi^{+}: From All MC","#DeltaM_{D^{*+}D^{0}} (GeV/c^{2})",h1,h2,h3,h4,frame,0.25,0.65,"/home/tkimmel/Research/plots/alldtokpi/alldeltaml")
+plot_variable4histos(rb,lb,t,"deltam","mcflag==2 && nb>0.69","Charm MC","mcflag==3 && nb>0.69","Mixed MC","mcflag==4 && nb>0.69","Charged MC","mcflag==5 && nb>0.69","UDS MC","#DeltaM_{D^{*+}D^{0}} D^{*+} -> D^{0}(-> #pi^{0} + K_{L}^{0}) + #pi^{+}: From All MC","#DeltaM_{D^{*+}D^{0}} (GeV/c^{2})",h1,h2,h3,h4,frame,0.25,0.65,"/home/tkimmel/Research/plots/alldtokpi/alldeltaml69nbcut")
+
+
 #plot_variable4histos(rb,lb,t,"deltam","mcflag==2","Charm MC","mcflag==3","Mixed MC","mcflag==4","Charged MC","mcflag==5","UDS MC","#DeltaM_{D^{*+}D^{0}} D^{*+} -> D^{0}(-> #pi^{0} + K_{L}^{0}) + #pi^{+}: From All MC","#DeltaM_{D^{*+}D^{0}} (GeV/c^{2})",h1,h2,h3,h4,frame,0.65,0.6,"/home/taylor/Research/plots/alldtokpi/alldeltaml")

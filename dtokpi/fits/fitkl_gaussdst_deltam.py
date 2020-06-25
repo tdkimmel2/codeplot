@@ -8,9 +8,9 @@ gInterpreter.ProcessLine('.L RooVoigtian.cxx++')
 #gSystem.Load('RooCruijff.cxx++')
 
 
-#f1 = "/home/tkimmel/Research/root/allmfrecon.root"
+f1 = "/home/tkimmel/Research/root/allmfrecon_k0sigtrain10vars.root"
 #f1 = "/home/tkimmel/Research/root/allmfdtokpi.root"
-f1 = "/home/taylor/Research/root/allmfrecon.root"
+#f1 = "/home/taylor/Research/root/allmfrecon.root"
 #f1 = "/home/taylor/Research/root/signalmfrecon.root"
 #f1 = "/home/taylor/Research/root/allmfdtokpi.root"
 #f1 = "/home/taylor/Research/root/inclusivemfreconnb.root"
@@ -27,7 +27,7 @@ coskpizcm = RooRealVar("coskpizcm", "coskpizcm", -1, 1)
 cosdpipcm = RooRealVar("cosdpipcm", "cosdpipcm", -1, 1)
 pipp = RooRealVar("pipp", "pipp", 0, 1)
 dspPmag = RooRealVar("dspPmag", "dspPmag", 0, 5)
-dnb = RooRealVar("dnb", "dnb", -1, 1)
+#dnb = RooRealVar("dnb", "dnb", -1, 1)
 
 lb = deltam.getMin()
 rb = deltam.getMax()
@@ -36,13 +36,16 @@ binWidth = (rb-lb)/nBins
 binWidthMEV = binWidth*1000
 
 
-#vars = RooArgSet(deltam,nb,coskpiz,cosdpipcm,pipp,dspPmag)
-vars = RooArgSet(deltam,nb,coskpiz,cosdpipcm,pipp,dspPmag,dnb)
+vars = RooArgSet(deltam,nb,coskpiz,cosdpipcm,pipp,dspPmag)
+#vars = RooArgSet(deltam,nb,coskpiz,cosdpipcm,pipp,dspPmag,dnb)
 
 
 #data = RooDataSet("data", "raw data", t, vars) #No cuts
 #data = RooDataSet("data", "raw data", t, vars, "dnb > 0.52 && nb > 0.54") #Low stats dnb
-data = RooDataSet("data", "raw data", t, vars, "nb > 0.94") #Reduced pi variables
+#data = RooDataSet("data", "raw data", t, vars, "nb > 0.690")# mfsig pi0training 10 variables
+data = RooDataSet("data", "raw data", t, vars, "nb > 0.854")# k0sig pi0training 10 variables
+#data = RooDataSet("data", "raw data", t, vars, "nb > 0.642")# mfsig pi0training 13 variables
+#data = RooDataSet("data", "raw data", t, vars, "nb > 0.834")# k0sig pi0training 13 variables
 #data = RooDataSet("data", "raw data", t, vars, "dnb > 0.68 && nb > 0.54")
 #data = RooDataSet("data", "raw data", t, vars, "nb>0.54 && coskpiz>0.24 && cosdpipcm>0.985 && pipp<0.38")
 #data = RooDataSet("data", "raw data", t, vars, "coskpiz>0.24 && cosdpipcm>0.985 && pipp<0.38") #pinbcut>0.54 cut applied during the reconstruction
@@ -154,7 +157,7 @@ fitRes.Print()
 h1 = TH1F("h1","h1",nBins,lb,rb)
 
 #frame1 = deltam.frame(RooFit.Bins(nBins),RooFit.Title("D^{*+} -> D^{0}(-> #pi^{0} + K_{L}^{0}) + #pi^{+}: From MC")) 
-frame1 = deltam.frame(RooFit.Bins(nBins),RooFit.Title("D^{*+} -> D^{0}(-> #pi^{0} + K_{L}^{0}) + #pi^{+}: From Mixed MC"))
+frame1 = deltam.frame(RooFit.Bins(nBins),RooFit.Title("D^{*+} -> D^{0}(-> #pi^{0} + K_{L}^{0}) + #pi^{+}: From All MC"))
 pullFrame = deltam.frame(RooFit.Bins(nBins),RooFit.Title(""))
 # Beautification Things
 frame1.SetStats(0)
@@ -178,7 +181,9 @@ pdf.plotOn(frame1, RooFit.LineColor(kBlack))
 #pdf.plotOn(frame1, RooFit.Components(SIG),RooFit.LineColor(kBlue))
 #pdf.plotOn(frame1, RooFit.Components(bkg),RooFit.LineColor(kRed),RooFit.LineStyle(kDashed))
 #pdf.paramOn(frame1,Parameters(RooArgList(mu,sigmaL,sigmaR,alphaL,alphaR,nsig)),Format("NEU", AutoPrecision(2)), Layout(0.55, 0.89, 0.89))
-pdf.paramOn(frame1,RooFit.Format("NEU", RooFit.AutoPrecision(2)), RooFit.Layout(0.57, 0.96, 0.93))
+
+#pdf.paramOn(frame1,RooFit.Format("NEU", RooFit.AutoPrecision(2)), RooFit.Layout(0.57, 0.96, 0.93))# Higher parameter box
+pdf.paramOn(frame1,RooFit.Format("NEU", RooFit.AutoPrecision(2)), RooFit.Layout(0.57, 0.96, 0.50))# Lower parameter box
 frame1.Draw()
 
 hpull1 = frame1.pullHist()
@@ -230,6 +235,7 @@ tex2.SetNDC()
 tex2.Draw()
 
 #canvas.Print("/home/tkimmel/Research/plots/testl.png")
+canvas.Print("/home/tkimmel/Research/plots/alldtokpi/k0sig85410varsL.png")
 #canvas.Print("/home/taylor/Research/plots/testl.png")
 #canvas.Print("/home/tkimmel/Research/plots/alldtokpi/allmfkl54pinbcoskpizcosdpipcmpippdspPmagcutsbcs.pdf")
 #canvas.Print("/home/tkimmel/Research/plots/alldtokpi/allmfkl54pinbcoskpizcosdpipcmpippdspPmagcutsbcs.eps")
@@ -253,7 +259,7 @@ tex2.Draw()
 #canvas.Print("/home/taylor/Research/plots/alldtokpi/asymnbdnbcutsl5468.png")
 #canvas.Print("/home/taylor/Research/plots/alldtokpi/asymnbdnbcutsl5452.png")
 #canvas.Print("/home/taylor/Research/plots/alldtokpi/allcutsl2.png")
-canvas.Print("/home/taylor/Research/plots/alldtokpi/reducedpivariablesl.png")
+#canvas.Print("/home/taylor/Research/plots/alldtokpi/reducedpivariablesl.png")
 #canvas.Print("/home/taylor/Research/plots/signal/asymnbdnbcutsl5452.png")
 #canvas.Print("/home/taylor/Research/plots/dtokpipi0nb/mfkl54cuts.pdf")
 #canvas.Print("/home/taylor/Research/plots/dtokpipi0nb/mfkl54cuts.eps")

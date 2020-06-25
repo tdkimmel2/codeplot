@@ -4,14 +4,14 @@ from ROOT import *
 import math, os
 
 #gInterpreter.ProcessLine('#include "RooCruijff.h"')
-gInterpreter.ProcessLine('.L RooVoigtian.cxx++')
+#gInterpreter.ProcessLine('.L RooVoigtian.cxx++')
 #gSystem.Load('RooCruijff.cxx++')
 
 
-#f1 = "/home/tkimmel/Research/root/allmfrecon.root"
+f1 = "/home/tkimmel/Research/root/allmfrecon.root"
 #f1 = "/home/tkimmel/Research/root/allmfdtokpi.root"
 #f1 = "/home/taylor/Research/root/allmfdtokpi.root"
-f1 = "/home/taylor/Research/root/allmfrecon.root"
+#f1 = "/home/taylor/Research/root/allmfrecon.root"
 #f1 = "/home/taylor/Research/root/inclusivemfreconnb.root"
 tree = "dsprecontree"
 f = TFile(f1,"READ")
@@ -27,7 +27,7 @@ cosdpipcm = RooRealVar("cosdpipcm", "cosdpipcm", -1, 1)
 pipp = RooRealVar("pipp", "pipp", 0, 1)
 dspPmag = RooRealVar("dspPmag", "dspPmag", 0, 5)
 R2 = RooRealVar("R2", "R2", 0, 1)
-dnb = RooRealVar("dnb", "dnb", -1, 1)
+#dnb = RooRealVar("dnb", "dnb", -1, 1)
 
 lb = deltam.getMin()
 rb = deltam.getMax()
@@ -38,12 +38,17 @@ binWidthMEV = binWidth*1000
 
 
 #vars = RooArgSet(deltam,nb,nbgm1,nbgm2,coskpiz,coskpizcm,cosdpipcm,pipp,dspPmag)
-vars = RooArgSet(deltam,nb,coskpiz,cosdpipcm,pipp,dspPmag,dnb)
+vars = RooArgSet(deltam,nb,coskpiz,cosdpipcm,pipp,dspPmag)
+#vars = RooArgSet(deltam,nb,coskpiz,cosdpipcm,pipp,dspPmag,dnb)
 
 
 #data = RooDataSet("data", "raw data", t, vars) #No cuts
 #data = RooDataSet("data", "raw data", t, vars, "dnb > 0.52 && nb > 0.54") #Low statistics nb
-data = RooDataSet("data", "raw data", t, vars, "nb > 0.68") #Reduced pi variables
+#data = RooDataSet("data", "raw data", t, vars, "nb > 0.68") #Reduced pi variables
+#data = RooDataSet("data", "raw data", t, vars, "nb > 0.690")# Same as KL 10 variables
+#data = RooDataSet("data", "raw data", t, vars, "nb > 0.854")# Same as KL 10 variables
+data = RooDataSet("data", "raw data", t, vars, "nb > 0.642")# Same as KL 13 variables
+#data = RooDataSet("data", "raw data", t, vars, "nb > 0.834")# Same as KL 13 variables
 #data = RooDataSet("data", "raw data", t, vars, "dnb > 0.68 && nb > 0.54")
 #data = RooDataSet("data", "raw data", t, vars, "R2>0.41") #R2 Cut
 #data = RooDataSet("data", "raw data", t, vars, "nb>0.54 && coskpiz>0.24 && cosdpipcm>0.985 && pipp<0.38")
@@ -228,6 +233,7 @@ tex2.SetNDC()
 tex2.Draw()
 
 #canvas.Print("/home/tkimmel/Research/plots/test.png")
+canvas.Print("/home/tkimmel/Research/plots/nullS.png")
 #canvas.Print("/home/tkimmel/Research/plots/alldtokpi/allmfks54pinbcoskpizcosdpipcmpippdspPmagcutsbcs.pdf")
 #canvas.Print("/home/tkimmel/Research/plots/alldtokpi/allmfks54pinbcoskpizcosdpipcmpippdspPmagcutsbcs.eps")
 #canvas.Print("/home/tkimmel/Research/plots/alldtokpi/allmfks54pinbcoskpizcosdpipcmpippdspPmagcutsbcs.png")
@@ -248,7 +254,7 @@ tex2.Draw()
 #canvas.Print("/home/taylor/Research/plots/genericdtokpi/genericmfks54pinbcutsbcs.png")
 #canvas.Print("/home/taylor/Research/plots/alldtokpi/asymnbdnbcuts5468.png")
 #canvas.Print("/home/taylor/Research/plots/alldtokpi/allcutss2.png")
-canvas.Print("/home/taylor/Research/plots/alldtokpi/reducedpivariables.png")
+#canvas.Print("/home/taylor/Research/plots/alldtokpi/reducedpivariables.png")
 #canvas.Print("/home/taylor/Research/plots/dtokpipi0nb/mfks54cuts.pdf")
 #canvas.Print("/home/taylor/Research/plots/dtokpipi0nb/mfks54cuts.eps")
 #canvas.Print("/home/taylor/Research/plots/dtokpipi0nb/mfks54cuts.png")
