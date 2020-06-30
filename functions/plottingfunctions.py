@@ -545,7 +545,8 @@ def OptimizeCut_GreaterThan(rb,lb,Tree,Variable,TruthVariable,CutString,Title,XT
         # print(nSigRetained)
         # print(nBkgRetained)
         # print(denominator)
-        print(i)
+        if i%pow(10,len(str(i))-1)==0:
+            print(i)
         if denominator == 0:
             FOM.append(0)
         else:
