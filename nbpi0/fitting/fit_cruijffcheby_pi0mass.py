@@ -4,13 +4,13 @@ import math, os
 
 gInterpreter.ProcessLine('.L RooCruijff.cxx++')
 
-f1 = "/home/taylor/Research/root/smallccset.root"
+f1 = "/home/tkimmel/Research/root/allmfrecon_reducedpi0fittingsample.root"
 tree = "pi0tree"
 f = TFile(f1,"READ")
 t = f.Get(tree)
 
-#pi0mass = RooRealVar("pi0mass", "pi0mass",0.035,0.235)
-pi0mass = RooRealVar("pi0mass", "pi0mass",0.085,0.185)
+#pi0mass = RooRealVar("pi0mass", "pi0mass",0.035,0.235)# Wider window
+pi0mass = RooRealVar("pi0mass", "pi0mass",0.085,0.185)# Wide window
 lb = pi0mass.getMin()
 rb = pi0mass.getMax()
 nBins = 42
@@ -27,10 +27,10 @@ data = RooDataSet("data", "raw data", t, vars)
 
 #Cruijff
 crumu = RooRealVar("#mu","Mean of Cruijff",0.134674,0.125,0.145)
-crusigmaR = RooRealVar("#sigma_{CR}","Cruijff SigmaR",0.00427,0,0.005)
-crusigmaL = RooRealVar("#sigma_{CL}","Cruijff SigmaL",0.00496,0,0.006)
-crualphaR = RooRealVar("#alpha_{R}","Cruijff AlphaR",0.1796,0,0.2)
-crualphaL = RooRealVar("#alpha_{L}","Cruijff AlphaL",0.349,0,0.4)
+crusigmaR = RooRealVar("#sigma_{CR}","Cruijff SigmaR",0.003992,0,0.005)
+crusigmaL = RooRealVar("#sigma_{CL}","Cruijff SigmaL",0.004810,0,0.006)
+crualphaR = RooRealVar("#alpha_{R}","Cruijff AlphaR",0.1783,0,0.2)
+crualphaL = RooRealVar("#alpha_{L}","Cruijff AlphaL",0.2975,0,0.4)
 #Set alphas constant
 crualphaR.setConstant()
 crualphaL.setConstant()
@@ -40,8 +40,8 @@ c0 = RooRealVar("c0","c0",-1,1)
 c1 = RooRealVar("c1","c1",-2,1)
 c2 = RooRealVar("c2","c2",-1,1)
 
-nsig = RooRealVar("N_{Signal}","nsig",0,100000)
-nbkg = RooRealVar("N_{Bkg}","nbkg",0,1000000)
+nsig = RooRealVar("N_{Signal}","nsig",0,1000000)
+nbkg = RooRealVar("N_{Bkg}","nbkg",0,2000000)
 
 bkg = RooChebychev("poly","Chebychev Bkg Fcn",pi0mass,RooArgList(c0,c1))
 sig = RooCruijff("sig","Cruijff Signal Fcn",pi0mass,crumu,crusigmaL,crusigmaR,crualphaL,crualphaR) #Use for signal Cruijff
@@ -164,7 +164,5 @@ tex1.Draw()
 #tex2.SetNDC()
 #tex2.Draw()
 
-canvas.Print("/home/taylor/Research/plots/nbpi0/pi0mass_cruijff+cheby_fit_smallinclusive.pdf")
-canvas.Print("/home/taylor/Research/plots/nbpi0/pi0mass_cruijff+cheby_fit_smallinclusive.eps")
-canvas.Print("/home/taylor/Research/plots/nbpi0/pi0mass_cruijff+cheby_fit_smallinclusive.png")
-
+canvas.Print("/home/tkimmel/Research/plots/nbpi0/pi0mass_cruijff+cheby_fit_reducedallmfrecon_setAlphas.png")
+#canvas.Print("/home/tkimmel/Research/plots/nbpi0/pi0mass_cruijff+cheby_fit_reducedallmfrecon_paramOff.png")

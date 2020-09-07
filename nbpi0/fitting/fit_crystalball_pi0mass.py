@@ -2,10 +2,8 @@ from ROOT import *
 #from ROOT import gInterpreter, gSystem
 import math, os
 
-gInterpreter.ProcessLine('.L MyDblCB.cxx++')
-
-f1 = "/home/taylor/Research/root/smallccset.root"
-#f1 = "/home/tkimmel/Research/root/smallccset.root"
+#f1 = "/home/tkimmel/Research/root/allmfrecon_reducedpi0fittingsample.root"
+f1 = "/home/tkimmel/Research/root/charmmfrecon.root"
 tree = "pi0tree"
 f = TFile(f1,"READ")
 t = f.Get(tree)
@@ -27,30 +25,28 @@ data = RooDataSet("data", "raw data", t, vars, "whomi==1")
 
 #Function Variables
 
-#Double Sided Crystal Ball
-crymu = RooRealVar("#mu","Mean of Crystal Ball",0.1345,0.13,0.14)
-crysigma = RooRealVar("#sigma","#sigma",0.00545,0.003,0.01)
-cryalpha1 = RooRealVar("#alpha_{1}","#alpha_{1}",1.495,0,2)
-cryn1 = RooRealVar("n_{1}","n_{1}",0.7,0,1)
-cryalpha2 = RooRealVar("#alpha_{2}","#alpha_{2}",1.726,0,2)
-cryn2 = RooRealVar("n_{2}","n_{2}",2.012,0,2.5)
-#No Guesses
-#crymu = RooRealVar("#mu","Mean of Crystal Ball",0.13,0.14)
-#crysigma = RooRealVar("#sigma","#sigma",0.004,0.01)
-#cryalpha1 = RooRealVar("#alpha_{1}","#alpha_{1}",0.1,3)
-#cryn1 = RooRealVar("n_{1}","n_{1}",0,3)
-#cryalpha2 = RooRealVar("#alpha_{2}","#alpha_{2}",0,3)
-#cryn2 = RooRealVar("n_{2}","n_{2}",0,3)
+#Crystal Ball
+crymu = RooRealVar("#mu","Mean of Crystal Ball",0.13,0.14)
+crysigma = RooRealVar("#sigma","#sigma",0.0001,0.01)
+cryalpha = RooRealVar("#alpha","#alpha",0,10)
+cryn = RooRealVar("n","n",0,10)
 #Set Constants for testing
+#crymu = RooRealVar("#mu","Mean of Crystal Ball",0.1346,0.132,0.14)
+#crysigma = RooRealVar("#sigma","#sigma",0.006,0.1,0.01)
+#cryalpha = RooRealVar("#alpha","#alpha",1.5,0.1,2)
+#cryn = RooRealVar("n","n",0.7,0.1,5)
+#nsig = RooRealVar("N_{Signal}","nsig",77555,0,100000)
+#crymu.setConstant()
+#crysigma.setConstant()
+#cryalpha.setConstant()
+#cryn.setConstant()
+#nsig.setConstant()
 
-nsig = RooRealVar("N_{Signal}","nsig",77555,0,100000)
+nsig = RooRealVar("N_{Signal}","nsig",77555,0,200000)
 
-sig = MyDblCB("sig","Crystal Ball Signal Function",pi0mass,crymu,crysigma,cryalpha1,cryn1,cryalpha2,cryn2) #Use for signal Crystal Ball
+sig = RooCBShape("sig","Crystal Ball Signal Function",pi0mass,crymu,crysigma,cryalpha,cryn) #Use for signal Crystal Ball
 SIG = RooArgSet(sig)
-
-#sig1 = MyDblCB("sig","Crystal Ball Signal Function",pi0mass,crymu,crysigma,cryalpha1,cryn1,cryalpha2,cryn2) #Use for signal Crystal Ball
-#SIG = RooArgSet(sig1)
-#sig = RooAddPdf("sig","CrystalBall*Yield",RooArgList(sig1),RooArgList(nsig))
+pdf = RooAddPdf("pdf","sig",RooArgList(sig),RooArgList(nsig))
 
 #----------------------------------------------------------------------- 
 #----------------------------------------------------------------------- 
@@ -58,8 +54,8 @@ SIG = RooArgSet(sig)
 #----------------------------------------------------------------------- 
 #-----------------------------------------------------------------------
 
-#fitRes = sig.fitTo(data, RooFit.Save(kTRUE), RooFit.Range("Full"));
-fitRes = sig.fitTo(data, RooFit.Save(kTRUE), RooFit.Extended(kTRUE), RooFit.NumCPU(4), RooFit.Strategy(2), RooFit.Minimizer("Minuit2", "minimize"), RooFit.Minos(kTRUE))
+fitRes = pdf.fitTo(data, RooFit.Save(kTRUE), RooFit.Range("Full"));
+#fitRes = sig.fitTo(data, RooFit.Save(kTRUE), RooFit.Extended(kTRUE), RooFit.NumCPU(4), RooFit.Strategy(2), RooFit.Minimizer("Minuit2", "minimize"), RooFit.Minos(kTRUE))
 #fitRes = sig.fitTo(data, RooFit.Save(kTRUE), RooFit.Extended(kTRUE), RooFit.NumCPU(4), RooFit.Strategy(2), RooFit.Minos(kTRUE))
 
 #Figure of Merit
@@ -112,8 +108,8 @@ data.plotOn(frame1)
 #dchib1Sig_1k.plotOn(frame1)
 #sig.plotOn(frame1, RooFit.Components(BKG),RooFit.LineColor(kRed),RooFit.LineStyle(kDashed)) #Uncomment for background dashed line
 #sig.plotOn(frame1, RooFit.Components(SIG),RooFit.LineColor(kBlue))
-sig.plotOn(frame1, RooFit.LineColor(kBlack))
-sig.paramOn(frame1,RooFit.Format("NEU", RooFit.AutoPrecision(2)), RooFit.Layout(0.57, 0.96, 0.93))
+pdf.plotOn(frame1, RooFit.LineColor(kBlack))
+pdf.paramOn(frame1,RooFit.Format("NEU", RooFit.AutoPrecision(2)), RooFit.Layout(0.57, 0.96, 0.93))
 frame1.Draw()
 
 hpull1 = frame1.pullHist()
@@ -164,9 +160,4 @@ tex1.Draw()
 #tex2.SetNDC()
 #tex2.Draw()
 
-#canvas.Print("/home/taylor/Research/plots/nbpi0/pi0mass_crystalball_fit_smallinclusive.pdf")
-#canvas.Print("/home/taylor/Research/plots/nbpi0/pi0mass_crystalball_fit_smallinclusive.eps")
-#canvas.Print("/home/taylor/Research/plots/nbpi0/pi0mass_crystalball_fit_smallinclusive.png")
-canvas.Print("/home/taylor/Research/plots/nbpi0/pi0mass_doublecrystalball_fit_smallinclusiveminuit2.png")
-#canvas.Print("/home/taylor/Research/plots/nbpi0/pi0mass_crystalball_fit_smallinclusiveconstants.png")
-
+canvas.Print("/home/tkimmel/Research/plots/nbpi0/pi0mass_crystalball_fit.png")

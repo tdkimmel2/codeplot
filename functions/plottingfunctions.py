@@ -91,12 +91,12 @@ def plot_variable2histos(Tree,Variable,Option1,Option1Legend,Option2,Option2Lege
     Tree.Draw(Variable+">>h1",Option1)
     Tree.Draw(Variable+">>h2",Option2)
 
-    norm1 = h1.GetEntries()
-    norm2 = h2.GetEntries()
+    norm1 = Histogram1.GetEntries()
+    norm2 = Histogram2.GetEntries()
     #if norm1 != 0:
-    #    h1.Scale(1/norm1)
+    #    Histogram1.Scale(1/norm1)
     #if norm2 != 0:
-    #    h2.Scale(1/norm2)
+    #    Histogram2.Scale(1/norm2)
 
     Frame.addTH1(Histogram1)
     Frame.addTH1(Histogram2)
@@ -260,7 +260,6 @@ def plot_variable4histos(rb,lb,Tree,Variable,Option1,Leg1,Option2,Leg2,Option3,L
     gStyle.SetTitleW(0.99)
 
     Histogram1.SetLineColor(kBlue)
-    #Histogram1.SetFillColor(kBlue)
     Histogram1.SetLineWidth(2)
     Histogram1.SetMinimum(1)
 
@@ -327,10 +326,10 @@ def plot_variable4histos(rb,lb,Tree,Variable,Option1,Leg1,Option2,Leg2,Option3,L
     leg.SetFillColor(kWhite)
     leg.SetLineColor(kWhite)
     leg.SetTextSize(0.04)
-    leg.AddEntry(Frame.findObject("Histogram1"),Leg1+" "+nentriesstr1,"l")
-    leg.AddEntry(Frame.findObject("Histogram2"),Leg2+" "+nentriesstr2,"l")
-    leg.AddEntry(Frame.findObject("Histogram3"),Leg3+" "+nentriesstr3,"l")
-    leg.AddEntry(Frame.findObject("Histogram4"),Leg4+" "+nentriesstr4,"l")
+    leg.AddEntry(Frame.findObject("h1"),Leg1+" "+nentriesstr1,"l")
+    leg.AddEntry(Frame.findObject("h2"),Leg2+" "+nentriesstr2,"l")
+    leg.AddEntry(Frame.findObject("h3"),Leg3+" "+nentriesstr3,"l")
+    leg.AddEntry(Frame.findObject("h4"),Leg4+" "+nentriesstr4,"l")
     Frame.addObject(leg)
 
     #gStyle.SetOptStat("e");
@@ -367,9 +366,9 @@ def plot_variable5histos(rb,lb,Tree,Variable,Option1,Leg1,Option2,Leg2,Option3,L
     Histogram4.SetLineWidth(2)
     Histogram4.SetMinimum(1)
 
-    Histogram4.SetLineColor(kCyan)
-    Histogram4.SetLineWidth(2)
-    Histogram4.SetMinimum(1)
+    Histogram5.SetLineColor(kCyan)
+    Histogram5.SetLineWidth(2)
+    Histogram5.SetMinimum(1)
 
     Frame.SetTitle(Title)
     Frame.GetXaxis().CenterTitle(True)
@@ -401,21 +400,21 @@ def plot_variable5histos(rb,lb,Tree,Variable,Option1,Leg1,Option2,Leg2,Option3,L
     Tree.Draw(Variable+">>h4",Option4)
     Tree.Draw(Variable+">>h5",Option5)
 
-    norm1 = h1.GetEntries()
-    norm2 = h2.GetEntries()
-    norm3 = h3.GetEntries()
-    norm4 = h4.GetEntries()
-    norm5 = h5.GetEntries()
+    norm1 = Histogram1.GetEntries()
+    norm2 = Histogram2.GetEntries()
+    norm3 = Histogram3.GetEntries()
+    norm4 = Histogram4.GetEntries()
+    norm5 = Histogram5.GetEntries()
     if norm1 != 0:
-        h1.Scale(1/norm1)
+        Histogram1.Scale(1/norm1)
     if norm2 != 0:
-        h2.Scale(1/norm2)
+        Histogram2.Scale(1/norm2)
     if norm3 != 0:
-        h3.Scale(1/norm3)
+        Histogram3.Scale(1/norm3)
     if norm4 != 0:
-        h4.Scale(1/norm4)
+        Histogram4.Scale(1/norm4)
     if norm5 != 0:
-        h5.Scale(1/norm5)
+        Histogram5.Scale(1/norm5)
 
     Frame.addTH1(Histogram1)
     Frame.addTH1(Histogram2)
