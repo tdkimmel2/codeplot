@@ -16,7 +16,7 @@ gROOT.ProcessLineSync(".x MyDblCB.cxx")
 #f1 = "/home/tkimmel/Research/root/allmfrecon_k0sigtrain10vars.root"
 f1 = "/home/tkimmel/Research/root/allmfrecon.root"
 #f1 = "/home/tkimmel/Research/root/allmfdtokpi.root"
-tree = "dsprecontree"
+tree = "dsplrecontree"
 f = TFile(f1,"READ")
 t = f.Get(tree)
 
@@ -34,36 +34,26 @@ binWidthMEV = binWidth*1000
 
 vars = RooArgSet(deltam,dspPmag,kpdiff,whomi)
 
-#data = RooDataSet("data", "raw data", t, vars)# Background
+#data = RooDataSet("data", "raw data", t, vars)# All
 #data = RooDataSet("data", "raw data", t, vars, "abs(kpdiff)>0.28")# Background
-#data = RooDataSet("data", "raw data", t, vars, "whomi==0")# Background
-#data = RooDataSet("data", "raw data", t, vars, "abs(kpdiff>0.1) && whomi==0")# Background
 data = RooDataSet("data", "raw data", t, vars, "whomi==0 && dspPmag>5")# Background
+#data = RooDataSet("data", "raw data", t, vars, "whomi==0 && abs(kpdiff)>0.1")# Background
 
 #Function Variables
 
-#Chebyshev
-c0 = RooRealVar("c_{0}","c_{0}",-10,10)
-c1 = RooRealVar("c_{1}","c_{1}",-10,10)
-c2 = RooRealVar("c_{2}","c_{2}",-10,10)
+##Chebyshev
+#c0 = RooRealVar("c_{0}","c_{0}",-1,1)
+#c1 = RooRealVar("c_{1}","c_{1}",-1,1)
+#c2 = RooRealVar("c_{2}","c_{2}",-1,1)
 
 ##DstD0BG
 dm0 = RooRealVar("dm0", "dm0", 0.1395, 0.136, 0.140)
-a = RooRealVar("a", "a", -20, 0)
-b = RooRealVar("b", "b", -10, 20)
+a = RooRealVar("a", "a", -50, 20)
+b = RooRealVar("b", "b", -20, 20)
 d = RooRealVar("d", "d", 0.006, 0, 10)
-dm0.setConstant()
+#dm0.setConstant()
 
 bkg = RooDstD0BG("bkg","DstD0BG Bkg Fcn",deltam,dm0,d,a,b)
-#bkg2 = RooChebychev("bkg2","DstD0BG Bkg Fcn",deltam,RooArgList(c0,c1))
-#bkg2 = RooChebychev("bkg2","DstD0BG Bkg Fcn",deltam,RooArgList(c0,c1,c2))
-#bkg1 = RooDstD0BG("bkg1","DstD0BG Bkg Fcn",deltam,dm0,d,a,b)
-#nbkg1 = RooRealVar("N_{Bkg1}","nbkg1",0,1000000)
-#bkg2 = RooChebychev("bkg2","DstD0BG Bkg Fcn",deltam,RooArgList(c0))
-#nbkg2 = RooRealVar("N_{Bkg2}","nbkg2",0,1000000)
-#frac = RooRealVar("frac","frac",0,1)
-#bkg =RooAddPdf("bkg","dst+cheby",RooArgList(bkg1,bkg2),RooArgList(nbkg1,nbkg2))
-#bkg =RooProdPdf("bkg","dst+cheby",RooArgList(bkg1,bkg2))
 
 #----------------------------------------------------------------------- 
 #----------------------------------------------------------------------- 
@@ -93,7 +83,7 @@ fitRes.Print()
 # Sanity Check
 h1 = TH1F("h1","h1",nBins,lb,rb)
 
-frame1 = deltam.frame(RooFit.Bins(nBins),RooFit.Title("D^{*+} -> D^{0}(-> #pi^{0} + K_{S}^{0}) + #pi^{+}: From All MC"))
+frame1 = deltam.frame(RooFit.Bins(nBins),RooFit.Title("D^{*+} -> D^{0}(-> #pi^{0} + K_{L}^{0}) + #pi^{+}: From All MC"))
 pullFrame = deltam.frame(RooFit.Bins(nBins),RooFit.Title(""))
 # Beautification Things
 frame1.SetStats(0)
@@ -110,7 +100,7 @@ frame1.GetYaxis().SetTitle("Events/[%.3f MeV]"%binWidthMEV)
 
 data.plotOn(frame1)
 bkg.plotOn(frame1, RooFit.LineColor(kBlack))
-bkg.paramOn(frame1,RooFit.Format("NEU", RooFit.AutoPrecision(2)), RooFit.Layout(0.45, 0.85, 0.4))
+bkg.paramOn(frame1,RooFit.Format("NEU", RooFit.AutoPrecision(2)), RooFit.Layout(0.35, 0.85, 0.5))
 frame1.Draw()
 
 hpull1 = frame1.pullHist()
@@ -150,12 +140,7 @@ tex1.SetTextSize(0.1)
 tex1.SetNDC()
 tex1.Draw()
 
-canvas.Print("/home/tkimmel/Research/plots/allSignalBkgFits/SBackground_all_flavorCut_fixeddm0.png")
-#canvas.Print("/home/tkimmel/Research/plots/allSignalBkgFits/SBackground_whomi_constdm0.png")
-#canvas.Print("/home/tkimmel/Research/plots/allSignalBkgFits/SBackground_whomi&&kpdiffp1_constdm0.png")
-
-#canvas.Print("/home/tkimmel/Research/plots/allSignalBkgFits/SBackground_dst&cheby1_whomi_constdm0.png")
-#canvas.Print("/home/tkimmel/Research/plots/allSignalBkgFits/SBackground_dst*cheby_whomi_constdm0.png")
+canvas.Print("/home/tkimmel/Research/plots/allSignalBkgFits/BackgroundL_all_flavorCut.png")
 
 """
 ws = RooWorkspace("ws")

@@ -15,28 +15,32 @@ gInterpreter.ProcessLine('#include "MyDblCB.h"')
 #f1 = "/home/tkimmel/Research/root/k0signalmfrecon.root"
 #f1 = "/home/tkimmel/Research/root/klsignalmfrecon.root"
 #f1 = "/home/tkimmel/Research/root/allmfrecon_k0sigtrain10vars.root"
-f1 = "/home/tkimmel/Research/root/allmfrecon.root"
+#f1 = "/home/tkimmel/Research/root/allmfrecon.root"
+f1 = "/home/tkimmel/Research/root/charmmfrecon_bcs.root"
 tree = "dsplrecontree"
 f = TFile(f1,"READ")
 t = f.Get(tree)
 
-#deltam = RooRealVar("deltam", "deltam", 0.138, 0.18)
-deltam = RooRealVar("deltam", "deltam", 0.138, 0.2)
-#x = RooRealVar("deltam", "deltam", 0.138, 0.18)
-nb = RooRealVar("nb", "nb", -1, 1)
-nbgm1 = RooRealVar("nbgm1", "nbgm1", -1, 1)
-nbgm2 = RooRealVar("nbgm2", "nbgm2", -1, 1)
-coskpiz = RooRealVar("coskpiz", "coskpiz", -1, 1)
-coskpizcm = RooRealVar("coskpizcm", "coskpizcm", -1, 1)
-cosdpipcm = RooRealVar("cosdpipcm", "cosdpipcm", -1, 1)
-pipp = RooRealVar("pipp", "pipp", 0, 1)
-dspPmag = RooRealVar("dspPmag", "dspPmag", 0, 10)
-#kpdiff = RooRealVar("kpdiff", "kpdiff", -5, 5)
-#dnb = RooRealVar("dnb", "dnb", -1, 1)
+#deltam = RooRealVar("deltam","deltam",0.138,0.18)
+deltam = RooRealVar("deltam","deltam",0.138,0.2)
+#x = RooRealVar("deltam","deltam",0.138,0.18)
+nb = RooRealVar("nb","nb",-1,1)
+nbgm1 = RooRealVar("nbgm1","nbgm1",-1,1)
+nbgm2 = RooRealVar("nbgm2","nbgm2",-1,1)
+coskpiz = RooRealVar("coskpiz","coskpiz",-1,1)
+coskpizcm = RooRealVar("coskpizcm","coskpizcm",-1,1)
+cosdpipcm = RooRealVar("cosdpipcm","cosdpipcm",-1,1)
+pipp = RooRealVar("pipp","pipp",0,1)
+dspPmag = RooRealVar("dspPmag","dspPmag",0,10)
+mfchi2 = RooRealVar("mfchi2","mfchi2",0,60)
+gmthetacms = RooRealVar("gmthetacms","gmthetacms",0,3.14)
+#kpdiff = RooRealVar("kpdiff","kpdiff",-5,5)
+#dnb = RooRealVar("dnb","dnb",-1,1)
 
 lb = deltam.getMin()
 rb = deltam.getMax()
-nBins = 42
+#nBins = 42
+nBins = 100
 binWidth = (rb-lb)/nBins
 binWidthMEV = binWidth*1000
 
@@ -45,7 +49,7 @@ binWidthMEV = binWidth*1000
 #vars = RooArgSet(deltam,nb,coskpiz,cosdpipcm,pipp,dspPmag,dnb)
 
 
-vars = RooArgSet(deltam,nb,dspPmag)
+vars = RooArgSet(deltam,nb,dspPmag,mfchi2,gmthetacms)
 
 
 #data = RooDataSet("data", "raw data", t, vars) #No cuts
@@ -57,7 +61,10 @@ vars = RooArgSet(deltam,nb,dspPmag)
 #data = RooDataSet("data", "raw data", t, vars, "abs(kpdiff)<0.1")# Signal
 #data = RooDataSet("data", "raw data", t, vars, "kpdiff>-0.1 && kpdiff<0.1")# Signal
 
-data = RooDataSet("data", "raw data", t, vars, "nb > -0.076 && dspPmag > 5")# 1 bsratio + flavor cut
+#data = RooDataSet("data", "raw data", t, vars, "nb > -0.076 && dspPmag > 5")# 1 bsratio + flavor cut
+#data = RooDataSet("data", "raw data", t, vars, "nb > 0.832 && dspPmag > 5")# 20 bsratio + flavor cut
+#data = RooDataSet("data", "raw data", t, vars, "mfchi2<15 && gmthetacms<1.2560 && dspPmag > 5")# 1 bsratio + flavor cut
+data = RooDataSet("data", "raw data", t, vars, "dspPmag > 5")# 1 bsratio + flavor cut
 
 
 #Function Variables
@@ -88,31 +95,77 @@ data = RooDataSet("data", "raw data", t, vars, "nb > -0.076 && dspPmag > 5")# 1 
 #width = RooRealVar("#sigma","#sigma",0.001,0.0005,0.01)# Signal MC
 #tail = RooRealVar("tail","tail",0.001,0.0005,0.01)# Signal MC
 
+##Gaussian
+#gausmean = RooRealVar("#mu_{sig}","#mu_{sig}",0.1453,0.145,0.146)
+#gaussigma = RooRealVar("#sigma_{sig}","#sigma_{sig}",0.0009,0.0001,0.001)
+#
+
 ##################################################################################
 ##################################################################################
 ##################################################################################
 
 ## All MC
-##Gaussian
-#gausmean = RooRealVar("#mu_{sig}","#mu_{sig}",0.1453,0.145,0.146)
-#gaussigma = RooRealVar("#sigma_{sig}","#sigma_{sig}",0.0009,0.0001,0.001)
-#
-##DstD0BG
-#dm0 = RooRealVar("dm0", "dm0", 0.137, 0.136, 0.140)
-#a = RooRealVar("a", "a", -30, -10)
-#b = RooRealVar("b", "b", -10, 10)
-#d = RooRealVar("d", "d", 0.006, 0, 10)
+#DstD0BG
+#dm0 = RooRealVar("dm0", "dm0", 0.1395, 0.136, 0.145)
+dm0 = RooRealVar("dm0", "dm0", 0.139151, 0.136, 0.145)
+a = RooRealVar("a", "a", -20, 10)
+b = RooRealVar("b", "b", 0, 5)
+d = RooRealVar("d", "d", 0.0049129, 0, 1)
+dm0.setConstant()
+#d.setConstant()
+
+mu = RooRealVar("#mu_{sig}","#mu_{sig}",0.1453,0.145,0.146)
+#gausmean.setConstant()
+sigma = RooRealVar("#sigma_{sig}","#sigma_{sig}",0.0007,0.0003,0.002)# Signal MC
+a1 = RooRealVar("a1","a1",1.205,1,2)
+#n1 = RooRealVar("n1","n1",10,1,10)
+n1 = RooRealVar("n1","n1",7.42,1,10)
+a2 = RooRealVar("a2","a2",1.203,1,2)
+n2 = RooRealVar("n2","n2",1.9,1,5)
+n1.setConstant()
+n2.setConstant()
+"""
+# Double Sided Crystal Ball BCS && flavorCut with Fixed N
+################Good Fit Parameters for These Cuts and Constant N#######################
+mu = RooRealVar("#mu_{sig}","#mu_{sig}",0.1453,0.145,0.146)
+#gausmean.setConstant()
+sigma = RooRealVar("#sigma_{sig}","#sigma_{sig}",0.0007,0.0003,0.002)# Signal MC
+a1 = RooRealVar("a1","a1",1.205,1,2)
+#n1 = RooRealVar("n1","n1",10,1,10)
+n1 = RooRealVar("n1","n1",7.42,1,10)
+a2 = RooRealVar("a2","a2",1.203,1,2)
+n2 = RooRealVar("n2","n2",1.9,1,5)
+n1.setConstant()
+n2.setConstant()
+"""
 
 """
-# Signal MC
-# Double Sided Crystal Ball
+# Double Sided Crystal Ball 1 basratio && flavorCut with Fixed N
+################Good Fit Parameters for These Cuts and Constant N#######################
+mu = RooRealVar("#mu_{sig}","#mu_{sig}",0.1453,0.145,0.146)
+#gausmean.setConstant()
+sigma = RooRealVar("#sigma_{sig}","#sigma_{sig}",0.0007,0.0004,0.0015)# Signal MC
+a1 = RooRealVar("a1","a1",1.205,1,10)
+#n1 = RooRealVar("n1","n1",10,1,10)
+n1 = RooRealVar("n1","n1",7.42,1,10)
+a2 = RooRealVar("a2","a2",1.203,1,10)
+n2 = RooRealVar("n2","n2",1.9,1,5)
+n1.setConstant()
+n2.setConstant()
+"""
+"""
+# Double Sided Crystal Ball 20 basratio && flavorCut
+################Good Fit Parameters for These Cuts and Constant N#######################
 mu = RooRealVar("#mu_{sig}","#mu_{sig}",0.1453,0.145,0.146)
 #gausmean.setConstant()
 sigma = RooRealVar("#sigma_{sig}","#sigma_{sig}",0.001,0.0005,0.01)# Signal MC
-a1 = RooRealVar("a1","a1",1.601,0,5)
-n1 = RooRealVar("n1","n1",2.499,0,5)
-a2 = RooRealVar("a2","a2",1.0045,0,5)
-n2 = RooRealVar("n2","n2",0,100)
+a1 = RooRealVar("a1","a1",1.249,1,2)
+#n1 = RooRealVar("n1","n1",10,1,10)
+n1 = RooRealVar("n1","n1",7.42,1,10)
+a2 = RooRealVar("a2","a2",1.228,1,2)
+n2 = RooRealVar("n2","n2",1.9,1,5)
+n1.setConstant()
+n2.setConstant()
 """
 """
 # Double Sided Crystal Ball 1 basratio && flavorCut
@@ -121,11 +174,12 @@ mu = RooRealVar("#mu_{sig}","#mu_{sig}",0.1453,0.145,0.146)
 #gausmean.setConstant()
 sigma = RooRealVar("#sigma_{sig}","#sigma_{sig}",0.001,0.0005,0.01)# Signal MC
 a1 = RooRealVar("a1","a1",1.601,1,2)
-n1 = RooRealVar("n1","n1",2.499,0,10)
+n1 = RooRealVar("n1","n1",2.449,0,10)
 a2 = RooRealVar("a2","a2",1.0045,1,2)
 n2 = RooRealVar("n2","n2",1,3)
 """
-# Double Sided Crystal Ball 1 basratio && flavorCut
+"""
+# Double Sided Crystal Ball 20 basratio && flavorCut
 mu = RooRealVar("#mu_{sig}","#mu_{sig}",0.1453,0.145,0.146)
 #gausmean.setConstant()
 sigma = RooRealVar("#sigma_{sig}","#sigma_{sig}",0.001,0.0005,0.01)# Signal MC
@@ -133,21 +187,15 @@ a1 = RooRealVar("a1","a1",1.601,1,2)
 n1 = RooRealVar("n1","n1",2.499,0,10)
 a2 = RooRealVar("a2","a2",1.0045,1,2)
 n2 = RooRealVar("n2","n2",1,3)
-
-#DstD0BG
-dm0 = RooRealVar("dm0", "dm0", 0.1395, 0.136, 0.145)
-a = RooRealVar("a", "a", -50, 10)
-b = RooRealVar("b", "b", -1, 1)
-d = RooRealVar("d", "d", 0.485, 0, 10)
-dm0.setConstant()
+"""
 
 ##################################################################################
 ##################################################################################
 ##################################################################################
 
-nsig = RooRealVar("N_{Signal}","nsig",0,10000)# All MC
+nsig = RooRealVar("N_{Signal}","nsig",0,1000)# All MC
 #nsig = RooRealVar("N_{Signal}","nsig",0,100000)# Signal MC
-nbkg = RooRealVar("N_{Bkg}","nbkg",0,10000)
+nbkg = RooRealVar("N_{Bkg}","nbkg",0,1000000)
 
 #cheby = RooChebychev("Chebychev","Chebychev",deltam,RooArgList(c0,c1,c2))
 #bkg = RooAddPdf("bkg","bkg",RooArgList(cheby,dstd0),RooArgList(frac))
@@ -261,10 +309,9 @@ pdf.plotOn(frame1, RooFit.Components(SIG),RooFit.LineColor(kBlue))
 pdf.plotOn(frame1, RooFit.Components(BKG),RooFit.LineColor(kRed),RooFit.LineStyle(kDashed))
 pdf.plotOn(frame1, RooFit.LineColor(kBlack))
 #pdf.plotOn(frame1, RooFit.Components(bkg),RooFit.LineColor(kRed),RooFit.LineStyle(kDashed))
-#pdf.paramOn(frame1,Parameters(RooArgList(mu,sigmaL,sigmaR,alphaL,alphaR,nsig)),Format("NEU", AutoPrecision(2)), Layout(0.55, 0.89, 0.89))
 
 #pdf.paramOn(frame1,RooFit.Format("NEU", RooFit.AutoPrecision(2)), RooFit.Layout(0.57, 0.96, 0.93))# Higher parameter box
-#pdf.paramOn(frame1,RooFit.Format("NEU", RooFit.AutoPrecision(2)), RooFit.Layout(0.57, 0.96, 0.50))# Lower parameter box
+pdf.paramOn(frame1,RooFit.Format("NEU", RooFit.AutoPrecision(2)), RooFit.Layout(0.57, 0.96, 0.60))# Lower parameter box
 frame1.Draw()
 
 hpull1 = frame1.pullHist()
@@ -327,8 +374,14 @@ tex2.Draw()
 #canvas.Print("/home/taylor/Research/plots/alldtokpi/allmfkl54pinbcoskpizcosdpipcmpippcutsbcs.pdf")
 #canvas.Print("/home/taylor/Research/plots/alldtokpi/allmfkl54pinbcoskpizcosdpipcmpippcutsbcs.eps")
 #canvas.Print("/home/taylor/Research/plots/alldtokpi/allmfkl54pinbcoskpizcosdpipcmpippcutsbcs.png")
+#canvas.Print("/home/tkimmel/Research/plots/alldtokpi/dspPmagCut/testL.png")
 
-canvas.Print("/home/tkimmel/Research/plots/alldtokpi/dspPmagCut/1bsratioL_goodFit_paramOff.png")
+#canvas.Print("/home/tkimmel/Research/plots/alldtokpi/dspPmagCut/1bsratioL_fixedNs_paramOff.png")
+#canvas.Print("/home/tkimmel/Research/plots/alldtokpi/dspPmagCut/20bsratioL_fixedNs_paramOff.png")
+#canvas.Print("/home/tkimmel/Research/plots/alldtokpi/dspPmagCut/20bsratioL.png")
+#canvas.Print("/home/tkimmel/Research/plots/alldtokpi/dspPmagCut/simuloptL_fixedNs.png")
+canvas.Print("/home/tkimmel/Research/plots/alldtokpi/dspPmagCut/flavorCutL_fixedNs_fixeddm0_BCS.png")
+#canvas.Print("/home/tkimmel/Research/plots/alldtokpi/dspPmagCut/flavorCutL_fixedNs_fixeddm0&d_BCS_paramOff.png")
 
 """
 ws = RooWorkspace("ws")

@@ -890,7 +890,8 @@ def OptimizeCut_LessThan(rb,lb,Tree,Variable,TruthVariable,CutString,Title,XTitl
     hFOM = TH1F("hFOM","hFOM",nBins,lb,rb)
     hFOM.SetLineColor(kBlack)
     for k in range(nBins):
-        hFOM.SetBinContent(k+1,FOM[k])
+        hFOM.SetBinContent(nBins-(k+1),FOM[k])
+        #hFOM.SetBinContent(k+1,FOM[k])
     hFOM.Draw()
 
     Frame2.SetTitle("")
