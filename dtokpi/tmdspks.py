@@ -4,10 +4,9 @@ import sys
 sys.path.append('/home/taylor/Research/codeplot/functions/')
 from plottingfunctions import *
 
+f = TFile("/home/tkimmel/Research/root/kssignalmfrecon.root","READ")
 #f = TFile("/home/tkimmel/Research/root/allmfdtokpi.root","READ")
 #f = TFile("/home/tkimmel/Research/root/genericmfdtokpi.root","READ")
-#f = TFile("/home/taylor/Research/root/allmfdtokpi.root","READ")
-f = TFile("/home/taylor/Research/root/allmfrecon.root","READ")
 t = f.Get("dsprecontree")
 
 deltam = RooRealVar("deltam","deltam",0.138,0.18)

@@ -6,7 +6,7 @@ def plot_variable(Tree,Variable,Option,Title,XTitle,Histogram,Frame,LegendLeftEd
     c1 = TCanvas("c1","",1100,500)
     gPad.SetRightMargin(0.2)
     gPad.SetLeftMargin(0.15)
-    gPad.SetRightMargin(0.05)
+    gPad.SetTopMargin(0.1)
     gPad.SetBottomMargin(0.2)
     gStyle.SetTitleW(0.99)
 
@@ -57,16 +57,20 @@ def plot_variable2histos(Tree,Variable,Option1,Option1Legend,Option2,Option2Lege
     c1 = TCanvas("c1","",800,500)
     gPad.SetRightMargin(0.2)
     gPad.SetLeftMargin(0.15)
-    gPad.SetRightMargin(0.05)
+    gPad.SetTopMargin(0.13)
     gPad.SetBottomMargin(0.2)
-    gStyle.SetTitleW(0.99)
+    #gStyle.SetTitleW(0.99)
 
     Histogram1.SetLineColor(kBlue)
     #Histogram1.SetFillColor(kBlue)
+    #Histogram1.SetLineStyle(kDashed)
     Histogram1.SetLineWidth(2)
     Histogram1.SetMinimum(1)
 
-    Histogram2.SetLineColor(kBlack)
+    #Histogram2.SetLineColor(kBlack)
+    Histogram2.SetLineColor(kRed)
+    Histogram2.SetLineStyle(kDashed)
+    #Histogram2.SetLineStyle(9)
     Histogram2.SetLineWidth(2)
     Histogram2.SetMinimum(1)
 
@@ -78,11 +82,12 @@ def plot_variable2histos(Tree,Variable,Option1,Option1Legend,Option2,Option2Lege
     Frame.GetXaxis().SetTitleSize(0.05)
     Frame.GetXaxis().SetTitleOffset(1.2)
     Frame.GetYaxis().CenterTitle(True)
-    Frame.GetYaxis().SetLabelOffset(0.01)
-    Frame.GetYaxis().SetLabelSize(0.05)
-    Frame.GetYaxis().SetTitle("Events/[%.f Bins]"%nBins)
-    Frame.GetYaxis().SetTitleSize(0.05)
-    Frame.GetYaxis().SetTitleOffset(1.2)
+    Frame.GetYaxis().SetMaxDigits(4)
+    #Frame.GetYaxis().SetLabelOffset(0.01)
+    #Frame.GetYaxis().SetLabelSize(0.05)
+    #Frame.GetYaxis().SetTitle("Events/[%.f Bins]"%nBins)
+    #Frame.GetYaxis().SetTitleSize(0.05)
+    #Frame.GetYaxis().SetTitleOffset(3)
 
     nentries1 = Tree.Draw(Variable+">>h1",Option1,"goff")
     nentriesstr1 = str(nentries1)
@@ -93,10 +98,12 @@ def plot_variable2histos(Tree,Variable,Option1,Option1Legend,Option2,Option2Lege
 
     norm1 = Histogram1.GetEntries()
     norm2 = Histogram2.GetEntries()
-    #if norm1 != 0:
-    #    Histogram1.Scale(1/norm1)
-    #if norm2 != 0:
-    #    Histogram2.Scale(1/norm2)
+    """
+    if norm1 != 0:
+        Histogram1.Scale(1/norm1)
+    if norm2 != 0:
+        Histogram2.Scale(1/norm2)
+    """
 
     Frame.addTH1(Histogram1)
     Frame.addTH1(Histogram2)
@@ -107,14 +114,114 @@ def plot_variable2histos(Tree,Variable,Option1,Option1Legend,Option2,Option2Lege
     leg.SetFillColor(kWhite)
     leg.SetLineColor(kWhite)
     leg.SetTextSize(0.04)
-    leg.AddEntry(Frame.findObject("h1"),Option1Legend+" "+nentriesstr1,"l")
-    leg.AddEntry(Frame.findObject("h2"),Option2Legend+" "+nentriesstr2,"l")
+    #leg.AddEntry(Frame.findObject("h1"),Option1Legend+" "+nentriesstr1,"l")# With number of entries
+    #leg.AddEntry(Frame.findObject("h2"),Option2Legend+" "+nentriesstr2,"l")# With number of entries
+    leg.AddEntry(Frame.findObject("h1"),Option1Legend,"l")
+    leg.AddEntry(Frame.findObject("h2"),Option2Legend,"l")
     Frame.addObject(leg)
 
     #gStyle.SetOptStat("e");
     #gPad.SetLogy() #For logarithmic scale
     Frame.Draw()
     #c1.SetLogy(1)
+
+    # Reverse y tick marks
+    gPad.SetTicky(0)
+    Frame.GetYaxis().SetTicks("+")
+    Frame.GetYaxis().SetLabelOffset(-0.03)
+    Frame.GetYaxis().SetLabelSize(0.05)
+    Frame.GetYaxis().SetTitleSize(0.05)
+    Frame.GetYaxis().SetTitleOffset(-1.4)
+    Frame.GetYaxis().SetTitle("Events/[%.f Bins]"%nBins)
+
+    c1.Update()
+    c1.Print(OutputFilename+".pdf")
+    c1.Print(OutputFilename+".eps")
+    c1.Print(OutputFilename+".png")
+
+
+def plot_variable2trees(Tree,Tree2,Variable,Option1,Option1Legend,Option2,Option2Legend,Title,XTitle,Histogram1,Histogram2,Frame,LegendLeftEdge,LegendBottomEdge,OutputFilename):
+    nBins = 100
+    c1 = TCanvas("c1","",800,500)
+    gPad.SetRightMargin(0.2)
+    gPad.SetLeftMargin(0.15)
+    gPad.SetTopMargin(0.13)
+    gPad.SetBottomMargin(0.2)
+    #gStyle.SetTitleW(0.99)
+
+    Histogram1.SetLineColor(kBlue)
+    #Histogram1.SetFillColor(kBlue)
+    Histogram1.SetLineWidth(2)
+    Histogram1.SetMinimum(1)
+
+    #Histogram2.SetLineColor(kBlack)
+    Histogram2.SetLineColor(kRed)
+    Histogram2.SetLineStyle(kDashed)
+    Histogram2.SetLineWidth(2)
+    Histogram2.SetMinimum(1)
+
+    Frame.SetTitle(Title)
+    #Frame.SetTitleOffset(1.5)
+    Frame.GetXaxis().CenterTitle(True)
+    Frame.GetXaxis().SetLabelOffset(0.01)
+    Frame.GetXaxis().SetLabelSize(0.05)
+    Frame.GetXaxis().SetTitle(XTitle)
+    Frame.GetXaxis().SetTitleSize(0.05)
+    Frame.GetXaxis().SetTitleOffset(1.2)
+    Frame.GetYaxis().CenterTitle(True)
+    Frame.GetYaxis().SetLabelOffset(0.01)
+    Frame.GetYaxis().SetLabelSize(0.05)
+    Frame.GetYaxis().SetTitle("Events/[%.f Bins]"%nBins)
+    Frame.GetYaxis().SetTitleSize(0.05)
+    Frame.GetYaxis().SetTitleOffset(1.5)
+
+    nentries1 = Tree.Draw(Variable+">>h1",Option1,"goff")
+    nentriesstr1 = str(nentries1)
+    nentries2 = Tree2.Draw(Variable+">>h2",Option2,"goff")
+    nentriesstr2 = str(nentries2)
+    Tree.Draw(Variable+">>h1",Option1)
+    Tree2.Draw(Variable+">>h2",Option2)
+
+    norm1 = Histogram1.GetEntries()
+    norm2 = Histogram2.GetEntries()
+    """
+    if norm1 != 0:
+        Histogram1.Scale(1/norm1)
+    if norm2 != 0:
+        Histogram2.Scale(1/norm2)
+    """
+
+    Frame.addTH1(Histogram1)
+    Frame.addTH1(Histogram2)
+
+    legendwidth = 0.2
+    legendheight = 0.2
+    leg = TLegend(LegendLeftEdge,LegendBottomEdge,LegendLeftEdge+legendwidth,LegendBottomEdge+legendheight)
+    leg.SetFillColor(kWhite)
+    leg.SetLineColor(kWhite)
+    leg.SetTextSize(0.04)
+    leg.AddEntry(Frame.findObject("h1"),Option1Legend+" "+nentriesstr1,"l")# With number of entries
+    leg.AddEntry(Frame.findObject("h2"),Option2Legend+" "+nentriesstr2,"l")# With number of entries
+    #leg.AddEntry(Frame.findObject("h1"),Option1Legend,"l")
+    #leg.AddEntry(Frame.findObject("h2"),Option2Legend,"l")
+    Frame.addObject(leg)
+
+    #gStyle.SetOptStat("e");
+    #gPad.SetLogy() #For logarithmic scale
+    Frame.Draw()
+    #c1.SetLogy(1)
+
+    # Reverse y tick marks
+    """
+    gPad.SetTicky(0)
+    Frame.GetYaxis().SetTicks("+")
+    Frame.GetYaxis().SetLabelOffset(-0.03)
+    Frame.GetYaxis().SetLabelSize(0.05)
+    Frame.GetYaxis().SetTitleSize(0.05)
+    Frame.GetYaxis().SetTitleOffset(-1.4)
+    Frame.GetYaxis().SetTitle("Events/[%.f Bins]"%nBins)
+    """
+
     c1.Update()
     c1.Print(OutputFilename+".pdf")
     c1.Print(OutputFilename+".eps")
@@ -126,7 +233,7 @@ def plot_variablewith2cuts(Tree,Variable,Cut1,Cut2,Title,XTitle,Histogram,Frame,
     c1 = TCanvas("c1","",800,500)
     gPad.SetRightMargin(0.2)
     gPad.SetLeftMargin(0.15)
-    gPad.SetRightMargin(0.05)
+    gPad.SetTopMargin(0.1)
     gPad.SetBottomMargin(0.2)
     gStyle.SetTitleW(0.99)
 
@@ -175,7 +282,7 @@ def plot_variable3histos(rb,lb,Tree,Variable,Option1,Leg1,Option2,Leg2,Option3,L
     c1 = TCanvas("c1","",1100,500)
     gPad.SetRightMargin(0.2)
     gPad.SetLeftMargin(0.15)
-    gPad.SetRightMargin(0.05)
+    gPad.SetTopMargin(0.1)
     gPad.SetBottomMargin(0.2)
     gStyle.SetTitleW(0.99)
 
@@ -255,7 +362,7 @@ def plot_variable4histos(rb,lb,Tree,Variable,Option1,Leg1,Option2,Leg2,Option3,L
     c1 = TCanvas("c1","",1100,500)
     gPad.SetRightMargin(0.2)
     gPad.SetLeftMargin(0.15)
-    gPad.SetRightMargin(0.05)
+    gPad.SetTopMargin(0.1)
     gPad.SetBottomMargin(0.2)
     gStyle.SetTitleW(0.99)
 
@@ -345,7 +452,7 @@ def plot_variable5histos(rb,lb,Tree,Variable,Option1,Leg1,Option2,Leg2,Option3,L
     c1 = TCanvas("c1","",1100,500)
     gPad.SetRightMargin(0.2)
     gPad.SetLeftMargin(0.15)
-    gPad.SetRightMargin(0.05)
+    gPad.SetTopMargin(0.1)
     gPad.SetBottomMargin(0.2)
     gStyle.SetTitleW(0.99)
 
@@ -933,7 +1040,7 @@ def plot_roc(rb,lb,Tree,Variable,TruthVariable,CutString,Title,Frame,LegendLeftE
     c1 = TCanvas("c1","",1100,500)
     gPad.SetRightMargin(0.2)
     gPad.SetLeftMargin(0.15)
-    gPad.SetRightMargin(0.05)
+    gPad.SetTopMargin(0.1)
     gPad.SetBottomMargin(0.2)
     gStyle.SetTitleW(0.99)
 
@@ -1000,7 +1107,7 @@ def plot_2d(Tree,Variable1,Variable2,Option1,Option2,Title,XTitle,YTitle,Histogr
     c1 = TCanvas("c1","",900,900)
     gPad.SetRightMargin(0.4)
     gPad.SetLeftMargin(0.2)
-    gPad.SetRightMargin(0.05)
+    gPad.SetTopMargin(0.1)
     gPad.SetBottomMargin(0.2)
     gStyle.SetTitleW(0.99)
     gStyle.SetOptStat(0)

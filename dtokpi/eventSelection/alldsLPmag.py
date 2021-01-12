@@ -4,13 +4,14 @@ sys.path.append('/home/tkimmel/Research/codeplot/functions/')
 from plottingfunctions import *
 
 f = TFile("/home/tkimmel/Research/root/allmfrecon.root","READ")
-t = f.Get("dsplrecontree")
+t = f.Get("dslrecontree")
 
-dspPmag = RooRealVar("dspPmag","dspPmag",0,5)
+#dsPmag = RooRealVar("dspPmag","dspPmag",0,5)
+dsPmag = RooRealVar("dsPmag","dsPmag",0,10)
 nBins = 100
-lb = dspPmag.getMin()
-rb = dspPmag.getMax()
-frame = dspPmag.frame()
+lb = dsPmag.getMin()
+rb = dsPmag.getMax()
+frame = dsPmag.frame()
 
 h1 = TH1F("h1","h1",nBins,lb,rb)
 h2 = TH1F("h2","h2",nBins,lb,rb)
@@ -26,4 +27,11 @@ h5 = TH1F("h5","h5",nBins,lb,rb)
 
 #plot_variable2histos(t,"dspPmag","mcflag==2 && nb>0.832","Charm MC","mcflag>2 && nb>0.832","B or UDS MC","Reconstructed D^{*+} 3-Momentum Magnitude D^{*+} -> D^{0}(-> #pi^{0} + K_{L}^{0}) + #pi^{+}: From All MC","|p_{D^{*+}}| (GeV/c)",h1,h2,frame,0.65,0.65,"/home/tkimmel/Research/plots/alldtokpi/alldsplPmag_2Histos_nb832")
 #plot_variable2histos(t,"dspPmag","mcflag==2 && abs(kpdiff)<0.1","Charm MC","mcflag>2 && abs(kpdiff)<0.1","B or UDS MC","Reconstructed D^{*+} 3-Momentum Magnitude D^{*+} -> D^{0}(-> #pi^{0} + K_{L}^{0}) + #pi^{+}: From All MC","|p_{D^{*+}}| (GeV/c)",h1,h2,frame,0.65,0.65,"/home/tkimmel/Research/plots/alldtokpi/alldsplPmag_2Histos_kpdiff1")
-plot_variable2histos(t,"dspPmag","mcflag==2 && abs(kpdiff)<0.1 && deltam>0.1438219 && deltam<0.1470811","Charm MC","mcflag>2 && abs(kpdiff)<0.1 && deltam>0.1438219 && deltam<0.1470811","B or UDS MC","Reconstructed D^{*+} 3-Momentum Magnitude in CoM Frame D^{*+} -> D^{0}(-> #pi^{0} + K_{L}^{0}) + #pi^{+}: From All MC","|p_{D^{*+}}| (GeV/c)",h1,h2,frame,0.65,0.65,"/home/tkimmel/Research/plots/alldtokpi/alldsplPmag_2Histos_kpdiff1_deltam3sig")
+#plot_variable2histos(t,"dspPmag","mcflag==2 && abs(kpdiff)<0.1 && deltam>0.1438219 && deltam<0.1470811","Charm MC","mcflag>2 && abs(kpdiff)<0.1 && deltam>0.1438219 && deltam<0.1470811","B or UDS MC","Reconstructed D^{*+} 3-Momentum Magnitude in CoM Frame D^{*+} -> D^{0}(-> #pi^{0} + K_{L}^{0}) + #pi^{+}: From All MC","|p_{D^{*+}}| (GeV/c)",h1,h2,frame,0.65,0.65,"/home/tkimmel/Research/plots/alldtokpi/alldsplPmag_2Histos_kpdiff1_deltam3sig")
+
+#plot_variable2histos(t,"dspPmag","mcflag==2 && whomi>0","Charm MC","mcflag!=2 && mcflag !=5 && whomi>0","B","Reconstructed D^{*+} 3-Momentum Magnitude D^{*+} -> D^{0}(-> #pi^{0} + K_{L}^{0}) + #pi^{+}: From All MC","|p_{D^{*+}}| (GeV/c)",h1,h2,frame,0.75,0.7,"/home/tkimmel/Research/plots/alldtokpi/alldsplPmag_2Histos_whomi")
+#plot_variable2histos(t,"dspPmag","mcflag==2 && whomi>0","Charm MC","mcflag!=2 && mcflag !=5 && whomi>0 && deltam>0.1438219 && deltam<0.1470811","B","Reconstructed D^{*+} 3-Momentum Magnitude D^{*+} -> D^{0}(-> #pi^{0} + K_{L}^{0}) + #pi^{+}: From All MC","|p_{D^{*+}}| (GeV/c)",h1,h2,frame,0.75,0.7,"/home/tkimmel/Research/plots/alldtokpi/alldsplPmag_2Histos_whomi_deltamwindow")
+
+
+#plot_variable2histos(t,"dsPmag","mcflag==2 && whomi>0","Charm MC","mcflag!=2 && mcflag !=5 && whomi>0","B","Reconstructed D^{*} 3-Momentum Magnitude D^{*} -> D^{0}(-> #pi^{0} + K_{L}^{0}) + #pi: From All MC","|p_{D^{*}}| (GeV/c)",h1,h2,frame,0.75,0.7,"/home/tkimmel/Research/plots/alldtokpi/alldsLPmag_2Histos_whomi")
+plot_variable2histos(t,"dsPmag","mcflag==2 && whomi>0 && deltam>0.1438219 && deltam<0.1470811","Charm MC","mcflag!=2 && mcflag !=5 && whomi>0 && deltam>0.1438219 && deltam<0.1470811","B","Reconstructed D^{*} 3-Momentum Magnitude D^{*} -> D^{0}(-> #pi^{0} + K_{L}^{0}) + #pi: From All MC","|p_{D^{*}}| (GeV/c)",h1,h2,frame,0.75,0.7,"/home/tkimmel/Research/plots/alldtokpi/alldsLPmag_2Histos_whomi_deltamwindow")
