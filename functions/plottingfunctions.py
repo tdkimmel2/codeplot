@@ -40,7 +40,7 @@ def plot_variable(Tree,Variable,Option,Title,XTitle,Histogram,Frame,LegendLeftEd
     leg.SetLineColor(kWhite)
     leg.SetTextSize(0.04)
     leg.AddEntry(Frame.findObject("h1"),"Entries "+nentriesstr,"l")
-    Frame.addObject(leg)
+    #Frame.addObject(leg)
 
     #gStyle.SetOptStat("e");
     #gPad.SetLogy() #For logarithmic scale
@@ -1035,13 +1035,184 @@ def OptimizeCut_LessThan(rb,lb,Tree,Variable,TruthVariable,CutString,Title,XTitl
     c1.Print(OutputFilename+".eps")
     c1.Print(OutputFilename+".png")
 
+def NoBackgroundCut_GreaterThan(rb,lb,Tree,Variable,TruthVariable,CutString,Title,XTitle,Histogram1,Histogram2,Frame,LegendLeftEdge,OutputFilename,Sensitivity):
+    #c1 = TCanvas("c1","",800,500)
+    c1 = TCanvas("c1","",1100,500)
+    gPad.SetRightMargin(0.2)
+    gPad.SetLeftMargin(0.15)
+    gPad.SetTopMargin(0.1)
+    gPad.SetBottomMargin(0.2)
+    gStyle.SetTitleW(0.99)
+    """
+    histPad = TPad("histPad","",0.0,0.15,1.0,1.0)
+    histPad.SetLeftMargin(0.15)
+    histPad.SetTopMargin(0.1)
+    histPad.SetBottomMargin(0.02)
+    histPad.SetGrid()
+    histPad.Draw()
+    histPad.cd()
+    """
+
+    Histogram1.SetLineColor(kBlue)
+    Histogram1.SetLineWidth(2)
+    Histogram1.SetMinimum(1)
+
+    Histogram2.SetLineColor(kRed)
+    Histogram2.SetLineStyle(kDashed)
+    Histogram2.SetLineWidth(2)
+    Histogram2.SetMinimum(1)
+
+    #Signal Weight to Potentially Weight Signal More - Set to 1 for just S/sqrt(S+B)
+    sigweight = 1
+    #nBins = 10
+    nBins = 1000
+    binWidth = (rb-lb)/nBins
+    #signalvar = 1 #Default, true=1 and false=0
+    signalvar = 2 # mcflag, 2 for true and >2 for false
+    signalvarstr = str(signalvar)
+
+    if CutString != "":
+        nSigTotal = Tree.Draw(Variable+">>h1",CutString+" && "+TruthVariable+"=="+signalvarstr,"goff")
+        nBkgTotal = Tree.Draw(Variable+">>h2",CutString+" && "+TruthVariable+">"+signalvarstr,"goff")
+    else:
+        nSigTotal = Tree.Draw(Variable+">>h1",TruthVariable+"=="+signalvarstr,"goff")
+        nBkgTotal = Tree.Draw(Variable+">>h2",TruthVariable+">"+signalvarstr,"goff")
+
+    nSigRetained = []
+    nBkgRetained = []
+
+    optimalIteration = nBins
+    for i in range(0,nBins):
+        CUT = rb - i*binWidth
+        if CutString != "":
+            nSigRetained.append(Tree.Draw(Variable+">>h1",CutString+" && "+TruthVariable+"=="+signalvarstr+" && "+Variable+">%f"%CUT,"goff"))
+            nBkgRetained.append(Tree.Draw(Variable+">>h2",CutString+" && "+TruthVariable+">"+signalvarstr+" && "+Variable+">%f"%CUT,"goff"))
+        else:
+            nSigRetained.append(Tree.Draw(Variable+">>h1",TruthVariable+"=="+signalvarstr+" && "+Variable+">%f"%CUT,"goff"))
+            nBkgRetained.append(Tree.Draw(Variable+">>h2",TruthVariable+">"+signalvarstr+" && "+Variable+">%f"%CUT,"goff"))
+        #if sum(nBkgRetained) > Sensitivity:
+        if sum(nBkgRetained) > 0:
+            purity = float(sum(nSigRetained))/float((sum(nSigRetained)+sum(nBkgRetained)))
+            """
+            print sum(nSigRetained)
+            print sum(nBkgRetained)
+            print sum(nSigRetained) + sum(nBkgRetained)
+            print purity
+            print "\n"
+            """
+        else:
+            purity = 1
+        if purity >= Sensitivity:
+            optimalIteration = i
+
+        if i%pow(10,len(str(i))-1)==0:
+            print(i)
+            print("Purity=%f"%purity)
+            print "\n"
+
+    optimalCut = rb-optimalIteration*binWidth
+    print "This is attained for a cut of "+Variable+" > %.3f"%optimalCut
+    effiRetainSIG = float(nSigRetained[optimalIteration])/nSigTotal
+    #effiRejectBKG = float(nBkgTotal - nBkgRetained[optimalIteration])/nBkgTotal
+    #print("Effi_rejectBKG = %.3f"%effiRejectBKG)
+    sigRetained = "#splitline{Signal Retained:}{%.3f}"%effiRetainSIG
+    print(sigRetained)
+    #print("Effi_retainSIG = %.3f"%effiRetainSIG)
+
+    """
+    topBound+=int(float(topBound-bottomBound)/6+0.9)
+    bottomBound-=int(float(topBound-bottomBound)/6+0.5)
+    """
+
+    RESULT = "#splitline{Cut:}{%s > %.3f}"%(XTitle,optimalCut)
+    tex1 = TLatex(0.7,0.07,RESULT)
+    tex1.SetTextSize(0.04)
+    tex1.SetNDC()
+    tex2 = TLatex(0.1,0.07,sigRetained)
+    tex2.SetTextSize(0.04)
+    tex2.SetNDC()
+
+    Frame.SetTitle(Title)
+    Frame.GetXaxis().CenterTitle(True)
+    Frame.GetXaxis().SetLabelOffset(0.02)
+    Frame.GetXaxis().SetLabelSize(0.05)
+    Frame.GetXaxis().SetTitle(XTitle)
+    Frame.GetXaxis().SetTitleSize(0.05)
+    Frame.GetXaxis().SetTitleOffset(1.3)
+    Frame.GetYaxis().CenterTitle(True)
+    Frame.GetYaxis().SetLabelOffset(0.02)
+    Frame.GetYaxis().SetLabelSize(0.05)
+    Frame.GetYaxis().SetTitle("Events/[%.f Bins]"%nBins)
+    Frame.GetYaxis().SetTitleSize(0.05)
+    Frame.GetYaxis().SetTitleOffset(1.0)
+    Frame.SetMinimum(1)
+
+    if CutString != "":
+        Tree.Draw(Variable+">>h1",CutString+" && "+TruthVariable+"=="+signalvarstr)
+        Tree.Draw(Variable+">>h2",CutString+" && "+TruthVariable+">"+signalvarstr)
+    else:
+        Tree.Draw(Variable+">>h1",TruthVariable+"=="+signalvarstr)
+        Tree.Draw(Variable+">>h2",TruthVariable+">"+signalvarstr)
+    #Normalize histograms
+    norm1 = Histogram1.GetEntries()
+    norm2 = Histogram2.GetEntries()
+    #print(norm1)
+    #print(norm2)
+    """
+    if norm1 != 0:
+        Histogram1.Scale(1/norm1)
+    if norm2 != 0:
+        Histogram2.Scale(1/norm2)
+    """
+
+    Frame.addTH1(Histogram1)
+    Frame.addTH1(Histogram2)
+    maxY = [Histogram1.GetMaximum(), Histogram2.GetMaximum()]
+    minY = [Histogram1.GetMinimum(), Histogram2.GetMinimum()]
+    topArrow = max(maxY)
+    bottomArrow = min(minY)
+    topArrow = int(2*float(topArrow)/10+0.5)
+    bottomArrow += int(float(topArrow-bottomArrow)/10+0.5)
+    a = TArrow(optimalCut,bottomArrow,optimalCut,topArrow,0.02,">|")
+    a.SetLineWidth(3)
+    a.SetLineColor(kBlack)
+    a.SetLineStyle(7)
+    l = TLine(optimalCut, bottomArrow, optimalCut, max(maxY))
+    l.SetLineWidth(2)
+    l.SetLineColor(kBlack)
+    l.SetLineStyle(7)
+    #Frame.addObject(a)
+    Frame.addObject(l)
+    Frame.addObject(tex2)
+    Frame.addObject(tex1)
+
+    Histogram1.Draw()
+    Histogram2.Draw()
+
+    legendwidth = 0.15
+    leg = TLegend(LegendLeftEdge,0.74,LegendLeftEdge+legendwidth,0.89)
+    leg.AddEntry(Frame.findObject("h1"),"Signal","l")
+    leg.AddEntry(Frame.findObject("h2"),"Background","l")
+    leg.SetFillColor(kWhite)
+    leg.SetLineColor(kWhite)
+    leg.SetTextSize(0.04)
+    Frame.addObject(leg)
+
+    #gStyle.SetOptStat("e");
+    Frame.Draw()
+    c1.Update()
+
+    c1.Print(OutputFilename+".pdf")
+    c1.Print(OutputFilename+".eps")
+    c1.Print(OutputFilename+".png")
+
 
 def plot_roc(rb,lb,Tree,Variable,TruthVariable,CutString,Title,Frame,LegendLeftEdge,OutputFilename):
     c1 = TCanvas("c1","",1100,500)
     gPad.SetRightMargin(0.2)
     gPad.SetLeftMargin(0.15)
     gPad.SetTopMargin(0.1)
-    gPad.SetBottomMargin(0.2)
+    gPad.SetBottomMargin(1.2)
     gStyle.SetTitleW(0.99)
 
     sigweight = 1
