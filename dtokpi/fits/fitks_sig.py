@@ -200,8 +200,8 @@ pdf = RooAddPdf("pdf","sig+bkg",RooArgList(sig,bkg),RooArgList(nsig,nbkg))
 #-----------------------------------------------------------------------
 
 #fitRes = sig.fitTo(data, RooFit.Save(kTRUE), RooFit.Range("Full"));
-#fitRes = pdf.fitTo(data, RooFit.Save(kTRUE), RooFit.Range("Full"));
-fitRes = pdf.fitTo(data, RooFit.Save(kTRUE), RooFit.Extended(kTRUE), RooFit.NumCPU(5), RooFit.Strategy(2), RooFit.Minimizer("Minuit2", "minimize"), RooFit.Minos(kTRUE));
+fitRes = pdf.fitTo(data, RooFit.Save(kTRUE), RooFit.Range("Full"));
+#fitRes = pdf.fitTo(data, RooFit.Save(kTRUE), RooFit.Extended(kTRUE), RooFit.NumCPU(5), RooFit.Strategy(2), RooFit.Minimizer("Minuit2", "minimize"), RooFit.Minos(kTRUE));
 
 #Figure of Merit
 #Signal MC

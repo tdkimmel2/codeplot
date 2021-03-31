@@ -1,0 +1,3 @@
+fitRes = pdf_dm.fitTo(dJ, RooFit.Save(1), RooFit.Extended(1), RooFit.NumCPU(6), RooFit.Strategy(2), RooFit.Minimizer("Minuit2", "minimize"), RooFit.Minos(1))
+
+Flags=0

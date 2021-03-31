@@ -22,4 +22,4 @@ h2 = TH1F("h2","h2",nBins,lb,rb)
 
 #OptimizeCut_GreaterThan(rb,lb,t,"nn","truth","","From MC: #pi^{0} Neurobayes Output","NB Output",h1,h2,frame,frame2,0.4,"/home/tkimmel/Research/plots/nbpi0/k0sig9vars_1SBR","std")
 
-OptimizeCut_GreaterThan(rb,lb,t,"nn","truth","","From MC: #pi^{0} Neurobayes Output","NB Output",h1,h2,frame,frame2,0.4,"/home/tkimmel/Research/plots/junk","std")
+OptimizeCut_GreaterThan(rb,lb,t,"nn","truth","","From MC: #pi^{0} Neurobayes Output","NB Output",h1,h2,frame,frame2,0.4,"/home/tkimmel/Research/plots/nbpi0/k0sig_10BSR","std")

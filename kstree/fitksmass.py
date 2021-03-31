@@ -293,7 +293,7 @@ tex1.Draw()
 tex2 = TLatex(0.1,0.1,"#frac{S}{#sqrt{S+B}} = %.3f"%FoM)
 tex2.SetTextSize(0.1)
 tex2.SetNDC()
-tex2.Draw()
+#tex2.Draw()
 
 canvas.Print(outname)
 
