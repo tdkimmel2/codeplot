@@ -18,16 +18,16 @@ gROOT.ProcessLineSync(".x MyDblCB.cxx")
 ############Full Stream MC############
 """
 f1 = "/home/tkimmel/Research/root/partialData.root"
-title = "D* -> D^{0}(-> #pi^{0} + K_{S}^{0}) + #pi: From Partial Belle Dataset"
-#outname = "/home/tkimmel/Research/plots/partialData/ksRecon_partialData.png"
-outname = "/home/tkimmel/Research/plots/partialData/ksRecon_partialData_noDsPMagCut.png"
+title = "D* -> D^{0}(-> #pi^{0} + K_{S}^{0}) + #pi: Standard Reconstruction From Partial Belle Dataset"
+#outname = "/home/tkimmel/Research/plots/partialData/ks_partialData.png"
+outname = "/home/tkimmel/Research/plots/partialData/ks_partialData_noDspPMagCut.png"
 """
 
 
 f1 = "/home/tkimmel/Research/root/partialMC.root"
-title = "D* -> D^{0}(-> #pi^{0} + K_{S}^{0}) + #pi: From Partial Generic Monte Carlo"
-#outname = "/home/tkimmel/Research/plots/partialData/ksRecon_partialMC.png"
-outname = "/home/tkimmel/Research/plots/partialData/ksRecon_partialMC_noDsPMagCut.png"
+title = "D* -> D^{0}(-> #pi^{0} + K_{S}^{0}) + #pi: Standard Reconstruction From Partial Generic Monte Carlo"
+#outname = "/home/tkimmel/Research/plots/partialData/ks_partialMC.png"
+outname = "/home/tkimmel/Research/plots/partialData/ks_partialMC_noDspPMagCut.png"
 
 ############Full Stream MC############
 """
@@ -103,7 +103,7 @@ cut=""# No cut
 #cut="abs(dsflag)==1"# Truth Matched
 
 
-tree = "dsrecontree"
+tree = "dstree"
 f = TFile(f1,"READ")
 t = f.Get(tree)
 
@@ -127,65 +127,31 @@ binWidth = (rb-lb)/nBins
 binWidthMEV = binWidth*1000
 
 
-#vars = RooArgSet(deltam,dsflag)
 vars = RooArgSet(deltam,dsPmag,bcsflag,nb)
 
-#vars = RooArgSet(deltam,nb,dsPmag)
-#vars = RooArgSet(deltam,nb,dsPmag,mfchi2,gmthetacms)
-#vars = RooArgSet(deltam,nb,nbgm1,nbgm2,coskpiz,coskpizcm,cosdpipcm,pipp,dsPmag)
-#vars = RooArgSet(deltam,nb,coskpiz,cosdpipcm,pipp,dsPmag,kpdiff)
-#vars = RooArgSet(deltam,nb,coskpiz,cosdpipcm,pipp,dsPmag,dnb)
-
-
 data = RooDataSet("data", "raw data", t, vars, cut)
-
-#data = RooDataSet("data", "raw data", t, vars, "nb > 0.690")# mfsig pi0training 10 variables
-#data = RooDataSet("data", "raw data", t, vars, "nb > 0.854")# k0sig pi0training 10 variables
-#data = RooDataSet("data", "raw data", t, vars, "nb > 0.642")# mfsig pi0training 13 variables
-#data = RooDataSet("data", "raw data", t, vars, "nb > 0.834")# k0sig pi0training 13 variables
-
-#data = RooDataSet("data", "raw data", t, vars, "dsPmag>3.26939 && bcsflag==1")# flavorCut
-
-
 
 #Function Variables
 
 # Global Mean
 mu = RooRealVar("#mu","#mu",0.145,0.1456)
 
-##Chebyshev
-#c0 = RooRealVar("c_{0}","c_{0}",-1,1)
-#c1 = RooRealVar("c_{1}","c_{1}",-1,1)
-#c2 = RooRealVar("c_{2}","c_{2}",-1,1)
-
-
-# Double Sided Crystal Ball
-#mu = RooRealVar("#mu_{sig}","#mu_{sig}",0.145,0.1456)
-sigma = RooRealVar("#sigma_{sig}","#sigma_{sig}",0.00045,0.0009)
-a1 = RooRealVar("#alpha_{1}","#alpha_{1}",0.9,1.5)
-n1 = RooRealVar("n_{1}","n_{1}",20,26)
-a2 = RooRealVar("#alpha_{2}","#alpha_{2}",0.8,1.4)
-n2 = RooRealVar("n_{2}","n_{2}",4,9)
-#n1.setConstant()
-#n2.setConstant()
-#n1 = RooRealVar("n1","n1",8.12,7.5,9)
-#n2 = RooRealVar("n2","n2",2.644,2,3)
 
 #Gaussian
 #gausmean = RooRealVar("#mu_{sig}","#mu_{sig}",0.145465,0.144,0.146)
 ##gausmean.setConstant()
 #####MC Parameters#####
-gaussigma = RooRealVar("#sigma","#sigma",0.0003827,0.0002,0.001)
+gaussigma = RooRealVar("#sigma","#sigma",0.0002,0.001)
 #####Data Parameters#####
-#gaussigma = RooRealVar("#sigma","#sigma",0.0003827,0.0002,0.005)
+#gaussigma = RooRealVar("#sigma","#sigma",0.0001,0.005)
 
 ##Bifurcated Gaussian
 #####MC Parameters#####
-gaussigmaR = RooRealVar("#sigma_{R}","#sigma_{R}",0.0006,0.0017)
-gaussigmaL = RooRealVar("#sigma_{L}","#sigma_{L}",0.0005,0.0015)
+gaussigmaR = RooRealVar("#sigma_{R}","#sigma_{R}",0.0005,0.0017)
+gaussigmaL = RooRealVar("#sigma_{L}","#sigma_{L}",0.0004,0.0015)
 #####Data Parameters#####
-#gaussigmaR = RooRealVar("#sigma_{R}","#sigma_{R}",0.0006,0.0017)
-#gaussigmaL = RooRealVar("#sigma_{L}","#sigma_{L}",0.0005,0.0015)
+#gaussigmaR = RooRealVar("#sigma_{R}","#sigma_{R}",0.0005,0.0017)
+#gaussigmaL = RooRealVar("#sigma_{L}","#sigma_{L}",0.0004,0.0015)
 
 """
 #scaleL = RooRealVar("scaleL","scaleL",2.141589) #140t152
@@ -197,7 +163,7 @@ gaussigmaR = RooFormulaVar("#sigmaR","#sigmaR","@0*@1",RooArgList(gaussigma,scal
 """
 
 #frac = RooRealVar("R","R",0.582)
-frac = RooRealVar("R","R",0.582,0,1)
+frac = RooRealVar("R","R",0,1)
 
 # DstD0BG
 m0 = RooRealVar("m_{0}", "m_{0}", 0.139416, 0.138, 0.14)
@@ -213,38 +179,19 @@ nsig = RooRealVar("N_{Signal}","nsig",0,1000000)# Signal MC
 #nbkg = RooRealVar("N_{Bkg}","nbkg",0,10000)
 nbkg = RooRealVar("N_{Bkg}","nbkg",0,10000000)
 
-#cheby = RooChebychev("Chebychev","Chebychev",deltam,RooArgList(c0,c1,c2))
-#dstd0 = RooDstD0BG("DstD0BG","DstD0BG",deltam,dm0,d,a,b)
-#bkg = RooAddPdf("bkg","bkg",RooArgList(cheby,dstd0),RooArgList(frac))
-#sig = RooVoigtian("sig","Voigtian Signal Fcn",deltam,voigmean,voigwidth,voigsigma) #Use for Voigtian Signal
-#sig = RooBreitWigner("sig","Breit Wigner Signal Fcn", deltam,bwmean,bwwidth) #Use for Breit Wigner Signal
-#sig = RooGaussian("sig","Gaussian Signal Fcn", deltam,gausmean,gaussigma) #Use for Gaussian Signal
-
-
-#sig = MyDblCB("sig","Double Sided Crystal Ball Signal Fcn", deltam,mu,sigma,a1,n1,a2,n2) #Use for Double Crystal Ball signal
-
 ####################Sum of Two Signal PDFs####################
 gauss = RooGaussian("gauss","Gaussian Signal Fcn", deltam,mu,gaussigma)
 bifurG = RooBifurGauss("bifurG","Bifurcated Gaussian Signal Fcn", deltam,mu,gaussigmaL,gaussigmaR)
 
-dblcb = MyDblCB("dblcb","Double Sided Crystal Ball Signal Fcn", deltam,mu,sigma,a1,n1,a2,n2)
-#frac = RooRealVar("frac_{sig}","frac_{sig}",0,1)
-#frac = RooRealVar("frac_{sig}","frac_{sig}",0.5724,0,1)
-#sig = RooAddPdf("sig","DblCB + BreitWigner Sig Fcn",RooArgList(dblcb,bwig),RooArgList(frac))
 sig = RooAddPdf("sig","Gauss + BifurGauss Sig Fcn",RooArgList(gauss,bifurG),RooArgList(frac))
 GAUSS = RooArgSet(gauss)
 BIFURG = RooArgSet(bifurG)
-DBLCB = RooArgSet(dblcb)
 ##############################################################
 bkg = RooDstD0BG("bkg","DstD0BG Bkg Fcn",deltam,m0,C,A,B)
 
-#pdf = RooAddPdf("pdf","nbkg*bkg", RooArgList(bkg),RooArgList(nbkg));
-#pdf = RooAddPdf("pdf","nsig*sig", RooArgList(sig),RooArgList(nsig));
-#pdf = RooExtendPdf("pdf","nsig*sig", sig, nsig);
 SIG = RooArgSet(sig)
 BKG = RooArgSet(bkg)
 pdf = RooAddPdf("pdf","sig+bkg",RooArgList(sig,bkg),RooArgList(nsig,nbkg))
-#pdf = RooAddPdf("pdf","sig+bkg",RooArgList(sig,bkg),RooArgList(frac))
 
 #----------------------------------------------------------------------- 
 #----------------------------------------------------------------------- 

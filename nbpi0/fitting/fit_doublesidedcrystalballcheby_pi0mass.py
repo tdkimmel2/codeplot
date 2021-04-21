@@ -4,15 +4,17 @@ import math, os
 
 gInterpreter.ProcessLine('.L MyDblCB.cxx++')
 
+f1 = "/home/tkimmel/Research/root/allmfrecon.root"
 #f1 = "/home/tkimmel/Research/root/allmfrecon_reducedpi0fittingsample.root"
-f1 = "/home/tkimmel/Research/root/charmmfrecon_reducedpi0fittingsample.root"
+#f1 = "/home/tkimmel/Research/root/charmmfrecon_reducedpi0fittingsample.root"
 tree = "pi0tree"
 f = TFile(f1,"READ")
 t = f.Get(tree)
 
 #pi0mass = RooRealVar("pi0mass", "pi0mass",0.035,0.235)# Wider window
 #pi0mass = RooRealVar("pi0mass", "pi0mass",0.085,0.185)# Wide window
-pi0mass = RooRealVar("pi0mass", "pi0mass",0.09,0.18)
+#pi0mass = RooRealVar("pi0mass", "pi0mass",0.09,0.18)
+pi0mass = RooRealVar("pi0mass", "pi0mass",0.119,0.149)# Narrow window
 #pi0mass = RooRealVar("pi0mass", "pi0mass",0.1071,0.1606)# 5 sigma window
 lb = pi0mass.getMin()
 rb = pi0mass.getMax()
@@ -45,8 +47,8 @@ c0 = RooRealVar("c0","c0",-1,1)
 c1 = RooRealVar("c1","c1",-2,1)
 c2 = RooRealVar("c2","c2",-1,1)
 
-nsig = RooRealVar("N_{Signal}","nsig",145000,0,1000000)
-nbkg = RooRealVar("N_{Background}","nbkg",2000000,0,5000000)
+nsig = RooRealVar("N_{Signal}","nsig",0,10000000)
+nbkg = RooRealVar("N_{Background}","nbkg",0,50000000)
 
 sig = MyDblCB("sig","Crystal Ball Signal Function",pi0mass,crymu,crysigma,cryalpha1,cryn1,cryalpha2,cryn2) #Use for signal Crystal Ball
 
@@ -104,7 +106,7 @@ fitRes.Print()
 h1 = TH1F("h1","h1",nBins,lb,rb)
 
 #frame1 = pi0mass.frame(RooFit.Bins(nBins),RooFit.Title("From MC: #pi^{0} Mass"))
-frame1 = pi0mass.frame(RooFit.Bins(nBins),RooFit.Title("#pi^{0} Mass: From Charm MC"))
+frame1 = pi0mass.frame(RooFit.Bins(nBins),RooFit.Title("#pi^{0} Mass: From All Generic MC"))
 pullFrame = pi0mass.frame(RooFit.Bins(nBins),RooFit.Title(""))
 # Beautification Things
 frame1.SetStats(0)
@@ -183,7 +185,9 @@ tex1.Draw()
 #canvas.Print("/home/tkimmel/Research/plots/nbpi0/pi0mass_doublecrystalballcheby_fit_reducedallmfrecon.png")
 
 
-canvas.Print("/home/tkimmel/Research/plots/nbpi0/noteFit_reducedCharmMC.png")
+#canvas.Print("/home/tkimmel/Research/plots/nbpi0/noteFit_reducedCharmMC.png")
+canvas.Print("/home/tkimmel/Research/plots/alldtokpi/pi0_fit.png")
+
 #canvas.SaveAs("noteFit.C")
 #canvas.Print("/home/tkimmel/Research/plots/nbpi0/noteFit_reducedCharmMC.C")
 #canvas.Print("/home/tkimmel/Research/codeplot/nbpi0/fitting/noteFit_reducedCharmMC.root")
@@ -194,4 +198,3 @@ canvas.Print("/home/tkimmel/Research/plots/nbpi0/noteFit_reducedCharmMC.png")
 
 #canvas.Print("/home/tkimmel/Research/plots/nbpi0/pi0mass_doublecrystalballcheby_fit_reducedallmfrecon_5sigmaWindow.png")
 #canvas.Print("/home/tkimmel/Research/plots/nbpi0/pi0mass_doublecrystalballcheby_fit_reducedallmfrecon_widerwindow.png")
-

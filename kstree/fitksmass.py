@@ -20,10 +20,12 @@ import math, os
 
 
 ############ALL MC############
-f1 = "/home/tkimmel/Research/root/allmfreconKstree.root"
+f1 = "/home/tkimmel/Research/root/allmfrecon.root"
 title = "K_{S}^{0} Mass: From All Generic MC"
 #outname = "/home/tkimmel/Research/plots/kstree/ksmassFit.png"
-outname = "/home/tkimmel/Research/plots/kstree/ksmassFit_2Gauss.png"
+#outname = "/home/tkimmel/Research/plots/kstree/ksmassFit_2Gauss.png"
+#outname = "/home/tkimmel/Research/plots/kstree/ksmassFit_2Gauss_wideWindow.png"
+outname = "/home/tkimmel/Research/plots/kstree/ksmassFit_GaussBifurG_wideWindow.png"
 ############K0 SIGNAL MC############
 """
 f1 = "/home/tkimmel/Research/root/k0signalmfrecon.root"
@@ -51,7 +53,10 @@ tree = "kstree"
 f = TFile(f1,"READ")
 t = f.Get(tree)
 
-ksmass = RooRealVar("ksmass","ksmass",0.491,0.504)
+#ksmass = RooRealVar("ksmass","ksmass",0.490569,0.50481)
+
+#ksmass = RooRealVar("ksmass","ksmass",0.485569,0.50981)
+ksmass = RooRealVar("ksmass","ksmass",0.486,0.510)
 
 lb = ksmass.getMin()
 rb = ksmass.getMax()
@@ -90,32 +95,30 @@ n2 = RooRealVar("n_{2}","n_{2}",4,9)
 #n1 = RooRealVar("n1","n1",8.12,7.5,9)
 #n2 = RooRealVar("n2","n2",2.644,2,3)
 
-"""
 ##Bifurcated Gaussian
 gausmean = RooRealVar("#mu","#mu_{sig}",0.1453,0.145,0.146)
 #gausmean.setConstant()
-#gaussigmaR = RooRealVar("#sigma_{R}","#sigma_{R}",0.001217,0.0007,0.001)
-#gaussigmaL = RooRealVar("#sigma_{L}","#sigma_{L}",0.001051,0.0007,0.001)
+gaussigmaR = RooRealVar("#sigma_{R}","#sigma_{R}",0.0001,0.01)
+gaussigmaL = RooRealVar("#sigma_{L}","#sigma_{L}",0.0001,0.01)
 
 #scaleL = RooRealVar("scaleL","scaleL",2.141589) #140t152
 #scaleR = RooRealVar("scaleR","scaleR",2.491547) #140t152
-scaleL = RooRealVar("scaleL","scaleL",2.188324) #139t153
-scaleR = RooRealVar("scaleR","scaleR",2.525633) #139t153
-gaussigmaL = RooFormulaVar("#sigmaL","#sigmaL","@0*@1",RooArgList(gaussigma,scaleL))
-gaussigmaR = RooFormulaVar("#sigmaR","#sigmaR","@0*@1",RooArgList(gaussigma,scaleR))
-"""
+#scaleL = RooRealVar("scaleL","scaleL",2.188324) #139t153
+#scaleR = RooRealVar("scaleR","scaleR",2.525633) #139t153
+#gaussigmaL = RooFormulaVar("#sigmaL","#sigmaL","@0*@1",RooArgList(gaussigma,scaleL))
+#gaussigmaR = RooFormulaVar("#sigmaR","#sigmaR","@0*@1",RooArgList(gaussigma,scaleR))
 
 ##Chebyshev
 c0 = RooRealVar("c_{0}","c_{0}",-10,10)
-c1 = RooRealVar("c_{1}","c_{1}",-0.5,0.5)
+c1 = RooRealVar("c_{1}","c_{1}",-1,1)
 c2 = RooRealVar("c_{2}","c_{2}",-1,1)
 
 #Gaussian
 #gausmean = RooRealVar("#mu_{sig}","#mu_{sig}",0.145465,0.144,0.146)
 ##gausmean.setConstant()
 gaussigma = RooRealVar("#sigma","#sigma",0.0004837,0.001,0.005)
-gaussigma1 = RooRealVar("#sigma_{1}","#sigma_{1}",0.0004837,0.001,0.005)
-gaussigma2 = RooRealVar("#sigma_{2}","#sigma_{2}",0.0004837,0.0001,0.002)
+gaussigma1 = RooRealVar("#sigma_{1}","#sigma_{1}",0.001,0.01)
+gaussigma2 = RooRealVar("#sigma_{2}","#sigma_{2}",0.0001,0.01)
 
 nsig = RooRealVar("N_{Signal}","nsig",0,10000000)# Signal MC
 nbkg = RooRealVar("N_{Bkg}","nbkg",0,10000000)
@@ -131,7 +134,7 @@ nbkg = RooRealVar("N_{Bkg}","nbkg",0,10000000)
 #sig = MyDblCB("sig","Double Sided Crystal Ball Signal Fcn", deltam,mu,sigma,a1,n1,a2,n2) #Use for Double Crystal Ball signal
 
 ####################Sum of Two Signal PDFs####################
-#bifurG = RooBifurGauss("bifurG","Bifurcated Gaussian Signal Fcn", ksmass,mu,gaussigmaL,gaussigmaR)
+bifurG = RooBifurGauss("bifurG","Bifurcated Gaussian Signal Fcn", ksmass,mu,gaussigmaL,gaussigmaR)
 
 #dblcb = MyDblCB("dblcb","Double Sided Crystal Ball Signal Fcn", ksmass,mu,sigma,a1,n1,a2,n2)
 #frac = RooRealVar("frac_{sig}","frac_{sig}",0,1)
@@ -139,7 +142,7 @@ nbkg = RooRealVar("N_{Bkg}","nbkg",0,10000000)
 #sig = RooAddPdf("sig","DblCB + BreitWigner Sig Fcn",RooArgList(dblcb,bwig),RooArgList(frac))
 #sig = RooAddPdf("sig","Gauss + BifurGauss Sig Fcn",RooArgList(gauss,bifurG),RooArgList(frac))
 #GAUSS = RooArgSet(gauss)
-#BIFURG = RooArgSet(bifurG)
+BIFURG = RooArgSet(bifurG)
 #DBLCB = RooArgSet(dblcb)
 ##############################################################
 gauss1 = RooGaussian("gauss1","Gaussian Signal Fcn", ksmass,mu,gaussigma1)
@@ -149,7 +152,8 @@ GAUSS2 = RooArgSet(gauss2)
 
 #sig = RooGaussian("gauss","Gaussian Signal Fcn", ksmass,mu,gaussigma)
 frac = RooRealVar("Frac_{sig}","Frac_{sig}",0,1)
-sig = RooAddPdf("twogauss","Two Gaussian Signal Fcns",RooArgList(gauss1,gauss2),RooArgList(frac))
+#sig = RooAddPdf("twogauss","Two Gaussian Signal Fcns",RooArgList(gauss1,gauss2),RooArgList(frac))
+sig = RooAddPdf("twogauss","Two Gaussian Signal Fcns",RooArgList(gauss1,bifurG),RooArgList(frac))
 #bkg = RooChebychev("Chebychev","Chebychev",ksmass,RooArgList(c0,c1))
 bkg = RooChebychev("Chebychev","Chebychev",ksmass,RooArgList(c0,c1))
 #bkg = RooDstD0BG("bkg","DstD0BG Bkg Fcn",deltam,m0,C,A,B)
@@ -228,15 +232,15 @@ data.plotOn(frame1)
 #dchib1Sig_1k.plotOn(frame1)
 
 ###########Two Sig Fncs###########
-pdf.plotOn(frame1, RooFit.Components(GAUSS1),RooFit.LineColor(kBlue))
-pdf.plotOn(frame1, RooFit.Components(GAUSS2),RooFit.LineColor(kCyan))
+#pdf.plotOn(frame1, RooFit.Components(GAUSS1),RooFit.LineColor(kBlue))
+#pdf.plotOn(frame1, RooFit.Components(GAUSS2),RooFit.LineColor(kCyan))
 #pdf.plotOn(frame1, RooFit.Components(BIFURG),RooFit.LineColor(kCyan))
 #pdf.plotOn(frame1, RooFit.Components(DBLCB),RooFit.LineColor(kBlue))
 #pdf.plotOn(frame1, RooFit.Components(BWIG),RooFit.LineColor(kCyan))
 ##################################
 
 
-#pdf.plotOn(frame1, RooFit.Components(SIG),RooFit.LineColor(kBlue))
+pdf.plotOn(frame1, RooFit.Components(SIG),RooFit.LineColor(kBlue))
 pdf.plotOn(frame1, RooFit.Components(BKG),RooFit.LineColor(kRed),RooFit.LineStyle(kDashed))
 pdf.plotOn(frame1, RooFit.LineColor(kBlack))
 pdf.paramOn(frame1,RooFit.Format("NEU", RooFit.AutoPrecision(2)), RooFit.Layout(0.65, 0.99, 0.93))# Higher Parameter Box
@@ -262,8 +266,7 @@ pullFrame.SetTitle("")
 pullFrame.GetXaxis().CenterTitle(kTRUE)
 pullFrame.GetXaxis().SetLabelOffset(0.03)
 pullFrame.GetXaxis().SetLabelSize(0.09)
-#pullFrame.GetXaxis().SetTitle("#DeltaM_{D^{*+}D^{0}} (GeV/c^{2})")
-pullFrame.GetXaxis().SetTitle("#DeltaM_{D*D^{0}} (GeV/c^{2})")
+pullFrame.GetXaxis().SetTitle("#M_{K^0_S} (GeV/c^{2})")
 pullFrame.GetXaxis().SetTitleOffset(1.1)
 pullFrame.GetXaxis().SetTitleSize(0.12)
 

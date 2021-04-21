@@ -16,16 +16,33 @@ gInterpreter.ProcessLine('#include "MyDblCB.h"')
 #f1 = "/home/tkimmel/Research/root/allmfrecon_k0sigtrain10vars.root"
 #f1 = "/home/tkimmel/Research/root/charmmfrecon_bcs.root"
 
+#############Partial Data#############
+"""
+f1 = "/home/tkimmel/Research/root/partialData.root"
+title = "D* -> D^{0}(-> #pi^{0} + K_{L}^{0}) + #pi: From Partial Belle Dataset"
+#outname = "/home/tkimmel/Research/plots/partialData/klRecon_partialData.png"
+outname = "/home/tkimmel/Research/plots/partialData/klRecon_partialData_noDspPMagCut.png"
+"""
+
+f1 = "/home/tkimmel/Research/root/partialMC.root"
+title = "D* -> D^{0}(-> #pi^{0} + K_{L}^{0}) + #pi: From Partial Generic Monte Carlo"
+#outname = "/home/tkimmel/Research/plots/partialData/klRecon_partialMC.png"
+outname = "/home/tkimmel/Research/plots/partialData/klRecon_partialMC_noDsPMagCut.png"
+
 
 ############Full Stream MC############
+"""
 f1 = "/home/tkimmel/Research/root/fullStream.root"
 title = "D* -> D^{0}(-> #pi^{0} + K_{L}^{0}) + #pi: From a Full Stream of MC"
-outname = "/home/tkimmel/Research/plots/fullStream/klRecon_fullStream_pionDup_Minuit2.png"
+outname = "/home/tkimmel/Research/plots/fullStream/klRecon_fullStream_pionDup_noParam.png"
+#outname = "/home/tkimmel/Research/plots/fullStream/klRecon_fullStream_pionDup_Minuit2.png"
+
 #outname = "/home/tkimmel/Research/plots/fullStream/klRecon_GaussBifurG_narrowWindow.png"
 #outname = "/home/tkimmel/Research/plots/fullStream/klRecon_GaussBifurG_narrowWindow_paramOff.png"
 #outname = "/home/tkimmel/Research/plots/fullStream/klRecon_GaussBifurG_narrowWindow_fixedSigmas.png"
 #outname = "/home/tkimmel/Research/plots/fullStream/klRecon_GaussBifurG_narrowWindow2_fixedSigmas.png"
 #outname = "/home/tkimmel/Research/plots/fullStream/klRecon_GaussBifurG_narrowWindow2_Minuit2.png"
+"""
 
 ############ALL MC############
 """
@@ -162,12 +179,18 @@ n2 = RooRealVar("n_{2}","n_{2}",10,0,20)
 
 ##Gaussian
 gausmean = RooRealVar("#mu","#mu",0.1453,0.145,0.146)
+#####MC Parameters#####
 gaussigma = RooRealVar("#sigma","#sigma",0.0007007,0.0001,0.001)
+#####Data Parameters#####
+#gaussigma = RooRealVar("#sigma","#sigma",0.0007007,0.0001,0.005)
 
 ##Bifurcated Gaussian
-gausmean = RooRealVar("#mu","#mu",0.1454338,0.14,0.15)
-gaussigmaL = RooRealVar("#sigma_{L}","#sigma_{L}",0.001317,0.0009,0.0015)
-gaussigmaR = RooRealVar("#sigma_{R}","#sigma_{R}",0.001544,0.0011,0.0017)
+#####MC Parameters#####
+gaussigmaL = RooRealVar("#sigma_{L}","#sigma_{L}",0.001317,0.0008,0.0015)
+gaussigmaR = RooRealVar("#sigma_{R}","#sigma_{R}",0.001544,0.0010,0.0017)
+#####Data Parameters#####
+#gaussigmaL = RooRealVar("#sigma_{L}","#sigma_{L}",0.001317,0.0008,0.0015)
+#gaussigmaR = RooRealVar("#sigma_{R}","#sigma_{R}",0.001544,0.0010,0.0017)
 
 """
 scaleL = RooRealVar("scaleL","scaleL",1.941010)
@@ -183,7 +206,8 @@ frac = RooRealVar("R","R",0.4479,0,1)
 m0 = RooRealVar("m_{0}", "m_{0}", 0.13957, 0.1388, 0.142)
 A = RooRealVar("A", "A", -50, 50)
 B = RooRealVar("B", "C", -50, 50)
-C = RooRealVar("C", "C", 0, 0.1)
+#C = RooRealVar("C", "C", 0, 0.1)
+C = RooRealVar("C", "C", 0, 0.3)
 #m0.setConstant()
 
 ##################################################################################

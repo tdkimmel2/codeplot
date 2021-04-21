@@ -276,7 +276,7 @@ def plot_variablewith2cuts(Tree,Variable,Cut1,Cut2,Title,XTitle,Histogram,Frame,
     c1.Print(OutputFilename+".png")
 
 
-def plot_variable3histos(rb,lb,Tree,Variable,Option1,Leg1,Option2,Leg2,Option3,Leg3,Title,XTitle,Histogram1,Histogram2,Histogram3,Frame,LegendLeftEdge,LegendBottomEdge,OutputFilename):
+def plot_variable3histos(Tree,Variable,Option1,Leg1,Option2,Leg2,Option3,Leg3,Title,XTitle,Histogram1,Histogram2,Histogram3,Frame,LegendLeftEdge,LegendBottomEdge,OutputFilename):
     nBins = 100
     c1 = TCanvas("c1","",1100,500)
     gPad.SetRightMargin(0.2)

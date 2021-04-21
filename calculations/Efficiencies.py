@@ -11,12 +11,13 @@ t = f.Get("dsrecontree")
 t2 = f.Get("dslrecontree")
 
 dm = "deltam"
+mc = "mcflag"
 cuts = ["deltam>0.139 && deltam<0.153","egm2>0.06","pi0mass>0.118998 && pi0mass<0.1489062","nb>0.832","bcsflag==1","heldr<0.178","heldz<0.819","dsPmag>2.765"]
 #cuts = ["deltam>0.140 && deltam<0.152","egm2>0.06","pi0mass>0.118998 && pi0mass<0.1489062","nb>0.832","bcsflag==1","heldr<0.178","heldz<0.819","dsPmag>2.765"]
 truth = "abs(dsflag)==1"
 
-nTotl = realtreel.Draw(dm,"","goff")
-nTots = realtrees.Draw(dm,"","goff")
+nTotl = realtreel.Draw(mc,"","goff")
+nTots = realtrees.Draw(mc,"","goff")
 
 cutstring=""
 print("Cut  |Signal   |Figure of Merit |Efficiency  | Error")
