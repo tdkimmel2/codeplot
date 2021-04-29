@@ -1,0 +1,237 @@
+
+[1mRooFit v3.60 -- Developed by Wouter Verkerke and David Kirkby[0m 
+                Copyright (C) 2000-2013 NIKHEF, University of California & Stanford University
+                All rights reserved, please read http://roofit.sourceforge.net/license.txt
+
+(MyDblCB) An instance of MyDblCB.
+[#1] INFO:DataHandling -- RooAbsReal::attachToTree(bcsflag) TTree Int_t branch bcsflag will be converted to double precision.
+[#1] INFO:DataHandling -- RooAbsReal::attachToTree(nb) TTree Float_t branch nb will be converted to double precision.
+[#1] INFO:DataHandling -- RooTreeDataStore::loadValues(data) Skipping event #3 because deltam cannot accommodate the value 0.153492
+[#1] INFO:DataHandling -- RooTreeDataStore::loadValues(data) Skipping event #4 because deltam cannot accommodate the value 0.152005
+[#1] INFO:DataHandling -- RooTreeDataStore::loadValues(data) Skipping event #5 because deltam cannot accommodate the value 0.153497
+[#1] INFO:DataHandling -- RooTreeDataStore::loadValues(data) Skipping event #7 because deltam cannot accommodate the value 0.154227
+[#1] INFO:DataHandling -- RooTreeDataStore::loadValues(data) Skipping ...
+[#0] WARNING:DataHandling -- RooTreeDataStore::loadValues(data) Ignored 604919 out-of-range events
+[#1] INFO:Minization -- p.d.f. provides expected number of events, including extended term in likelihood.
+[#1] INFO:Fitting -- RooAbsOptTestStatistic::ctor(nll_pdf_data) constructing test statistic for sub-range named Full
+[#1] INFO:Eval -- RooRealVar::setRange(deltam) new range named 'NormalizationRangeForFull' created with bounds [0.14,0.152]
+[#1] INFO:Eval -- RooRealVar::setRange(deltam) new range named 'fit_nll_pdf_data' created with bounds [0.14,0.152]
+[#0] WARNING:Fitting -- None of the fit observables seem to know the range 'Full'. This means that the full range will be used.
+[#1] INFO:Fitting -- RooAbsOptTestStatistic::ctor(nll_pdf_data) fixing interpretation of coefficients of any RooAddPdf to full domain of observables 
+[#1] INFO:NumericIntegration -- RooRealIntegral::init(bkg_Int[deltam]) using numeric integrator RooIntegrator1D to calculate Int(deltam)
+[#1] INFO:Minization -- RooMinimizer::optimizeConst: activating const optimization
+[#1] INFO:NumericIntegration -- RooRealIntegral::init(bkg_Int[deltam]) using numeric integrator RooIntegrator1D to calculate Int(deltam)
+[#1] INFO:Minization --  The following expressions will be evaluated in cache-and-track mode: (gauss,bifurG,bkg)
+ **********
+ **    1 **SET PRINT           1
+ **********
+ **********
+ **    2 **SET NOGRAD
+ **********
+ PARAMETER DEFINITIONS:
+    NO.   NAME         VALUE      STEP SIZE      LIMITS
+     1 #mu          1.45300e-01  6.00000e-05    1.45000e-01  1.45600e-01
+     2 #sigma       3.82700e-04  8.00000e-05    2.00000e-04  1.00000e-03
+     3 #sigma_{L}   6.50000e-04  9.00000e-05    2.00000e-04  1.10000e-03
+     4 #sigma_{R}   8.00000e-04  1.00000e-04    3.00000e-04  1.30000e-03
+     5 A            0.00000e+00  2.00000e+01   -1.00000e+02  1.00000e+02
+     6 B            0.00000e+00  2.00000e+01   -1.00000e+02  1.00000e+02
+     7 C            5.00000e-01  1.00000e-01    0.00000e+00  1.00000e+00
+     8 N_{Bkg}      5.00000e+06  1.00000e+06    0.00000e+00  1.00000e+07
+     9 N_{Signal}   5.00000e+05  1.00000e+05    0.00000e+00  1.00000e+06
+    10 R            5.82000e-01  1.00000e-01    0.00000e+00  1.00000e+00
+    11 m_{0}        1.39416e-01  4.00000e-04    1.38000e-01  1.42000e-01
+ **********
+ **    3 **SET ERR         0.5
+ **********
+ **********
+ **    4 **SET PRINT           1
+ **********
+ **********
+ **    5 **SET STR           1
+ **********
+ NOW USING STRATEGY  1: TRY TO BALANCE SPEED AGAINST RELIABILITY
+ **********
+ **    6 **MIGRAD        5500           1
+ **********
+ FIRST CALL TO USER FUNCTION AT NEW START POINT, WITH IFLAG=4.
+ START MIGRAD MINIMIZATION.  STRATEGY  1.  CONVERGENCE WHEN EDM .LT. 1.00e-03
+ FCN=4.11013e+06 FROM MIGRAD    STATUS=INITIATE      129 CALLS         130 TOTAL
+                     EDM= unknown      STRATEGY= 1      NO ERROR MATRIX       
+  EXT PARAMETER               CURRENT GUESS       STEP         FIRST   
+  NO.   NAME      VALUE            ERROR          SIZE      DERIVATIVE 
+   1  #mu          1.45300e-01   6.00000e-05   0.00000e+00  -2.57981e+02
+   2  #sigma       3.82700e-04   8.00000e-05   0.00000e+00   1.97609e+02
+   3  #sigma_{L}   6.50000e-04   9.00000e-05   0.00000e+00   1.79814e+02
+   4  #sigma_{R}   8.00000e-04   1.00000e-04   0.00000e+00   1.33190e+02
+   5  A           -4.13032e-01   2.00000e+01  -4.13033e-03   1.38413e+05
+   6  B           -2.61753e-01   2.00000e+01   0.00000e+00   4.61304e+06
+   7  C            5.00000e-01   1.00000e-01   0.00000e+00  -1.18746e+04
+   8  N_{Bkg}      5.00000e+06   1.00000e+06   0.00000e+00   4.93873e+06
+   9  N_{Signal}   5.00000e+05   1.00000e+05   0.00000e+00   4.91898e+05
+  10  R            5.82000e-01   1.00000e-01   0.00000e+00  -2.10243e+02
+  11  m_{0}        1.39416e-01   4.00000e-04   0.00000e+00   5.55400e+02
+                               ERR DEF= 0.5
+ MIGRAD MINIMIZATION HAS CONVERGED.
+ FCN=-1.01874e+06 FROM MIGRAD    STATUS=CONVERGED    1674 CALLS        1675 TOTAL
+                     EDM=2.30571e-05    STRATEGY= 1  ERROR MATRIX UNCERTAINTY   3.0 per cent
+  EXT PARAMETER                                   STEP         FIRST   
+  NO.   NAME      VALUE            ERROR          SIZE      DERIVATIVE 
+   1  #mu          1.45415e-01   1.12363e-05   5.61971e-04   6.90966e-02
+   2  #sigma       4.70328e-04   2.91476e-05  -5.22794e-05   3.95826e-02
+   3  #sigma_{L}   9.24956e-04   7.93304e-05  -2.81041e-03   1.66769e-02
+   4  #sigma_{R}   1.03009e-03   8.68682e-05  -1.41951e-03  -5.09971e-02
+   5  A           -5.75563e-01   2.15868e-02   2.65825e-06   5.17090e+01
+   6  B           -2.52994e-01   1.15187e-04   4.21292e-09  -2.06900e+03
+   7  C            4.82475e-01   2.25245e-04  -1.03549e-06   5.40491e+00
+   8  N_{Bkg}      5.20601e+04   3.73116e+02  -2.25493e-06   4.00089e-01
+   9  N_{Signal}   1.72409e+04   3.25016e+02   3.33955e-06  -5.88760e-01
+  10  R            4.88205e-01   7.69915e-02   3.58008e-04  -7.24894e-02
+  11  m_{0}        1.38135e-01   7.83964e-05   1.51541e-03  -7.49845e-02
+                               ERR DEF= 0.5
+ EXTERNAL ERROR MATRIX.    NDIM=  25    NPAR= 11    ERR DEF=0.5
+  1.263e-10 
+  1.052e-10  8.513e-10 
+ -3.479e-10 -1.866e-09  6.400e-09 
+ -1.563e-10 -2.087e-09  6.290e-09  7.644e-09 
+  5.999e-09 -9.407e-08  2.714e-07  4.607e-07  4.660e-04 
+ -5.536e-11 -4.289e-10  1.406e-09  7.834e-10  1.109e-07  1.327e-08 
+  1.144e-10  7.144e-10 -2.436e-09 -9.675e-10  3.034e-07 -9.798e-09  5.074e-08 
+ -6.169e-04 -4.766e-03  1.719e-02  1.926e-02  3.305e+00  4.774e-03 -5.600e-03  1.392e+05 
+  5.420e-04  4.915e-03 -1.744e-02 -1.917e-02 -3.439e+00 -4.964e-03  5.822e-03 -9.231e+04  1.056e+05 
+  2.807e-07  2.118e-06 -5.437e-06 -6.017e-06 -1.366e-04 -1.006e-06  1.769e-06 -1.226e+01  1.243e+01  5.975e-03 
+  2.610e-11 -2.587e-10 -7.111e-12  1.035e-09  1.545e-06 -1.377e-09  4.496e-09  8.068e-03 -8.158e-03 -1.778e-07  6.170e-09 
+ PARAMETER  CORRELATION COEFFICIENTS  
+       NO.  GLOBAL      1      2      3      4      5      6      7      8      9     10     11
+        1  0.66378   1.000  0.321 -0.387 -0.159  0.025 -0.043  0.045 -0.147  0.148  0.323  0.030
+        2  0.95198   0.321  1.000 -0.800 -0.818 -0.149 -0.128  0.109 -0.438  0.518  0.939 -0.113
+        3  0.96371  -0.387 -0.800  1.000  0.899  0.157  0.153 -0.135  0.576 -0.671 -0.879 -0.001
+        4  0.96026  -0.159 -0.818  0.899  1.000  0.244  0.078 -0.049  0.590 -0.675 -0.890  0.151
+        5  0.96456   0.025 -0.149  0.157  0.244  1.000  0.045  0.062  0.410 -0.490 -0.082  0.911
+        6  0.53447  -0.043 -0.128  0.153  0.078  0.045  1.000 -0.378  0.111 -0.133 -0.113 -0.152
+        7  0.54627   0.045  0.109 -0.135 -0.049  0.062 -0.378  1.000 -0.067  0.080  0.102  0.254
+        8  0.77711  -0.147 -0.438  0.576  0.590  0.410  0.111 -0.067  1.000 -0.761 -0.425  0.275
+        9  0.86700   0.148  0.518 -0.671 -0.675 -0.490 -0.133  0.080 -0.761  1.000  0.495 -0.320
+       10  0.97814   0.323  0.939 -0.879 -0.890 -0.082 -0.113  0.102 -0.425  0.495  1.000 -0.029
+       11  0.96507   0.030 -0.113 -0.001  0.151  0.911 -0.152  0.254  0.275 -0.320 -0.029  1.000
+ **********
+ **    7 **SET ERR         0.5
+ **********
+ **********
+ **    8 **SET PRINT           1
+ **********
+ **********
+ **    9 **HESSE        5500
+ **********
+ EIGENVALUES OF SECOND-DERIVATIVE MATRIX:
+        -2.9628e-02 -8.7033e-03  6.3054e-02  9.6368e-02  3.2078e-01  4.6563e-01  6.9908e-01  1.3378e+00  1.6170e+00  2.4899e+00  3.9488e+00
+ MINUIT WARNING IN HESSE   
+ ============== MATRIX FORCED POS-DEF BY ADDING 0.033577 TO DIAGONAL.
+ FCN=-1.01874e+06 FROM HESSE     STATUS=NOT POSDEF    120 CALLS        1795 TOTAL
+                     EDM=0.0228485    STRATEGY= 1      ERR MATRIX NOT POS-DEF
+  EXT PARAMETER                APPROXIMATE     INTERNAL      INTERNAL  
+  NO.   NAME      VALUE            ERROR       STEP SIZE       VALUE   
+   1  #mu          1.45415e-01   1.00386e-05   2.04405e-02  -3.53483e+00
+   2  #sigma       4.70328e-04   2.71176e-05   1.68611e-02   9.75492e+00
+   3  #sigma_{L}   9.24956e-04   7.40066e-05   5.38735e-02   1.13755e+02
+   4  #sigma_{R}   1.03009e-03   8.18525e-05   4.70884e-02   6.76139e+00
+   5  A           -5.75563e-01   7.04503e-02   6.85499e-05  -5.75566e-03
+   6  B           -2.52994e-01   2.64328e-03   3.02598e-06  -2.52995e-03
+   7  C            4.82475e-01   1.12480e-02   1.18589e-03  -3.50568e-02
+   8  N_{Bkg}      5.20601e+04   3.68450e+02   2.39297e-04  -3.97556e+02
+   9  N_{Signal}   1.72409e+04   3.21474e+02   9.43352e-04  -6.30153e+02
+  10  R            4.88205e-01   6.90904e-02   2.16368e-02  -2.19676e+01
+  11  m_{0}        1.38135e-01   9.86152e-05   3.92683e-02  -1.94080e+00
+                               ERR DEF= 0.5
+ EXTERNAL ERROR MATRIX.    NDIM=  25    NPAR= 11    ERR DEF=0.5
+  1.008e-10 
+  7.642e-11  7.366e-10 
+ -3.214e-10 -1.523e-09  5.558e-09 
+ -1.146e-10 -1.731e-09  5.140e-09  6.777e-09 
+  1.060e-08  9.435e-08 -4.166e-07 -6.028e-07  4.963e-03 
+  3.958e-10  3.457e-09 -1.538e-08 -2.193e-08  1.417e-04  6.987e-06 
+  3.991e-09  2.743e-08 -1.297e-07 -1.591e-07  7.384e-04  2.709e-05  1.265e-04 
+ -4.819e-04 -2.941e-03  1.375e-02  1.511e-02 -4.035e+00 -1.474e-01 -1.068e+00  1.358e+05 
+  4.852e-04  2.961e-03 -1.384e-02 -1.521e-02  4.066e+00  1.486e-01  1.076e+00 -8.580e+04  1.033e+05 
+  2.058e-07  1.755e-06 -4.332e-06 -4.878e-06  1.881e-04  6.905e-06  5.817e-05 -7.142e+00  7.187e+00  4.804e-03 
+ -6.777e-11 -4.490e-10  2.129e-09  2.545e-09 -2.525e-06 -9.404e-08 -5.908e-07  1.667e-02 -1.680e-02 -9.768e-07  9.786e-09 
+ERR MATRIX NOT POS-DEF
+ PARAMETER  CORRELATION COEFFICIENTS  
+       NO.  GLOBAL      1      2      3      4      5      6      7      8      9     10     11
+        1  0.60552   1.000  0.280 -0.429 -0.139  0.015  0.015  0.035 -0.130  0.150  0.296 -0.068
+        2  0.94328   0.280  1.000 -0.752 -0.775  0.049  0.048  0.090 -0.294  0.339  0.933 -0.167
+        3  0.93226  -0.429 -0.752  1.000  0.838 -0.079 -0.078 -0.155  0.500 -0.577 -0.838  0.289
+        4  0.93391  -0.139 -0.775  0.838  1.000 -0.104 -0.101 -0.172  0.498 -0.575 -0.855  0.313
+        5  0.99052   0.015  0.049 -0.079 -0.104  1.000  0.761  0.932 -0.155  0.180  0.039 -0.362
+        6  0.98684   0.015  0.048 -0.078 -0.101  0.761  1.000  0.911 -0.151  0.175  0.038 -0.360
+        7  0.99723   0.035  0.090 -0.155 -0.172  0.932  0.911  1.000 -0.258  0.297  0.075 -0.531
+        8  0.75162  -0.130 -0.294  0.500  0.498 -0.155 -0.151 -0.258  1.000 -0.724 -0.280  0.457
+        9  0.84229   0.150  0.339 -0.577 -0.575  0.180  0.175  0.297 -0.724  1.000  0.323 -0.528
+       10  0.97540   0.296  0.933 -0.838 -0.855  0.039  0.038  0.075 -0.280  0.323  1.000 -0.142
+       11  0.91347  -0.068 -0.167  0.289  0.313 -0.362 -0.360 -0.531  0.457 -0.528 -0.142  1.000
+ ERR MATRIX NOT POS-DEF
+[#1] INFO:Minization -- RooMinimizer::optimizeConst: deactivating const optimization
+[#1] INFO:Eval -- RooRealVar::setRange(deltam) new range named 'ThreeSigma' created with bounds [0.14264,0.148505]
+[#1] INFO:NumericIntegration -- RooRealIntegral::init(bkg_Int[bcsflag,deltam,nb|ThreeSigma]) using numeric integrator RooIntegrator1D to calculate Int(deltam)
+
+  RooFitResult: minimized FCN value: -1.01874e+06, estimated distance to minimum: 0.0228485
+                covariance matrix quality: Full matrix, but forced positive-definite
+                Status : MINIMIZE=0 HESSE=0 
+
+    Floating Parameter    FinalValue +/-  Error   
+  --------------------  --------------------------
+                   #mu    1.4541e-01 +/-  1.00e-05
+                #sigma    4.7033e-04 +/-  2.71e-05
+            #sigma_{L}    9.2496e-04 +/-  7.40e-05
+            #sigma_{R}    1.0301e-03 +/-  8.19e-05
+                     A   -5.7556e-01 +/-  7.05e-02
+                     B   -2.5299e-01 +/-  2.64e-03
+                     C    4.8248e-01 +/-  1.12e-02
+               N_{Bkg}    5.2060e+04 +/-  3.68e+02
+            N_{Signal}    1.7241e+04 +/-  3.21e+02
+                     R    4.8821e-01 +/-  6.91e-02
+                 m_{0}    1.3814e-01 +/-  9.86e-05
+
+[#0] WARNING:Plotting -- Cannot apply a bin width correction and use Poisson errors. Not correcting for bin width.
+[#1] INFO:Plotting -- RooAbsPdf::plotOn(pdf) p.d.f was fitted in a subrange and no explicit Range() and NormRange() was specified. Plotting / normalising in fit range. To override, do one of the following
+	- Clear the automatic fit range attribute: <pdf>.setStringAttribute("fitrange", nullptr);
+	- Explicitly specify the plotting range: Range("<rangeName>").
+	- Explicitly specify where to compute the normalisation: NormRange("<rangeName>").
+	The default (full) range can be denoted with Range("") / NormRange("").
+[#1] INFO:Plotting -- RooAbsPdf::plotOn(pdf) only plotting range 'fit_nll_pdf_data'
+[#1] INFO:Plotting -- RooAbsPdf::plotOn(pdf) p.d.f. curve is normalized using explicit choice of ranges 'fit_nll_pdf_data'
+[#1] INFO:Plotting -- RooAbsPdf::plotOn(pdf) directly selected PDF components: (sig)
+[#1] INFO:Plotting -- RooAbsPdf::plotOn(pdf) indirectly selected PDF components: (gauss,bifurG)
+[#1] INFO:NumericIntegration -- RooRealIntegral::init(bkg_Int[deltam]) using numeric integrator RooIntegrator1D to calculate Int(deltam)
+[#1] INFO:NumericIntegration -- RooRealIntegral::init(pdf_Int[deltam|fit_nll_pdf_data]_Norm[deltam]) using numeric integrator RooIntegrator1D to calculate Int(deltam)
+[#1] INFO:Plotting -- RooAbsPdf::plotOn(pdf) p.d.f was fitted in a subrange and no explicit Range() and NormRange() was specified. Plotting / normalising in fit range. To override, do one of the following
+	- Clear the automatic fit range attribute: <pdf>.setStringAttribute("fitrange", nullptr);
+	- Explicitly specify the plotting range: Range("<rangeName>").
+	- Explicitly specify where to compute the normalisation: NormRange("<rangeName>").
+	The default (full) range can be denoted with Range("") / NormRange("").
+[#1] INFO:Plotting -- RooAbsPdf::plotOn(pdf) only plotting range 'fit_nll_pdf_data'
+[#1] INFO:Plotting -- RooAbsPdf::plotOn(pdf) p.d.f. curve is normalized using explicit choice of ranges 'fit_nll_pdf_data'
+[#1] INFO:Plotting -- RooAbsPdf::plotOn(pdf) directly selected PDF components: (bkg)
+[#1] INFO:Plotting -- RooAbsPdf::plotOn(pdf) indirectly selected PDF components: ()
+[#1] INFO:NumericIntegration -- RooRealIntegral::init(bkg_Int[deltam]) using numeric integrator RooIntegrator1D to calculate Int(deltam)
+[#1] INFO:NumericIntegration -- RooRealIntegral::init(pdf_Int[deltam|fit_nll_pdf_data]_Norm[deltam]) using numeric integrator RooIntegrator1D to calculate Int(deltam)
+[#1] INFO:Plotting -- RooAbsPdf::plotOn(pdf) p.d.f was fitted in a subrange and no explicit Range() and NormRange() was specified. Plotting / normalising in fit range. To override, do one of the following
+	- Clear the automatic fit range attribute: <pdf>.setStringAttribute("fitrange", nullptr);
+	- Explicitly specify the plotting range: Range("<rangeName>").
+	- Explicitly specify where to compute the normalisation: NormRange("<rangeName>").
+	The default (full) range can be denoted with Range("") / NormRange("").
+[#1] INFO:Plotting -- RooAbsPdf::plotOn(pdf) only plotting range 'fit_nll_pdf_data'
+[#1] INFO:Plotting -- RooAbsPdf::plotOn(pdf) p.d.f. curve is normalized using explicit choice of ranges 'fit_nll_pdf_data'
+[#1] INFO:Plotting -- RooAbsPdf::plotOn(pdf) directly selected PDF components: (bkg)
+[#1] INFO:Plotting -- RooAbsPdf::plotOn(pdf) indirectly selected PDF components: ()
+[#1] INFO:NumericIntegration -- RooRealIntegral::init(bkg_Int[deltam]) using numeric integrator RooIntegrator1D to calculate Int(deltam)
+[#1] INFO:NumericIntegration -- RooRealIntegral::init(pdf_Int[deltam|fit_nll_pdf_data]_Norm[deltam]) using numeric integrator RooIntegrator1D to calculate Int(deltam)
+[#1] INFO:Plotting -- RooAbsPdf::plotOn(pdf) p.d.f was fitted in a subrange and no explicit Range() and NormRange() was specified. Plotting / normalising in fit range. To override, do one of the following
+	- Clear the automatic fit range attribute: <pdf>.setStringAttribute("fitrange", nullptr);
+	- Explicitly specify the plotting range: Range("<rangeName>").
+	- Explicitly specify where to compute the normalisation: NormRange("<rangeName>").
+	The default (full) range can be denoted with Range("") / NormRange("").
+[#1] INFO:Plotting -- RooAbsPdf::plotOn(pdf) only plotting range 'fit_nll_pdf_data'
+[#1] INFO:Plotting -- RooAbsPdf::plotOn(pdf) p.d.f. curve is normalized using explicit choice of ranges 'fit_nll_pdf_data'
+[#1] INFO:NumericIntegration -- RooRealIntegral::init(bkg_Int[deltam]) using numeric integrator RooIntegrator1D to calculate Int(deltam)
+[#1] INFO:NumericIntegration -- RooRealIntegral::init(pdf_Int[deltam|fit_nll_pdf_data]_Norm[deltam]) using numeric integrator RooIntegrator1D to calculate Int(deltam)

@@ -17,17 +17,19 @@ gInterpreter.ProcessLine('#include "MyDblCB.h"')
 #f1 = "/home/tkimmel/Research/root/charmmfrecon_bcs.root"
 
 #############Partial Data#############
-"""
 f1 = "/home/tkimmel/Research/root/partialData.root"
 title = "D* -> D^{0}(-> #pi^{0} + K_{L}^{0}) + #pi: From Partial Belle Dataset"
 #outname = "/home/tkimmel/Research/plots/partialData/klRecon_partialData.png"
-outname = "/home/tkimmel/Research/plots/partialData/klRecon_partialData_noDspPMagCut.png"
-"""
+outname = "/home/tkimmel/Research/plots/partialData/klRecon_partialData_noParam.png"
+#outname = "/home/tkimmel/Research/plots/partialData/klRecon_partialData_noDspPMagCut.png"
 
+"""
 f1 = "/home/tkimmel/Research/root/partialMC.root"
 title = "D* -> D^{0}(-> #pi^{0} + K_{L}^{0}) + #pi: From Partial Generic Monte Carlo"
 #outname = "/home/tkimmel/Research/plots/partialData/klRecon_partialMC.png"
-outname = "/home/tkimmel/Research/plots/partialData/klRecon_partialMC_noDsPMagCut.png"
+outname = "/home/tkimmel/Research/plots/partialData/klRecon_partialMC_noParam.png"
+#outname = "/home/tkimmel/Research/plots/partialData/klRecon_partialMC_noDsPMagCut.png"
+"""
 
 
 ############Full Stream MC############
@@ -81,7 +83,8 @@ outname = "/home/tkimmel/Research/plots/klSignalMC/klRecon_withCuts_pionDup_klSi
 #outname = "/home/tkimmel/Research/plots/nullL"
 
 ########CUT########
-cut=""
+#cut=""
+cut="bcsflag==1 && nb>0.832"
 #cut="dsPmag>3 && nb>0.832"# Loose flavor cut and k0sig 10BSR
 #cut = "abs(dsflag)==1"
 
@@ -106,7 +109,7 @@ t = f.Get(tree)
 #deltam = RooRealVar("deltam","deltam",0.138,0.16)
 #deltam = RooRealVar("deltam","deltam",0.139,0.153)
 deltam = RooRealVar("deltam","deltam",0.14,0.152)
-dsPmag = RooRealVar("dsPmag","dsPmag",0,10)
+#dsPmag = RooRealVar("dsPmag","dsPmag",0,10)
 nb = RooRealVar("nb","nb",-1,1)
 bcsflag = RooRealVar("bcsflag","bcsflag",0,1)
 
@@ -137,7 +140,7 @@ binWidthMEV = binWidth*1000
 
 
 #vars = RooArgSet(deltam,dsflag)
-vars = RooArgSet(deltam,dsPmag,bcsflag,nb)
+vars = RooArgSet(deltam,bcsflag,nb)
 #vars = RooArgSet(deltam,nb,dsPmag,mfchi2,gmthetacms)
 #vars = RooArgSet(deltam,nb,dsPmag,bcsflag)
 
@@ -180,17 +183,17 @@ n2 = RooRealVar("n_{2}","n_{2}",10,0,20)
 ##Gaussian
 gausmean = RooRealVar("#mu","#mu",0.1453,0.145,0.146)
 #####MC Parameters#####
-gaussigma = RooRealVar("#sigma","#sigma",0.0007007,0.0001,0.001)
-#####Data Parameters#####
-#gaussigma = RooRealVar("#sigma","#sigma",0.0007007,0.0001,0.005)
+#gaussigma = RooRealVar("#sigma","#sigma",0.0001,0.001)
+#####Dataf Parameters#####
+gaussigma = RooRealVar("#sigma","#sigma",0.0001,0.0007)
 
 ##Bifurcated Gaussian
 #####MC Parameters#####
-gaussigmaL = RooRealVar("#sigma_{L}","#sigma_{L}",0.001317,0.0008,0.0015)
-gaussigmaR = RooRealVar("#sigma_{R}","#sigma_{R}",0.001544,0.0010,0.0017)
-#####Data Parameters#####
-#gaussigmaL = RooRealVar("#sigma_{L}","#sigma_{L}",0.001317,0.0008,0.0015)
-#gaussigmaR = RooRealVar("#sigma_{R}","#sigma_{R}",0.001544,0.0010,0.0017)
+#gaussigmaL = RooRealVar("#sigma_{L}","#sigma_{L}",0.0005,0.0013)
+#gaussigmaR = RooRealVar("#sigma_{R}","#sigma_{R}",0.0007,0.0015)
+#####Dataf Parameters#####
+gaussigmaL = RooRealVar("#sigma_{L}","#sigma_{L}",0.0006,0.0015)
+gaussigmaR = RooRealVar("#sigma_{R}","#sigma_{R}",0.0006,0.0017)
 
 """
 scaleL = RooRealVar("scaleL","scaleL",1.941010)
@@ -199,11 +202,12 @@ gaussigmaL = RooFormulaVar("#sigmaL","#sigmaL","@0*@1",RooArgList(gaussigma,scal
 gaussigmaR = RooFormulaVar("#sigmaR","#sigmaR","@0*@1",RooArgList(gaussigma,scaleR))
 """
 
-frac = RooRealVar("R","R",0.4479,0,1)
+frac = RooRealVar("R","R",0,1)
 #frac = RooRealVar("R","R",0.4874)
 
 # DstD0BG
-m0 = RooRealVar("m_{0}", "m_{0}", 0.13957, 0.1388, 0.142)
+#m0 = RooRealVar("m_{0}", "m_{0}", 0.13957, 0.1388, 0.142)
+m0 = RooRealVar("m_{0}", "m_{0}",0.1385,0.142)
 A = RooRealVar("A", "A", -50, 50)
 B = RooRealVar("B", "C", -50, 50)
 #C = RooRealVar("C", "C", 0, 0.1)
@@ -214,8 +218,8 @@ C = RooRealVar("C", "C", 0, 0.3)
 ##################################################################################
 ##################################################################################
 
-#nsig = RooRealVar("N_{Signal}","nsig",0,2000)# All MC
-nsig = RooRealVar("N_{Signal}","nsig",0,1000000)# Signal MC
+nsig = RooRealVar("N_{Signal}","nsig",0,18000)
+#nsig = RooRealVar("N_{Signal}","nsig",0,1000000)# Signal MC
 nbkg = RooRealVar("N_{Bkg}","nbkg",0,10000000)
 
 #cheby = RooChebychev("Chebychev","Chebychev",deltam,RooArgList(c0,c1,c2))
@@ -352,7 +356,7 @@ pdf.plotOn(frame1, RooFit.Components(BKG),RooFit.LineColor(kRed),RooFit.LineStyl
 pdf.plotOn(frame1, RooFit.LineColor(kBlack))
 #pdf.plotOn(frame1, RooFit.Components(bkg),RooFit.LineColor(kRed),RooFit.LineStyle(kDashed))
 
-pdf.paramOn(frame1,RooFit.Format("NEU", RooFit.AutoPrecision(2)), RooFit.Layout(0.63, 0.99, 0.90))# Higher parameter box
+#pdf.paramOn(frame1,RooFit.Format("NEU", RooFit.AutoPrecision(2)), RooFit.Layout(0.63, 0.99, 0.90))# Higher parameter box
 #pdf.paramOn(frame1,RooFit.Format("NEU", RooFit.AutoPrecision(2)), RooFit.Layout(0.57, 0.96, 0.9))# Medium parameter box
 
 #pdf.paramOn(frame1,RooFit.Format("NEU", RooFit.AutoPrecision(2)), RooFit.Layout(0.63, 0.99, 0.68))# Lower parameter box

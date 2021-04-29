@@ -26,8 +26,8 @@ outname = "/home/tkimmel/Research/plots/partialData/ks_partialData_noDspPMagCut.
 
 f1 = "/home/tkimmel/Research/root/partialMC.root"
 title = "D* -> D^{0}(-> #pi^{0} + K_{S}^{0}) + #pi: Standard Reconstruction From Partial Generic Monte Carlo"
-#outname = "/home/tkimmel/Research/plots/partialData/ks_partialMC.png"
-outname = "/home/tkimmel/Research/plots/partialData/ks_partialMC_noDspPMagCut.png"
+outname = "/home/tkimmel/Research/plots/partialData/ks_partialMC.png"
+#outname = "/home/tkimmel/Research/plots/partialData/ks_partialMC_noDspPMagCut.png"
 
 ############Full Stream MC############
 """
@@ -99,7 +99,9 @@ outname = "/home/tkimmel/Research/plots/ksSignalMC/ksRecon_withCuts_pionDup_ksSi
 #cut="dsPmag>2.765 && bcsflag==1 && nb>-0.076"# Loose flavor cut and BCS and k0sig 1SBR
 #cut="dsPmag>2.765 && bcsflag==1 && nb>0.832"# Loose flavor cut and BCS and k0sig 10SBR
 #cut="bcsflag==1"# BCS
-cut=""# No cut
+
+#cut=""# No cut
+cut="bcsflag==1 && nb>0.832"# No cut
 #cut="abs(dsflag)==1"# Truth Matched
 
 
@@ -114,8 +116,8 @@ deltam = RooRealVar("deltam","deltam",0.14,0.152)
 nb = RooRealVar("nb","nb",-1,1)
 bcsflag = RooRealVar("bcsflag","bcsflag",0,1)
 chrgflag = RooRealVar("chrgflag","chrgflag",-1,1)
-dsPmag = RooRealVar("dsPmag","dsPmag",0,11)
-dsPmagcms = RooRealVar("dsPmagcms","dsPmagcms",0,15)
+#dsPmag = RooRealVar("dsPmag","dsPmag",0,11)
+#dsPmagcms = RooRealVar("dsPmagcms","dsPmagcms",0,15)
 dsflag = RooRealVar("dsflag","dsflag",-40,40)
 
 lb = deltam.getMin()
@@ -127,7 +129,7 @@ binWidth = (rb-lb)/nBins
 binWidthMEV = binWidth*1000
 
 
-vars = RooArgSet(deltam,dsPmag,bcsflag,nb)
+vars = RooArgSet(deltam,bcsflag,nb)
 
 data = RooDataSet("data", "raw data", t, vars, cut)
 

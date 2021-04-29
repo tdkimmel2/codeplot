@@ -19,15 +19,15 @@ gROOT.ProcessLineSync(".x MyDblCB.cxx")
 """
 f1 = "/home/tkimmel/Research/root/partialData.root"
 title = "D* -> D^{0}(-> #pi^{0} + K_{S}^{0}) + #pi: From Partial Belle Dataset"
-#outname = "/home/tkimmel/Research/plots/partialData/ksRecon_partialData.png"
-outname = "/home/tkimmel/Research/plots/partialData/ksRecon_partialData_noDsPMagCut.png"
+outname = "/home/tkimmel/Research/plots/partialData/ksRecon_partialData.png"
+#outname = "/home/tkimmel/Research/plots/partialData/ksRecon_partialData_noDsPMagCut.png"
 """
-
 
 f1 = "/home/tkimmel/Research/root/partialMC.root"
 title = "D* -> D^{0}(-> #pi^{0} + K_{S}^{0}) + #pi: From Partial Generic Monte Carlo"
-#outname = "/home/tkimmel/Research/plots/partialData/ksRecon_partialMC.png"
-outname = "/home/tkimmel/Research/plots/partialData/ksRecon_partialMC_noDsPMagCut.png"
+outname = "/home/tkimmel/Research/plots/partialData/ksRecon_partialMC.png"
+#outname = "/home/tkimmel/Research/plots/partialData/ksRecon_partialMC_noParam.png"
+#outname = "/home/tkimmel/Research/plots/partialData/ksRecon_partialMC_noDsPMagCut.png"
 
 ############Full Stream MC############
 """
@@ -99,7 +99,9 @@ outname = "/home/tkimmel/Research/plots/ksSignalMC/ksRecon_withCuts_pionDup_ksSi
 #cut="dsPmag>2.765 && bcsflag==1 && nb>-0.076"# Loose flavor cut and BCS and k0sig 1SBR
 #cut="dsPmag>2.765 && bcsflag==1 && nb>0.832"# Loose flavor cut and BCS and k0sig 10SBR
 #cut="bcsflag==1"# BCS
-cut=""# No cut
+
+#cut=""# No cut
+cut="bcsflag==1 && nb>0.832"# No cut
 #cut="abs(dsflag)==1"# Truth Matched
 
 
@@ -114,8 +116,8 @@ deltam = RooRealVar("deltam","deltam",0.14,0.152)
 nb = RooRealVar("nb","nb",-1,1)
 bcsflag = RooRealVar("bcsflag","bcsflag",0,1)
 chrgflag = RooRealVar("chrgflag","chrgflag",-1,1)
-dsPmag = RooRealVar("dsPmag","dsPmag",0,11)
-dsPmagcms = RooRealVar("dsPmagcms","dsPmagcms",0,15)
+#dsPmag = RooRealVar("dsPmag","dsPmag",0,11)
+#dsPmagcms = RooRealVar("dsPmagcms","dsPmagcms",0,15)
 dsflag = RooRealVar("dsflag","dsflag",-40,40)
 
 lb = deltam.getMin()
@@ -128,7 +130,7 @@ binWidthMEV = binWidth*1000
 
 
 #vars = RooArgSet(deltam,dsflag)
-vars = RooArgSet(deltam,dsPmag,bcsflag,nb)
+vars = RooArgSet(deltam,bcsflag,nb)
 
 #vars = RooArgSet(deltam,nb,dsPmag)
 #vars = RooArgSet(deltam,nb,dsPmag,mfchi2,gmthetacms)
@@ -176,14 +178,14 @@ n2 = RooRealVar("n_{2}","n_{2}",4,9)
 ##gausmean.setConstant()
 #####MC Parameters#####
 gaussigma = RooRealVar("#sigma","#sigma",0.0003827,0.0002,0.001)
-#####Data Parameters#####
+#####Dataf Parameters#####
 #gaussigma = RooRealVar("#sigma","#sigma",0.0003827,0.0002,0.005)
 
 ##Bifurcated Gaussian
 #####MC Parameters#####
-gaussigmaR = RooRealVar("#sigma_{R}","#sigma_{R}",0.0006,0.0017)
-gaussigmaL = RooRealVar("#sigma_{L}","#sigma_{L}",0.0005,0.0015)
-#####Data Parameters#####
+gaussigmaR = RooRealVar("#sigma_{R}","#sigma_{R}",0.0003,0.0015)
+gaussigmaL = RooRealVar("#sigma_{L}","#sigma_{L}",0.0005,0.0013)
+#####Dataf Parameters#####
 #gaussigmaR = RooRealVar("#sigma_{R}","#sigma_{R}",0.0006,0.0017)
 #gaussigmaL = RooRealVar("#sigma_{L}","#sigma_{L}",0.0005,0.0015)
 
@@ -200,11 +202,11 @@ gaussigmaR = RooFormulaVar("#sigmaR","#sigmaR","@0*@1",RooArgList(gaussigma,scal
 frac = RooRealVar("R","R",0.582,0,1)
 
 # DstD0BG
-m0 = RooRealVar("m_{0}", "m_{0}", 0.139416, 0.138, 0.14)
+m0 = RooRealVar("m_{0}", "m_{0}", 0.139416, 0.138, 0.142)
 #m0 = RooRealVar("m_{0}", "m_{0}", 0.13957, 0.1394, 0.1396)
 A = RooRealVar("A", "A", -100, 100)
 B = RooRealVar("B", "B", -100, 100)
-C = RooRealVar("C", "C", 0, 1)
+C = RooRealVar("C", "C", 0, 0.1)
 #m0.setConstant()
 
 #nsig = RooRealVar("N_{Signal}","nsig",0,5000)# All MC
@@ -329,7 +331,7 @@ pdf.plotOn(frame1, RooFit.Components(BKG),RooFit.LineColor(kRed),RooFit.LineStyl
 pdf.plotOn(frame1, RooFit.LineColor(kBlack))
 #pdf.plotOn(frame1, RooFit.Components(bkg),RooFit.LineColor(kRed),RooFit.LineStyle(kDashed))
 
-pdf.paramOn(frame1,RooFit.Format("NEU", RooFit.AutoPrecision(2)), RooFit.Layout(0.65, 0.99, 0.93))# Higher Parameter Box
+pdf.paramOn(frame1,RooFit.Format("NEU", RooFit.AutoPrecision(2)), RooFit.Layout(0.625, 0.99, 0.93))# Higher Parameter Box
 #pdf.paramOn(frame1,RooFit.Format("NEU", RooFit.AutoPrecision(2)), RooFit.Layout(0.60, 0.95, 0.90))# Higher Parameter Box, signal MC
 
 #pdf.paramOn(frame1,RooFit.Format("NEU", RooFit.AutoPrecision(2)), RooFit.Layout(0.6, 0.96, 0.85))# Medium Parameter Box
