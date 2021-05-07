@@ -24,8 +24,9 @@ f1 = "/home/tkimmel/Research/root/allmfrecon.root"
 title = "K_{S}^{0} Mass: From All Generic MC"
 #outname = "/home/tkimmel/Research/plots/kstree/ksmassFit.png"
 #outname = "/home/tkimmel/Research/plots/kstree/ksmassFit_2Gauss.png"
-#outname = "/home/tkimmel/Research/plots/kstree/ksmassFit_2Gauss_wideWindow.png"
-outname = "/home/tkimmel/Research/plots/kstree/ksmassFit_GaussBifurG_wideWindow.png"
+outname = "/home/tkimmel/Research/plots/kstree/ksmassFit_2Gauss_wideWindow.png"
+#outname = "/home/tkimmel/Research/plots/kstree/ksmassFit_2Gauss_wideWindow_firstOrder.png"
+#outname = "/home/tkimmel/Research/plots/kstree/ksmassFit_GaussBifurG_wideWindow.png"
 ############K0 SIGNAL MC############
 """
 f1 = "/home/tkimmel/Research/root/k0signalmfrecon.root"
@@ -109,7 +110,7 @@ gaussigmaL = RooRealVar("#sigma_{L}","#sigma_{L}",0.0001,0.01)
 #gaussigmaR = RooFormulaVar("#sigmaR","#sigmaR","@0*@1",RooArgList(gaussigma,scaleR))
 
 ##Chebyshev
-c0 = RooRealVar("c_{0}","c_{0}",-10,10)
+c0 = RooRealVar("c_{0}","c_{0}",-1,1)
 c1 = RooRealVar("c_{1}","c_{1}",-1,1)
 c2 = RooRealVar("c_{2}","c_{2}",-1,1)
 
@@ -117,8 +118,8 @@ c2 = RooRealVar("c_{2}","c_{2}",-1,1)
 #gausmean = RooRealVar("#mu_{sig}","#mu_{sig}",0.145465,0.144,0.146)
 ##gausmean.setConstant()
 gaussigma = RooRealVar("#sigma","#sigma",0.0004837,0.001,0.005)
-gaussigma1 = RooRealVar("#sigma_{1}","#sigma_{1}",0.001,0.01)
-gaussigma2 = RooRealVar("#sigma_{2}","#sigma_{2}",0.0001,0.01)
+gaussigma1 = RooRealVar("#sigma_{1}","#sigma_{1}",0.0008,0.003)
+gaussigma2 = RooRealVar("#sigma_{2}","#sigma_{2}",0.0008,0.003)
 
 nsig = RooRealVar("N_{Signal}","nsig",0,10000000)# Signal MC
 nbkg = RooRealVar("N_{Bkg}","nbkg",0,10000000)
@@ -152,9 +153,9 @@ GAUSS2 = RooArgSet(gauss2)
 
 #sig = RooGaussian("gauss","Gaussian Signal Fcn", ksmass,mu,gaussigma)
 frac = RooRealVar("Frac_{sig}","Frac_{sig}",0,1)
-#sig = RooAddPdf("twogauss","Two Gaussian Signal Fcns",RooArgList(gauss1,gauss2),RooArgList(frac))
-sig = RooAddPdf("twogauss","Two Gaussian Signal Fcns",RooArgList(gauss1,bifurG),RooArgList(frac))
-#bkg = RooChebychev("Chebychev","Chebychev",ksmass,RooArgList(c0,c1))
+sig = RooAddPdf("twogauss","Two Gaussian Signal Fcns",RooArgList(gauss1,gauss2),RooArgList(frac))
+#sig = RooAddPdf("twogauss","Two Gaussian Signal Fcns",RooArgList(gauss1,bifurG),RooArgList(frac))
+#bkg = RooChebychev("Chebychev","Chebychev",ksmass,RooArgList(c0))
 bkg = RooChebychev("Chebychev","Chebychev",ksmass,RooArgList(c0,c1))
 #bkg = RooDstD0BG("bkg","DstD0BG Bkg Fcn",deltam,m0,C,A,B)
 

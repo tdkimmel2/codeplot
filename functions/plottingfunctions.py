@@ -1101,7 +1101,8 @@ def NoBackgroundCut_GreaterThan(rb,lb,Tree,Variable,TruthVariable,CutString,Titl
     effiRetainSIG = float(nSigRetained[optimalIteration])/nSigTotal
     #effiRejectBKG = float(nBkgTotal - nBkgRetained[optimalIteration])/nBkgTotal
     #print("Effi_rejectBKG = %.3f"%effiRejectBKG)
-    sigRetained = "#splitline{Signal Retained:}{%.3f}"%effiRetainSIG
+    #sigRetained = "#splitline{Signal Retained:}{%.3f}"%effiRetainSIG
+    sigRetained = "#splitline{Charm Events Retained:}{%.3f}"%effiRetainSIG
     print(sigRetained)
     #print("Effi_retainSIG = %.3f"%effiRetainSIG)
 
@@ -1177,8 +1178,10 @@ def NoBackgroundCut_GreaterThan(rb,lb,Tree,Variable,TruthVariable,CutString,Titl
 
     legendwidth = 0.15
     leg = TLegend(LegendLeftEdge,0.74,LegendLeftEdge+legendwidth,0.89)
-    leg.AddEntry(Frame.findObject("h1"),"Signal","l")
-    leg.AddEntry(Frame.findObject("h2"),"Background","l")
+    #leg.AddEntry(Frame.findObject("h1"),"Signal","l")
+    #leg.AddEntry(Frame.findObject("h2"),"Background","l")
+    leg.AddEntry(Frame.findObject("h1"),"Charm Events","l")
+    leg.AddEntry(Frame.findObject("h2"),"B Events","l")
     leg.SetFillColor(kWhite)
     leg.SetLineColor(kWhite)
     leg.SetTextSize(0.04)

@@ -3,7 +3,8 @@ import sys
 sys.path.append('/home/tkimmel/Research/codeplot/functions/')
 from plottingfunctions import *
 
-f = TFile("/home/tkimmel/Research/root/allmfrecon.root","READ")
+#f = TFile("/home/tkimmel/Research/root/allmfrecon.root","READ")
+f = TFile("/home/tkimmel/Research/root/efficiencies/allmfrecon_gammaPiMassCuts.root","READ")
 t = f.Get("dsrecontree")
 #t = f.Get("dstree")
 
@@ -24,6 +25,7 @@ h2 = TH1F("h2","h2",nBins,lb,rb)
 
 #NoBackgroundCut_GreaterThan(rb,lb,t,"dsPmag","mcflag","abs(dsflag)==1","From All Generic MC: Reconstructed D* 3-Momentum Magnitude D* -> D^{0}(-> #pi^{0} + K_{S}^{0}) + #pi","|p_{D*}| (GeV/c)",h1,h2,frame,0.6,"/home/tkimmel/Research/plots/alldtokpi/ksRecon_noBackgroundCut_99Purity",0.99)
 #NoBackgroundCut_GreaterThan(rb,lb,t,"dsPmag","mcflag","abs(dsflag)==1 && deltam > 0.1422863 && deltam < 0.1490903","From All Generic MC: Reconstructed D* 3-Momentum Magnitude D* -> D^{0}(-> #pi^{0} + K_{S}^{0}) + #pi","|p_{D*}| (GeV/c)",h1,h2,frame,0.6,"/home/tkimmel/Research/plots/alldtokpi/ksRecon_noBackgroundCut_deltamWindow1stPass_98Purity",0.98)
-NoBackgroundCut_GreaterThan(rb,lb,t,"dsPmag","mcflag","abs(dsflag)==1 && deltam > 0.1423971 && deltam < 0.1489743","From All Generic MC: Reconstructed D* 3-Momentum Magnitude D* -> D^{0}(-> #pi^{0} + K_{S}^{0}) + #pi","|#vec{p_{D*}}| (GeV/c)",h1,h2,frame,0.6,"/home/tkimmel/Research/plots/alldtokpi/ksRecon_noBackgroundCut_deltamWindow2ndPass_99Purity",0.99)
+#NoBackgroundCut_GreaterThan(rb,lb,t,"dsPmag","mcflag","abs(dsflag)==1 && deltam > 0.1423971 && deltam < 0.1489743","From All Generic MC: Reconstructed D* 3-Momentum Magnitude D* -> D^{0}(-> #pi^{0} + K_{S}^{0}) + #pi","|#vec{p_{D*}}| (GeV/c)",h1,h2,frame,0.6,"/home/tkimmel/Research/plots/alldtokpi/ksRecon_noBackgroundCut_deltamWindow2ndPass_99Purity",0.99)
+NoBackgroundCut_GreaterThan(rb,lb,t,"dsPmag","mcflag","abs(dsflag)==1 && deltam > 0.1423971 && deltam < 0.1489743","From All Generic MC: Reconstructed D* 3-Momentum Magnitude D* -> D^{0}(-> #pi^{0} + K_{S}^{0}) + #pi","|#vec{p_{D*}}| (GeV/c)",h1,h2,frame,0.6,"/home/tkimmel/Research/plots/null",0.99)
 
 #NoBackgroundCut_GreaterThan(rb,lb,t,"dsPmag","mcflag","abs(dsflag)==1","From All Generic MC: Reconstructed D* 3-Momentum Magnitude D* -> D^{0}(-> #pi^{0} + K_{S}^{0}) + #pi","|p_{D*}| (GeV/c)",h1,h2,frame,0.55,"/home/tkimmel/Research/plots/alldtokpi/ks_noBackgroundCut_98Purity",0.98)

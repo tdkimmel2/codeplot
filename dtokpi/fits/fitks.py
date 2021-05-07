@@ -15,7 +15,7 @@ gROOT.ProcessLineSync(".x MyDblCB.cxx")
 #f1 = "/home/tkimmel/Research/root/allmfrecon_k0sigtrain10vars.root"
 #f1 = "/home/tkimmel/Research/root/charmmfrecon_bcs.root"
 
-############Full Stream MC############
+############Partial MC/Data############
 """
 f1 = "/home/tkimmel/Research/root/partialData.root"
 title = "D* -> D^{0}(-> #pi^{0} + K_{S}^{0}) + #pi: From Partial Belle Dataset"
@@ -23,17 +23,19 @@ outname = "/home/tkimmel/Research/plots/partialData/ksRecon_partialData.png"
 #outname = "/home/tkimmel/Research/plots/partialData/ksRecon_partialData_noDsPMagCut.png"
 """
 
+"""
 f1 = "/home/tkimmel/Research/root/partialMC.root"
 title = "D* -> D^{0}(-> #pi^{0} + K_{S}^{0}) + #pi: From Partial Generic Monte Carlo"
 outname = "/home/tkimmel/Research/plots/partialData/ksRecon_partialMC.png"
 #outname = "/home/tkimmel/Research/plots/partialData/ksRecon_partialMC_noParam.png"
 #outname = "/home/tkimmel/Research/plots/partialData/ksRecon_partialMC_noDsPMagCut.png"
+"""
 
 ############Full Stream MC############
-"""
 f1 = "/home/tkimmel/Research/root/fullStream.root"
 title = "D* -> D^{0}(-> #pi^{0} + K_{S}^{0}) + #pi: From a Full Stream of MC"
-outname = "/home/tkimmel/Research/plots/fullStream/ksRecon_fullStream_pionDup_noParam.png"
+outname = "/home/tkimmel/Research/plots/fullStream/ksRecon_fullStream.png"
+#outname = "/home/tkimmel/Research/plots/fullStream/ksRecon_fullStream_pionDup_noParam.png"
 
 #outname = "/home/tkimmel/Research/plots/fullStream/ksRecon_GaussBifurG_narrowWindow.png"
 #outname = "/home/tkimmel/Research/plots/fullStream/ksRecon_GaussBifurG_narrowWindow_noParam.png"
@@ -41,14 +43,14 @@ outname = "/home/tkimmel/Research/plots/fullStream/ksRecon_fullStream_pionDup_no
 #outname = "/home/tkimmel/Research/plots/fullStream/ksRecon_GaussBifurG_narrowWindow2.png"
 #outname = "/home/tkimmel/Research/plots/fullStream/ksRecon_GaussBifurG_narrowWindow2_fixedSigmas.png"
 #outname = "/home/tkimmel/Research/plots/fullStream/ksRecon_GaussBifurG_narrowWindow2_Minuit2.png"
-"""
 
 ############ALL MC############
 """
 f1 = "/home/tkimmel/Research/root/allmfrecon.root"
 title = "D* -> D^{0}(-> #pi^{0} + K_{S}^{0}) + #pi: From All Generic MC"
-#outname = "/home/tkimmel/Research/plots/alldtokpi/ksRecon_withCuts.png"
-outname = "/home/tkimmel/Research/plots/alldtokpi/ksRecon_withCuts_pionDup.png"
+#outname = "/home/tkimmel/Research/plots/alldtokpi/ksRecon_allGeneric.png"
+outname = "/home/tkimmel/Research/plots/alldtokpi/ksRecon_allGeneric_noParam.png"
+#outname = "/home/tkimmel/Research/plots/alldtokpi/ksRecon_withCuts_pionDup.png"
 #outname = "/home/tkimmel/Research/plots/alldtokpi/ksRecon_Looseflavorcut_BCS_nbn0p076.png"
 #outname = "/home/tkimmel/Research/plots/alldtokpi/ksRecon_Looseflavorcut_BCS_nbn0p076_fixedNs_n114p874_n25p509.png"
 #outname = "/home/tkimmel/Research/plots/alldtokpi/ksRecon_Looseflavorcut_BCS_fixedNs_n19p418_n22p6871.png"
@@ -78,12 +80,14 @@ outname = "/home/tkimmel/Research/plots/k0Signal/ksRecon_Looseflavorcut_BCS_fixe
 """
 f1 = "/home/tkimmel/Research/root/kssignalmfrecon.root"
 title = "D* -> D^{0}(-> #pi^{0} + K_{S}^{0}) + #pi: From K^{0}_{S} Signal MC"
+#outname = "/home/tkimmel/Research/plots/ksSignalMC/ksRecon_ksSignal.png"
+outname = "/home/tkimmel/Research/plots/ksSignalMC/ksRecon_ksSignal_noParam.png"
 #outname = "/home/tkimmel/Research/plots/ksSignalMC/ksRecon_TMFit.png"
 #outname = "/home/tkimmel/Research/plots/ksSignalMC/ksRecon_fixeddm0.png"
 #outname = "/home/tkimmel/Research/plots/ksSignalMC/ksRecon_fixeddm0PDGPionMass.png"
 #outname = "/home/tkimmel/Research/plots/ksSignalMC/ksRecon_fixeddm0MeasuredPionMass.png"
 #outname = "/home/tkimmel/Research/plots/ksSignalMC/ksRecon_withCuts.png"
-outname = "/home/tkimmel/Research/plots/ksSignalMC/ksRecon_withCuts_pionDup_ksSignalMC.png"
+#outname = "/home/tkimmel/Research/plots/ksSignalMC/ksRecon_withCuts_pionDup_ksSignalMC.png"
 """
 
 
@@ -100,8 +104,8 @@ outname = "/home/tkimmel/Research/plots/ksSignalMC/ksRecon_withCuts_pionDup_ksSi
 #cut="dsPmag>2.765 && bcsflag==1 && nb>0.832"# Loose flavor cut and BCS and k0sig 10SBR
 #cut="bcsflag==1"# BCS
 
-#cut=""# No cut
-cut="bcsflag==1 && nb>0.832"# No cut
+cut=""# No cut
+#cut="bcsflag==1 && nb>0.832"# No cut
 #cut="abs(dsflag)==1"# Truth Matched
 
 
@@ -129,8 +133,9 @@ binWidth = (rb-lb)/nBins
 binWidthMEV = binWidth*1000
 
 
+vars = RooArgSet(deltam)
 #vars = RooArgSet(deltam,dsflag)
-vars = RooArgSet(deltam,bcsflag,nb)
+#vars = RooArgSet(deltam,bcsflag,nb)
 
 #vars = RooArgSet(deltam,nb,dsPmag)
 #vars = RooArgSet(deltam,nb,dsPmag,mfchi2,gmthetacms)
@@ -176,18 +181,11 @@ n2 = RooRealVar("n_{2}","n_{2}",4,9)
 #Gaussian
 #gausmean = RooRealVar("#mu_{sig}","#mu_{sig}",0.145465,0.144,0.146)
 ##gausmean.setConstant()
-#####MC Parameters#####
-gaussigma = RooRealVar("#sigma","#sigma",0.0003827,0.0002,0.001)
-#####Dataf Parameters#####
-#gaussigma = RooRealVar("#sigma","#sigma",0.0003827,0.0002,0.005)
+gaussigma = RooRealVar("#sigma","#sigma",0.0003827,0.0002,0.0006)
 
 ##Bifurcated Gaussian
-#####MC Parameters#####
-gaussigmaR = RooRealVar("#sigma_{R}","#sigma_{R}",0.0003,0.0015)
-gaussigmaL = RooRealVar("#sigma_{L}","#sigma_{L}",0.0005,0.0013)
-#####Dataf Parameters#####
-#gaussigmaR = RooRealVar("#sigma_{R}","#sigma_{R}",0.0006,0.0017)
-#gaussigmaL = RooRealVar("#sigma_{L}","#sigma_{L}",0.0005,0.0015)
+gaussigmaR = RooRealVar("#sigma_{R}","#sigma_{R}",0.0006,0.0017)
+gaussigmaL = RooRealVar("#sigma_{L}","#sigma_{L}",0.0006,0.0015)
 
 """
 #scaleL = RooRealVar("scaleL","scaleL",2.141589) #140t152
@@ -199,7 +197,7 @@ gaussigmaR = RooFormulaVar("#sigmaR","#sigmaR","@0*@1",RooArgList(gaussigma,scal
 """
 
 #frac = RooRealVar("R","R",0.582)
-frac = RooRealVar("R","R",0.582,0,1)
+frac = RooRealVar("R","R",0,1)
 
 # DstD0BG
 m0 = RooRealVar("m_{0}", "m_{0}", 0.139416, 0.138, 0.142)
@@ -211,9 +209,9 @@ C = RooRealVar("C", "C", 0, 0.1)
 
 #nsig = RooRealVar("N_{Signal}","nsig",0,5000)# All MC
 #nsig = RooRealVar("N_{Signal}","nsig",0,10000)# All MC
-nsig = RooRealVar("N_{Signal}","nsig",0,1000000)# Signal MC
+nsig = RooRealVar("N_{Signal}","nsig",0,10000000)# Signal MC
 #nbkg = RooRealVar("N_{Bkg}","nbkg",0,10000)
-nbkg = RooRealVar("N_{Bkg}","nbkg",0,10000000)
+nbkg = RooRealVar("N_{Bkg}","nbkg",0,100000000)
 
 #cheby = RooChebychev("Chebychev","Chebychev",deltam,RooArgList(c0,c1,c2))
 #dstd0 = RooDstD0BG("DstD0BG","DstD0BG",deltam,dm0,d,a,b)

@@ -4,15 +4,19 @@ import math
 sys.path.append('/home/tkimmel/Research/codeplot/functions/')
 from plottingfunctions import *
 
-f = TFile("/home/tkimmel/Research/root/allmfrecon_noCuts.root","READ")
+f = TFile("/home/tkimmel/Research/root/efficiencies/allmfrecon_noCuts.root","READ")
+f2 = TFile("/home/tkimmel/Research/root/allmfrecon.root","READ")
 realtreel = f.Get("realdecayltree")
 realtrees = f.Get("realdecaystree")
 t = f.Get("dsrecontree")
 t2 = f.Get("dslrecontree")
+t3 = f2.Get("dslrecontree")
 
 dm = "deltam"
 mc = "mcflag"
+dmcut = "deltam>0.139 && deltam<0.153"
 cuts = ["deltam>0.139 && deltam<0.153","egm2>0.06","pi0mass>0.118998 && pi0mass<0.1489062","nb>0.832","bcsflag==1","heldr<0.178","heldz<0.819","dsPmag>2.765"]
+cuts2 = ["deltam>0.139 && deltam<0.153","egm2>0.06","pi0mass>0.118998 && pi0mass<0.1489062","nb>0.832","bcsflag==1","heldr<0.178","heldz<0.819","dsPmag>2.765","kpP<3.5"]
 #cuts = ["deltam>0.140 && deltam<0.152","egm2>0.06","pi0mass>0.118998 && pi0mass<0.1489062","nb>0.832","bcsflag==1","heldr<0.178","heldz<0.819","dsPmag>2.765"]
 truth = "abs(dsflag)==1"
 
@@ -49,11 +53,16 @@ for cut in cuts:
 
 print "\n"
 print "\n"
+print("Cut  |Signal   |Figure of Merit |Efficiency  | Error")
 cutstring=""
-for cut in cuts:
-    cutstring+=cut
-    nTot = t2.Draw(dm,cutstring,"goff")
-    nSig = t2.Draw(dm,cutstring+" && "+truth,"goff")
+for cut in cuts2:
+    if "kpP" in cut:
+        nTot = t3.Draw(dm,dmcut+" && "+cut,"goff")
+        nTot = t3.Draw(dm,dmcut+" && "+cut+" && "+truth,"goff")
+    else:
+        cutstring+=cut
+        nTot = t2.Draw(dm,cutstring,"goff")
+        nSig = t2.Draw(dm,cutstring+" && "+truth,"goff")
 
     fom = float(nSig)/math.sqrt(float(nTot))
     eff = float(nSig)/float(nTots)
@@ -63,4 +72,5 @@ for cut in cuts:
     err = eff*math.sqrt((sigerr/float(nSig))**2 + (toterr/float(nTot))**2)
     print("%s   |%i     |%f     |%f     |%f"%(cut,nSig,fom,eff,err))
     print "\n"
-    if cut!=cuts[-1]: cutstring+=" && "
+    if cut!=cuts2[-1]: cutstring+=" && "
+#print cutstring

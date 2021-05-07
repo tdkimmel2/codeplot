@@ -278,7 +278,7 @@ pdf.plotOn(frame1, RooFit.Components(BKG),RooFit.LineColor(kRed),RooFit.LineStyl
 pdf.plotOn(frame1, RooFit.LineColor(kBlack))
 #pdf.plotOn(frame1, RooFit.Components(bkg),RooFit.LineColor(kRed),RooFit.LineStyle(kDashed))
 
-pdf.paramOn(frame1,RooFit.Format("NEU", RooFit.AutoPrecision(2)), RooFit.Layout(0.65, 0.99, 0.93))# Higher Parameter Box
+pdf.paramOn(frame1,RooFit.Format("NEU", RooFit.AutoPrecision(2)), RooFit.Layout(0.63, 0.99, 0.93))# Higher Parameter Box
 #pdf.paramOn(frame1,RooFit.Format("NEU", RooFit.AutoPrecision(2)), RooFit.Layout(0.60, 0.95, 0.90))# Higher Parameter Box, signal MC
 
 #pdf.paramOn(frame1,RooFit.Format("NEU", RooFit.AutoPrecision(2)), RooFit.Layout(0.6, 0.96, 0.85))# Medium Parameter Box
