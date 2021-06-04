@@ -1,10 +1,12 @@
 import sys
 import math
 
-Nsig = 171764.0
-Nsigerr = 1316
+Nsig = 179885.0
+Nsigerr = 1375.0
 
-eff = 0.074444
+#eff = 0.077726
+#efferr = 0.002619
+eff = 0.080611
 efferr = 0.002619
 
 bdst = 0.307
@@ -13,7 +15,8 @@ bdsterr = 0.005
 bks = 0.6920
 bkserr = 0.0005
 
-ND = 780319184.0
+#ND = 780319184.0
+ND = 593601817.0
 NDerr = math.sqrt(ND)
 
 #bdzs = Nsig/(eff*bdst*ND)
@@ -27,7 +30,7 @@ Nsig = 157529.0
 Nsigerr = 4314
 
 eff = 0.094734
-efferr = 0.00285
+efferr = 0.003910
 
 bdzl = Nsig/(eff*bdst*ND)
 bdzlerr = bdzl*math.sqrt((Nsigerr/Nsig)**2 + (efferr/eff)**2 + (bdsterr/bdst)**2 + (NDerr/ND)**2)

@@ -2,10 +2,11 @@ from ROOT import *
 #from ROOT import gInterpreter, gSystem
 import math, os
 
-gInterpreter.ProcessLine('.x MyDblCB.cxx++')
+gInterpreter.ProcessLine('.x MyDblCB.cxx')
 
+f1 = "/home/tkimmel/Research/root/systematics/pi0Systematics.root"
 #f1 = "/home/tkimmel/Research/root/allmfrecon_reducedpi0fittingsample.root"
-f1 = "/home/tkimmel/Research/root/charmmfrecon.root"
+#f1 = "/home/tkimmel/Research/root/charmmfrecon.root"
 tree = "pi0tree"
 f = TFile(f1,"READ")
 t = f.Get(tree)
@@ -15,6 +16,8 @@ t = f.Get(tree)
 pi0mass = RooRealVar("pi0mass", "pi0mass",0.09,0.18)
 #pi0mass = RooRealVar("pi0mass", "pi0mass",0.1071,0.1606)# 5 sigma window
 whomi = RooRealVar("whomi", "whomi",0,1)
+nb = RooRealVar("nb","nb",0,1)
+bcsflag = RooRealVar("bcsflag","bcsflag",0,1)
 lb = pi0mass.getMin()
 rb = pi0mass.getMax()
 nBins = 42
@@ -22,20 +25,24 @@ binWidth = (rb-lb)/nBins
 binWidthMEV = binWidth*1000
 
 
-vars = RooArgSet(pi0mass, whomi)
+#vars = RooArgSet(pi0mass, whomi)
+vars = RooArgSet(pi0mass,nb,bcsflag)
 
 
-data = RooDataSet("data", "raw data", t, vars, "whomi==1")
+#data = RooDataSet("data", "raw data", t, vars, "whomi==1")
+data = RooDataSet("data", "raw data", t, vars, "nb>0.832 && bcsflag==1")
 
 #Function Variables
 
 #Double Sided Crystal Ball
+"""
 crymu = RooRealVar("#mu","Mean of Crystal Ball",0.1345,0.13,0.14)
 crysigma = RooRealVar("#sigma","#sigma",0.00545,0.003,0.01)
 cryalpha1 = RooRealVar("#alpha_{1}","#alpha_{1}",1.4193,0,2)
 cryn1 = RooRealVar("n_{1}","n_{1}",0.8390,0,5)
 cryalpha2 = RooRealVar("#alpha_{2}","#alpha_{2}",1.9019,0,3)
 cryn2 = RooRealVar("n_{2}","n_{2}",1.558,0,5)
+"""
 #No Guesses
 #crymu = RooRealVar("#mu","Mean of Crystal Ball",0.13,0.14)
 #crysigma = RooRealVar("#sigma","#sigma",0.004,0.01)
@@ -43,9 +50,15 @@ cryn2 = RooRealVar("n_{2}","n_{2}",1.558,0,5)
 #cryn1 = RooRealVar("n_{1}","n_{1}",0,3)
 #cryalpha2 = RooRealVar("#alpha_{2}","#alpha_{2}",0,3)
 #cryn2 = RooRealVar("n_{2}","n_{2}",0,3)
+crymu = RooRealVar("#mu","Mean of Crystal Ball",0.13,0.14)
+crysigma = RooRealVar("#sigma","#sigma",0.0008,0.005)
+cryalpha1 = RooRealVar("#alpha_{1}","#alpha_{1}",0,2)
+cryn1 = RooRealVar("n_{1}","n_{1}",0,10)
+cryalpha2 = RooRealVar("#alpha_{2}","#alpha_{2}",0,2)
+cryn2 = RooRealVar("n_{2}","n_{2}",0,10)
 #Set Constants for testing
 
-nsig = RooRealVar("N_{Signal}","nsig",113000,0,150000)
+nsig = RooRealVar("N_{Signal}","nsig",0,150000)
 
 sig = MyDblCB("sig","Crystal Ball Signal Function",pi0mass,crymu,crysigma,cryalpha1,cryn1,cryalpha2,cryn2) #Use for signal Crystal Ball
 SIG = RooArgSet(sig)
@@ -143,6 +156,8 @@ tex1.Draw()
 #tex2.SetNDC() 
 #tex2.Draw()
 
+canvas.Print("/home/tkimmel/Research/plots/nbpi0/Systematics/wideWindow_withCuts_noBkg_MC.png")
+
 #canvas.Print("/home/tkimmel/Research/plots/nbpi0/pi0mass_doublecrystalball_fit.png")
-canvas.Print("/home/tkimmel/Research/plots/nbpi0/pi0mass_doublecrystalball_fit_test.png")
+#canvas.Print("/home/tkimmel/Research/plots/nbpi0/pi0mass_doublecrystalball_fit_test.png")
 #canvas.Print("/home/tkimmel/Research/plots/nbpi0/pi0mass_doublecrystalball_fit_5sigWindow.png")

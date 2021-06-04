@@ -33,21 +33,10 @@ for cut in cuts:
     fom = float(nSig)/math.sqrt(float(nTot))
     eff = float(nSig)/float(nTots)
 
-    #sigerr = 1/math.sqrt(float(nSig))
-    #toterr = 1/math.sqrt(float(nTot))
     sigerr = math.sqrt(float(nSig))
     toterr = math.sqrt(float(nTot))
     err = eff*math.sqrt((sigerr/float(nSig))**2 + (toterr/float(nTot))**2)
-    #err = eff*((sigerr/float(nSig)) + (toterr/float(nTot)))
     print("%s   |%i     |%f     |%f     |%f"%(cut,nSig,fom,eff,err))
-    """
-    print("For cut %s"%(cutstring))
-    print("The number of signal is: %f"%(cutstring,nSig))
-    print("The efficiency is: %f"%(eff))
-    print("The figure of merit is: %f"%(fom))
-    """
-    #print nTot
-    #print nSig
     print "\n"
     if cut!=cuts[-1]: cutstring+=" && "
 

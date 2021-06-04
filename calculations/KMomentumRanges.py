@@ -4,14 +4,16 @@ import math
 sys.path.append('/home/tkimmel/Research/codeplot/functions/')
 from plottingfunctions import *
 
-f = TFile("/home/tkimmel/Research/root/partialMC.root","READ")
-f2 = TFile("/home/tkimmel/Research/root/partialData.root","READ")
+#f = TFile("/home/tkimmel/Research/root/partialMC.root","READ")
+#f2 = TFile("/home/tkimmel/Research/root/partialData.root","READ")
+f = TFile("/home/tkimmel/Research/root/systematics/dsSystematics.root","READ")
+f2 = TFile("/home/tkimmel/Research/root/systematics/dsSystematicsData.root","READ")
 t11 = f.Get("dsrecontree")
 t12 = f.Get("dslrecontree")
 t21 = f2.Get("dsrecontree")
 t22 = f2.Get("dslrecontree")
 
-kp = "kpP"
+kp = "kpPl"
 mc = "mcflag"
 truth = "abs(dsflag)==1"
 
@@ -50,12 +52,23 @@ for i in range(len(bins)-1):
     kRangeL = t11.Draw(kp,kp+">= %f && "%(leftbin)+kp+"< %f && "%(rightbin)+truth,"goff")
     print("%f >= "%(leftbin)+kp+" < %f: %i"%(rightbin,kRangeL))
 
+print("Efficiency MC")
 num=float(0)
 for i in range(len(bins)-1):
     leftbin = bins[i]
     rightbin = bins[i+1]
     kRangeL = t12.Draw(kp,kp+">= %f && "%(leftbin)+kp+"< %f && "%(rightbin)+truth,"goff")
     total = t12.Draw(kp,kp+"<%i && "%(bins[-1])+truth,"goff")
+    num += kRangeL*Effs[i]
+print num/total
+
+print("Efficiency Data")
+num=float(0)
+for i in range(len(bins)-1):
+    leftbin = bins[i]
+    rightbin = bins[i+1]
+    kRangeL = t22.Draw(kp,kp+">= %f && "%(leftbin)+kp+"< %f && "%(rightbin)+truth,"goff")
+    total = t22.Draw(kp,kp+"<%i && "%(bins[-1])+truth,"goff")
     num += kRangeL*Effs[i]
 print num/total
 

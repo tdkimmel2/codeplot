@@ -15,6 +15,28 @@ gROOT.ProcessLineSync(".x MyDblCB.cxx")
 #f1 = "/home/tkimmel/Research/root/allmfrecon_k0sigtrain10vars.root"
 #f1 = "/home/tkimmel/Research/root/charmmfrecon_bcs.root"
 
+#############Systematics#############
+"""
+f1 = "/home/tkimmel/Research/root/systematics/dsSystematics.root"
+title = "D* -> D^{0}(-> #pi^{0} + K_{S}^{0}) + #pi: From D* Systematics MC"
+#outname = "/home/tkimmel/Research/plots/systematics/dStarFitting/ks_MC.png"
+#outname = "/home/tkimmel/Research/plots/systematics/dStarFitting/wideWindow_ks_MC.png"
+#outname = "/home/tkimmel/Research/plots/systematics/dStarFitting/narrowWindow_ks_MC.png"
+
+#outname = "/home/tkimmel/Research/plots/systematics/dStarFitting/fixedM0Pion_narrowWindow_ks_MC.png"
+outname = "/home/tkimmel/Research/plots/systematics/dStarFitting/fixedM0Pion_widerWindow_ks_MC.png"
+"""
+
+f1 = "/home/tkimmel/Research/root/systematics/dsSystematicsData.root"
+title = "D* -> D^{0}(-> #pi^{0} + K_{S}^{0}) + #pi: From D* Systematics Data"
+#outname = "/home/tkimmel/Research/plots/systematics/dStarFitting/ks_Data.png"
+#outname = "/home/tkimmel/Research/plots/systematics/dStarFitting/wideWindow_ks_Data.png"
+#outname = "/home/tkimmel/Research/plots/systematics/dStarFitting/narrowWindow_ks_Data.png"
+
+#outname = "/home/tkimmel/Research/plots/systematics/dStarFitting/fixedM0Pion_ks_Data.png"
+outname = "/home/tkimmel/Research/plots/systematics/dStarFitting/fixedM0Pion_wideWindow_ks_Data.png"
+#outname = "/home/tkimmel/Research/plots/systematics/dStarFitting/fixedM0Pion_narrowWindow_ks_Data.png"
+
 ############Partial MC/Data############
 """
 f1 = "/home/tkimmel/Research/root/partialData.root"
@@ -32,6 +54,7 @@ outname = "/home/tkimmel/Research/plots/partialData/ksRecon_partialMC.png"
 """
 
 ############Full Stream MC############
+"""
 f1 = "/home/tkimmel/Research/root/fullStream.root"
 title = "D* -> D^{0}(-> #pi^{0} + K_{S}^{0}) + #pi: From a Full Stream of MC"
 outname = "/home/tkimmel/Research/plots/fullStream/ksRecon_fullStream.png"
@@ -43,6 +66,7 @@ outname = "/home/tkimmel/Research/plots/fullStream/ksRecon_fullStream.png"
 #outname = "/home/tkimmel/Research/plots/fullStream/ksRecon_GaussBifurG_narrowWindow2.png"
 #outname = "/home/tkimmel/Research/plots/fullStream/ksRecon_GaussBifurG_narrowWindow2_fixedSigmas.png"
 #outname = "/home/tkimmel/Research/plots/fullStream/ksRecon_GaussBifurG_narrowWindow2_Minuit2.png"
+"""
 
 ############ALL MC############
 """
@@ -73,19 +97,19 @@ outname = "/home/tkimmel/Research/plots/alldtokpi/ksRecon_allGeneric_noParam.png
 """
 f1 = "/home/tkimmel/Research/root/k0signalmfrecon.root"
 title = "D^{*} -> D^{0}(-> #pi^{0} + K_{S}^{0}) + #pi: From K^{0} Signal MC"
-outname = "/home/tkimmel/Research/plots/k0Signal/ksRecon_Looseflavorcut_BCS_fixeddm0_fixedNs.png"
+outname = "/home/tkimmel/Research/plots/k0Signal/ksRecon_Looseflavorcut_BCS_fixeddM0_fixedNs.png"
 """
 
 ############KS SIGNAL MC############
 """
 f1 = "/home/tkimmel/Research/root/kssignalmfrecon.root"
 title = "D* -> D^{0}(-> #pi^{0} + K_{S}^{0}) + #pi: From K^{0}_{S} Signal MC"
-#outname = "/home/tkimmel/Research/plots/ksSignalMC/ksRecon_ksSignal.png"
-outname = "/home/tkimmel/Research/plots/ksSignalMC/ksRecon_ksSignal_noParam.png"
+outname = "/home/tkimmel/Research/plots/ksSignalMC/ksRecon_ksSignal.png"
+#outname = "/home/tkimmel/Research/plots/ksSignalMC/ksRecon_ksSignal_noParam.png"
 #outname = "/home/tkimmel/Research/plots/ksSignalMC/ksRecon_TMFit.png"
-#outname = "/home/tkimmel/Research/plots/ksSignalMC/ksRecon_fixeddm0.png"
-#outname = "/home/tkimmel/Research/plots/ksSignalMC/ksRecon_fixeddm0PDGPionMass.png"
-#outname = "/home/tkimmel/Research/plots/ksSignalMC/ksRecon_fixeddm0MeasuredPionMass.png"
+#outname = "/home/tkimmel/Research/plots/ksSignalMC/ksRecon_fixeddM0.png"
+#outname = "/home/tkimmel/Research/plots/ksSignalMC/ksRecon_fixeddM0PDGPionMass.png"
+#outname = "/home/tkimmel/Research/plots/ksSignalMC/ksRecon_fixeddM0MeasuredPionMass.png"
 #outname = "/home/tkimmel/Research/plots/ksSignalMC/ksRecon_withCuts.png"
 #outname = "/home/tkimmel/Research/plots/ksSignalMC/ksRecon_withCuts_pionDup_ksSignalMC.png"
 """
@@ -113,10 +137,10 @@ tree = "dsrecontree"
 f = TFile(f1,"READ")
 t = f.Get(tree)
 
-#deltam = RooRealVar("deltam","deltam",0.138,0.2)
-#deltam = RooRealVar("deltam","deltam",0.138,0.16)
-#deltam = RooRealVar("deltam","deltam",0.139,0.153)
-deltam = RooRealVar("deltam","deltam",0.14,0.152)
+#deltam = RooRealVar("deltam","deltam",0.138,0.154)
+deltam = RooRealVar("deltam","deltam",0.139,0.153)
+#deltam = RooRealVar("deltam","deltam",0.14,0.152)
+#deltam = RooRealVar("deltam","deltam",0.141,0.151)
 nb = RooRealVar("nb","nb",-1,1)
 bcsflag = RooRealVar("bcsflag","bcsflag",0,1)
 chrgflag = RooRealVar("chrgflag","chrgflag",-1,1)
@@ -181,11 +205,14 @@ n2 = RooRealVar("n_{2}","n_{2}",4,9)
 #Gaussian
 #gausmean = RooRealVar("#mu_{sig}","#mu_{sig}",0.145465,0.144,0.146)
 ##gausmean.setConstant()
-gaussigma = RooRealVar("#sigma","#sigma",0.0003827,0.0002,0.0006)
+#gaussigma = RooRealVar("#sigma","#sigma",0.0003827,0.0002,0.0005)
+gaussigma = RooRealVar("#sigma","#sigma",0.0003827,0.0003,0.0007)
 
 ##Bifurcated Gaussian
-gaussigmaR = RooRealVar("#sigma_{R}","#sigma_{R}",0.0006,0.0017)
-gaussigmaL = RooRealVar("#sigma_{L}","#sigma_{L}",0.0006,0.0015)
+#gaussigmaR = RooRealVar("#sigma_{R}","#sigma_{R}",0.0003,0.0017)
+#gaussigmaL = RooRealVar("#sigma_{L}","#sigma_{L}",0.0003,0.0015)
+gaussigmaR = RooRealVar("#sigma_{R}","#sigma_{R}",0.0007,0.0014)
+gaussigmaL = RooRealVar("#sigma_{L}","#sigma_{L}",0.0007,0.0014)
 
 """
 #scaleL = RooRealVar("scaleL","scaleL",2.141589) #140t152
@@ -200,18 +227,19 @@ gaussigmaR = RooFormulaVar("#sigmaR","#sigmaR","@0*@1",RooArgList(gaussigma,scal
 frac = RooRealVar("R","R",0,1)
 
 # DstD0BG
-m0 = RooRealVar("m_{0}", "m_{0}", 0.139416, 0.138, 0.142)
+#m0 = RooRealVar("m_{0}", "m_{0}", 0.139416, 0.138, 0.142)
 #m0 = RooRealVar("m_{0}", "m_{0}", 0.13957, 0.1394, 0.1396)
 A = RooRealVar("A", "A", -100, 100)
 B = RooRealVar("B", "B", -100, 100)
 C = RooRealVar("C", "C", 0, 0.1)
 #m0.setConstant()
+m0 = RooRealVar("m_{0}", "m_{0}", 0.13957039)# Charged pion mass
 
 #nsig = RooRealVar("N_{Signal}","nsig",0,5000)# All MC
 #nsig = RooRealVar("N_{Signal}","nsig",0,10000)# All MC
 nsig = RooRealVar("N_{Signal}","nsig",0,10000000)# Signal MC
 #nbkg = RooRealVar("N_{Bkg}","nbkg",0,10000)
-nbkg = RooRealVar("N_{Bkg}","nbkg",0,100000000)
+nbkg = RooRealVar("N_{Bkg}","nbkg",50000,100000000)
 
 #cheby = RooChebychev("Chebychev","Chebychev",deltam,RooArgList(c0,c1,c2))
 #dstd0 = RooDstD0BG("DstD0BG","DstD0BG",deltam,dm0,d,a,b)
@@ -329,7 +357,7 @@ pdf.plotOn(frame1, RooFit.Components(BKG),RooFit.LineColor(kRed),RooFit.LineStyl
 pdf.plotOn(frame1, RooFit.LineColor(kBlack))
 #pdf.plotOn(frame1, RooFit.Components(bkg),RooFit.LineColor(kRed),RooFit.LineStyle(kDashed))
 
-pdf.paramOn(frame1,RooFit.Format("NEU", RooFit.AutoPrecision(2)), RooFit.Layout(0.625, 0.99, 0.93))# Higher Parameter Box
+pdf.paramOn(frame1,RooFit.Format("NEU", RooFit.AutoPrecision(2)), RooFit.Layout(0.625, 0.99, 0.91))# Higher Parameter Box
 #pdf.paramOn(frame1,RooFit.Format("NEU", RooFit.AutoPrecision(2)), RooFit.Layout(0.60, 0.95, 0.90))# Higher Parameter Box, signal MC
 
 #pdf.paramOn(frame1,RooFit.Format("NEU", RooFit.AutoPrecision(2)), RooFit.Layout(0.6, 0.96, 0.85))# Medium Parameter Box
