@@ -16,102 +16,95 @@ gROOT.ProcessLineSync(".x MyDblCB.cxx")
 #f1 = "/home/tkimmel/Research/root/charmmfrecon_bcs.root"
 
 #############Systematics#############
-"""
 f1 = "/home/tkimmel/Research/root/systematics/dsSystematics.root"
 title = "D* -> D^{0}(-> #pi^{0} + K_{S}^{0}) + #pi: From D* Systematics MC"
-#outname = "/home/tkimmel/Research/plots/systematics/dStarFitting/ks_MC.png"
-#outname = "/home/tkimmel/Research/plots/systematics/dStarFitting/wideWindow_ks_MC.png"
-#outname = "/home/tkimmel/Research/plots/systematics/dStarFitting/narrowWindow_ks_MC.png"
+outname = "/home/tkimmel/Research/plots/systematics/dStarFitting/ks_MC"
+#outname = "/home/tkimmel/Research/plots/systematics/dStarFitting/asymWindow1_ks_MC"
+#outname = "/home/tkimmel/Research/plots/systematics/dStarFitting/asymWindow2_ks_MC"
 
-#outname = "/home/tkimmel/Research/plots/systematics/dStarFitting/fixedM0Pion_narrowWindow_ks_MC.png"
-outname = "/home/tkimmel/Research/plots/systematics/dStarFitting/fixedM0Pion_widerWindow_ks_MC.png"
 """
-
 f1 = "/home/tkimmel/Research/root/systematics/dsSystematicsData.root"
 title = "D* -> D^{0}(-> #pi^{0} + K_{S}^{0}) + #pi: From D* Systematics Data"
-#outname = "/home/tkimmel/Research/plots/systematics/dStarFitting/ks_Data.png"
-#outname = "/home/tkimmel/Research/plots/systematics/dStarFitting/wideWindow_ks_Data.png"
-#outname = "/home/tkimmel/Research/plots/systematics/dStarFitting/narrowWindow_ks_Data.png"
-
-#outname = "/home/tkimmel/Research/plots/systematics/dStarFitting/fixedM0Pion_ks_Data.png"
-outname = "/home/tkimmel/Research/plots/systematics/dStarFitting/fixedM0Pion_wideWindow_ks_Data.png"
-#outname = "/home/tkimmel/Research/plots/systematics/dStarFitting/fixedM0Pion_narrowWindow_ks_Data.png"
+outname = "/home/tkimmel/Research/plots/systematics/dStarFitting/ks_Data"
+#outname = "/home/tkimmel/Research/plots/systematics/dStarFitting/asymWindow1_ks_Data"
+#outname = "/home/tkimmel/Research/plots/systematics/dStarFitting/asymWindow2_ks_Data"
+"""
 
 ############Partial MC/Data############
 """
 f1 = "/home/tkimmel/Research/root/partialData.root"
 title = "D* -> D^{0}(-> #pi^{0} + K_{S}^{0}) + #pi: From Partial Belle Dataset"
-outname = "/home/tkimmel/Research/plots/partialData/ksRecon_partialData.png"
-#outname = "/home/tkimmel/Research/plots/partialData/ksRecon_partialData_noDsPMagCut.png"
+outname = "/home/tkimmel/Research/plots/partialData/ksRecon_partialData"
+#outname = "/home/tkimmel/Research/plots/partialData/ksRecon_partialData_noDsPMagCut"
 """
 
 """
 f1 = "/home/tkimmel/Research/root/partialMC.root"
 title = "D* -> D^{0}(-> #pi^{0} + K_{S}^{0}) + #pi: From Partial Generic Monte Carlo"
-outname = "/home/tkimmel/Research/plots/partialData/ksRecon_partialMC.png"
-#outname = "/home/tkimmel/Research/plots/partialData/ksRecon_partialMC_noParam.png"
-#outname = "/home/tkimmel/Research/plots/partialData/ksRecon_partialMC_noDsPMagCut.png"
+outname = "/home/tkimmel/Research/plots/partialData/ksRecon_partialMC"
+#outname = "/home/tkimmel/Research/plots/partialData/ksRecon_partialMC_noParam"
+#outname = "/home/tkimmel/Research/plots/partialData/ksRecon_partialMC_noDsPMagCut"
 """
 
 ############Full Stream MC############
 """
 f1 = "/home/tkimmel/Research/root/fullStream.root"
 title = "D* -> D^{0}(-> #pi^{0} + K_{S}^{0}) + #pi: From a Full Stream of MC"
-outname = "/home/tkimmel/Research/plots/fullStream/ksRecon_fullStream.png"
-#outname = "/home/tkimmel/Research/plots/fullStream/ksRecon_fullStream_pionDup_noParam.png"
+outname = "/home/tkimmel/Research/plots/fullStream/ksRecon_fullStream"
+#outname = "/home/tkimmel/Research/plots/fullStream/ksRecon_fullStream_pionDup_noParam"
 
-#outname = "/home/tkimmel/Research/plots/fullStream/ksRecon_GaussBifurG_narrowWindow.png"
-#outname = "/home/tkimmel/Research/plots/fullStream/ksRecon_GaussBifurG_narrowWindow_noParam.png"
-#outname = "/home/tkimmel/Research/plots/fullStream/ksRecon_GaussBifurG_narrowWindow_fixedSigmas.png"
-#outname = "/home/tkimmel/Research/plots/fullStream/ksRecon_GaussBifurG_narrowWindow2.png"
-#outname = "/home/tkimmel/Research/plots/fullStream/ksRecon_GaussBifurG_narrowWindow2_fixedSigmas.png"
-#outname = "/home/tkimmel/Research/plots/fullStream/ksRecon_GaussBifurG_narrowWindow2_Minuit2.png"
+#outname = "/home/tkimmel/Research/plots/fullStream/ksRecon_GaussBifurG_narrowWindow"
+#outname = "/home/tkimmel/Research/plots/fullStream/ksRecon_GaussBifurG_narrowWindow_noParam"
+#outname = "/home/tkimmel/Research/plots/fullStream/ksRecon_GaussBifurG_narrowWindow_fixedSigmas"
+#outname = "/home/tkimmel/Research/plots/fullStream/ksRecon_GaussBifurG_narrowWindow2"
+#outname = "/home/tkimmel/Research/plots/fullStream/ksRecon_GaussBifurG_narrowWindow2_fixedSigmas"
+#outname = "/home/tkimmel/Research/plots/fullStream/ksRecon_GaussBifurG_narrowWindow2_Minuit2"
 """
 
 ############ALL MC############
 """
 f1 = "/home/tkimmel/Research/root/allmfrecon.root"
 title = "D* -> D^{0}(-> #pi^{0} + K_{S}^{0}) + #pi: From All Generic MC"
-#outname = "/home/tkimmel/Research/plots/alldtokpi/ksRecon_allGeneric.png"
-outname = "/home/tkimmel/Research/plots/alldtokpi/ksRecon_allGeneric_noParam.png"
-#outname = "/home/tkimmel/Research/plots/alldtokpi/ksRecon_withCuts_pionDup.png"
-#outname = "/home/tkimmel/Research/plots/alldtokpi/ksRecon_Looseflavorcut_BCS_nbn0p076.png"
-#outname = "/home/tkimmel/Research/plots/alldtokpi/ksRecon_Looseflavorcut_BCS_nbn0p076_fixedNs_n114p874_n25p509.png"
-#outname = "/home/tkimmel/Research/plots/alldtokpi/ksRecon_Looseflavorcut_BCS_fixedNs_n19p418_n22p6871.png"
-#outname = "/home/tkimmel/Research/plots/alldtokpi/ksRecon_Looseflavorcut_BCS_fixedNs_n123p9_n25p36.png"
-#outname = "/home/tkimmel/Research/plots/alldtokpi/ksRecon_Looseflavorcut_nb0p832_fixedNs_n123p9_n25p36.png"
-#outname = "/home/tkimmel/Research/plots/alldtokpi/ksRecon_GaussBifurG_Looseflavorcut_nb0p832.png"
+#outname = "/home/tkimmel/Research/plots/alldtokpi/ksRecon_allGeneric"
+outname = "/home/tkimmel/Research/plots/alldtokpi/ksRecon_allGeneric_noParam"
+#outname = "/home/tkimmel/Research/plots/alldtokpi/ksRecon_withCuts_pionDup"
+#outname = "/home/tkimmel/Research/plots/alldtokpi/ksRecon_Looseflavorcut_BCS_nbn0p076"
+#outname = "/home/tkimmel/Research/plots/alldtokpi/ksRecon_Looseflavorcut_BCS_nbn0p076_fixedNs_n114p874_n25p509"
+#outname = "/home/tkimmel/Research/plots/alldtokpi/ksRecon_Looseflavorcut_BCS_fixedNs_n19p418_n22p6871"
+#outname = "/home/tkimmel/Research/plots/alldtokpi/ksRecon_Looseflavorcut_BCS_fixedNs_n123p9_n25p36"
+#outname = "/home/tkimmel/Research/plots/alldtokpi/ksRecon_Looseflavorcut_nb0p832_fixedNs_n123p9_n25p36"
+#outname = "/home/tkimmel/Research/plots/alldtokpi/ksRecon_GaussBifurG_Looseflavorcut_nb0p832"
 
-#outname = "/home/tkimmel/Research/plots/alldtokpi/ksRecon_GaussBifurG_3p416FlavorCut_BCS_nbn0p076.png"
-#outname = "/home/tkimmel/Research/plots/alldtokpi/ksRecon_GaussBifurG_3p416FlavorCut_BCS.png"
-#outname = "/home/tkimmel/Research/plots/alldtokpi/ksRecon_GaussBifurG_2p765FlavorCut_BCS.png"
-#outname = "/home/tkimmel/Research/plots/alldtokpi/ksRecon_GaussBifurG_2p765FlavorCut_BCS_nbn0p076.png"
+#outname = "/home/tkimmel/Research/plots/alldtokpi/ksRecon_GaussBifurG_3p416FlavorCut_BCS_nbn0p076"
+#outname = "/home/tkimmel/Research/plots/alldtokpi/ksRecon_GaussBifurG_3p416FlavorCut_BCS"
+#outname = "/home/tkimmel/Research/plots/alldtokpi/ksRecon_GaussBifurG_2p765FlavorCut_BCS"
+#outname = "/home/tkimmel/Research/plots/alldtokpi/ksRecon_GaussBifurG_2p765FlavorCut_BCS_nbn0p076"
 
-#outname = "/home/tkimmel/Research/plots/alldtokpi/ksRecon_GaussBifurG_2p765FlavorCut_BCS_nbn0p076_narrowWindow.png"
-#outname = "/home/tkimmel/Research/plots/alldtokpi/ksRecon_GaussBifurG_2p765FlavorCut_BCS_nbn0p076_narrowWindow_noParam.png"
-#outname = "/home/tkimmel/Research/plots/alldtokpi/ksRecon_GaussBifurG_2p765FlavorCut_BCS_nbn0p076_narrowWindow_fixedSigmas_noParam.png"
-#outname = "/home/tkimmel/Research/plots/alldtokpi/ksRecon_GaussBifurG_2p765FlavorCut_BCS_nb0p832_narrowWindow2_fixedSigmas.png"
+#outname = "/home/tkimmel/Research/plots/alldtokpi/ksRecon_GaussBifurG_2p765FlavorCut_BCS_nbn0p076_narrowWindow"
+#outname = "/home/tkimmel/Research/plots/alldtokpi/ksRecon_GaussBifurG_2p765FlavorCut_BCS_nbn0p076_narrowWindow_noParam"
+#outname = "/home/tkimmel/Research/plots/alldtokpi/ksRecon_GaussBifurG_2p765FlavorCut_BCS_nbn0p076_narrowWindow_fixedSigmas_noParam"
+#outname = "/home/tkimmel/Research/plots/alldtokpi/ksRecon_GaussBifurG_2p765FlavorCut_BCS_nb0p832_narrowWindow2_fixedSigmas"
 """
 
 ############K0 SIGNAL MC############
 """
 f1 = "/home/tkimmel/Research/root/k0signalmfrecon.root"
 title = "D^{*} -> D^{0}(-> #pi^{0} + K_{S}^{0}) + #pi: From K^{0} Signal MC"
-outname = "/home/tkimmel/Research/plots/k0Signal/ksRecon_Looseflavorcut_BCS_fixeddM0_fixedNs.png"
+outname = "/home/tkimmel/Research/plots/k0Signal/ksRecon_Looseflavorcut_BCS_fixeddM0_fixedNs"
 """
 
 ############KS SIGNAL MC############
 """
 f1 = "/home/tkimmel/Research/root/kssignalmfrecon.root"
 title = "D* -> D^{0}(-> #pi^{0} + K_{S}^{0}) + #pi: From K^{0}_{S} Signal MC"
-outname = "/home/tkimmel/Research/plots/ksSignalMC/ksRecon_ksSignal.png"
-#outname = "/home/tkimmel/Research/plots/ksSignalMC/ksRecon_ksSignal_noParam.png"
-#outname = "/home/tkimmel/Research/plots/ksSignalMC/ksRecon_TMFit.png"
-#outname = "/home/tkimmel/Research/plots/ksSignalMC/ksRecon_fixeddM0.png"
-#outname = "/home/tkimmel/Research/plots/ksSignalMC/ksRecon_fixeddM0PDGPionMass.png"
-#outname = "/home/tkimmel/Research/plots/ksSignalMC/ksRecon_fixeddM0MeasuredPionMass.png"
-#outname = "/home/tkimmel/Research/plots/ksSignalMC/ksRecon_withCuts.png"
-#outname = "/home/tkimmel/Research/plots/ksSignalMC/ksRecon_withCuts_pionDup_ksSignalMC.png"
+outname = "/home/tkimmel/Research/plots/ksSignalMC/ksRecon_ksSignal"
+#outname = "/home/tkimmel/Research/plots/ksSignalMC/ksRecon_ksSignal_noParam"
+#outname = "/home/tkimmel/Research/plots/ksSignalMC/ksRecon_TMFit"
+#outname = "/home/tkimmel/Research/plots/ksSignalMC/ksRecon_fixeddM0"
+#outname = "/home/tkimmel/Research/plots/ksSignalMC/ksRecon_fixeddM0PDGPionMass"
+#outname = "/home/tkimmel/Research/plots/ksSignalMC/ksRecon_fixeddM0MeasuredPionMass"
+#outname = "/home/tkimmel/Research/plots/ksSignalMC/ksRecon_withCuts"
+#outname = "/home/tkimmel/Research/plots/ksSignalMC/ksRecon_withCuts_pionDup_ksSignalMC"
 """
 
 
@@ -138,9 +131,13 @@ f = TFile(f1,"READ")
 t = f.Get(tree)
 
 #deltam = RooRealVar("deltam","deltam",0.138,0.154)
-deltam = RooRealVar("deltam","deltam",0.139,0.153)
-#deltam = RooRealVar("deltam","deltam",0.14,0.152)
+#deltam = RooRealVar("deltam","deltam",0.139,0.153)
+deltam = RooRealVar("deltam","deltam",0.14,0.152)
 #deltam = RooRealVar("deltam","deltam",0.141,0.151)
+# Asymmetric Windows
+#deltam = RooRealVar("deltam","deltam",0.14,0.155)# 1
+#deltam = RooRealVar("deltam","deltam",0.14,0.1535)# 2
+
 nb = RooRealVar("nb","nb",-1,1)
 bcsflag = RooRealVar("bcsflag","bcsflag",0,1)
 chrgflag = RooRealVar("chrgflag","chrgflag",-1,1)
@@ -192,7 +189,7 @@ mu = RooRealVar("#mu","#mu",0.145,0.1456)
 
 # Double Sided Crystal Ball
 #mu = RooRealVar("#mu_{sig}","#mu_{sig}",0.145,0.1456)
-sigma = RooRealVar("#sigma_{sig}","#sigma_{sig}",0.00045,0.0009)
+sigma = RooRealVar("#sigma_{sig}","#sigma_{sig}",0.0004,0.0009)
 a1 = RooRealVar("#alpha_{1}","#alpha_{1}",0.9,1.5)
 n1 = RooRealVar("n_{1}","n_{1}",20,26)
 a2 = RooRealVar("#alpha_{2}","#alpha_{2}",0.8,1.4)
@@ -206,13 +203,13 @@ n2 = RooRealVar("n_{2}","n_{2}",4,9)
 #gausmean = RooRealVar("#mu_{sig}","#mu_{sig}",0.145465,0.144,0.146)
 ##gausmean.setConstant()
 #gaussigma = RooRealVar("#sigma","#sigma",0.0003827,0.0002,0.0005)
-gaussigma = RooRealVar("#sigma","#sigma",0.0003827,0.0003,0.0007)
+gaussigma = RooRealVar("#sigma","#sigma",0.0004,0.0007)
 
 ##Bifurcated Gaussian
 #gaussigmaR = RooRealVar("#sigma_{R}","#sigma_{R}",0.0003,0.0017)
 #gaussigmaL = RooRealVar("#sigma_{L}","#sigma_{L}",0.0003,0.0015)
-gaussigmaR = RooRealVar("#sigma_{R}","#sigma_{R}",0.0007,0.0014)
-gaussigmaL = RooRealVar("#sigma_{L}","#sigma_{L}",0.0007,0.0014)
+gaussigmaR = RooRealVar("#sigma_{R}","#sigma_{R}",0.0007,0.0015)
+gaussigmaL = RooRealVar("#sigma_{L}","#sigma_{L}",0.0008,0.0017)
 
 """
 #scaleL = RooRealVar("scaleL","scaleL",2.141589) #140t152
@@ -229,17 +226,18 @@ frac = RooRealVar("R","R",0,1)
 # DstD0BG
 #m0 = RooRealVar("m_{0}", "m_{0}", 0.139416, 0.138, 0.142)
 #m0 = RooRealVar("m_{0}", "m_{0}", 0.13957, 0.1394, 0.1396)
-A = RooRealVar("A", "A", -100, 100)
-B = RooRealVar("B", "B", -100, 100)
-C = RooRealVar("C", "C", 0, 0.1)
+A = RooRealVar("A", "A",-100,100)
+B = RooRealVar("B", "B",-100,100)
+C = RooRealVar("C", "C",0,10)
 #m0.setConstant()
 m0 = RooRealVar("m_{0}", "m_{0}", 0.13957039)# Charged pion mass
+outname += "_fixedm0"
 
-#nsig = RooRealVar("N_{Signal}","nsig",0,5000)# All MC
+nsig = RooRealVar("N_{Signal}","nsig",0,25000)
 #nsig = RooRealVar("N_{Signal}","nsig",0,10000)# All MC
-nsig = RooRealVar("N_{Signal}","nsig",0,10000000)# Signal MC
+#nsig = RooRealVar("N_{Signal}","nsig",0,10000000)# Signal MC
 #nbkg = RooRealVar("N_{Bkg}","nbkg",0,10000)
-nbkg = RooRealVar("N_{Bkg}","nbkg",50000,100000000)
+nbkg = RooRealVar("N_{Bkg}","nbkg",50000,10000000)
 
 #cheby = RooChebychev("Chebychev","Chebychev",deltam,RooArgList(c0,c1,c2))
 #dstd0 = RooDstD0BG("DstD0BG","DstD0BG",deltam,dm0,d,a,b)
@@ -417,6 +415,7 @@ tex2.SetTextSize(0.1)
 tex2.SetNDC()
 #tex2.Draw()
 
+outname += ".png"
 canvas.Print(outname)
 
 """

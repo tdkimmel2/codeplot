@@ -113,10 +113,10 @@ def plot_variable2histos(Tree,Variable,Option1,Option1Legend,Option2,Option2Lege
     leg.SetFillColor(kWhite)
     leg.SetLineColor(kWhite)
     leg.SetTextSize(0.04)
-    leg.AddEntry(Frame.findObject("h1"),Option1Legend+" "+nentriesstr1,"l")# With number of entries
-    leg.AddEntry(Frame.findObject("h2"),Option2Legend+" "+nentriesstr2,"l")# With number of entries
-    #leg.AddEntry(Frame.findObject("h1"),Option1Legend,"l")
-    #leg.AddEntry(Frame.findObject("h2"),Option2Legend,"l")
+    #leg.AddEntry(Frame.findObject("h1"),Option1Legend+" "+nentriesstr1,"l")# With number of entries
+    #leg.AddEntry(Frame.findObject("h2"),Option2Legend+" "+nentriesstr2,"l")# With number of entries
+    leg.AddEntry(Frame.findObject("h1"),Option1Legend,"l")
+    leg.AddEntry(Frame.findObject("h2"),Option2Legend,"l")
     Frame.addObject(leg)
 
     #gStyle.SetOptStat("e");

@@ -13,10 +13,10 @@ t = f.Get(tree)
 
 #pi0mass = RooRealVar("pi0mass", "pi0mass",0.035,0.235)# Wider window
 #pi0mass = RooRealVar("pi0mass", "pi0mass",0.085,0.185)# Wide window
-pi0mass = RooRealVar("pi0mass", "pi0mass",0.09,0.18)
-#pi0mass = RooRealVar("pi0mass", "pi0mass",0.1071,0.1606)# 5 sigma window
+pi0mass = RooRealVar("pi0mass", "pi0mass",0.1,0.17)# Narrow window
 whomi = RooRealVar("whomi", "whomi",0,1)
 nb = RooRealVar("nb","nb",0,1)
+run = RooRealVar("run","run",0,239)
 bcsflag = RooRealVar("bcsflag","bcsflag",0,1)
 lb = pi0mass.getMin()
 rb = pi0mass.getMax()
@@ -26,41 +26,26 @@ binWidthMEV = binWidth*1000
 
 
 #vars = RooArgSet(pi0mass, whomi)
-vars = RooArgSet(pi0mass,nb,bcsflag)
+vars = RooArgSet(pi0mass,nb,bcsflag,whomi,run)
 
 
 #data = RooDataSet("data", "raw data", t, vars, "whomi==1")
-data = RooDataSet("data", "raw data", t, vars, "nb>0.832 && bcsflag==1")
+data = RooDataSet("data", "raw data", t, vars, "nb>0.832 && bcsflag==1 && whomi==1")
+#data = RooDataSet("data", "raw data", t, vars, "nb>0.832 && bcsflag==1 && whomi==1 && (run==234 || run==17)")
 
 #Function Variables
 
 #Double Sided Crystal Ball
-"""
-crymu = RooRealVar("#mu","Mean of Crystal Ball",0.1345,0.13,0.14)
-crysigma = RooRealVar("#sigma","#sigma",0.00545,0.003,0.01)
-cryalpha1 = RooRealVar("#alpha_{1}","#alpha_{1}",1.4193,0,2)
-cryn1 = RooRealVar("n_{1}","n_{1}",0.8390,0,5)
-cryalpha2 = RooRealVar("#alpha_{2}","#alpha_{2}",1.9019,0,3)
-cryn2 = RooRealVar("n_{2}","n_{2}",1.558,0,5)
-"""
-#No Guesses
-#crymu = RooRealVar("#mu","Mean of Crystal Ball",0.13,0.14)
-#crysigma = RooRealVar("#sigma","#sigma",0.004,0.01)
-#cryalpha1 = RooRealVar("#alpha_{1}","#alpha_{1}",0.1,3)
-#cryn1 = RooRealVar("n_{1}","n_{1}",0,3)
-#cryalpha2 = RooRealVar("#alpha_{2}","#alpha_{2}",0,3)
-#cryn2 = RooRealVar("n_{2}","n_{2}",0,3)
 crymu = RooRealVar("#mu","Mean of Crystal Ball",0.13,0.14)
-crysigma = RooRealVar("#sigma","#sigma",0.0008,0.005)
-cryalpha1 = RooRealVar("#alpha_{1}","#alpha_{1}",0,2)
-cryn1 = RooRealVar("n_{1}","n_{1}",0,10)
-cryalpha2 = RooRealVar("#alpha_{2}","#alpha_{2}",0,2)
-cryn2 = RooRealVar("n_{2}","n_{2}",0,10)
-#Set Constants for testing
+crysigma = RooRealVar("#sigma","#sigma",0.0007,0.009)
+cryalpha1 = RooRealVar("#alpha_{1}","#alpha_{1}",0,5)
+cryn1 = RooRealVar("n_{1}","n_{1}",0,20)
+cryalpha2 = RooRealVar("#alpha_{2}","#alpha_{2}",0,5)
+cryn2 = RooRealVar("n_{2}","n_{2}",0,20)
 
-nsig = RooRealVar("N_{Signal}","nsig",0,150000)
+nsig = RooRealVar("N_{Signal}","nsig",0,500000)
 
-sig = MyDblCB("sig","Crystal Ball Signal Function",pi0mass,crymu,crysigma,cryalpha1,cryn1,cryalpha2,cryn2) #Use for signal Crystal Ball
+sig = MyDblCB("sig","Crystal Ball Signal Function",pi0mass,crymu,crysigma,cryalpha1,cryn1,cryalpha2,cryn2)
 SIG = RooArgSet(sig)
 pdf = RooAddPdf("pdf","sig",RooArgList(sig),RooArgList(nsig))
 
@@ -71,8 +56,7 @@ pdf = RooAddPdf("pdf","sig",RooArgList(sig),RooArgList(nsig))
 #-----------------------------------------------------------------------
 
 fitRes = pdf.fitTo(data, RooFit.Save(kTRUE), RooFit.Range("Full"));
-#fitRes = pdf.fitTo(data, RooFit.Save(kTRUE), RooFit.Extended(kTRUE), RooFit.NumCPU(7), RooFit.Strategy(2), RooFit.Minimizer("Minuit2", "minimize"), RooFit.Minos(kTRUE))
-#fitRes = pdf.fitTo(data, RooFit.Save(kTRUE), RooFit.Extended(kTRUE), RooFit.NumCPU(4), RooFit.Strategy(2), RooFit.Minos(kTRUE))
+fitRes = pdf.fitTo(data, RooFit.Save(kTRUE), RooFit.Extended(kTRUE), RooFit.NumCPU(2), RooFit.Strategy(2), RooFit.Minos(kTRUE))
 
 # Create a new canvas
 canvas = TCanvas("canvas", "canvas", 800, 800)
@@ -95,7 +79,7 @@ fitRes.Print()
 h1 = TH1F("h1","h1",nBins,lb,rb)
 
 #frame1 = pi0mass.frame(RooFit.Bins(nBins),RooFit.Title("From MC: #pi^{0} Mass"))
-frame1 = pi0mass.frame(RooFit.Bins(nBins),RooFit.Title("From Reduced All Generic MC: #pi^{0} Mass"))
+frame1 = pi0mass.frame(RooFit.Bins(nBins),RooFit.Title("#pi^{0} Mass: From #pi^{0} Systematics MC"))
 pullFrame = pi0mass.frame(RooFit.Bins(nBins),RooFit.Title(""))
 # Beautification Things
 frame1.SetStats(0)
@@ -134,8 +118,8 @@ pullFrame.GetXaxis().SetTitle("#pi^{0} Mass (GeV/c^{2})")
 pullFrame.GetXaxis().SetTitleOffset(1.1)
 pullFrame.GetXaxis().SetTitleSize(0.12)
 
-pullFrame.SetMaximum(5)
-pullFrame.SetMinimum(-5)
+pullFrame.SetMaximum(10)
+pullFrame.SetMinimum(-10)
 pullFrame.GetYaxis().SetTitle("Pull")
 pullFrame.GetYaxis().CenterTitle(kTRUE)
 pullFrame.GetYaxis().SetTitleOffset(0.3)
@@ -156,7 +140,12 @@ tex1.Draw()
 #tex2.SetNDC() 
 #tex2.Draw()
 
-canvas.Print("/home/tkimmel/Research/plots/nbpi0/Systematics/wideWindow_withCuts_noBkg_MC.png")
+canvas.Print("/home/tkimmel/Research/plots/nbpi0/Systematics/narrowWindow_withCuts_TM_Minuit2.png")
+
+#canvas.Print("/home/tkimmel/Research/plots/nbpi0/Systematics/wideWindow_TM.png")
+#canvas.Print("/home/tkimmel/Research/plots/nbpi0/Systematics/wideWindow_withCuts_TM.png")
+#canvas.Print("/home/tkimmel/Research/plots/nbpi0/Systematics/wideWindow_withCuts_TM_Minuit2.png")
+#canvas.Print("/home/tkimmel/Research/plots/nbpi0/Systematics/wideWindow_withCuts_TM_Minuit2_reduced.png")
 
 #canvas.Print("/home/tkimmel/Research/plots/nbpi0/pi0mass_doublecrystalball_fit.png")
 #canvas.Print("/home/tkimmel/Research/plots/nbpi0/pi0mass_doublecrystalball_fit_test.png")

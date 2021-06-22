@@ -19,88 +19,49 @@ truth = "abs(dsflag)==1"
 
 bins=[0,0.5,0.625,0.75,0.875,1.0,1.25,1.5,1.75,2,2.5,3.5]
 Effs = [0.678,0.392,0.385,0.377,0.464,0.477,0.488,0.511,0.556,0.694,0.208]
+Errs = [0.099,0.038,0.031,0.030,0.035,0.029,0.033,0.044,0.062,0.087,0.097]
+
+binsS=[0,0.5,1.0,1.5,2.0,2.5,3.0,3.5]
+EffsS = [0.9421,0.9778,0.9831,0.9828,0.9833,0.9833,1.0024,0.9848]
+ErrsS = [0.0192,0.0091,0.0073,0.0070,0.0078,0.0096,0.0129,0.0135]
 
 print("KLONG MODE")
-for i in range(len(bins)-1):
-    leftbin = bins[i]
-    rightbin = bins[i+1]
-    kRangeL = t12.Draw(kp,kp+">= %f && "%(leftbin)+kp+"< %f"%(rightbin),"goff")
+num=float(0)
+err=float(0)
+for i in range(len(bins)):
+    if i == len(bins)-1:
+        rightbin = bins[i]
+        kRangeL = t12.Draw(kp,kp+">= %f"%(rightbin),"goff")
+        num += kRangeL*Effs[i-1]
+        err += kRangeL*Errs[i-1]
+    else:
+        leftbin = bins[i]
+        rightbin = bins[i+1]
+        kRangeL = t12.Draw(kp,kp+">= %f && "%(leftbin)+kp+"< %f"%(rightbin),"goff")
+        num += kRangeL*Effs[i]
+        err += kRangeL*Errs[i]
     print("%f >= "%(leftbin)+kp+" < %f: %i"%(rightbin,kRangeL))
+total = t12.Draw(kp,"","goff")
+#total = t12.Draw(kp,kp+"<%f"%(bins[-1]),"goff")
+print("Weighted Efficiency: %.4f"%(num/total))
+print("Weighted Systematic: %.4f"%(err/total))
 
 
 print("KSHORT MODE")
-for i in range(len(bins)-1):
-    leftbin = bins[i]
-    rightbin = bins[i+1]
-    kRangeL = t11.Draw(kp,kp+">= %f && "%(leftbin)+kp+"< %f"%(rightbin),"goff")
-    print("%f >= "%(leftbin)+kp+" < %f: %i"%(rightbin,kRangeL))
-
-
-print("TRUTH MATCHED")
-print("KLONG MODE")
-for i in range(len(bins)-1):
-    leftbin = bins[i]
-    rightbin = bins[i+1]
-    kRangeL = t12.Draw(kp,kp+">= %f && "%(leftbin)+kp+"< %f && "%(rightbin)+truth,"goff")
-    print("%f >= "%(leftbin)+kp+" < %f: %i"%(rightbin,kRangeL))
-
-
-print("KSHORT MODE")
-for i in range(len(bins)-1):
-    leftbin = bins[i]
-    rightbin = bins[i+1]
-    kRangeL = t11.Draw(kp,kp+">= %f && "%(leftbin)+kp+"< %f && "%(rightbin)+truth,"goff")
-    print("%f >= "%(leftbin)+kp+" < %f: %i"%(rightbin,kRangeL))
-
-print("Efficiency MC")
 num=float(0)
-for i in range(len(bins)-1):
-    leftbin = bins[i]
-    rightbin = bins[i+1]
-    kRangeL = t12.Draw(kp,kp+">= %f && "%(leftbin)+kp+"< %f && "%(rightbin)+truth,"goff")
-    total = t12.Draw(kp,kp+"<%i && "%(bins[-1])+truth,"goff")
-    num += kRangeL*Effs[i]
-print num/total
-
-print("Efficiency Data")
-num=float(0)
-for i in range(len(bins)-1):
-    leftbin = bins[i]
-    rightbin = bins[i+1]
-    kRangeL = t22.Draw(kp,kp+">= %f && "%(leftbin)+kp+"< %f && "%(rightbin)+truth,"goff")
-    total = t22.Draw(kp,kp+"<%i && "%(bins[-1])+truth,"goff")
-    num += kRangeL*Effs[i]
-print num/total
-
-print("KLONG MODE MC DATA DIFF")
-for i in range(len(bins)-1):
-    leftbin = bins[i]
-    rightbin = bins[i+1]
-    totalmc = t12.Draw(kp,kp+"<3.5","goff")
-    totald = t22.Draw(kp,kp+"<3.5","goff")
-    kRangeLmc = t12.Draw(kp,kp+">= %f && "%(leftbin)+kp+"< %f"%(rightbin),"goff")
-    kRangeLd = t22.Draw(kp,kp+">= %f && "%(leftbin)+kp+"< %f"%(rightbin),"goff")
-    fracmc = float(kRangeLmc)/totalmc
-    errRmc = math.sqrt(kRangeLmc)
-    errTmc = math.sqrt(totalmc)
-    fracd = float(kRangeLd)/totald
-    errRd = math.sqrt(kRangeLd)
-    errTd = math.sqrt(totald)
-    #print fracmc
-    #print fracd
-    diff = fracmc - fracd
-    err = math.sqrt((errRmc/kRangeLmc)**2 + (errTmc/totalmc)**2 + (errRd/kRangeLd)**2 + (errTd/totald)**2)
-    #print("%f >= "%(leftbin)+kp+" < %f: %f pm %f"%(rightbin,diff,err))
-    print("%f >= "%(leftbin)+kp+" < %f: %f"%(rightbin,diff))
-
-"""
-dwindow="deltam > 0.141938 && deltam < 0.148838"
-num=float(0)
-for i in range(len(bins)-1):
-    leftbin = bins[i]
-    rightbin = bins[i+1]
-    kRangeL = t12.Draw(kp,kp+">= %f && "%(leftbin)+kp+"< %f && "%(rightbin)+truth+" && "+dwindow,"goff")
-    total = t12.Draw(kp,kp+"<%i && "%(bins[-1])+truth+" && "+dwindow,"goff")
-    num += kRangeL*Effs[i]
-print num/total
-"""
+err=float(0)
+for i in range(len(binsS)-1):
+    if i == len(binsS)-1:
+        rightbin = binsS[i]
+        kRangeS = t11.Draw(kp,kp+">= %f"%(rightbin),"goff")
+    else:
+        leftbin = binsS[i]
+        rightbin = binsS[i+1]
+        kRangeS = t11.Draw(kp,kp+">= %f && "%(leftbin)+kp+"< %f"%(rightbin),"goff")
+    print("%f >= "%(leftbin)+kp+" < %f: %i"%(rightbin,kRangeL))
+    num += kRangeS*EffsS[i]
+    err += kRangeS*ErrsS[i]
+#total = t11.Draw(kp,kp+"<%i"%(bins[-1]),"goff")
+total = t11.Draw(kp,"","goff")
+print("Weighted Efficiency: %.4f"%(num/total))
+print("Weighted Systematic: %.4f"%(err/total))

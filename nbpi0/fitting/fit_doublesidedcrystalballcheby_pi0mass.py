@@ -4,47 +4,58 @@ import math, os
 
 gInterpreter.ProcessLine('.L MyDblCB.cxx')
 
-f1 = "/home/tkimmel/Research/root/systematics/pi0Systematics.root"
-title="#pi^{0} Mass: From #pi^{0} Systematics MC"
+#f1 = "/home/tkimmel/Research/root/systematics/pi0Systematics.root"
+#title="#pi^{0} Mass: From #pi^{0} Systematics MC"
 
-#f1 = "/home/tkimmel/Research/root/systematics/pi0SystematicsData.root"
-#title="#pi^{0} Mass: From #pi^{0} Systematics Data"
+f1 = "/home/tkimmel/Research/root/systematics/pi0SystematicsData.root"
+title="#pi^{0} Mass: From #pi^{0} Systematics Data"
 
+#title+=" [|#vec{p}_{#pi^{0}}| < 0.875 GeV/c]"
 #momcut = " && pizP>=0 && pizP<0.875"
 #momcutname = "_MC_0pizPBin"
 #momcutname = "_Data_0pizPBin"
 
+#title+=" [0.875 GeV/c #geq |#vec{p}_{#pi^{0}}| < 1.25 GeV/c]"
 #momcut = " && pizP>=0.875 && pizP<1.25"
+
+#title+=" [|#vec{p}_{#pi^{0}}| < 1.25 GeV/c]"
 #momcut = " && pizP>=0 && pizP<1.25"
 #momcutname = "_MC_1pizPBin"
 #momcutname = "_Data_1pizPBin"
 
+#title+=" [1.25 GeV/c #geq |#vec{p}_{#pi^{0}}| < 1.625 GeV/c]"
 #momcut = " && pizP>=1.25 && pizP<1.625"
 #momcutname = "_MC_2pizPBin"
 #momcutname = "_Data_2pizPBin"
 
+#title+=" [1.625 GeV/c #geq |#vec{p}_{#pi^{0}}| < 2.0 GeV/c]"
 #momcut = " && pizP>=1.625 && pizP<2.0"
 #momcutname = "_MC_3pizPBin"
 #momcutname = "_Data_3pizPBin"
 
+#title+=" [2.0 GeV/c #geq |#vec{p}_{#pi^{0}}| < 2.375 GeV/c]"
 #momcut = " && pizP>=2.0 && pizP<2.375"
 #momcutname = "_MC_4pizPBin"
 #momcutname = "_Data_4pizPBin"
 
-#momcut = " && pizP>=2.375 && pizP<2.75"
+title+=" [2.375 GeV/c #geq |#vec{p}_{#pi^{0}}| < 2.75 GeV/c]"
+momcut = " && pizP>=2.375 && pizP<2.75"
 #momcutname = "_MC_5pizPBin"
-#momcutname = "_Data_5pizPBin"
+momcutname = "_Data_5pizPBin"
 
+#title+=" [2.75 GeV/c #geq |#vec{p}_{#pi^{0}}| < 3.125 GeV/c]"
 #momcut = " && pizP>=2.75 && pizP<3.125"
 #momcutname = "_MC_6pizPBin"
 #momcutname = "_Data_6pizPBin"
 
+#title+=" [3.125 GeV/c #geq |#vec{p}_{#pi^{0}}| < 3.5 GeV/c]"
 #momcut = " && pizP>=3.125 && pizP<3.5"
 #momcutname = "_MC_7pizPBin"
 #momcutname = "_Data_7pizPBin"
 
-momcut = " && pizP>=3.5"
-momcutname = "_MC_8pizPBin"
+#title+=" [|#vec{p}_{#pi^{0}}| #geq 3.5 GeV/c ]"
+#momcut = " && pizP>=3.5"
+#momcutname = "_MC_8pizPBin"
 #momcutname = "_Data_8pizPBin"
 
 outname = "/home/tkimmel/Research/plots/nbpi0/Systematics/MomentumBins/withCuts"+momcutname+".png"
@@ -67,7 +78,7 @@ pi0mass = RooRealVar("pi0mass", "pi0mass",0.085,0.185)
 #pi0mass = RooRealVar("pi0mass", "pi0mass",0.1,0.17)
 #pi0mass = RooRealVar("pi0mass", "pi0mass",0.095,0.175)
 
-#pi0mass = RooRealVar("pi0mass", "pi0mass",0.1071,0.1606)# 5 sigma window
+#pi0mass = RooRealVar("pi0mass", "pi0mass",0.1071,0.1606)# 5 sgma window
 pizP = RooRealVar("pizP","pizP",0,5)
 nb = RooRealVar("nb","nb",-1,1)
 bcsflag = RooRealVar("bcsflag","bcsflag",0,1)
@@ -92,12 +103,12 @@ data = RooDataSet("data", "raw data", t, vars, "nb>0.832 && bcsflag==1"+momcut)
 #Double Sided Crystal Ball
 # No guesses
 crymu = RooRealVar("#mu","Mean of Crystal Ball",0.13,0.14)
-crysigma = RooRealVar("#sigma","#sigma",0.0006,0.006)# With Cuts
+crysigma = RooRealVar("#sigma","#sigma",0.004,0.008)# With Cuts
 #crysigma = RooRealVar("#sigma","#sigma",0.003,0.0065)
-cryalpha1 = RooRealVar("#alpha_{1}","#alpha_{1}",0,5)
-cryn1 = RooRealVar("n_{1}","n_{1}",0,70)
-cryalpha2 = RooRealVar("#alpha_{2}","#alpha_{2}",0,5)
-cryn2 = RooRealVar("n_{2}","n_{2}",0,70)
+cryalpha1 = RooRealVar("#alpha_{1}","#alpha_{1}",0,10)
+cryn1 = RooRealVar("n_{1}","n_{1}",0,150)
+cryalpha2 = RooRealVar("#alpha_{2}","#alpha_{2}",0,10)
+cryn2 = RooRealVar("n_{2}","n_{2}",0,150)
 # Systematics Data
 """
 crymu = RooRealVar("#mu","Mean of Crystal Ball",0.1347,0.132,0.136)
@@ -144,8 +155,8 @@ c2 = RooRealVar("c2","c2",-10,10)
 """
 
 #nsig = RooRealVar("N_{Signal}","nsig",0,350000)
-nsig = RooRealVar("N_{Signal}","nsig",0,60000)
-nbkg = RooRealVar("N_{Background}","nbkg",0,2000)# with cuts
+nsig = RooRealVar("N_{Signal}","nsig",0,70000)
+nbkg = RooRealVar("N_{Background}","nbkg",0,10000)# with cuts
 #nbkg = RooRealVar("N_{Background}","nbkg",0,100000000)# no cuts
 
 sig = MyDblCB("sig","sig",pi0mass,crymu,crysigma,cryalpha1,cryn1,cryalpha2,cryn2) #Use for signal Crystal Ball
@@ -231,7 +242,7 @@ pdf.plotOn(frame1, RooFit.Components(BKG),RooFit.LineColor(kRed),RooFit.LineStyl
 pdf.plotOn(frame1, RooFit.Components(SIG),RooFit.LineColor(kBlue))
 pdf.plotOn(frame1, RooFit.LineColor(kBlack))
 #pdf.paramOn(frame1,RooFit.Format("NEU", RooFit.AutoPrecision(2)), RooFit.Layout(0.65, 1, 0.95))
-pdf.paramOn(frame1,RooFit.Format("NEU", RooFit.AutoPrecision(2)), RooFit.Layout(0.58, 0.99, 0.93))
+pdf.paramOn(frame1,RooFit.Format("NEU", RooFit.AutoPrecision(2)), RooFit.Layout(0.6, 0.99, 0.92))
 frame1.Draw()
 
 """
