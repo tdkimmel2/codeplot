@@ -7,13 +7,15 @@ gInterpreter.ProcessLine('.x MyDblCB.cxx')
 f1 = "/home/tkimmel/Research/root/systematics/pi0Systematics.root"
 #f1 = "/home/tkimmel/Research/root/allmfrecon_reducedpi0fittingsample.root"
 #f1 = "/home/tkimmel/Research/root/charmmfrecon.root"
+#momcut = " && pizP>=1.625 && pizP<2.0"
 tree = "pi0tree"
 f = TFile(f1,"READ")
 t = f.Get(tree)
 
-#pi0mass = RooRealVar("pi0mass", "pi0mass",0.035,0.235)# Wider window
-#pi0mass = RooRealVar("pi0mass", "pi0mass",0.085,0.185)# Wide window
+#pi0mass = RooRealVar("pi0mass", "pi0mass",0.035,0.235)# Wide window
+#pi0mass = RooRealVar("pi0mass", "pi0mass",0.085,0.185)
 pi0mass = RooRealVar("pi0mass", "pi0mass",0.1,0.17)# Narrow window
+pizP = RooRealVar("pizP","pizP",0,5)
 whomi = RooRealVar("whomi", "whomi",0,1)
 nb = RooRealVar("nb","nb",0,1)
 run = RooRealVar("run","run",0,239)
@@ -26,22 +28,25 @@ binWidthMEV = binWidth*1000
 
 
 #vars = RooArgSet(pi0mass, whomi)
-vars = RooArgSet(pi0mass,nb,bcsflag,whomi,run)
+#vars = RooArgSet(pi0mass,nb,bcsflag,whomi,run)
+vars = RooArgSet(pi0mass,nb,bcsflag,whomi,run,pizP)
 
 
 #data = RooDataSet("data", "raw data", t, vars, "whomi==1")
 data = RooDataSet("data", "raw data", t, vars, "nb>0.832 && bcsflag==1 && whomi==1")
+#data = RooDataSet("data", "raw data", t, vars, "nb>0.832 && bcsflag==1 && whomi==1 && pizP>=1.625 && pizP<2.0")
 #data = RooDataSet("data", "raw data", t, vars, "nb>0.832 && bcsflag==1 && whomi==1 && (run==234 || run==17)")
 
 #Function Variables
 
 #Double Sided Crystal Ball
 crymu = RooRealVar("#mu","Mean of Crystal Ball",0.13,0.14)
-crysigma = RooRealVar("#sigma","#sigma",0.0007,0.009)
-cryalpha1 = RooRealVar("#alpha_{1}","#alpha_{1}",0,5)
-cryn1 = RooRealVar("n_{1}","n_{1}",0,20)
-cryalpha2 = RooRealVar("#alpha_{2}","#alpha_{2}",0,5)
-cryn2 = RooRealVar("n_{2}","n_{2}",0,20)
+crysigma = RooRealVar("#sigma","#sigma",0.0008,0.006)
+#crysigma = RooRealVar("#sigma","#sigma",0.001,0.007)
+cryalpha1 = RooRealVar("#alpha_{1}","#alpha_{1}",0,2)
+cryn1 = RooRealVar("n_{1}","n_{1}",0,15)
+cryalpha2 = RooRealVar("#alpha_{2}","#alpha_{2}",0,2)
+cryn2 = RooRealVar("n_{2}","n_{2}",0,30)
 
 nsig = RooRealVar("N_{Signal}","nsig",0,500000)
 
@@ -55,7 +60,7 @@ pdf = RooAddPdf("pdf","sig",RooArgList(sig),RooArgList(nsig))
 #----------------------------------------------------------------------- 
 #-----------------------------------------------------------------------
 
-fitRes = pdf.fitTo(data, RooFit.Save(kTRUE), RooFit.Range("Full"));
+#fitRes = pdf.fitTo(data, RooFit.Save(kTRUE), RooFit.Range("Full"));
 fitRes = pdf.fitTo(data, RooFit.Save(kTRUE), RooFit.Extended(kTRUE), RooFit.NumCPU(2), RooFit.Strategy(2), RooFit.Minos(kTRUE))
 
 # Create a new canvas
@@ -140,7 +145,10 @@ tex1.Draw()
 #tex2.SetNDC() 
 #tex2.Draw()
 
-canvas.Print("/home/tkimmel/Research/plots/nbpi0/Systematics/narrowWindow_withCuts_TM_Minuit2.png")
+#canvas.Print("/home/tkimmel/Research/plots/nbpi0/Systematics/narrowWindow_withCuts_TM_Minuit2.png")
+#canvas.Print("/home/tkimmel/Research/plots/nbpi0/withCuts_TM_Minuit2.png")
+canvas.Print("/home/tkimmel/Research/plots/nbpi0/narrowWindow_withCuts_TM_Minuit2.png")
+#canvas.Print("/home/tkimmel/Research/plots/nbpi0/withCuts_3pizPBin_TM_Minuit2.png")
 
 #canvas.Print("/home/tkimmel/Research/plots/nbpi0/Systematics/wideWindow_TM.png")
 #canvas.Print("/home/tkimmel/Research/plots/nbpi0/Systematics/wideWindow_withCuts_TM.png")

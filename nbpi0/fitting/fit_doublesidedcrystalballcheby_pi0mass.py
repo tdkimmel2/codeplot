@@ -4,24 +4,28 @@ import math, os
 
 gInterpreter.ProcessLine('.L MyDblCB.cxx')
 
-#f1 = "/home/tkimmel/Research/root/systematics/pi0Systematics.root"
-#title="#pi^{0} Mass: From #pi^{0} Systematics MC"
+"""
+f1 = "/home/tkimmel/Research/root/systematics/pi0Systematics.root"
+title="#pi^{0} Mass: From #pi^{0} Systematics MC"
+dataType = "MC"
+"""
 
 f1 = "/home/tkimmel/Research/root/systematics/pi0SystematicsData.root"
 title="#pi^{0} Mass: From #pi^{0} Systematics Data"
+dataType = "Data"
+
+outname = "/home/tkimmel/Research/plots/nbpi0/Systematics/MomentumBins/"
 
 #title+=" [|#vec{p}_{#pi^{0}}| < 0.875 GeV/c]"
 #momcut = " && pizP>=0 && pizP<0.875"
-#momcutname = "_MC_0pizPBin"
-#momcutname = "_Data_0pizPBin"
+#momcutname = "0pizPBin"
 
 #title+=" [0.875 GeV/c #geq |#vec{p}_{#pi^{0}}| < 1.25 GeV/c]"
 #momcut = " && pizP>=0.875 && pizP<1.25"
 
-#title+=" [|#vec{p}_{#pi^{0}}| < 1.25 GeV/c]"
-#momcut = " && pizP>=0 && pizP<1.25"
-#momcutname = "_MC_1pizPBin"
-#momcutname = "_Data_1pizPBin"
+title+=" [|#vec{p}_{#pi^{0}}| < 1.25 GeV/c]"
+momcut = " && pizP>=0 && pizP<1.25"
+momcutname = "1pizPBin"
 
 #title+=" [1.25 GeV/c #geq |#vec{p}_{#pi^{0}}| < 1.625 GeV/c]"
 #momcut = " && pizP>=1.25 && pizP<1.625"
@@ -38,10 +42,10 @@ title="#pi^{0} Mass: From #pi^{0} Systematics Data"
 #momcutname = "_MC_4pizPBin"
 #momcutname = "_Data_4pizPBin"
 
-title+=" [2.375 GeV/c #geq |#vec{p}_{#pi^{0}}| < 2.75 GeV/c]"
-momcut = " && pizP>=2.375 && pizP<2.75"
+#title+=" [2.375 GeV/c #geq |#vec{p}_{#pi^{0}}| < 2.75 GeV/c]"
+#momcut = " && pizP>=2.375 && pizP<2.75"
 #momcutname = "_MC_5pizPBin"
-momcutname = "_Data_5pizPBin"
+#momcutname = "_Data_5pizPBin"
 
 #title+=" [2.75 GeV/c #geq |#vec{p}_{#pi^{0}}| < 3.125 GeV/c]"
 #momcut = " && pizP>=2.75 && pizP<3.125"
@@ -58,9 +62,8 @@ momcutname = "_Data_5pizPBin"
 #momcutname = "_MC_8pizPBin"
 #momcutname = "_Data_8pizPBin"
 
-outname = "/home/tkimmel/Research/plots/nbpi0/Systematics/MomentumBins/withCuts"+momcutname+".png"
-
-
+#outname = "/home/tkimmel/Research/plots/nbpi0/Systematics/MomentumBins/withCuts"+momcutname
+#outname = "/home/tkimmel/Research/plots/nbpi0/Systematics/MomentumBins/Fixed_Ns/withCuts"+momcutname
 
 #f1 = "/home/tkimmel/Research/root/allmfrecon.root"
 #f1 = "/home/tkimmel/Research/root/allmfrecon_reducedpi0fittingsample.root"
@@ -95,6 +98,7 @@ vars = RooArgSet(pi0mass,nb,bcsflag,exp,run,pizP)
 
 
 data = RooDataSet("data", "raw data", t, vars, "nb>0.832 && bcsflag==1"+momcut)
+dataoutname="withCuts"
 #data = RooDataSet("data", "raw data", t, vars, "nb>0.832 && bcsflag==1 && ((exp==55 && run<24) || (exp==31 && run<235))")
 #data = RooDataSet("data", "raw data", t, vars, "(exp==55 && run<24) || (exp==31 && run<235)")
 
@@ -102,20 +106,22 @@ data = RooDataSet("data", "raw data", t, vars, "nb>0.832 && bcsflag==1"+momcut)
 
 #Double Sided Crystal Ball
 # No guesses
+"""
 crymu = RooRealVar("#mu","Mean of Crystal Ball",0.13,0.14)
 crysigma = RooRealVar("#sigma","#sigma",0.004,0.008)# With Cuts
 #crysigma = RooRealVar("#sigma","#sigma",0.003,0.0065)
 cryalpha1 = RooRealVar("#alpha_{1}","#alpha_{1}",0,10)
-cryn1 = RooRealVar("n_{1}","n_{1}",0,150)
 cryalpha2 = RooRealVar("#alpha_{2}","#alpha_{2}",0,10)
-cryn2 = RooRealVar("n_{2}","n_{2}",0,150)
-# Systematics Data
+#cryn1 = RooRealVar("n_{1}","n_{1}",0,150)
+#cryn2 = RooRealVar("n_{2}","n_{2}",0,150)
 """
+# Systematics Data
 crymu = RooRealVar("#mu","Mean of Crystal Ball",0.1347,0.132,0.136)
 crysigma = RooRealVar("#sigma","#sigma",0.002,0.0008,0.005)
 cryalpha1 = RooRealVar("#alpha_{1}","#alpha_{1}",0.9468,0,5)
-cryn1 = RooRealVar("n_{1}","n_{1}",1.88564,0,10)
 cryalpha2 = RooRealVar("#alpha_{2}","#alpha_{2}",1.005,0,5)
+"""
+cryn1 = RooRealVar("n_{1}","n_{1}",1.88564,0,10)
 cryn2 = RooRealVar("n_{2}","n_{2}",4.508,0,10)
 """
 # Systematics MC
@@ -126,7 +132,14 @@ cryalpha1 = RooRealVar("#alpha_{1}","#alpha_{1}",0,5)
 cryn1 = RooRealVar("n_{1}","n_{1}",0,10)
 cryalpha2 = RooRealVar("#alpha_{2}","#alpha_{2}",0,1)
 cryn2 = RooRealVar("n_{2}","n_{2}",0,10)
+
+outname += dataoutname+"_"+dataType+"_"+momcutname
 """
+# Fixed n's
+cryn1 = RooRealVar("n_{1}","n_{1}",1.0288)
+cryn2 = RooRealVar("n_{2}","n_{2}",1.7362)
+outname += "Fixed_Ns/"+dataoutname+"_"+dataType+"_"+momcutname+"_fixedNs"
+
 
 """
 crymu = RooRealVar("#mu","Mean of Crystal Ball",0.1345,0.13,0.14)
@@ -298,6 +311,7 @@ tex1.Draw()
 #tex2.Draw()
 
 
+outname += ".png"
 canvas.Print(outname)
 
 #canvas.Print("/home/tkimmel/Research/plots/nbpi0/Systematics/noCuts_constantAlphas_MC_lessEvents.png")
