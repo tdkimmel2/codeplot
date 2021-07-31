@@ -18,12 +18,10 @@ gROOT.ProcessLineSync(".x MyDblCB.cxx")
 
 ############KS SIGNAL MC############
 f1 = "/home/tkimmel/Research/root/kssignalmfrecon.root"
-title = "Truth Matched D* -> D^{0}(-> #pi^{0} + K_{S}^{0}) + #pi: From K^{0}_{S} Signal MC"
-#outname = "/home/tkimmel/Research/plots/ksSignalMC/SDoubleCBSig_dsflag_138t154_noGuesses.png"
-#outname = "/home/tkimmel/Research/plots/ksSignalMC/SBWigDoubleCBSig_dsflag_Looseflavorcut_138t154_noGuesses.png"
-#outname = "/home/tkimmel/Research/plots/ksSignalMC/SGaussBifurGSig_dsflag_3p416FlavorCut_140t152.png"
-outname = "/home/tkimmel/Research/plots/ksSignalMC/SGaussBifurGSig_dsflag_2p765FlavorCut_139t153.png"
-#outname = "/home/tkimmel/Research/plots/ksSignalMC/SGaussBifurGSig_dsflag_2p765FlavorCut_140t152.png"
+#title = "Truth Matched D* -> D^{0}(-> #pi^{0} + K_{S}^{0}) + #pi: From K^{0}_{S} Signal MC"
+title = "D* -> D^{0}(-> #pi^{0} + K_{S}^{0}) + #pi: From K^{0}_{S} Signal MC"
+outname = "/home/tkimmel/Research/plots/ksSignalMC/ksSignal_withCuts.png"
+
 ####################################
 ###########ALL GENERIC MC###########
 """
@@ -36,10 +34,10 @@ outname = "/home/tkimmel/Research/plots/alldtokpi/SGaussBifurGSig_dsflag_2p765Fl
 
 ########CUT########
 #cut="dsPmag>3.416 && abs(dsflag)==1"
-cut="dsPmag>2.765 && abs(dsflag)==1"
+#cut="dsPmag>2.765 && abs(dsflag)==1"
 #cut="dsPmag>2.765 && bcsflag==1 && nb>-0.076"
 #cut="abs(dsflag)==1"# dsflag truth match
-#cut=""# No cut
+cut=""# No cut
 #cut="nb>-0.076 && bcsflag==1 && dsPmag>2.765 && abs(dsflag)==1"
 
 
@@ -47,23 +45,11 @@ f = TFile(f1,"READ")
 tree = "dsrecontree"
 t = f.Get(tree)
 
-"""
-nbgm1 = RooRealVar("nbgm1", "nbgm1", -1, 1)
-nbgm2 = RooRealVar("nbgm2", "nbgm2", -1, 1)
-coskpiz = RooRealVar("coskpiz", "coskpiz", -1, 1)
-coskpizcm = RooRealVar("coskpizcm", "coskpizcm", -1, 1)
-cosdpipcm = RooRealVar("cosdpipcm", "cosdpipcm", -1, 1)
-pipp = RooRealVar("pipp", "pipp", 0, 1)
-dspPmag = RooRealVar("dspPmag", "dspPmag", 0, 5)
-kpdiff = RooRealVar("kpdiff", "kpdiff", -5, 5)
-R2 = RooRealVar("R2", "R2", 0, 1)
-dnb = RooRealVar("dnb", "dnb", -1, 1)
-"""
 #deltam = RooRealVar("deltam", "deltam", 0.142, 0.15)
 #deltam = RooRealVar("deltam", "deltam", 0.1395, 0.1525)
 #deltam = RooRealVar("deltam", "deltam", 0.138, 0.154)
-deltam = RooRealVar("deltam", "deltam", 0.139, 0.153)
-#deltam = RooRealVar("deltam", "deltam", 0.14, 0.152)
+#deltam = RooRealVar("deltam", "deltam", 0.139, 0.153)
+deltam = RooRealVar("deltam", "deltam", 0.14, 0.152)
 chrgflag = RooRealVar("chrgflag","chrgflag",-1,1)
 dsPmag = RooRealVar("dsPmag","dsPmag",0,10)
 dsPmagcms = RooRealVar("dsPmagcms","dsPmagcms",0,10)
@@ -80,11 +66,8 @@ binWidth = (rb-lb)/nBins
 binWidthMEV = binWidth*1000
 
 
-#vars = RooArgSet(deltam,nb,nbgm1,nbgm2,coskpiz,coskpizcm,cosdpipcm,pipp,dspPmag)
-#vars = RooArgSet(deltam,nb,coskpiz,cosdpipcm,pipp,dspPmag,kpdiff)
-#vars = RooArgSet(deltam,nb,coskpiz,cosdpipcm,pipp,dspPmag,dnb)
-#vars = RooArgSet(deltam,dsPmag,dsflag)
-vars = RooArgSet(deltam,dsPmag,dsflag,nb,bcsflag)
+vars = RooArgSet(deltam)
+#vars = RooArgSet(deltam,dsPmag,dsflag,nb,bcsflag)
 
 
 data = RooDataSet("data", "raw data", t, vars, cut)# Signal
@@ -100,39 +83,19 @@ data = RooDataSet("data", "raw data", t, vars, cut)# Signal
 # Global Signal Mean
 mu = RooRealVar("#mu","#mu",0.145,0.146)
 
-##Chebyshev
-#c0 = RooRealVar("c_{0}","c_{0}",-1,1)
-#c1 = RooRealVar("c_{1}","c_{1}",-1,1)
-#c2 = RooRealVar("c_{2}","c_{2}",-1,1)
-
-
-##Voigtian
-voigmean = RooRealVar("<>_{signal}", "<>_{signal}", 0.145, 0, 0.5)
-voigwidth = RooRealVar("width_{signal}", "#width_{signal}", 0.0005, 0, 0.1)
-voigsigma = RooRealVar("#sigma_{signal}", "#sigma_{signal}", 0.0005, 0, 0.1)
-
-##Breit Wigner
-bwmean = RooRealVar("#mu_{sig}", "#mu_{sig}", 0.145, 0, 0.2)
-bwwidth = RooRealVar("#Gamma_{BW}", "#Gamma_{BW}", 0.0001, 0.01)
-
-##Novosibirsk
-peak = RooRealVar("#mu","#mu",0.1453,0.145,0.146)
-width = RooRealVar("#sigma","#sigma",0.001,0.0005,0.01)# Signal MC
-tail = RooRealVar("tail","tail",0.001,-1,0.01)# Signal MC
-
 #Gaussian
 #gausmean = RooRealVar("#mu_{sig}","#mu_{sig}",0.145465,0.144,0.146)
-gaussigma = RooRealVar("#sigma","#sigma",0.0001,0.004)
+gaussigma = RooRealVar("#sigma","#sigma",0.0004536,0.0003,0.0008)
 
 ##Bifurcated Gaussian
 gausmean = RooRealVar("#mu","#mu_{sig}",0.1453,0.145,0.146)
-gaussigmaR = RooRealVar("#sigma_{R}","#sigma_{R}",0.0008,0.002)
-gaussigmaL = RooRealVar("#sigma_{L}","#sigma_{L}",0.0008,0.002)
+gaussigmaR = RooRealVar("#sigma_{R}","#sigma_{R}",0.001109,0.0008,0.002)
+gaussigmaL = RooRealVar("#sigma_{L}","#sigma_{L}",0.000964,0.0008,0.002)
 
 #DstD0BG
 #m0 = RooRealVar("m_{0}", "m_{0}",0.139,0.140)
-m0 = RooRealVar("m_{0}", "m_{0}",0.13957039,0.136,0.145)
-A = RooRealVar("A", "A",-50,50)
+m0 = RooRealVar("m_{0}", "m_{0}",0.13957039,0.136,0.14)
+A = RooRealVar("A", "A",-10,10)
 B = RooRealVar("B", "B",-10,10)
 C = RooRealVar("C", "C",0,1)
 #m0.setConstant()
@@ -166,26 +129,18 @@ n2 = RooRealVar("n_{2}","n_{2}",0,10)
 nsig = RooRealVar("N_{Signal}","nsig",0,1000000)
 nbkg = RooRealVar("N_{Bkg}","nbkg",0,1000000)
 
-#sig = RooVoigtian("sig","Voigtian Signal Fcn",deltam,voigmean,voigwidth,voigsigma) #Use for Voigtian Signal
-#sig = RooBreitWigner("sig","Breit Wigner Signal Fcn", deltam,bwmean,bwwidth) #Use for Breit Wigner Signal
-#sig = RooGaussian("sig","Gaussian Signal Fcn", deltam,gausmean,gaussigma) #Use for Gaussian Signal
-#sig = RooBifurGauss("sig","Bifurcated Gaussian Signal Fcn", deltam, gausmean, gaussigmaL, gaussigmaR) #Use for Gaussian Signal
-#sig = RooNovosibirsk("sig","Novosibirsk Signal Fcn", deltam, peak, width, tail) #Use for Gaussian Signal
 #sig = MyDblCB("sig","Double Sided Crystal Ball Signal Fcn", deltam,mu,sigma,a1,n1,a2,n2) #Use for Double Crystal Ball signal
 
-#######Sum of Double-Sided Crystal Ball and Breit Wigner#######
+######################Sum of Two Signals######################
+#dblcb = MyDblCB("dblcb","Double Sided Crystal Ball Signal Fcn", deltam,mu,sigma,a1,n1,a2,n2)
 gauss = RooGaussian("gauss","Gaussian Signal Fcn", deltam,mu,gaussigma)
 bifurG = RooBifurGauss("bifurG","Bifurcated Gaussian Signal Fcn", deltam,mu,gaussigmaL,gaussigmaR)
-dblcb = MyDblCB("dblcb","Double Sided Crystal Ball Signal Fcn", deltam,mu,sigma,a1,n1,a2,n2)
-bwig = RooBreitWigner("bwig","Breit Wigner Signal Fcn", deltam,mu,bwwidth)
 frac = RooRealVar("R","R",0,1)
-#sig = RooAddPdf("sig","DblCB + BreitWigner Sig Fcn",RooArgList(dblcb,bwig),RooArgList(frac))
 sig = RooAddPdf("sig","Gauss + BifurGauss Sig Fcn",RooArgList(gauss,bifurG),RooArgList(frac))
 GAUSS = RooArgSet(gauss)
 BIFURG = RooArgSet(bifurG)
-DBLCB = RooArgSet(dblcb)
-BWIG = RooArgSet(bwig)
-###############################################################
+#DBLCB = RooArgSet(dblcb)
+##############################################################
 
 bkg = RooDstD0BG("bkg","DstD0BG Bkg Fcn",deltam,m0,C,A,B)
 
@@ -260,13 +215,13 @@ data.plotOn(frame1)
 #dchib1Sig_1k.plotOn(frame1)
 
 ###########BWig and DblCB###########
-pdf.plotOn(frame1, RooFit.Components(GAUSS),RooFit.LineColor(kBlue))
-pdf.plotOn(frame1, RooFit.Components(BIFURG),RooFit.LineColor(kCyan))
+#pdf.plotOn(frame1, RooFit.Components(GAUSS),RooFit.LineColor(kBlue))
+#pdf.plotOn(frame1, RooFit.Components(BIFURG),RooFit.LineColor(kCyan))
 #pdf.plotOn(frame1, RooFit.Components(DBLCB),RooFit.LineColor(kBlue))
 #pdf.plotOn(frame1, RooFit.Components(BWIG),RooFit.LineColor(kCyan))
 ####################################
 
-#pdf.plotOn(frame1, RooFit.Components(SIG),RooFit.LineColor(kBlue))
+pdf.plotOn(frame1, RooFit.Components(SIG),RooFit.LineColor(kBlue))
 pdf.plotOn(frame1, RooFit.Components(BKG),RooFit.LineColor(kRed),RooFit.LineStyle(kDashed))
 pdf.plotOn(frame1, RooFit.LineColor(kBlack))
 pdf.paramOn(frame1,RooFit.Format("NEU", RooFit.AutoPrecision(2)), RooFit.Layout(0.63, 0.99, 0.91))

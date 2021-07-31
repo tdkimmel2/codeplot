@@ -4,78 +4,83 @@ import math, os
 
 gInterpreter.ProcessLine('.L MyDblCB.cxx')
 
-"""
 f1 = "/home/tkimmel/Research/root/systematics/pi0Systematics.root"
 title="#pi^{0} Mass: From #pi^{0} Systematics MC"
 dataType = "MC"
-"""
 
+"""
 f1 = "/home/tkimmel/Research/root/systematics/pi0SystematicsData.root"
 title="#pi^{0} Mass: From #pi^{0} Systematics Data"
 dataType = "Data"
+"""
 
-outname = "/home/tkimmel/Research/plots/nbpi0/Systematics/MomentumBins/"
+#outname = "/home/tkimmel/Research/plots/nbpi0/Systematics/"
+#outname = "/home/tkimmel/Research/plots/nbpi0/Systematics/MomentumBins/"
 
-#title+=" [|#vec{p}_{#pi^{0}}| < 0.875 GeV/c]"
-#momcut = " && pizP>=0 && pizP<0.875"
+#title+=" [|#vec{p}_{#pi^{0}}| < 1.0 GeV/c]"
+#momcut = " && pizP>=0 && pizP<1"
+#momcutname = "00pizPBin"
+
+#title+=" [|#vec{p}_{#pi^{0}}| < 1.25 GeV/c]"
+#momcut = " && pizP>=0 && pizP<1.25"
 #momcutname = "0pizPBin"
 
-#title+=" [0.875 GeV/c #geq |#vec{p}_{#pi^{0}}| < 1.25 GeV/c]"
-#momcut = " && pizP>=0.875 && pizP<1.25"
+#title+=" [0.5 GeV/c #leq |#vec{p}_{#pi^{0}}| < 1.25 GeV/c]"
+#momcut = " && pizP>=0.5 && pizP<1.25"
+#momcutname = "0_5pizPBin"
 
-title+=" [|#vec{p}_{#pi^{0}}| < 1.25 GeV/c]"
-momcut = " && pizP>=0 && pizP<1.25"
-momcutname = "1pizPBin"
+#title+=" [0.75 GeV/c #leq |#vec{p}_{#pi^{0}}| < 1.25 GeV/c]"
+#momcut = " && pizP>=0.75 && pizP<1.25"
+#momcutname = "0_75pizPBin"
 
-#title+=" [1.25 GeV/c #geq |#vec{p}_{#pi^{0}}| < 1.625 GeV/c]"
+#title+=" [1.0 GeV/c #leq |#vec{p}_{#pi^{0}}| < 1.25 GeV/c]"
+#momcut = " && pizP>=1.0 && pizP<1.25"
+#momcutname = "1pizPBin"
+
+#title+=" [1.25 GeV/c #leq |#vec{p}_{#pi^{0}}| < 1.625 GeV/c]"
 #momcut = " && pizP>=1.25 && pizP<1.625"
-#momcutname = "_MC_2pizPBin"
-#momcutname = "_Data_2pizPBin"
+#momcutname = "2pizPBin"
 
-#title+=" [1.625 GeV/c #geq |#vec{p}_{#pi^{0}}| < 2.0 GeV/c]"
-#momcut = " && pizP>=1.625 && pizP<2.0"
-#momcutname = "_MC_3pizPBin"
-#momcutname = "_Data_3pizPBin"
+title+=" [1.625 GeV/c #leq |#vec{p}_{#pi^{0}}| < 2.0 GeV/c]"
+momcut = " && pizP>=1.625 && pizP<2.0"
+momcutname = "3pizPBin"
 
-#title+=" [2.0 GeV/c #geq |#vec{p}_{#pi^{0}}| < 2.375 GeV/c]"
+#title+=" [2.0 GeV/c #leq |#vec{p}_{#pi^{0}}| < 2.375 GeV/c]"
 #momcut = " && pizP>=2.0 && pizP<2.375"
-#momcutname = "_MC_4pizPBin"
-#momcutname = "_Data_4pizPBin"
+#momcutname = "4pizPBin"
 
-#title+=" [2.375 GeV/c #geq |#vec{p}_{#pi^{0}}| < 2.75 GeV/c]"
+#title+=" [2.375 GeV/c #leq |#vec{p}_{#pi^{0}}| < 2.75 GeV/c]"
 #momcut = " && pizP>=2.375 && pizP<2.75"
-#momcutname = "_MC_5pizPBin"
-#momcutname = "_Data_5pizPBin"
+#momcutname = "5pizPBin"
 
-#title+=" [2.75 GeV/c #geq |#vec{p}_{#pi^{0}}| < 3.125 GeV/c]"
+#title+=" [2.75 GeV/c #leq |#vec{p}_{#pi^{0}}| < 3.125 GeV/c]"
 #momcut = " && pizP>=2.75 && pizP<3.125"
-#momcutname = "_MC_6pizPBin"
-#momcutname = "_Data_6pizPBin"
+#momcutname = "6pizPBin"
 
-#title+=" [3.125 GeV/c #geq |#vec{p}_{#pi^{0}}| < 3.5 GeV/c]"
+#title+=" [3.125 GeV/c #leq |#vec{p}_{#pi^{0}}| < 3.5 GeV/c]"
 #momcut = " && pizP>=3.125 && pizP<3.5"
-#momcutname = "_MC_7pizPBin"
-#momcutname = "_Data_7pizPBin"
+#momcutname = "7pizPBin"
 
 #title+=" [|#vec{p}_{#pi^{0}}| #geq 3.5 GeV/c ]"
 #momcut = " && pizP>=3.5"
-#momcutname = "_MC_8pizPBin"
-#momcutname = "_Data_8pizPBin"
+#momcutname = "8pizPBin"
 
-#outname = "/home/tkimmel/Research/plots/nbpi0/Systematics/MomentumBins/withCuts"+momcutname
-#outname = "/home/tkimmel/Research/plots/nbpi0/Systematics/MomentumBins/Fixed_Ns/withCuts"+momcutname
+#f1 = "/home/tkimmel/Research/root/allmfrecon_pi0.root"
+#title="#pi^{0} Mass: From All Generic MC"
+#f1 = "/home/tkimmel/Research/root/massFit/allmfrecon_reducedpi0fittingsample.root"
+#f1 = "/home/tkimmel/Research/root/massFit/charmmfrecon_reducedpi0fittingsample.root"
+#title="#pi^{0} Mass: From Subset of Charm MC"
+#outname = "/home/tkimmel/Research/plots/nbpi0/"
+outname = "/home/tkimmel/Research/plots/nbpi0/Systematics/null"
 
-#f1 = "/home/tkimmel/Research/root/allmfrecon.root"
-#f1 = "/home/tkimmel/Research/root/allmfrecon_reducedpi0fittingsample.root"
-#f1 = "/home/tkimmel/Research/root/charmmfrecon_reducedpi0fittingsample.root"
 tree = "pi0tree"
 f = TFile(f1,"READ")
 t = f.Get(tree)
 
 #pi0mass = RooRealVar("pi0mass", "pi0mass",0.08,0.180)# Wide window
 pi0mass = RooRealVar("pi0mass", "pi0mass",0.085,0.185)
-#pi0mass = RooRealVar("pi0mass", "pi0mass",0.09,0.18)# Narrow window
-#pi0mass = RooRealVar("pi0mass", "pi0mass",0.119,0.149)# Narrower window
+#pi0mass = RooRealVar("pi0mass", "pi0mass",0.1,0.17)# Narrow window
+#pi0mass = RooRealVar("pi0mass", "pi0mass",0.12,0.15)# Narrower window
 
 #pi0mass = RooRealVar("pi0mass", "pi0mass",0.11,0.16)
 #pi0mass = RooRealVar("pi0mass", "pi0mass",0.1,0.17)
@@ -94,9 +99,11 @@ binWidth = (rb-lb)/nBins
 binWidthMEV = binWidth*1000
 
 
+#vars = RooArgSet(pi0mass)
 vars = RooArgSet(pi0mass,nb,bcsflag,exp,run,pizP)
 
 
+#data = RooDataSet("data", "raw data", t, vars)
 data = RooDataSet("data", "raw data", t, vars, "nb>0.832 && bcsflag==1"+momcut)
 dataoutname="withCuts"
 #data = RooDataSet("data", "raw data", t, vars, "nb>0.832 && bcsflag==1 && ((exp==55 && run<24) || (exp==31 && run<235))")
@@ -105,61 +112,39 @@ dataoutname="withCuts"
 #Function Variables
 
 #Double Sided Crystal Ball
-# No guesses
-"""
 crymu = RooRealVar("#mu","Mean of Crystal Ball",0.13,0.14)
-crysigma = RooRealVar("#sigma","#sigma",0.004,0.008)# With Cuts
-#crysigma = RooRealVar("#sigma","#sigma",0.003,0.0065)
-cryalpha1 = RooRealVar("#alpha_{1}","#alpha_{1}",0,10)
-cryalpha2 = RooRealVar("#alpha_{2}","#alpha_{2}",0,10)
-#cryn1 = RooRealVar("n_{1}","n_{1}",0,150)
-#cryn2 = RooRealVar("n_{2}","n_{2}",0,150)
-"""
-# Systematics Data
-crymu = RooRealVar("#mu","Mean of Crystal Ball",0.1347,0.132,0.136)
-crysigma = RooRealVar("#sigma","#sigma",0.002,0.0008,0.005)
-cryalpha1 = RooRealVar("#alpha_{1}","#alpha_{1}",0.9468,0,5)
-cryalpha2 = RooRealVar("#alpha_{2}","#alpha_{2}",1.005,0,5)
-"""
-cryn1 = RooRealVar("n_{1}","n_{1}",1.88564,0,10)
-cryn2 = RooRealVar("n_{2}","n_{2}",4.508,0,10)
-"""
-# Systematics MC
-"""
-crymu = RooRealVar("#mu","Mean of Crystal Ball",0.13,0.14)
-crysigma = RooRealVar("#sigma","#sigma",0.0008,0.005)
-cryalpha1 = RooRealVar("#alpha_{1}","#alpha_{1}",0,5)
-cryn1 = RooRealVar("n_{1}","n_{1}",0,10)
-cryalpha2 = RooRealVar("#alpha_{2}","#alpha_{2}",0,1)
-cryn2 = RooRealVar("n_{2}","n_{2}",0,10)
+crysigma = RooRealVar("#sigma","#sigma",0.004,0.008)
+cryalpha1 = RooRealVar("#alpha_{1}","#alpha_{1}",0,2)
+cryalpha2 = RooRealVar("#alpha_{2}","#alpha_{2}",0,2)
+#cryn1 = RooRealVar("n_{1}","n_{1}",0,50)
+#cryn2 = RooRealVar("n_{2}","n_{2}",0,50)
+#outname += dataoutname+"_"+dataType+"_"+momcutname
 
-outname += dataoutname+"_"+dataType+"_"+momcutname
-"""
 # Fixed n's
-cryn1 = RooRealVar("n_{1}","n_{1}",1.0288)
-cryn2 = RooRealVar("n_{2}","n_{2}",1.7362)
-outname += "Fixed_Ns/"+dataoutname+"_"+dataType+"_"+momcutname+"_fixedNs"
+# Reduced Charm
+#cryn1 = RooRealVar("n_{1}","n_{1}",1.123)
+#cryn2 = RooRealVar("n_{2}","n_{2}",1.891)
+#outname += "fixedNs_Minuit2"
+#outname += "fixedNs"
 
+# From withCuts_3pizPBin
+cryn1 = RooRealVar("n_{1}","n_{1}",3.94)
+cryn2 = RooRealVar("n_{2}","n_{2}",45)
+#outname += "Fixed_Ns/"+dataoutname+"_"+dataType+"_"+momcutname+"_fixedNs"
+#outname += "Fixed_Ns/narrowWindow_"+dataoutname+"_"+dataType+"_"+momcutname+"_fixedNs"
 
-"""
-crymu = RooRealVar("#mu","Mean of Crystal Ball",0.1345,0.13,0.14)
-crysigma = RooRealVar("#sigma","#sigma",0.00545,0.001,0.01)
-cryalpha1 = RooRealVar("#alpha_{1}","#alpha_{1}",1.25491,0,2)
-cryn1 = RooRealVar("n_{1}","n_{1}",1.0288,0,5)
-cryalpha2 = RooRealVar("#alpha_{2}","#alpha_{2}",1.77619,0,2)
-cryn2 = RooRealVar("n_{2}","n_{2}",1.7362,0,5)
-"""
-#cryalpha1 = RooRealVar("#alpha_{1}","#alpha_{1}",1.25491)
-#cryalpha2 = RooRealVar("#alpha_{2}","#alpha_{2}",1.77619)
-#cryn1.setConstant()
-#cryn2.setConstant()
-#cryalpha1.setConstant()
-#cryalpha2.setConstant()
+#cryn1 = RooRealVar("n_{1}","n_{1}",4.37)
+#cryn2 = RooRealVar("n_{2}","n_{2}",66)
+#outname += "PlusSigma/"+dataoutname+"_"+dataType+"_"+momcutname+"_fixedNsPlusSigma"
+#cryn1 = RooRealVar("n_{1}","n_{1}",3.51)
+#cryn2 = RooRealVar("n_{2}","n_{2}",24)
+#outname += "MinusSigma/"+dataoutname+"_"+dataType+"_"+momcutname+"_fixedNsMinusSigma"
+
 
 #Chebychev
-c0 = RooRealVar("c0","c0",-10,10)
-c1 = RooRealVar("c1","c1",-10,10)
-c2 = RooRealVar("c2","c2",-10,10)
+c0 = RooRealVar("c0","c0",-3,3)
+c1 = RooRealVar("c1","c1",-3,3)
+c2 = RooRealVar("c2","c2",-1,1)
 # No Cuts
 """
 c0 = RooRealVar("c0","c0",-2,2)
@@ -167,10 +152,10 @@ c1 = RooRealVar("c1","c1",-5,0)
 c2 = RooRealVar("c2","c2",-10,10)
 """
 
-#nsig = RooRealVar("N_{Signal}","nsig",0,350000)
-nsig = RooRealVar("N_{Signal}","nsig",0,70000)
+nsig = RooRealVar("N_{Signal}","nsig",38000,50000)
 nbkg = RooRealVar("N_{Background}","nbkg",0,10000)# with cuts
-#nbkg = RooRealVar("N_{Background}","nbkg",0,100000000)# no cuts
+#nsig = RooRealVar("N_{Signal}","nsig",144000,0,200000)
+#nbkg = RooRealVar("N_{Background}","nbkg",1381439,0,1500000)
 
 sig = MyDblCB("sig","sig",pi0mass,crymu,crysigma,cryalpha1,cryn1,cryalpha2,cryn2) #Use for signal Crystal Ball
 
@@ -188,9 +173,9 @@ pdf = RooAddPdf("pdf","sig+bkg",RooArgList(sig,bkg),RooArgList(nsig,nbkg))
 #----------------------------------------------------------------------- 
 #-----------------------------------------------------------------------
 
-fitRes = pdf.fitTo(data, RooFit.Save(kTRUE), RooFit.Range("Full"));
-#fitRes = pdf.fitTo(data, RooFit.Save(kTRUE), RooFit.Extended(kTRUE), RooFit.NumCPU(4), RooFit.Strategy(2), RooFit.Minimizer("Minuit2", "minimize"), RooFit.Minos(kTRUE))
-#fitRes = pdf.fitTo(data, RooFit.Save(kTRUE), RooFit.Extended(kTRUE), RooFit.NumCPU(4), RooFit.Strategy(2), RooFit.Minos(kTRUE))
+fitRes = pdf.fitTo(data, RooFit.Save(kTRUE), RooFit.Range("Full"), RooFit.Extended(kTRUE));
+#fitRes = pdf.fitTo(data, RooFit.Save(kTRUE), RooFit.Extended(kTRUE), RooFit.NumCPU(2), RooFit.Strategy(2), RooFit.Minimizer("Minuit2", "minimize"), RooFit.Minos(kTRUE))
+#fitRes = pdf.fitTo(data, RooFit.Save(kTRUE), RooFit.Extended(kTRUE), RooFit.NumCPU(2), RooFit.Strategy(2), RooFit.Minos(kTRUE))
 
 """
 ff = TFile("DSCBCheby_fitres.root","RECREATE")

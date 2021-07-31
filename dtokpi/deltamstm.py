@@ -3,8 +3,8 @@ import sys
 sys.path.append('/home/tkimmel/Research/codeplot/functions/')
 from plottingfunctions import *
 
-f = TFile("/home/tkimmel/Research/root/fullStream.root","READ")
-#f = TFile("/home/tkimmel/Research/root/kssignalmfrecon.root","READ")
+#f = TFile("/home/tkimmel/Research/root/fullStream.root","READ")
+f = TFile("/home/tkimmel/Research/root/kssignalmfrecon.root","READ")
 #f = TFile("/home/tkimmel/Research/root/allmfrecon.root","READ")
 #f = TFile("/home/tkimmel/Research/root/genericmfdtokpi.root","READ")
 
@@ -21,8 +21,9 @@ frame = deltam.frame()
 h1 = TH1F("h1","h1",nBins,lb,rb)
 h2 = TH1F("h2","h2",nBins,lb,rb)
 
+plot_variable2histos(t,"deltam","abs(dsflag)==1","Truth Matched","","All Candidates","#DeltaM_{D*D^{0}} D* -> D^{0}(-> #pi^{0} + K_{S}^{0}) + #pi+: From K_{S}^{0} Signal MC","#DeltaM_{D*D^{0}} (GeV/c^{2})",h1,h2,frame,0.47,0.65,"/home/tkimmel/Research/plots/ksSignalMC/ksRecon_TM_ksSignal")
 ###########################Full Stream MC#########################
-plot_variable2histos(t,"deltam","abs(dsflag)==1","Truth Matched Candidates","","All Candidates","#DeltaM_{D*D^{0}} D* -> D^{0}(-> #pi^{0} + K_{S}^{0}) + #pi+: From K_{S}^{0} Signal MC","#DeltaM_{D*D^{0}} (GeV/c^{2})",h1,h2,frame,0.47,0.65,"/home/tkimmel/Research/plots/fullStream/ksRecon_TM")
+#plot_variable2histos(t,"deltam","abs(dsflag)==1","Truth Matched Candidates","","All Candidates","#DeltaM_{D*D^{0}} D* -> D^{0}(-> #pi^{0} + K_{S}^{0}) + #pi+: From a Full Stream of MC","#DeltaM_{D*D^{0}} (GeV/c^{2})",h1,h2,frame,0.47,0.65,"/home/tkimmel/Research/plots/fullStream/ksRecon_TM")
 
 #plot_variable2histos(t,"deltam","whomi==1","Truth Matched Candidates","","All Candidates","#DeltaM_{D*D^{0}} D* -> D^{0}(-> #pi^{0} + K_{S}^{0}) + #pi+: From K_{S}^{0} Signal MC Using K^{0}_{S} 4-Momentum","#DeltaM_{D*D^{0}} (GeV/c^{2})",h1,h2,frame,0.47,0.65,"/home/tkimmel/Research/plots/ksSignalMC/ks_ds_tm2histos")
 #plot_variable2histos(t,"deltam","abs(dsflag)==1","Truth Matched Candidates","","All Candidates","#DeltaM_{D*D^{0}} D* -> D^{0}(-> #pi^{0} + K_{S}^{0}) + #pi+: From K_{S}^{0} Signal MC","#DeltaM_{D*D^{0}} (GeV/c^{2})",h1,h2,frame,0.47,0.65,"/home/tkimmel/Research/plots/ksSignalMC/ksRecon_ds_tm2histos")

@@ -3,8 +3,9 @@ import sys
 sys.path.append('/home/tkimmel/Research/codeplot/functions/')
 from plottingfunctions import *
 
-#f = TFile("/home/tkimmel/Research/root/allmfrecon.root","READ")
-f = TFile("/home/tkimmel/Research/root/efficiencies/allmfrecon_gammaPiMassCuts.root","READ")
+f = TFile("/home/tkimmel/Research/root/allmfrecon.root","READ")
+#f = TFile("/home/tkimmel/Research/root/efficiencies/allmfrecon_gmcut.root","READ")
+#f = TFile("/home/tkimmel/Research/root/efficiencies/allmfrecon_gammaPiMassCuts.root","READ")
 t = f.Get("dsrecontree")
 #t = f.Get("dstree")
 

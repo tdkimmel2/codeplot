@@ -1,0 +1,6 @@
+RooFit defaults to Poisson confidence levels for error bars
+For low statistics, it displays asymmetric error bars
+For sqrt(N) bars use:
+    RooFit.DataError(RooAbsData.SumW2)
+
+This does NOT affect the fit as it's unbinned, just the display

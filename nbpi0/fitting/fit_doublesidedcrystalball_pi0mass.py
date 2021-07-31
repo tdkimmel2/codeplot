@@ -4,17 +4,20 @@ import math, os
 
 gInterpreter.ProcessLine('.x MyDblCB.cxx')
 
+#f1 = "/home/tkimmel/Research/root/allmfrecon_pi0.root"
 f1 = "/home/tkimmel/Research/root/systematics/pi0Systematics.root"
-#f1 = "/home/tkimmel/Research/root/allmfrecon_reducedpi0fittingsample.root"
+#f1 = "/home/tkimmel/Research/root/systematics/pi0SystematicsData.root"
+#f1 = "/home/tkimmel/Research/root/massFit/allmfrecon_reducedpi0fittingsample.root"
+#f1 = "/home/tkimmel/Research/root/massFit/charmmfrecon_reducedpi0fittingsample.root"
 #f1 = "/home/tkimmel/Research/root/charmmfrecon.root"
 #momcut = " && pizP>=1.625 && pizP<2.0"
 tree = "pi0tree"
 f = TFile(f1,"READ")
 t = f.Get(tree)
 
-#pi0mass = RooRealVar("pi0mass", "pi0mass",0.035,0.235)# Wide window
-#pi0mass = RooRealVar("pi0mass", "pi0mass",0.085,0.185)
-pi0mass = RooRealVar("pi0mass", "pi0mass",0.1,0.17)# Narrow window
+#pi0mass = RooRealVar("pi0mass", "pi0mass",0.065,0.205)# Wide window
+pi0mass = RooRealVar("pi0mass", "pi0mass",0.085,0.185)
+#pi0mass = RooRealVar("pi0mass", "pi0mass",0.1,0.17)# Narrow window
 pizP = RooRealVar("pizP","pizP",0,5)
 whomi = RooRealVar("whomi", "whomi",0,1)
 nb = RooRealVar("nb","nb",0,1)
@@ -28,25 +31,28 @@ binWidthMEV = binWidth*1000
 
 
 #vars = RooArgSet(pi0mass, whomi)
-#vars = RooArgSet(pi0mass,nb,bcsflag,whomi,run)
-vars = RooArgSet(pi0mass,nb,bcsflag,whomi,run,pizP)
+#vars = RooArgSet(pi0mass,nb,bcsflag,pizP)
+vars = RooArgSet(pi0mass,nb,bcsflag,whomi,pizP)
 
 
 #data = RooDataSet("data", "raw data", t, vars, "whomi==1")
-data = RooDataSet("data", "raw data", t, vars, "nb>0.832 && bcsflag==1 && whomi==1")
-#data = RooDataSet("data", "raw data", t, vars, "nb>0.832 && bcsflag==1 && whomi==1 && pizP>=1.625 && pizP<2.0")
+#data = RooDataSet("data", "raw data", t, vars, "nb>0.832 && bcsflag==1 && whomi==1")
+#data = RooDataSet("data", "raw data", t, vars, "nb>0.832 && bcsflag==1 && pizP<1.0")
+data = RooDataSet("data", "raw data", t, vars, "nb>0.832 && bcsflag==1 && whomi==1 && pizP>=1.625 && pizP<2.0")
 #data = RooDataSet("data", "raw data", t, vars, "nb>0.832 && bcsflag==1 && whomi==1 && (run==234 || run==17)")
 
 #Function Variables
 
 #Double Sided Crystal Ball
 crymu = RooRealVar("#mu","Mean of Crystal Ball",0.13,0.14)
-crysigma = RooRealVar("#sigma","#sigma",0.0008,0.006)
-#crysigma = RooRealVar("#sigma","#sigma",0.001,0.007)
+crysigma = RooRealVar("#sigma","#sigma",0.0005,0.004)
 cryalpha1 = RooRealVar("#alpha_{1}","#alpha_{1}",0,2)
-cryn1 = RooRealVar("n_{1}","n_{1}",0,15)
 cryalpha2 = RooRealVar("#alpha_{2}","#alpha_{2}",0,2)
-cryn2 = RooRealVar("n_{2}","n_{2}",0,30)
+#cryn1 = RooRealVar("n_{1}","n_{1}",0,15)
+#cryn2 = RooRealVar("n_{2}","n_{2}",0,15)
+# Systematics fixed n's
+cryn1 = RooRealVar("n_{1}","n_{1}",3.94)
+cryn2 = RooRealVar("n_{2}","n_{2}",45)
 
 nsig = RooRealVar("N_{Signal}","nsig",0,500000)
 
@@ -60,8 +66,8 @@ pdf = RooAddPdf("pdf","sig",RooArgList(sig),RooArgList(nsig))
 #----------------------------------------------------------------------- 
 #-----------------------------------------------------------------------
 
-#fitRes = pdf.fitTo(data, RooFit.Save(kTRUE), RooFit.Range("Full"));
-fitRes = pdf.fitTo(data, RooFit.Save(kTRUE), RooFit.Extended(kTRUE), RooFit.NumCPU(2), RooFit.Strategy(2), RooFit.Minos(kTRUE))
+fitRes = pdf.fitTo(data, RooFit.Save(kTRUE), RooFit.Range("Full"), RooFit.Extended(kTRUE));
+#fitRes = pdf.fitTo(data, RooFit.Save(kTRUE), RooFit.Extended(kTRUE), RooFit.NumCPU(2), RooFit.Strategy(2), RooFit.Minos(kTRUE))
 
 # Create a new canvas
 canvas = TCanvas("canvas", "canvas", 800, 800)
@@ -84,7 +90,11 @@ fitRes.Print()
 h1 = TH1F("h1","h1",nBins,lb,rb)
 
 #frame1 = pi0mass.frame(RooFit.Bins(nBins),RooFit.Title("From MC: #pi^{0} Mass"))
-frame1 = pi0mass.frame(RooFit.Bins(nBins),RooFit.Title("#pi^{0} Mass: From #pi^{0} Systematics MC"))
+#frame1 = pi0mass.frame(RooFit.Bins(nBins),RooFit.Title("#pi^{0} Mass: From #pi^{0} Systematics MC [|#vec{p}_{#pi^0}| < 1.0 GeV/c]"))
+frame1 = pi0mass.frame(RooFit.Bins(nBins),RooFit.Title("Truth Matched #pi^{0} Mass: From #pi^{0} Systematics MC [1.625 GeV/c #leq |#vec{p}_{#pi^{0}}| < 2.0 GeV/c]"))
+#frame1 = pi0mass.frame(RooFit.Bins(nBins),RooFit.Title("Truth Matched #pi^{0} Mass: From Subset of All Generic MC"))
+#frame1 = pi0mass.frame(RooFit.Bins(nBins),RooFit.Title("Truth Matched #pi^{0} Mass: From Subset of Charm MC"))
+#frame1 = pi0mass.frame(RooFit.Bins(nBins),RooFit.Title("#pi^{0} Mass: From All Generic MC"))
 pullFrame = pi0mass.frame(RooFit.Bins(nBins),RooFit.Title(""))
 # Beautification Things
 frame1.SetStats(0)
@@ -145,10 +155,24 @@ tex1.Draw()
 #tex2.SetNDC() 
 #tex2.Draw()
 
+canvas.Print("/home/tkimmel/Research/plots/nbpi0/Systematics/nullTM.png")
+
+#canvas.Print("/home/tkimmel/Research/plots/nbpi0/Systematics/MomentumBins/Fixed_Ns/withCuts_MC_0pizPBin_fixedNs_Signal.png")
+
+#canvas.Print("/home/tkimmel/Research/plots/nbpi0/TM_charm.png")
+#canvas.Print("/home/tkimmel/Research/plots/nbpi0/TM_charm_Minuit2.png")
+
+#canvas.Print("/home/tkimmel/Research/plots/nbpi0/TM.png")
+#canvas.Print("/home/tkimmel/Research/plots/nbpi0/TM_Minuit2.png")
+#canvas.Print("/home/tkimmel/Research/plots/nbpi0/TM_narrowWindow_Minuit2.png")
+
 #canvas.Print("/home/tkimmel/Research/plots/nbpi0/Systematics/narrowWindow_withCuts_TM_Minuit2.png")
 #canvas.Print("/home/tkimmel/Research/plots/nbpi0/withCuts_TM_Minuit2.png")
-canvas.Print("/home/tkimmel/Research/plots/nbpi0/narrowWindow_withCuts_TM_Minuit2.png")
-#canvas.Print("/home/tkimmel/Research/plots/nbpi0/withCuts_3pizPBin_TM_Minuit2.png")
+#canvas.Print("/home/tkimmel/Research/plots/nbpi0/narrowWindow_withCuts_TM_Minuit2.png")
+
+#canvas.Print("/home/tkimmel/Research/plots/nbpi0/Systematics/wideWindow_withCuts_3pizPBin_TM_Minuit2.png")
+#canvas.Print("/home/tkimmel/Research/plots/nbpi0/Systematics/withCuts_3pizPBin_TM_Minuit2.png")
+#canvas.Print("/home/tkimmel/Research/plots/nbpi0/Systematics/narrowWindow_withCuts_3pizPBin_TM_Minuit2.png")
 
 #canvas.Print("/home/tkimmel/Research/plots/nbpi0/Systematics/wideWindow_TM.png")
 #canvas.Print("/home/tkimmel/Research/plots/nbpi0/Systematics/wideWindow_withCuts_TM.png")

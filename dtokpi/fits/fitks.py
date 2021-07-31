@@ -16,13 +16,13 @@ gROOT.ProcessLineSync(".x MyDblCB.cxx")
 #f1 = "/home/tkimmel/Research/root/charmmfrecon_bcs.root"
 
 #############Systematics#############
+"""
 f1 = "/home/tkimmel/Research/root/systematics/dsSystematics.root"
 title = "D* -> D^{0}(-> #pi^{0} + K_{S}^{0}) + #pi: From D* Systematics MC"
 outname = "/home/tkimmel/Research/plots/systematics/dStarFitting/ks_MC"
 #outname = "/home/tkimmel/Research/plots/systematics/dStarFitting/asymWindow1_ks_MC"
 #outname = "/home/tkimmel/Research/plots/systematics/dStarFitting/asymWindow2_ks_MC"
 
-"""
 f1 = "/home/tkimmel/Research/root/systematics/dsSystematicsData.root"
 title = "D* -> D^{0}(-> #pi^{0} + K_{S}^{0}) + #pi: From D* Systematics Data"
 outname = "/home/tkimmel/Research/plots/systematics/dStarFitting/ks_Data"
@@ -35,10 +35,7 @@ outname = "/home/tkimmel/Research/plots/systematics/dStarFitting/ks_Data"
 f1 = "/home/tkimmel/Research/root/partialData.root"
 title = "D* -> D^{0}(-> #pi^{0} + K_{S}^{0}) + #pi: From Partial Belle Dataset"
 outname = "/home/tkimmel/Research/plots/partialData/ksRecon_partialData"
-#outname = "/home/tkimmel/Research/plots/partialData/ksRecon_partialData_noDsPMagCut"
-"""
 
-"""
 f1 = "/home/tkimmel/Research/root/partialMC.root"
 title = "D* -> D^{0}(-> #pi^{0} + K_{S}^{0}) + #pi: From Partial Generic Monte Carlo"
 outname = "/home/tkimmel/Research/plots/partialData/ksRecon_partialMC"
@@ -47,50 +44,27 @@ outname = "/home/tkimmel/Research/plots/partialData/ksRecon_partialMC"
 """
 
 ############Full Stream MC############
-"""
 f1 = "/home/tkimmel/Research/root/fullStream.root"
 title = "D* -> D^{0}(-> #pi^{0} + K_{S}^{0}) + #pi: From a Full Stream of MC"
+#title = "D*^{+} -> D^{0}(-> #pi^{0} + K_{S}^{0}) + #pi^{+}: From a Full Stream of MC"
+#title = "D*^{-} -> D^{0}(-> #pi^{0} + K_{S}^{0}) + #pi^{-}: From a Full Stream of MC"
 outname = "/home/tkimmel/Research/plots/fullStream/ksRecon_fullStream"
-#outname = "/home/tkimmel/Research/plots/fullStream/ksRecon_fullStream_pionDup_noParam"
-
-#outname = "/home/tkimmel/Research/plots/fullStream/ksRecon_GaussBifurG_narrowWindow"
-#outname = "/home/tkimmel/Research/plots/fullStream/ksRecon_GaussBifurG_narrowWindow_noParam"
-#outname = "/home/tkimmel/Research/plots/fullStream/ksRecon_GaussBifurG_narrowWindow_fixedSigmas"
-#outname = "/home/tkimmel/Research/plots/fullStream/ksRecon_GaussBifurG_narrowWindow2"
-#outname = "/home/tkimmel/Research/plots/fullStream/ksRecon_GaussBifurG_narrowWindow2_fixedSigmas"
-#outname = "/home/tkimmel/Research/plots/fullStream/ksRecon_GaussBifurG_narrowWindow2_Minuit2"
-"""
-
+#title = "D* -> D^{0}(-> #pi^{0} + K_{S}^{0}) + #pi: From a Partial MC"
+#outname = "/home/tkimmel/Research/plots/fullStream/ksRecon_partialMC"
+#outname = "/home/tkimmel/Research/plots/fullStream/nullS"
 ############ALL MC############
 """
-f1 = "/home/tkimmel/Research/root/allmfrecon.root"
-title = "D* -> D^{0}(-> #pi^{0} + K_{S}^{0}) + #pi: From All Generic MC"
+#f1 = "/home/tkimmel/Research/root/allmfrecon.root"
+#title = "D* -> D^{0}(-> #pi^{0} + K_{S}^{0}) + #pi: From All Generic MC"
 #outname = "/home/tkimmel/Research/plots/alldtokpi/ksRecon_allGeneric"
-outname = "/home/tkimmel/Research/plots/alldtokpi/ksRecon_allGeneric_noParam"
-#outname = "/home/tkimmel/Research/plots/alldtokpi/ksRecon_withCuts_pionDup"
-#outname = "/home/tkimmel/Research/plots/alldtokpi/ksRecon_Looseflavorcut_BCS_nbn0p076"
-#outname = "/home/tkimmel/Research/plots/alldtokpi/ksRecon_Looseflavorcut_BCS_nbn0p076_fixedNs_n114p874_n25p509"
-#outname = "/home/tkimmel/Research/plots/alldtokpi/ksRecon_Looseflavorcut_BCS_fixedNs_n19p418_n22p6871"
-#outname = "/home/tkimmel/Research/plots/alldtokpi/ksRecon_Looseflavorcut_BCS_fixedNs_n123p9_n25p36"
-#outname = "/home/tkimmel/Research/plots/alldtokpi/ksRecon_Looseflavorcut_nb0p832_fixedNs_n123p9_n25p36"
-#outname = "/home/tkimmel/Research/plots/alldtokpi/ksRecon_GaussBifurG_Looseflavorcut_nb0p832"
-
-#outname = "/home/tkimmel/Research/plots/alldtokpi/ksRecon_GaussBifurG_3p416FlavorCut_BCS_nbn0p076"
-#outname = "/home/tkimmel/Research/plots/alldtokpi/ksRecon_GaussBifurG_3p416FlavorCut_BCS"
-#outname = "/home/tkimmel/Research/plots/alldtokpi/ksRecon_GaussBifurG_2p765FlavorCut_BCS"
-#outname = "/home/tkimmel/Research/plots/alldtokpi/ksRecon_GaussBifurG_2p765FlavorCut_BCS_nbn0p076"
-
-#outname = "/home/tkimmel/Research/plots/alldtokpi/ksRecon_GaussBifurG_2p765FlavorCut_BCS_nbn0p076_narrowWindow"
-#outname = "/home/tkimmel/Research/plots/alldtokpi/ksRecon_GaussBifurG_2p765FlavorCut_BCS_nbn0p076_narrowWindow_noParam"
-#outname = "/home/tkimmel/Research/plots/alldtokpi/ksRecon_GaussBifurG_2p765FlavorCut_BCS_nbn0p076_narrowWindow_fixedSigmas_noParam"
-#outname = "/home/tkimmel/Research/plots/alldtokpi/ksRecon_GaussBifurG_2p765FlavorCut_BCS_nb0p832_narrowWindow2_fixedSigmas"
+f1 = "/home/tkimmel/Research/root/allmfrecon_exp55Stream2.root"
+title = "D* -> D^{0}(-> #pi^{0} + K_{S}^{0}) + #pi: From Stream 2 Exp. 55 MC"
+outname = "/home/tkimmel/Research/plots/alldtokpi/ksRecon_allGeneric_exp55Stream2"
 """
-
 ############K0 SIGNAL MC############
 """
 f1 = "/home/tkimmel/Research/root/k0signalmfrecon.root"
 title = "D^{*} -> D^{0}(-> #pi^{0} + K_{S}^{0}) + #pi: From K^{0} Signal MC"
-outname = "/home/tkimmel/Research/plots/k0Signal/ksRecon_Looseflavorcut_BCS_fixeddM0_fixedNs"
 """
 
 ############KS SIGNAL MC############
@@ -100,40 +74,18 @@ title = "D* -> D^{0}(-> #pi^{0} + K_{S}^{0}) + #pi: From K^{0}_{S} Signal MC"
 outname = "/home/tkimmel/Research/plots/ksSignalMC/ksRecon_ksSignal"
 #outname = "/home/tkimmel/Research/plots/ksSignalMC/ksRecon_ksSignal_noParam"
 #outname = "/home/tkimmel/Research/plots/ksSignalMC/ksRecon_TMFit"
-#outname = "/home/tkimmel/Research/plots/ksSignalMC/ksRecon_fixeddM0"
-#outname = "/home/tkimmel/Research/plots/ksSignalMC/ksRecon_fixeddM0PDGPionMass"
-#outname = "/home/tkimmel/Research/plots/ksSignalMC/ksRecon_fixeddM0MeasuredPionMass"
 #outname = "/home/tkimmel/Research/plots/ksSignalMC/ksRecon_withCuts"
 #outname = "/home/tkimmel/Research/plots/ksSignalMC/ksRecon_withCuts_pionDup_ksSignalMC"
 """
 
-
 #outname = "/home/tkimmel/Research/plots/nullS"
-
-########CUT########
-#cut="dsPmag>3 && nb>0.832"# Loose flavor cut and k0sig 10BSR
-#cut="dsPmag>3 && bcsflag==1 && nb>-0.076"# Loose flavor cut and BCS and k0sig 1SBR
-
-#cut="dsPmag>3.416 && bcsflag==1"# Loose flavor cut and BCS
-#cut="dsPmag>3.416 && bcsflag==1 && nb>-0.076"# Loose flavor cut and BCS and k0sig 1SBR
-#cut="dsPmag>2.765 && bcsflag==1"# Loose flavor cut and BCS
-#cut="dsPmag>2.765 && bcsflag==1 && nb>-0.076"# Loose flavor cut and BCS and k0sig 1SBR
-#cut="dsPmag>2.765 && bcsflag==1 && nb>0.832"# Loose flavor cut and BCS and k0sig 10SBR
-#cut="bcsflag==1"# BCS
-
-cut=""# No cut
-#cut="bcsflag==1 && nb>0.832"# No cut
-#cut="abs(dsflag)==1"# Truth Matched
-
 
 tree = "dsrecontree"
 f = TFile(f1,"READ")
 t = f.Get(tree)
 
-#deltam = RooRealVar("deltam","deltam",0.138,0.154)
-#deltam = RooRealVar("deltam","deltam",0.139,0.153)
 deltam = RooRealVar("deltam","deltam",0.14,0.152)
-#deltam = RooRealVar("deltam","deltam",0.141,0.151)
+#deltam = RooRealVar("deltam","deltam",0.141,0.151)# Narrow
 # Asymmetric Windows
 #deltam = RooRealVar("deltam","deltam",0.14,0.155)# 1
 #deltam = RooRealVar("deltam","deltam",0.14,0.1535)# 2
@@ -141,9 +93,9 @@ deltam = RooRealVar("deltam","deltam",0.14,0.152)
 nb = RooRealVar("nb","nb",-1,1)
 bcsflag = RooRealVar("bcsflag","bcsflag",0,1)
 chrgflag = RooRealVar("chrgflag","chrgflag",-1,1)
-#dsPmag = RooRealVar("dsPmag","dsPmag",0,11)
-#dsPmagcms = RooRealVar("dsPmagcms","dsPmagcms",0,15)
 dsflag = RooRealVar("dsflag","dsflag",-40,40)
+pizP = RooRealVar("pizP","pizP",0,6)
+exp = RooRealVar("exp","exp",0,99)
 
 lb = deltam.getMin()
 rb = deltam.getMax()
@@ -154,119 +106,86 @@ binWidth = (rb-lb)/nBins
 binWidthMEV = binWidth*1000
 
 
-vars = RooArgSet(deltam)
+#vars = RooArgSet(deltam)
+#vars = RooArgSet(deltam,pizP,nb,bcsflag,chrgflag)
+vars = RooArgSet(deltam,pizP,nb,bcsflag,chrgflag,exp)
 #vars = RooArgSet(deltam,dsflag)
 #vars = RooArgSet(deltam,bcsflag,nb)
 
-#vars = RooArgSet(deltam,nb,dsPmag)
-#vars = RooArgSet(deltam,nb,dsPmag,mfchi2,gmthetacms)
-#vars = RooArgSet(deltam,nb,nbgm1,nbgm2,coskpiz,coskpizcm,cosdpipcm,pipp,dsPmag)
-#vars = RooArgSet(deltam,nb,coskpiz,cosdpipcm,pipp,dsPmag,kpdiff)
-#vars = RooArgSet(deltam,nb,coskpiz,cosdpipcm,pipp,dsPmag,dnb)
+########CUT########
+#cut="pizP>=1"# No cut
+#outname += "_pizPCut"
+#cut="bcsflag==1 && nb>0.832"
+#cut="pizP>=1 && bcsflag==1 && nb>0.63"# Systematics cut
+#outname += "_withCuts_pizPCut"
+#cut="pizP>=1 && bcsflag==1 && nb>0.832"
+#outname += "_withCuts_pizPCut"
+#cut="pizP>=1 && bcsflag==1 && nb>0.832 && exp==43"
+#outname += "_withCuts_pizPCut"
+cut="pizP>=1 && bcsflag==1 && nb>0.832 && exp!=43"
+outname += "_withCuts_pizPCut_noExp43"
 
+#cut="pizP>=1 && bcsflag==1 && nb>0.832 && chrgflag==1"
+#outname += "_withCuts_pizPCut_positive"
+#cut="pizP>=1 && bcsflag==1 && nb>0.832 && chrgflag==-1"
+#outname += "_withCuts_pizPCut_negative"
+
+#cut="abs(dsflag)==1"# Truth Matched
+#cut="pizP>0.5"# No cut
 
 data = RooDataSet("data", "raw data", t, vars, cut)
-
-#data = RooDataSet("data", "raw data", t, vars, "nb > 0.690")# mfsig pi0training 10 variables
-#data = RooDataSet("data", "raw data", t, vars, "nb > 0.854")# k0sig pi0training 10 variables
-#data = RooDataSet("data", "raw data", t, vars, "nb > 0.642")# mfsig pi0training 13 variables
-#data = RooDataSet("data", "raw data", t, vars, "nb > 0.834")# k0sig pi0training 13 variables
-
-#data = RooDataSet("data", "raw data", t, vars, "dsPmag>3.26939 && bcsflag==1")# flavorCut
-
 
 
 #Function Variables
 
 # Global Mean
-mu = RooRealVar("#mu","#mu",0.145,0.1456)
-
-##Chebyshev
-#c0 = RooRealVar("c_{0}","c_{0}",-1,1)
-#c1 = RooRealVar("c_{1}","c_{1}",-1,1)
-#c2 = RooRealVar("c_{2}","c_{2}",-1,1)
-
-
-# Double Sided Crystal Ball
-#mu = RooRealVar("#mu_{sig}","#mu_{sig}",0.145,0.1456)
-sigma = RooRealVar("#sigma_{sig}","#sigma_{sig}",0.0004,0.0009)
-a1 = RooRealVar("#alpha_{1}","#alpha_{1}",0.9,1.5)
-n1 = RooRealVar("n_{1}","n_{1}",20,26)
-a2 = RooRealVar("#alpha_{2}","#alpha_{2}",0.8,1.4)
-n2 = RooRealVar("n_{2}","n_{2}",4,9)
-#n1.setConstant()
-#n2.setConstant()
-#n1 = RooRealVar("n1","n1",8.12,7.5,9)
-#n2 = RooRealVar("n2","n2",2.644,2,3)
+mu = RooRealVar("#mu","#mu",0.1453,0.1456)
 
 #Gaussian
-#gausmean = RooRealVar("#mu_{sig}","#mu_{sig}",0.145465,0.144,0.146)
-##gausmean.setConstant()
-#gaussigma = RooRealVar("#sigma","#sigma",0.0003827,0.0002,0.0005)
-gaussigma = RooRealVar("#sigma","#sigma",0.0004,0.0007)
+gaussigma = RooRealVar("#sigma","#sigma",0.00034,0.00045)
 
 ##Bifurcated Gaussian
-#gaussigmaR = RooRealVar("#sigma_{R}","#sigma_{R}",0.0003,0.0017)
-#gaussigmaL = RooRealVar("#sigma_{L}","#sigma_{L}",0.0003,0.0015)
-gaussigmaR = RooRealVar("#sigma_{R}","#sigma_{R}",0.0007,0.0015)
-gaussigmaL = RooRealVar("#sigma_{L}","#sigma_{L}",0.0008,0.0017)
+#gaussigmaR = RooRealVar("#sigma_{R}","#sigma_{R}",0.000903,0.0006,0.0015)
+#gaussigmaL = RooRealVar("#sigma_{L}","#sigma_{L}",0.000762,0.0004,0.0013)
 
-"""
-#scaleL = RooRealVar("scaleL","scaleL",2.141589) #140t152
-#scaleR = RooRealVar("scaleR","scaleR",2.491547) #140t152
-scaleL = RooRealVar("scaleL","scaleL",2.168022) #139t153
-scaleR = RooRealVar("scaleR","scaleR",2.557849) #139t153
+scaleL = RooRealVar("scaleL","scaleL",2.130243)
+scaleR = RooRealVar("scaleR","scaleR",2.437086)
+outname += "_fixedSigmaRatios"
+
+#scaleL = RooRealVar("scaleL","scaleL",2.130831)
+#scaleR = RooRealVar("scaleR","scaleR",2.437828)
+#outname += "_plusSigma"
+#scaleL = RooRealVar("scaleL","scaleL",2.129655)
+#scaleR = RooRealVar("scaleR","scaleR",2.436344)
+#outname += "_minusSigma"
 gaussigmaL = RooFormulaVar("#sigmaL","#sigmaL","@0*@1",RooArgList(gaussigma,scaleL))
 gaussigmaR = RooFormulaVar("#sigmaR","#sigmaR","@0*@1",RooArgList(gaussigma,scaleR))
-"""
 
-#frac = RooRealVar("R","R",0.582)
 frac = RooRealVar("R","R",0,1)
 
 # DstD0BG
-#m0 = RooRealVar("m_{0}", "m_{0}", 0.139416, 0.138, 0.142)
-#m0 = RooRealVar("m_{0}", "m_{0}", 0.13957, 0.1394, 0.1396)
-A = RooRealVar("A", "A",-100,100)
-B = RooRealVar("B", "B",-100,100)
-C = RooRealVar("C", "C",0,10)
+m0 = RooRealVar("m_{0}","m_{0}",0.138,0.1395)
+A = RooRealVar("A","A",-30,0)
+B = RooRealVar("B","B",-1,1)
+C = RooRealVar("C","C",0,0.1)
 #m0.setConstant()
-m0 = RooRealVar("m_{0}", "m_{0}", 0.13957039)# Charged pion mass
-outname += "_fixedm0"
+#m0 = RooRealVar("m_{0}", "m_{0}", 0.13957039)# Charged pion mass
+#outname += "_fixedm0"
 
-nsig = RooRealVar("N_{Signal}","nsig",0,25000)
-#nsig = RooRealVar("N_{Signal}","nsig",0,10000)# All MC
-#nsig = RooRealVar("N_{Signal}","nsig",0,10000000)# Signal MC
-#nbkg = RooRealVar("N_{Bkg}","nbkg",0,10000)
-nbkg = RooRealVar("N_{Bkg}","nbkg",50000,10000000)
-
-#cheby = RooChebychev("Chebychev","Chebychev",deltam,RooArgList(c0,c1,c2))
-#dstd0 = RooDstD0BG("DstD0BG","DstD0BG",deltam,dm0,d,a,b)
-#bkg = RooAddPdf("bkg","bkg",RooArgList(cheby,dstd0),RooArgList(frac))
-#sig = RooVoigtian("sig","Voigtian Signal Fcn",deltam,voigmean,voigwidth,voigsigma) #Use for Voigtian Signal
-#sig = RooBreitWigner("sig","Breit Wigner Signal Fcn", deltam,bwmean,bwwidth) #Use for Breit Wigner Signal
-#sig = RooGaussian("sig","Gaussian Signal Fcn", deltam,gausmean,gaussigma) #Use for Gaussian Signal
-
-
-#sig = MyDblCB("sig","Double Sided Crystal Ball Signal Fcn", deltam,mu,sigma,a1,n1,a2,n2) #Use for Double Crystal Ball signal
+nsig = RooRealVar("N_{Signal}","nsig",0,190000)
+nbkg = RooRealVar("N_{Bkg}","nbkg",0,500000)
+#nsig = RooRealVar("N_{Signal}","nsig",0,25000)
+#nbkg = RooRealVar("N_{Bkg}","nbkg",0,50000)
 
 ####################Sum of Two Signal PDFs####################
 gauss = RooGaussian("gauss","Gaussian Signal Fcn", deltam,mu,gaussigma)
 bifurG = RooBifurGauss("bifurG","Bifurcated Gaussian Signal Fcn", deltam,mu,gaussigmaL,gaussigmaR)
 
-dblcb = MyDblCB("dblcb","Double Sided Crystal Ball Signal Fcn", deltam,mu,sigma,a1,n1,a2,n2)
-#frac = RooRealVar("frac_{sig}","frac_{sig}",0,1)
-#frac = RooRealVar("frac_{sig}","frac_{sig}",0.5724,0,1)
-#sig = RooAddPdf("sig","DblCB + BreitWigner Sig Fcn",RooArgList(dblcb,bwig),RooArgList(frac))
 sig = RooAddPdf("sig","Gauss + BifurGauss Sig Fcn",RooArgList(gauss,bifurG),RooArgList(frac))
 GAUSS = RooArgSet(gauss)
 BIFURG = RooArgSet(bifurG)
-DBLCB = RooArgSet(dblcb)
 ##############################################################
 bkg = RooDstD0BG("bkg","DstD0BG Bkg Fcn",deltam,m0,C,A,B)
-
-#pdf = RooAddPdf("pdf","nbkg*bkg", RooArgList(bkg),RooArgList(nbkg));
-#pdf = RooAddPdf("pdf","nsig*sig", RooArgList(sig),RooArgList(nsig));
-#pdf = RooExtendPdf("pdf","nsig*sig", sig, nsig);
 SIG = RooArgSet(sig)
 BKG = RooArgSet(bkg)
 pdf = RooAddPdf("pdf","sig+bkg",RooArgList(sig,bkg),RooArgList(nsig,nbkg))
@@ -355,13 +274,11 @@ pdf.plotOn(frame1, RooFit.Components(BKG),RooFit.LineColor(kRed),RooFit.LineStyl
 pdf.plotOn(frame1, RooFit.LineColor(kBlack))
 #pdf.plotOn(frame1, RooFit.Components(bkg),RooFit.LineColor(kRed),RooFit.LineStyle(kDashed))
 
-pdf.paramOn(frame1,RooFit.Format("NEU", RooFit.AutoPrecision(2)), RooFit.Layout(0.625, 0.99, 0.91))# Higher Parameter Box
-#pdf.paramOn(frame1,RooFit.Format("NEU", RooFit.AutoPrecision(2)), RooFit.Layout(0.60, 0.95, 0.90))# Higher Parameter Box, signal MC
-
-#pdf.paramOn(frame1,RooFit.Format("NEU", RooFit.AutoPrecision(2)), RooFit.Layout(0.6, 0.96, 0.85))# Medium Parameter Box
+pdf.paramOn(frame1,RooFit.Format("NEU", RooFit.AutoPrecision(2)), RooFit.Layout(0.60, 0.95, 0.90))# Higher Parameter Box
 
 #pdf.paramOn(frame1,RooFit.Format("NEU", RooFit.AutoPrecision(2)), RooFit.Layout(0.65, 0.99, 0.63))# Lower Parameter Box
-#pdf.paramOn(frame1,RooFit.Format("NEU", RooFit.AutoPrecision(2)), RooFit.Layout(0.65, 0.99, 0.51))# Lower Few Parameter Box
+#pdf.paramOn(frame1,RooFit.Format("NEU", RooFit.AutoPrecision(2)), RooFit.Layout(0.68, 0.99, 0.57))# Lower Few Parameter Box
+#outname += "_paramOff"
 
 #frame1.getAttFill('pdf_paramBox').SetFillStyle(0)
 frame1.Draw()
