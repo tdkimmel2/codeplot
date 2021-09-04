@@ -20,13 +20,14 @@ import math, os
 
 
 ############ALL MC############
-f1 = "/home/tkimmel/Research/root/allmfrecon.root"
+f1 = "/home/tkimmel/Research/root/allmfreconKstree.root"
 title = "K_{S}^{0} Mass: From All Generic MC"
 #outname = "/home/tkimmel/Research/plots/kstree/ksmassFit.png"
 #outname = "/home/tkimmel/Research/plots/kstree/ksmassFit_2Gauss.png"
-outname = "/home/tkimmel/Research/plots/kstree/ksmassFit_2Gauss_wideWindow.png"
+#outname = "/home/tkimmel/Research/plots/kstree/ksmassFit_2Gauss_wideWindow.png"
 #outname = "/home/tkimmel/Research/plots/kstree/ksmassFit_2Gauss_wideWindow_firstOrder.png"
 #outname = "/home/tkimmel/Research/plots/kstree/ksmassFit_GaussBifurG_wideWindow.png"
+outname = "/home/tkimmel/Research/plots/kstree/XTitle.png"
 ############K0 SIGNAL MC############
 """
 f1 = "/home/tkimmel/Research/root/k0signalmfrecon.root"
@@ -47,7 +48,8 @@ outname = "/home/tkimmel/Research/plots/ksSignalMC/ksRecon_GaussBifurG_2p765Flav
 #outname = "/home/tkimmel/Research/plots/nullS"
 
 ########CUT########
-cut=""# No cut
+#cut=""# No cut
+cut="whoru==1"# No cut
 
 
 tree = "kstree"
@@ -58,6 +60,7 @@ t = f.Get(tree)
 
 #ksmass = RooRealVar("ksmass","ksmass",0.485569,0.50981)
 ksmass = RooRealVar("ksmass","ksmass",0.486,0.510)
+whoru = RooRealVar("whoru","whoru",0,1)
 
 lb = ksmass.getMin()
 rb = ksmass.getMax()
@@ -68,7 +71,7 @@ binWidth = (rb-lb)/nBins
 binWidthMEV = binWidth*1000
 
 
-vars = RooArgSet(ksmass)
+vars = RooArgSet(ksmass,whoru)
 
 data = RooDataSet("data", "raw data", t, vars, cut)
 
@@ -267,7 +270,7 @@ pullFrame.SetTitle("")
 pullFrame.GetXaxis().CenterTitle(kTRUE)
 pullFrame.GetXaxis().SetLabelOffset(0.03)
 pullFrame.GetXaxis().SetLabelSize(0.09)
-pullFrame.GetXaxis().SetTitle("#M_{K^0_S} (GeV/c^{2})")
+pullFrame.GetXaxis().SetTitle("M_{K^{0}_{S}} (GeV/c^{2})")
 pullFrame.GetXaxis().SetTitleOffset(1.1)
 pullFrame.GetXaxis().SetTitleSize(0.12)
 
